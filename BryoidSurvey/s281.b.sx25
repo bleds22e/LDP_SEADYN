@@ -1,0 +1,102 @@
+TITLE          Hondo-Slave Lake Stand 2: 1981 Bryoid Monthly Survey
+SUBTITLE       Stand 2 -- 1981 Bryoid Cover % Data (5x5 m)
+SET LENGTH=120
+SET BLANKS=0
+FILE HANDLE DATA/NAME='S281.B.ST25'
+DATA LIST FILE=DATA RECORDS=2 NOTABLE
+              /PLOTNO
+               CLAMIT PELMAL POLJUN CETERI STEALP PELAPH
+               CLAUNC PLESCH CLASTE POLPIL PTICC  HYLSPL
+               DICPOL CERPUR CETPIN PELCAN CLAPHY CLACOC
+               CLAGRA CLAMUL CLACRP CLACOR CLACHL PELPUL
+               PTICIL BRASAL CLACON CLAPYX CETNIV
+                     (A2, 1X, 25F3.0 / 3X, 4F3.0)
+COMPUTE NUM = 25
+COMPUTE DATE=TRUNC(($CASENUM+NUM-1)/NUM)
+COMPUTE        BRYOPHCV = 
+               BRASAL+DICPOL+
+               HYLSPL+PLESCH+POLJUN+POLPIL+
+               PTICIL+PTICC
+COUNT          BRYOPHRP = POLJUN PLESCH POLPIL PTICC HYLSPL DICPOL PTICIL BRASAL (0.01 THRU HIGHEST)
+COMPUTE        LICHENCV = 
+               CETERI+CETNIV+CETPIN+
+               CLACHL+CLACOC+CLACON+CLACOR+
+               CLACRP+CLAGRA+CLAMIT+CLAMUL+
+               CLAPHY+CLAPYX+CLASTE+CLAUNC+
+               PELAPH+PELMAL+PELPUL+PELCAN
+COUNT          LICHENRP = CLAMIT PELMAL CETERI TO CLAUNC CLASTE CERPUR TO PELPUL CLACON TO CETNIV (0.01 THRU HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+STRING SUBFILE(A8)
+RECODE DATE (1='MY12')(2='JN09')
+      INTO SUBFILE
+PRINT FORMATS  CLAMIT TO CETNIV (F5.2)
+               BRYOPHCV LICHENCV TOTALCV (F5.2)
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLAMIT TO CETPIN (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PELCAN TO CETNIV (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover and Species Richness Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS 
+               BRASAL 'Brachythecium salebrosum'
+               CERPUR 'Ceratodon purpureus' 
+               DICPOL 'Dicranum polysetum'
+               HYLSPL 'Hylocomium splendens'
+               PLESCH 'Pleurozium schreberi'
+               POLJUN 'Polytrichum juniperinum'
+               POLPIL 'Polytrichum piliferum'
+               PTICC  'Ptilium crista-castrensis'
+               PTICIL 'Ptilidium ciliare'
+               CETERI 'Cetraria ericetorum'
+               CETPIN 'Cetraria pinastri'
+               CETNIV 'Cetraria nivalis'
+               CLACHL 'Cladonia chlorophaea'
+               CLACOC 'Cladonia coccifera'
+               CLACON 'Cladonia coniocraea'
+               CLACOR 'Cladonia cornuta'
+               CLACRP 'Cladonia crispata'
+               CLAGRA 'Cladonia gracilis'
+               CLAMIT 'Cladina mitis'
+               CLAMUL 'Cladonia multiformis'
+               CLAPHY 'Cladonia phyllophora'
+               CLAPYX 'Cladonia pyxidata'
+               CLASTE 'Cladina stellaris'
+               CLAUNC 'Cladonia uncialis'
+               PELAPH 'Peltigera aphthosa'
+               PELMAL 'Peltigera malacea' 
+               PELPUL 'Peltigera pulverulenta'
+               PELCAN 'Peltigera canina'
+               STEALP 'Stereocaulon alpina'
+               BRYOPHCV 'Mean Bryophyte Cover'
+               BRYOPHRP 'Mean Bryophyte Species Richness'
+               LICHENCV 'Mean Lichen Cover'
+               LICHENRP 'Mean Lichen Species Richness'
+               TOTALCV  'Mean Cover of All Species'
+               TOTALRP  'Mean Richness of All Species'
+VALUE LABELS DATE
+ (01)'MY12' (02)'JN09'
+SORT CASES BY DATE
+SPLIT FILE BY DATE
+USERPROC NAME = SEADYN
+    /VARIABLES = CLAMIT TO CETNIV
+    /OPTIONS = 2,11,14
+USERPROC NAME = SEADYN
+    /VARIABLES = BRYOPHCV TO TOTALRP
+    /STATISTICS = 1
+FINISH

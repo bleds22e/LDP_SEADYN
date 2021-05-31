@@ -1,0 +1,132 @@
+This SPSS version 9 control card file corresponds to the Hondo-Slave
+Lake vascular stand tables (1981 or 1982) that were generated as a
+result of the fix-up effort of 11-1983 thru 2-1984. In particular,
+variable order is the same for both years and will hopefully remain
+so for 1983 stand tables. Also, species names (and hence variable
+names) have been brought up-to-date with current taxonomy.
+ 
+EDIT
+TITLE          Hondo-Slave Lake Stand 2: 1981 Vascular Monthly Survey
+SUBTITLE       Stand 2 -- 1981 Vascular Cover % Data (5x5 m)
+FILE HANDLE DATA/NAME='S281.V.AUG'
+DATA LIST FILE=DATA RECORDS=2 NOTABLE
+              /PLOT
+               PIBA PIGL POTR ALCR AMAL ARUV PRPE ROAC ROWO RUID
+               SABE SHCA SYAL ANMU ANPA ARNU ASLA CARO ERGL GABO
+               GELI HIUM LIBO LIPH MELI ORSE PYCH SOSP VIAD CXSI
+               CXRI ELGL ELIN ORAS ORPU EQAR EQVA LYCO TEMP VAMY
+               VAVI MACA OBSN
+                     (A2, 1X, 25F3.0 / 3X, 18F3.0)
+MISSING VALUES TEMP (0) OBSN (0)
+VALUE LABELS   OBSN (0) Not known (2) GHLR (3) RAE (4) MSR (5) MO /
+COMPUTE NUM=25
+COMPUTE DATE=TRUNC(($CASENUM+NUM-1)/NUM)
+COMPUTE        TREECV = PIBA+PIGL+POTR
+COMPUTE        SHRBCV = ALCR+AMAL+ARUV+PRPE+ROAC+
+                        ROWO+RUID+SABE+SHCA+SYAL+LIBO+VAMY+VAVI
+COMPUTE        FORBCV = ANMU+ANPA+ARNU+ASLA+
+                        CARO+ERGL+GABO+GELI+HIUM+LIPH+MELI+ORSE+PYCH+
+                        SOSP+VIAD+MACA
+COMPUTE        GRAMCV = CXSI+CXRI+ELGL+ELIN+ORAS+ORPU
+COMPUTE        PTERCV = EQAR+EQVA+LYCO
+COUNT          TREERP = PIBA TO POTR (0.01 THRU HIGHEST)
+COUNT          SHRBRP = ALCR TO SYAL LIBO VAMY VAVI (0.01 THRU HIGHEST)
+COUNT          FORBRP = ANMU TO HIUM LIPH TO VIAD MACA (0.01 THRU HIGHEST)
+COUNT          GRAMRP = CXSI TO ORPU (0.01 THRU HIGHEST)
+COUNT          PTERRP = EQAR TO LYCO (0.01 THRU HIGHEST)
+COMPUTE        TOTLCV = TREECV+SHRBCV+FORBCV+GRAMCV+PTERCV
+COMPUTE        TOTLRP = TREERP+SHRBRP+FORBRP+GRAMRP+PTERRP
+STRING SUBFILE(A8)
+RECODE DATE(1='AU18') INTO SUBFILE
+PRINT FORMATS PIBA TO LIPH(F5.2)
+              MELI TO LYCO VAMY TO MACA(F5.2)
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) PIBA TO LIPH (4)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) MELI TO LYCO (4) VAMY TO MACA (4) /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) TEMP (4) OBSN (4)
+                                           TREECV TO TOTLRP (6) /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Soil Temperature and Synthetic Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+VAR LABELS 
+               ALCR 'Alnus crispa'
+               AMAL 'Amelanchier alnifolia'
+               ANMU 'Anemone multifida'
+               ANPA 'Anemone patens'
+               ARNU 'Aralia nudicaulis'
+               ARUV 'Arctostaphylos uva-ursi'
+               ASLA 'Aster laevis'
+               PIBA 'Betula papyrifera'
+               CARO 'Campanula rotundifolia'
+               CXRI 'Carex richardsonii'
+               CXSI 'Carex siccata'
+               ELGL 'Elymus glaucus'
+               ELIN 'Elymus innovatus'
+               EQAR 'Equisetum arvense'
+               EQVA 'Equisetum variegatum'
+               ERGL 'Erigeron glabellus'
+               GABO 'Galium boreale'
+               GELI 'Geocaulon lividum'
+               HIUM 'Hieracium umbellatum'
+               LIBO 'Linnaea borealis'
+               LIPH 'Lilium philadelphicum'
+               LYCO 'Lycopodium complanatum' 
+               MACA 'Maianthemum canadense'
+               MELI 'Melampyrum lineare'
+               ORAS 'Oryzopsis asperifolia'
+               ORPU 'Oryzopsis pungens' 
+               ORSE 'Orthilia secunda'
+               PIBA 'Pinus banksiana'
+               PIGL 'Picea glauca'
+               POTR 'Populus tremuloides'
+               PRPE 'Prunus pensylvanica'
+               PYCH 'Pyrola chlorantha'
+               ROAC 'Rosa acicularis'
+               ROWO 'Rosa woodsii'
+               RUID 'Rubus idaeus var. aculeatissimus'
+               SABE 'Salix bebbiana' 
+               SHCA 'Shepherdia canadensis'
+               SOSP 'Solidago spathulata'
+               SYAL 'Symphoricarpos albus'
+               VAMY 'Vaccinium myrtilloides'
+               VAVI 'Vaccinium vitis-idaea'
+               VIAD 'Viola adunca' 
+               OBSN 'Observer number'
+               PLOT 'Plot or quadrat number'
+               TEMP 'Soil temperature at 5-10 cm, degrees F'
+               FORBCV 'Forb Species Cover %'
+               FORBRP 'Forb Species Richness'
+               GRAMCV 'Graminoid Species Cover %'
+               GRAMRP 'Graminoid Species Richness'
+               PTERCV 'Pteridophyte Species Cover %'
+               PTERRP 'Pteridophyte Species Richness'
+               SHRBCV 'Shrub Species Cover %' 
+               SHRBRP 'Shrub Species Richness'
+               TOTLCV 'Total Vascular Species Cover %'
+               TOTLRP 'Total Vascular Species Richness'
+               TREECV 'Tree Species Cover %'
+               TREERP 'Tree Species Richness'
+VALUE LABELS DATE
+ (01)'AU18'
+USERPROC NAME = SEADYN
+    /VARIABLES = PIBA TO EQVA VAMY TO MACA
+    /OPTIONS = 2,11,15
+USERPROC NAME = SEADYN
+    /VARIABLES = TEMP TREECV TO TOTLRP
+    /STATISTICS  =  1
+FINISH
+FINISH

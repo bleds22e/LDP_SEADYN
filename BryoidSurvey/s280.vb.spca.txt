@@ -1,0 +1,197 @@
+COMMENT        ****************************************************************
+               *                                                              *
+               *  MODIFY STAND TABLE TO REFLECT RESULTS OF CRITICAL ANALYSIS, *
+               *  PRODUCE A NEW STAND TABLE AS SO MODIFIED.                   *
+               *                                                              *
+               ****************************************************************
+PAGESIZE       60
+RUN NAME       STAND 2, 1980 VASC./BRYOID STAND TABLES INPUT
+FILE NAME      S280VB
+               STAND 2 (70 Y OLD JACKPINE) 1980 VASC/BRYOID COVER % DATA (25M2)
+VARIABLE LIST  PLOTNO
+               PIBA SHCA ROAC AMAL ARUV VAVI ALCR VAMY ANMU ASSP ORPU MACA
+               CARO MELI GABO SODE VIAD PRPE SYAL CXUM SASP LIBO
+               CLAMIT PELMAL POLJUN CLASPP CETERI STEALP PELAPH CLAUNC PLESCH
+               CLASTE POLPIL PTICC  HYLSPL DICPOL CLACOC PTICIL
+               ELIN ARNU GELI PYSE RUST EQAR EQVA PIGL HIUM LYTR PYVI ORAS
+               ERGL
+               PELCAN
+INPUT MEDIUM   DISK
+SUBFILE LIST   AUG10 (25)
+INPUT FORMAT   FREEFIELD
+PRINT FORMATS  PLOTNO (A)
+               PIBA TO PELCAN (2)
+IF             (PLOTNO EQ '0A') PIBA = 3
+IF             (PLOTNO EQ '0E') PIBA = 3
+IF             (PLOTNO EQ '0I') PIBA = 35
+IF             (PLOTNO EQ '4E') PIBA = 15
+IF             (PLOTNO EQ '6G') PIBA = 20
+IF             (PLOTNO EQ '6E') PIBA = 20
+IF             (PLOTNO EQ '6C') PIBA = 20
+IF             (PLOTNO EQ '6A') PIBA = 25
+IF             (PLOTNO EQ '8A') PIBA = 35
+IF             (PLOTNO EQ '8E') PIBA = 20
+IF             (PLOTNO EQ '8G') PIBA = 15
+IF             (PLOTNO EQ '0A') ARUV = 35
+IF             (PLOTNO EQ '0C') ARUV = 35
+IF             (PLOTNO EQ '0G') ARUV = 45
+IF             (PLOTNO EQ '0I') ARUV = 10
+IF             (PLOTNO EQ '2I') ARUV = 10
+IF             (PLOTNO EQ '2E') ARUV = 10
+IF             (PLOTNO EQ '2A') ARUV = 20
+IF             (PLOTNO EQ '4C') ARUV = 8
+IF             (PLOTNO EQ '4E') ARUV = 10
+IF             (PLOTNO EQ '4G') ARUV = 40
+IF             (PLOTNO EQ '6I') ARUV = 25
+IF             (PLOTNO EQ '6G') ARUV = 20
+IF             (PLOTNO EQ '6A') ARUV = 1
+IF             (PLOTNO EQ '8A') ARUV = .5
+IF             (PLOTNO EQ '8C') ARUV = 1
+IF             (PLOTNO EQ '8E') ARUV = 7
+IF             (PLOTNO EQ '8G') ARUV = 5
+IF             (PLOTNO EQ '0A') CARO = .01
+IF             (PLOTNO EQ '0C') CARO = 0
+IF             (PLOTNO EQ '0E') CARO = .1
+IF             (PLOTNO EQ '0G') CARO = .01
+IF             (PLOTNO EQ '0I') CARO = 0
+IF             (PLOTNO EQ '2I') CARO = .1
+IF             (PLOTNO EQ '2G') CARO = .01
+IF             (PLOTNO EQ '2E') CARO = .01
+IF             (PLOTNO EQ '2C') CARO = 0
+IF             (PLOTNO EQ '2A') CARO = .01
+IF             (PLOTNO EQ '4A') CARO = .01
+IF             (PLOTNO EQ '4C') CARO = 0
+IF             (PLOTNO EQ '4E') CARO = .01
+IF             (PLOTNO EQ '4G') CARO = 0
+IF             (PLOTNO EQ '4I') CARO = .01
+IF             (PLOTNO EQ '6I') CARO = .01
+IF             (PLOTNO EQ '6G') CARO = .01
+IF             (PLOTNO EQ '6E') CARO = .01
+IF             (PLOTNO EQ '6C') CARO = 0
+IF             (PLOTNO EQ '6A') CARO = .01
+IF             (PLOTNO EQ '8A') CARO = .01
+IF             (PLOTNO EQ '8C') CARO = .01
+IF             (PLOTNO EQ '8E') CARO = 0
+IF             (PLOTNO EQ '8G') CARO = 0
+IF             (PLOTNO EQ '8I') CARO = .1
+IF             (PLOTNO EQ '0C') VAVI = 5
+IF             (PLOTNO EQ '0E') VAVI = 5
+IF             (PLOTNO EQ '0G') VAVI = 4
+IF             (PLOTNO EQ '0I') VAVI = 5
+IF             (PLOTNO EQ '2E') VAVI = 30
+IF             (PLOTNO EQ '4A') VAVI = 2
+IF             (PLOTNO EQ '4C') VAVI = .5
+IF             (PLOTNO EQ '4G') VAVI = 15
+IF             (PLOTNO EQ '4I') VAVI = 5
+IF             (PLOTNO EQ '6E') VAVI = 4
+IF             (PLOTNO EQ '8A') VAVI = 7
+IF             (PLOTNO EQ '8E') VAVI = 20
+IF             (PLOTNO EQ '8G') VAVI = 25
+IF             (PLOTNO EQ '8I') VAVI = 15
+IF             (PLOTNO EQ '0E') ALCR = 15
+IF             (PLOTNO EQ '0G') ALCR = .5
+IF             (PLOTNO EQ '2C') ALCR = 25
+IF             (PLOTNO EQ '2A') ALCR = .5
+IF             (PLOTNO EQ '4E') ALCR = 15
+IF             (PLOTNO EQ '4G') ALCR = .01
+IF             (PLOTNO EQ '8A') ALCR = 20
+IF             (PLOTNO EQ '8C') ALCR = 15
+IF             (PLOTNO EQ '8E') ALCR = 10
+IF             (PLOTNO EQ '8G') ALCR = 20
+IF             (PLOTNO EQ '8I') ALCR = 1
+IF             (PLOTNO EQ '2I') SHCA = .1
+IF             (PLOTNO EQ '2E') SHCA = 30
+IF             (PLOTNO EQ '2A') SHCA = 1
+IF             (PLOTNO EQ '4E') SHCA = .5
+IF             (PLOTNO EQ '4I') SHCA = .01
+IF             (PLOTNO EQ '6E') SHCA = 0
+IF             (PLOTNO EQ '0A') ERGL = .01
+IF             (PLOTNO EQ '0C') ERGL = .5
+IF             (PLOTNO EQ '0E') ERGL = .1
+IF             (PLOTNO EQ '0G') ERGL = .1
+IF             (PLOTNO EQ '0I') ERGL = .01
+IF             (PLOTNO EQ '2I') ERGL = .01
+IF             (PLOTNO EQ '2E') ERGL = .1
+IF             (PLOTNO EQ '2C') ERGL = .01
+IF             (PLOTNO EQ '2A') ERGL = .1
+IF             (PLOTNO EQ '4A') ERGL = .1
+IF             (PLOTNO EQ '4C') ERGL = .1
+IF             (PLOTNO EQ '4E') ERGL = .1
+IF             (PLOTNO EQ '4G') ERGL = .01
+IF             (PLOTNO EQ '4I') ERGL = .1
+IF             (PLOTNO EQ '6I') ERGL = .5
+IF             (PLOTNO EQ '6G') ERGL = .5
+IF             (PLOTNO EQ '6E') ERGL = .1
+IF             (PLOTNO EQ '8I') ERGL = .01
+IF             (PLOTNO EQ '0A') ANMU = .1
+IF             (PLOTNO EQ '0C') ANMU = .01
+IF             (PLOTNO EQ '0G') ANMU = .1
+IF             (PLOTNO EQ '0I') ANMU = .01
+IF             (PLOTNO EQ '2I') ANMU = .1
+IF             (PLOTNO EQ '2E') ANMU = .1
+IF             (PLOTNO EQ '2C') ANMU = .1
+IF             (PLOTNO EQ '4A') ANMU = .01
+IF             (PLOTNO EQ '4E') ANMU = .1
+IF             (PLOTNO EQ '4G') ANMU = .1
+IF             (PLOTNO EQ '6I') ANMU = .1
+IF             (PLOTNO EQ '6E') ANMU = .1
+IF             (PLOTNO EQ '6C') ANMU = .1
+IF             (PLOTNO EQ '6A') ANMU = .1
+IF             (PLOTNO EQ '8E') ANMU = .1
+IF             (PLOTNO EQ '8G') ANMU = .1
+IF             (PLOTNO EQ '0A') ORPU = 1
+IF             (PLOTNO EQ '0I') ORPU = .1
+IF             (PLOTNO EQ '2I') ORPU = .01
+IF             (PLOTNO EQ '2G') ORPU = .01
+IF             (PLOTNO EQ '2E') ORPU = .1
+IF             (PLOTNO EQ '2A') ORPU = 2
+IF             (PLOTNO EQ '4A') ORPU = 1
+IF             (PLOTNO EQ '4C') ORPU = .1
+IF             (PLOTNO EQ '4E') ORPU = .5
+IF             (PLOTNO EQ '4I') ORPU = .5
+IF             (PLOTNO EQ '6I') ORPU = .1
+IF             (PLOTNO EQ '6G') ORPU = .5
+IF             (PLOTNO EQ '6E') ORPU = .01
+IF             (PLOTNO EQ '6C') ORPU = .5
+IF             (PLOTNO EQ '6A') ORPU = .1
+IF             (PLOTNO EQ '8C') ORPU = .1
+IF             (PLOTNO EQ '8E') ORPU = .1
+IF             (PLOTNO EQ '8I') ORPU = 1
+IF             (PLOTNO EQ '0A') ELIN = .1
+IF             (PLOTNO EQ '0C') ELIN = .1
+IF             (PLOTNO EQ '0E') ELIN = .5
+IF             (PLOTNO EQ '0G') ELIN = .01
+IF             (PLOTNO EQ '2C') ELIN = .5
+IF             (PLOTNO EQ '2A') ELIN = .5
+IF             (PLOTNO EQ '4A') ELIN = .1
+IF             (PLOTNO EQ '4C') ELIN = .1
+IF             (PLOTNO EQ '4E') ELIN = .1
+IF             (PLOTNO EQ '4G') ELIN = .01
+IF             (PLOTNO EQ '6I') ELIN = .1
+IF             (PLOTNO EQ '6G') ELIN = .1
+IF             (PLOTNO EQ '6E') ELIN = .1
+IF             (PLOTNO EQ '8C') ELIN = .5
+IF             (PLOTNO EQ '8E') ELIN = .5
+IF             (PLOTNO EQ '8G') ELIN = .5
+IF             (PLOTNO EQ '8I') ELIN = .5
+IF             (PLOTNO EQ '0A') CXUM = .5
+IF             (PLOTNO EQ '0C') CXUM = .5
+IF             (PLOTNO EQ '0E') CXUM = .5
+IF             (PLOTNO EQ '0I') CXUM = .1
+IF             (PLOTNO EQ '2I') CXUM = .01
+IF             (PLOTNO EQ '2E') CXUM = .01
+IF             (PLOTNO EQ '2A') CXUM = .1
+IF             (PLOTNO EQ '4A') CXUM = 1
+IF             (PLOTNO EQ '4C') CXUM = .5
+IF             (PLOTNO EQ '4G') CXUM = .5
+IF             (PLOTNO EQ '4I') CXUM = .1
+IF             (PLOTNO EQ '6I') CXUM = .5
+IF             (PLOTNO EQ '6G') CXUM = .1
+IF             (PLOTNO EQ '8G') CXUM = .01
+IF             (PLOTNO EQ '8I') CXUM = .1
+WRITE CASES    (A2, 24F5.2 / 2X, 24F5.2 / 2X, 4F5.2), PLOTNO TO PELCAN
+READ INPUT DATA
+TASK NAME      DESCRIPTIVE STATISTICS FOR VASCULAR SPECIES AND THE STAND
+USER1          PIBA TO LIBO, ELIN TO ERGL
+OPTIONS        2
+FINISH

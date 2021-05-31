@@ -1,0 +1,8 @@
+Methods for data collection: From "Ecological Monitoring Research in Pinus banksiana dominated forests of the Athabasca Oil sands and Hondo-Slave lake areas of Alberta during the period 1981-1984" - this report only inlcuded 3 Hondo plots, but methods should have been the same across all of them.
+
+Ocular estimates of the above-ground live shoot cover (ie area of vertical projection of leaves, stems, flowers, and fruits expressed as a fraction of plot area) of each vascular plant species population were made to the nearest 1% or, if < 1%, then "+" for ca. 0.5%, "R" for ca. 0.1%, "." for ca. 0.01%, in each of the 100 5x5 permanent quadrats in the reference stand, using standard survey forms to facilitate entry into computer files. Placement of the sampling units was the same in all reference stands, ie, a systematic arrangement of alternative quadrats (columns A, C, E, G, I) in alternate "survey rows" (0, 2, 4, 6, 8) such that "control rows" 1, 3, 5, 7, and 9 were not disturbed by the survey process. See figure for locations. 
+Plants need not be rooted in the quadrats to be included in the cover and frequency estimates of the species poulations to which they belong (e.g. proportions of Pinus banksiana tree crowns overhanging the quadrat  were included  in the cover estimate for that sampling unit even thoug the tree was rooted outside of the quadrat).
+To minimize variations in cover arising from different observers, only three surveyeres estimated vascular plant cover in the project. 1984 - quadrat 4's were survyed by each observer, the entered values are the averaged values between the two observers.
+
+OBSN = Observer number
+

@@ -1,0 +1,122 @@
+EDIT
+PAGESIZE       120
+RUN NAME       Hondo-Slave Lake Stand 7: 1982 Bryoid Comm. Monthly Survey
+FILE NAME      S782B.5
+               Stand 7 (62 y old Black Spruce): 1982 Bryoid Cover Data (.7x.7m)
+VARIABLE LIST  PLOTNO
+               AMBJUR AULPAL BRASAL BRAPSE CEPLUN CERPUR DICPOL
+               DICUND DREREV HELBLA HYLSPL PLACUS PLESCH POLJUN 
+               PTICC  PTIPUL SPHANG SPHFUS SPHNEM SPHRUS SPHWAR
+               TOMNIT
+               CETPIN CLACEN CLACHL CLACOC CLACON CLACOR
+               CLACRP CLACRT CLAFUR CLAGON CLAGRA CLAMIT CLAMUL
+               CLAPHY CLAPYX CLARAN CLASUB 
+               PELAPH PELCAN PELMAL PELPOL PELRUF 
+INPUT MEDIUM   DISK
+SUBFILE LIST   MA12 (25) JN23 (25) JL29 (25) AU26 (25) OC09 (25)
+INPUT FORMAT   FIXED (1X, A2, 4F3.0,3X,4F3.0,3X,15F3.0 / 3X, 21F3.0)
+COMPUTE        BRYOPHCV = 
+               AMBJUR+AULPAL+BRASAL+BRAPSE+CEPLUN+CERPUR+DICPOL+
+               DICUND+DREREV+HELBLA+HYLSPL+PLACUS+PLESCH+POLJUN+
+               PTICC +PTIPUL+SPHANG+SPHFUS+SPHNEM+SPHRUS+SPHWAR+
+               TOMNIT
+COUNT          BRYOPHRP = AMBJUR TO TOMNIT (0.01 TO HIGHEST)
+COMPUTE        LICHENCV = 
+               CETPIN+CLACEN+CLACHL+CLACOC+CLACON+CLACOR+
+               CLACRP+CLACRT+CLAFUR+CLAGON+CLAGRA+CLAMIT+CLAMUL+
+               CLAPHY+CLAPYX+CLARAN+CLASUB+
+               PELAPH+PELCAN+PELMAL+PELPOL+PELRUF 
+COUNT          LICHENRP = CETPIN TO PELRUF (0.01 TO HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+PRINT FORMATS  PLOTNO (A)
+               AMBJUR TO PELRUF (3)
+               BRYOPHCV LICHENCV TOTALCV (3)
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) AMBJUR TO POLJUN (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 7'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PTICC  TO CLACRP (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 7'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACRT TO PELRUF (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 7'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 7'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover & Species Richness Variables by .7x.7 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS     AMBJUR Amblystegium juratzkanum                /
+               AULPAL Aulacomnium palustre                    /
+               BRASAL Brachythecium salebrosum                /
+               BRAPSE Brachythecium pseudotriquetrum          /
+               CEPLUN Cephalozia lunulifolia                  /
+               CERPUR Ceratodon purpureus                     /
+               DICPOL Dicranum polysetum                      /
+               DICUND Dicranum undulatum                      /
+               DREREV Drepanocladus revolvens                 /
+               HELBLA Helodium blandowii                      /
+               HYLSPL Hylocomium splendens                    /
+               PLACUS Plagiomnium cuspidatum                  /
+               PLESCH Pleurozium schreberi                    /
+               POLJUN Polytrichum juniperinum                 /
+               PTIPUL Ptilidium pulcherrimum                  /
+               PTICC  Ptilium crista-castrensis               /
+               SPHANG Sphagnum angustifolium                  /
+               SPHFUS Sphagnum fuscum                         /
+               SPHNEM Sphagnum nemoreum                       /
+               SPHRUS Sphagnum russowii                       /
+               SPHWAR Sphagnum warnstorfii                    /
+               CETPIN Cetraria pinastri                       /
+               CLACEN Cladonia cenotea                        /
+               CLACHL Cladonia chlorophaea                    /
+               CLACOC Cladonia coccifera                      /
+               CLACON Cladonia coniocraea                     /
+               CLACOR Cladonia cornuta                        /
+               CLACRP Cladonia crispata                       /
+               CLACRT Cladonia cristatella                    /
+               CLAFUR Cladonia furcata                        /
+               CLAGON Cladonia gonecha                        /
+               CLAGRA Cladonia gracilis                       /
+               CLAMIT Cladina mitis                           /
+               CLAMUL Cladonia multiformis                    /
+               CLAPHY Cladonia phyllophora                    /
+               CLAPYX Cladonia pyxidata                       /
+               CLARAN Cladina rangiferina                     /
+               CLASUB Cladonia subulata                       /
+               PELAPH Peltigera aphthosa                      /
+               PELCAN Peltigera canina                        /
+               PELMAL Peltigera malacea                       /
+               PELPOL Peltigera polydactyla                   /
+               PELRUF Peltigera rufescens                     /
+               TOMNIT Tomenthypnum nitens                     /
+               BRYOPHCV Mean Bryophyte Cover                    /
+               BRYOPHRP Mean Bryophyte Species Richness         /
+               LICHENCV Mean Lichen Cover                       /
+               LICHENRP Mean Lichen Species Richness            /
+               TOTALCV  Mean Cover of All Species               /
+               TOTALRP  Mean Richness of All Species            /
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and the Stand
+USER1          AMBJUR TO PELRUF
+OPTIONS        2
+TASK NAME      Statistics for Synthetic Cover and Species Richness Variables
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+FINISH

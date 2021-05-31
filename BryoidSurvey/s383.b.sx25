@@ -1,0 +1,96 @@
+TITLE          Hondo-Slave Lake Stand 3: 1983 Bryoid Comm. Monthly Survey
+SUBTITLE       Stand 3 -- 1983 Bryoid Cover % Data (5x5 m)
+SET LENGTH=120 
+SET BLANKS=0
+FILE HANDLE DATA/NAME='S383.B.ST25'
+DATA LIST FILE=DATA RECORDS=2 NOTABLE
+              /PLOTNO
+               BRASAL DICFUS DICPOL DICSCO
+               HYLSPL ORTFLA PLACUS PLESCH POHNUT POLJUN
+               PTICIL PTICC  PTIPUL CETPIN
+               CLACEN CLACHL CLACON CLACOR
+               CLAGON CLAGRA CLAMIT 
+               CLASTE ICMERI 
+               PELAPH PELRUF CLAMUL
+                     (A2, 1X, 13F3.0,3X,11F3.0 / 3X, 2F3.0)
+COMPUTE NUM=25
+COMPUTE DATE=TRUNC(($CASENUM+NUM-1)/NUM)
+COMPUTE        BRYOPHCV = 
+               BRASAL+DICFUS+DICPOL+DICSCO+
+               HYLSPL+ORTFLA+PLACUS+PLESCH+POHNUT+POLJUN+
+               PTICIL+PTICC +PTIPUL
+COUNT          BRYOPHRP = BRASAL TO PTIPUL (0.01 THRU HIGHEST)
+COMPUTE        LICHENCV = CETPIN+
+               CLACEN+CLACHL+CLACON+CLACOR+
+               CLAGON+CLAGRA+CLAMIT+
+               CLASTE+ICMERI+
+               PELAPH+PELRUF+CLAMUL
+COUNT          LICHENRP = CETPIN TO CLAMUL (0.01 THRU HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+STRING SUBFILE(A8)
+RECODE DATE (1='AU18') INTO SUBFILE
+PRINT FORMATS  BRASAL TO CLAMUL(F5.2)
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRASAL TO CLACEN (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 3'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACHL TO CLAMUL (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 3'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 3'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover and Species Richness Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS 
+               BRASAL 'Brachythecium salebrosum'
+               DICFUS 'Dicranum fuscescens' 
+               DICPOL 'Dicranum polysetum'
+               DICSCO 'Dicranum scoparium'
+               HYLSPL 'Hylocomium splendens'
+               ORTFLA 'Orthodicranum flagellare'
+               PLACUS 'Plagiomnium cuspidatum'
+               PLESCH 'Pleurozium schreberi'
+               POHNUT 'Pohlia nutans'
+               POLJUN 'Polytrichum juniperinum'
+               PTICIL 'Ptilidium ciliare'
+               PTIPUL 'Ptilidium pulcherrimum'
+               PTICC  'Ptilium crista-castrensis'
+               CETPIN 'Cetraria pinastri'
+               CLACEN 'Cladonia cenotea'
+               CLACHL 'Cladonia chlorophaea'
+               CLACON 'Cladonia coniocraea'
+               CLACOR 'Cladonia cornuta' 
+               CLAGON 'Cladonia gonecha'
+               CLAGRA 'Cladonia gracilis'
+               CLAMIT 'Cladina mitis' 
+               CLAMUL 'Cladonia multiformis'
+               CLASTE 'Cladina stellaris'
+               ICMERI 'Icmadophila ericetorum'
+               PELAPH 'Peltigera aphthosa'
+               PELRUF 'Peltigera rufescens'
+               BRYOPHCV 'Mean Bryophyte Cover'
+               BRYOPHRP 'Mean Bryophyte Species Richness'
+               LICHENCV 'Mean Lichen Cover'
+               LICHENRP 'Mean Lichen Species Richness'
+               TOTALCV  'Mean Cover of All Species'
+               TOTALRP  'Tree Species Richness'
+VALUE LABELS DATE
+  (01)'AU17'
+USERPROC NAME=SEADYN
+    /VARIABLES=BRASAL TO CLAMUL
+    /OPTIONS=2,11,14
+USERPROC NAME=SEADYN
+     /VARIABLES=BRYOPHCV TO TOTALRP
+     /STATISTICS=1
+FINISH

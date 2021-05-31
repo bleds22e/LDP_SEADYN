@@ -1,0 +1,164 @@
+Strata,Species,7.letter.code,sci.name.2005,sci.authority.2005,common.name,sci.name.2020,sci.authority2020,Comments,Accepted? (Y/N)
+T,ABBA,ABIEBAL,Abies balsamea,(L.) Mill.,balsam fir,Abies balsamea,(L.) Mill.,,Y
+T,BEPA,BETUPAP,Betula papyrifera,Marsh.,white birch,Betula papyrifera,Marsh.,,Y
+T,LALA,LARILAR,Larix laricina,(Du Roi) K. Koch,tamarack,Larix laricina,(Du Roi) K. Koch,,Y
+T,PIGL,PICEGLA,Picea glauca,(Moench) Voss,white spruce,Picea glauca,(Moench) Voss,,Y
+T,PIMA,PICEMAR,Picea mariana,(Mill.) BSP.,black spruce,Picea mariana,"(Mill.) Britton, Sterns & Poggenb. ",,Y
+T,PIBA,PINUBAN,Pinus banksiana,Lamb.,jack pine,Pinus banksiana,Lamb.,,Y
+T,POBA,POPUBAL,Populus balsamifera,L.,balsam poplar,Populus balsamifera,L.,,Y
+T,POTR,POPUTRE,Populus tremuloides,Michx.,aspen,Populus tremuloides,Michx.,,Y
+S,ALCR,ALNUCRI,Alnus crispa,(Ait.) Pursh,green alder,Alnus viridis ssp. crispa,(Aiton) Turrill, ,N
+S,AMAL,AMELALN,Amelanchier alnifolia,Nutt.,saskatoon,Amelanchier alnifolia,(Nutt.) Nutt. ex M. Roem.,,Y
+S,ANPO,ANDRPOL,Andromeda polifolia,L.,bog rosemary,Andromeda polifolia,L.,,Y
+S,ARUV,ARCTUVA,Arctostaphylos uva-ursi,(L.) Spreng.,common bearberry,Arctostaphylos uva-ursi,(L.) Spreng.,,Y
+S,BEPU,BETUPUM,Betula pumila,L.,dwarf birch,Betula pumila,L.,,Y
+S,COST,CORNSTO,Cornus stolonifera,Michx.,red-osier dogwood,Cornus sericea ssp. sericea,L.,,N
+S,LEGR,LEDUGRO,Ledum groenlandicum,Oeder,common Labrador tea,Rhododendron groenlandicum,(Oeder) Kron & Judd, ,N
+S,LOCA,LONICAE,Lonicera caerulea,L.,fly honeysuckle,Lonicera caerulea,L.,,Y
+S,LODI,LONIDIO,Lonicera dioica,L.,twining honeysuckle,Lonicera dioica,L.,,Y
+S,LOIN,LONIINV,Lonicera involucrata,(Richards.) Banks,bracted honeysuckle,Lonicera involucrata,(Richardson) Banks ex Spreng.,,Y
+S,OXMI,OXYCMIC,Oxycoccus microcarpus,Turcz.,small bog cranberry,Vaccinium oxycoccos,L.,,N
+S,PRPE,PRUNPEN,Prunus pensylvanica,L.f.,pin cherry,Prunus pensylvanica,L. f.,,Y
+S,PRVI,PRUNVIR,Prunus virginiana,L.,choke cherry,Prunus virginiana,L.,,Y
+S,RIGL,RIBEGLA,Ribes glandulosum,Grauer,skunk currant,Ribes glandulosum,Grauer,,Y
+S,RILA,RIBELAC,Ribes lacustre,(Pers.) Poir.,bristly black currant,Ribes lacustre,(Pers.) Poir.,,Y
+S,RITR,RIBETRI,Ribes triste,Pall.,wild red currant,Ribes triste,Pall.,,Y
+S,ROAC,ROSAACI,Rosa acicularis,Lindl.,prickly rose,Rosa acicularis,Lindl.,,Y
+S,ROWO,ROSAWOO,Rosa woodsii,Lindl.,common wild rose,Rosa woodsii,Lindl.,,Y
+S,RUID,RUBUIDA,Rubus idaeus,L.,wild red raspberry,Rubus idaeus,L.,,Y
+S,SAAR,SALIARB,Salix arbusculoides,Anderss.,shrubby willow,Salix arbusculoides,Andersson,,Y
+S,SABE,SALIBEB,Salix bebbiana,Sarg.,beaked willow,Salix bebbiana,Sarg.,"identified by Derek Johnson - called ""SX-YEBR"" on 2005 fieldsheet",Y
+S,SACA,SALICAN,Salix candida,Fluegge ex Willd.,hoary willow,Salix candida,Fluegge ex Willd.,,Y
+S,SAMY,SALIMYR,Salix myrtillifolia,Anderss.,myrtle-leaved willow,Salix myrtillifolia,Andersson,,Y
+S,SAPE,SALIPED,Salix pedicellaris,Pursh,bog willow,Salix pedicellaris,Pursh,,Y
+S,SAPS,SALIPSE,Salix pseudomonticola,Ball,false mountain willow,Salix pseudomonticola,C. R. Ball,,Y
+S,SHCA,SHEPCAN,Shepherdia canadensis,(L.) Nutt.,Canada buffaloberry,Shepherdia canadensis,(L.) Nutt.,,Y
+S,SYAL,SYMPALB,Symphoricarpos albus,(L.) Blake,snowberry,Symphoricarpos albus,(L.) S.F. Blake,,Y
+S,VACA,VACCCAE,Vaccinium caespitosum,Michx.,dwarf bilberry,Vaccinium cespitosum,Michx.,,N
+S,VAMY,VACCMYR,Vaccinium myrtilloides,Michx.,common blueberry,Vaccinium myrtilloides,Michx.,,Y
+S,VAVI,VACCVIT,Vaccinium vitis-idaea,L.,bog cranberry,Vaccinium vitis-idaea,L.,,Y
+S,VIED,VIBUEDU,Viburnum edule,(Michx.) Raf.,low-bush cranberry,Viburnum edule,(Michx.) Raf.,,Y
+F,ACMI,ACHIMIL,Achillea millefolium,L.,common yarrow,Achillea millefolium,L.,,Y
+F,ACRU,ACTARUB,Actaea rubra,(Ait.) Willd.,red and white baneberry,Actaea rubra,(Aiton) Willd.,,Y
+F,ANMU,ANEMMUL,Anemone multifida,Poir.,cut-leaved anemone,Anemone multifida,Poir.,,Y
+F,ANPA,ANEMPAT,Anemone patens,L.,prairie crocus,Anemone patens,L.,species name verified by George LaRoi,Y
+F,ANRA,ANTERAC,Antennaria racemosa,Hook.,racemose everlasting,Antennaria racemosa,Hook.,species name verified by George LaRoi,Y
+F,AQBR,AQUIBRE,Aquilegia brevistyla,Hook.,blue columbine,Aquilegia brevistyla,Hook.,,Y
+F,ARLY,ARABLYR,Arabis lyrata,L.,lyre-leaved rock cress,Arabidopsis lyrata ssp. lyrata,L. O'Kane & Al-Shehbaz,"was also called ""Arabis"" in Stand 1 (verified by George LaRoi)",N
+F,ARNU,ARALNUD,Aralia nudicaulis,L.,wild sarsaparilla,Aralia nudicaulis,L.,,Y
+F,ARCA,ARTECAM,Artemisia campestris,L.,plains wormwood,Artemisia campestris,L.,,Y
+F,ASBO,ASTEBOR,Aster borealis,(T. & G.) Prov.,marsh aster,Symphyotrichum boreale,(Torr. & A. Gray) A. Love & D. Love,,N
+F,ASCI,ASTECIL,Aster ciliolatus,Lindl.,Lindley's aster,Symphyotrichum ciliolatum,(Lindl.) A. Love & D. Love,,N
+F,ASCO,ASTECON,Aster conspicuus,Lindl.,showy aster,Eurybia conspicua,(Lindl.) G.L. Nesom,,N
+F,ASLA,ASTELAE,Aster laevis,L.,smooth aster,Symphyotrichum laeve,(L.) A. Love & D. Love,,N
+F,ASPU,ASTEPUN,Aster puniceus,L.,purple-stemmed aster,Symphyotrichum puniceum var. puniceum,(L.) A. Love & D. Love,"identified by Derek Johnson - called ""AS-SPST"" on 2005 fieldsheet",N
+F,CABU,CALYBUL,Calypso bulbosa,(L.) Oakes,Venus'-slipper,Calypso bulbosa,(L.) Oakes,,Y
+F,CARO,CAMPROT,Campanula rotundifolia,L.,harebell,Campanula rotundifolia,L.,,Y
+F,CHCA,CHENCAP,Chenopodium capitatum,(L.) Aschers.,strawberry blite,Chenopodium capitatum,(L.) Ambrosi,"identified by Derek Johnson - called ""CHENO"" on 2005 fieldsheet",Y
+F,CIAR,CIRSARV,Cirsium arvense,(L.) Scop.,Canada thistle,Cirsium arvense,(L.) Scop.,was called CICA but is most likely CIAR (verified by George LaRoi),Y
+F,COTR,CORATRI,Corallorhiza trifida,Chatelain,pale coralroot,Corallorhiza trifida,Chatelain,,Y
+F,COCA,CORNCAN,Cornus canadensis,L.,bunchberry,Cornus canadensis,L.,,Y
+F,CRTE,CREPTEC,Crepis tectorum,L.,annual hawk's-beard,Crepis tectorum,L.,"identified by Derek Johnson - called ""ANCOM"" on 2005 fieldsheet",Y
+F,DITR,DISPTRA,Disporum trachycarpum,(S. Wats.) B. & H.,fairybells,Prosartes trachycarpa,S. Watson,,N
+F,DRPA,DRACPAR,Dracocephalum parviflorum,Nutt.,American dragonhead,Dracocephalum parviflorum,Nutt.,"identified by Derek Johnson - called ""PKMIN"" on 2005 fieldsheet. Was called ""mint"" before 2005 (verified by George LaRoi)",Y
+F,DRRO,DROSROT,Drosera rotundifolia,L.,round-leaved sundew,Drosera rotundifolia,L.,,Y
+F,DRCA,DRYOCAR,Dryopteris carthusiana,(Vill.) H.P. Fuchs,narrow spinulose shield fern,Dryopteris carthusiana,(Vill.) H.P. Fuchs,,Y
+F,EPAN,EPILANG,Epilobium angustifolium,L.,common fireweed,Chamerion angustifolium ssp. angustifolium,(L.) Holub,,N
+F,EPCI,EPILCIL,Epilobium ciliatum,Raf.,northern willowherb,Epilobium ciliatum,Raf.,"identified by Derek Johnson - called ""EPPA"" on 2005 fieldsheet (varified by George La Roi as EPCI)",Y
+F,EPPA,EPILPAL,Epilobium palustre,L.,marsh willowherb,Epilobium palustre,L.,,Y
+F,EQAR,EQUIARV,Equisetum arvense,L.,common horsetail,Equisetum arvense,L.,,Y
+F,EQFL,EQUIFLU,Equisetum fluviatile,L.,swamp horsetail,Equisetum fluviatile,L.,,Y
+F,EQPR,EQUIPRA,Equisetum pratense,Ehrh.,meadow horsetail,Equisetum pratense,Ehrh.,,Y
+F,EQSC,EQUISCI,Equisetum scirpoides,Michx.,dwarf scouring-rush,Equisetum scirpoides,Michx.,,Y
+F,EQSY,EQUISYL,Equisetum sylvaticum,L.,woodland horsetail,Equisetum sylvaticum,L.,,Y
+F,EQVA,EQUIVAR,Equisetum variegatum,Schleich.,variegated horsetail,Equisetum variegatum,Schleich. ex F. Weber & D. Mohr,,Y
+F,ERGL,ERIGGLA,Erigeron glabellus,Nutt.,smooth fleabane,Erigeron glabellus,Nutt.,,Y
+F,FRVE,FRAGVES,Fragaria vesca,L.,woodland strawberry,Fragaria vesca,L.,,Y
+F,FRVI,FRAGVIR,Fragaria virginiana,Duchesne,wild strawberry,Fragaria virginiana,Duchesne,,Y
+F,GABO,GALIBOR,Galium boreale,L.,northern bedstraw,Galium boreale,L.,,Y
+F,GALA,GALILAB,Galium labradoricum,Wieg.,Labrador bedstraw,Galium labradoricum,(Wiegand) Wiegand,,Y
+F,GATR,GALITRI,Galium triflorum,Michx.,sweet-scented bedstraw,Galium triflorum,Michx.,,Y
+F,GEAM,GENTAMA,Gentianella amarella,(L.) Borner,felwort,Gentianella amarella,(L.) Borner,,Y
+F,GELI,GEOCLIV,Geocaulon lividum,(Richards.) Fern.,northern bastard toadflax,Geocaulon lividum,(Richardson) Fernald,,Y
+F,GEBI,GERABIC,Geranium bicknellii,Britt.,Bicknell's geranium,Geranium bicknellii,Britton,,Y
+F,GERI,GEUMRIV,Geum rivale,L.,purple avens,Geum rivale,L.,,Y
+F,GORE,GOODREP,Goodyera repens,(L.) R.Br.,lesser rattlesnake plantain,Goodyera repens,(L.) R. Br.,,Y
+F,GYDR,GYMNDRY,Gymnocarpium dryopteris,(L.) Newm.,oak fern,Gymnocarpium dryopteris,(L.) Newman,,Y
+F,HAHY,HABEHYP,Habenaria hyperborea,(L.) R.Br.,northern green bog orchid,Plantanthera hyperborea,(L.) Lindl.,,N
+F,HIUM,HIERUMB,Hieracium umbellatum,L.,narrow-leaved hawkweed,Hieracium umbellatum,L.,,Y
+F,LAOC,LATHOCH,Lathyrus ochroleucus,Hook.,cream-colored vetchling,Lathyrus ochroleucus,Hook.,,Y
+F,LIPH,LILIPHI,Lilium philadelphicum,L.,western wood lily,Lilium philadelphicum,L.,,Y
+F,LIBO,LINNBOR,Linnaea borealis,L.,twinflower,Linnaea borealis,L.,,Y
+F,LYAN,LYCOANN,Lycopodium annotinum,L.,stiff club-moss,Lycopodium annotinum,L.,,Y
+F,LYCO,LYCOCOM,Lycopodium complanatum,L.,ground-cedar,Lycopodium complanatum,L.,,Y
+F,LYOB,LYCOOBS,Lycopodium obscurum,L.,ground-pine,Lycopodium obscurum,L.,,Y
+F,MACA,MAIACAN,Maianthemum canadense,Desf.,wild lily-of-the-valley,Maianthemum canadense,Desf.,,Y
+F,MELI,MELALIN,Melampyrum lineare,Desr.,cow-wheat,Melampyrum lineare,Desr.,,Y
+F,MEAL,MELIALB,Melilotus alba,Desr.,white sweet-clover,Melilotus albus,Desr.,,N
+F,MEOF,MELIOFF,Melilotus officinalis,(L.) Lam.,yellow sweet-clover,Melilotus officinalis,(L.) Lam.,,Y
+F,METR,MENYTRI,Menyanthes trifoliata,L.,buck-bean,Menyanthes trifoliata,L.,,Y
+F,MEPA,MERTPAN,Mertensia paniculata,(Ait.) G. Don.,tall lungwort,Mertensia paniculata,(Aiton) G. Don.,,Y
+F,MINU,MITENUD,Mitella nuda,L.,bishop's-cap,Mitella nuda,L.,,Y
+F,MOLA,MOEHLAT,Moehringia lateriflora,(L.) Fenzl.,blunt-leaved sandwort,Moehringia lateriflora,(L.) Fenzl.,was called ARLA - Arenaria lateriflora based on Moss 1st edition (verified by George LaRoi),Y
+F,MOUN,MONEUNI,Moneses uniflora,(L.) A. Gray,one-flowered wintergreen,Moneses uniflora,(L.) A. Gray,,Y
+F,ORRO,ORCHROT,Orchis rotundifolia,Banks ex Pursh,round-leaved orchid,Galearis rotundifolia,(Banks ex Pursh) R.M. Bateman,,N
+F,ORSE,ORTHSEC,Orthilia secunda,(L.) House,one-sided wintergreen,Orthilia secunda,(L.) House,,Y
+F,OSCH,OSMOCHI,Osmorhiza chilensis,Hook. & Arn.,blunt-fruited sweet cicely,Osmorhiza berteroi,DC.,was identified as Osmorhiza chilensis in the early 1980s - not collected - may be Osmorhiza depauperata? (verified by George LaRoi),N
+F,PAPA,PARNPAL,Parnassia palustris,L.,northern grass-of-parnassus,Parnassia palustris,L.,,Y
+F,PEPA,PETAPAL,Petasites palmatus,(Ait.) A. Gray,palmate-leaved coltsfoot,Petasites frigidus var. palmatus,(Aiton) Cronquist,,N
+F,PESA,PETASAG,Petasites sagittatus,(Pursh) A. Gray,arrow-leaved coltsfoot,Petasites frigidus var. sagittatus,(Banks ex Pursh) Chem.,,N
+F,POPA,POTEPAL,Potentilla palustris,(L.) Scop.,marsh cinquefoil,Comarum palustre,L.,,N
+F,POT-TRI,POTETRI,Potentilla tridentata,Ait.,three-toothed cinquefoil,Sibbaldiopsis tridentata,(Aiton) Rydb.,,N
+F,POye,,,,,0,0,a ruderal Potentilla species - not collected - (verified by George LaRoi),
+F,PYAS,PYROASA,Pyrola asarifolia,Michx.,common pink wintergreen,Pyrola asarifolia,Michx.,,Y
+F,PYCH,PYROCHL,Pyrola chlorantha,Sw.,greenish-flowered wintergreen,Pyrola chlorantha,Sw.,,Y
+F,RUAC,RUBUARC,Rubus arcticus,L.,dwarf raspberry,Rubus arcticus,L.,same as Rubus acaulis,Y
+F,RUCH,RUBUCHA,Rubus chamaemorus,L.,cloudberry,Rubus chamaemorus,L.,,Y
+F,RUPU,RUBUPUB,Rubus pubescens,Raf.,dewberry,Rubus pubescens,Raf.,,Y
+F,SEIN,SENEIND,Senecio indecorus,Greene,rayless ragwort,Packera indecora,(Greene) A. Love & D. Love,"was called ""SENECIO"" in 2005 - not collected - possibly Senecio indecorus? (verified by George LaRoi)",N
+F,SMTR,SMILTRI,Smilacina trifolia,(L.) Desf.,three-leaved Solomon's-seal,Maianthemum trifolium,(L.) Sloboda,,N
+F,SOSP,SOLISPA,Solidago spathulata,DC.,mountain goldenrod,Solidago spathulata,DC.,,Y
+F,SOUL,SONCULI,Sonchus uliginosus,Bieb.,smooth perennial sow-thistle,Sonchus arvensis ssp. uliginosus,(M. Bieb.) Nyman,"identified by Derek Johnson - called ""LACTUCA-PINK"" on 2005 fieldsheet",N
+F,SPRO,SPIRROM,Spiranthes romanzoffiana,Cham. & Schlecht.,hooded ladies'-tresses,Spiranthes romanzoffiana,Cham.,,Y
+F,STLO,STELLON,Stellaria longifolia,Muhl.,long-leaved chickweed,Stellaria longifolia,Muhl. Ex Willd.,"called ""STELLARIA"" on 2005 fieldsheet - Collected sample from Stand 8 was identified by Derek Johnson - initially called ARLA and was later identified by Derek as Stellaria longifolia",Y
+F,TAOF,TARAOFF,Taraxacum officinale,Weber,common dandelion,Taraxacum officinale,F.H. Wigg.,,Y
+F,TOGL,TOFIGLU,Tofieldia glutinosa,(Michx.) Pers.,sticky false asphodel,Tofieldia glutinosa,(Michx.) Pers.,species name verified by George LaRoi,N
+F,TRBO,TRIEBOR,Trientalis borealis,Raf.,northern starflower,Trientalis borealis,Raf.,,Y
+F,TRHY,TRIFHYB,Trifolium hybridum,L.,alsike clover,Trifolium hybridum,L.,,Y
+F,TRPR,TRIFPRA,Trifolium pratense,L.,red clover,Trifolium pratense,L.,,Y
+F,TYLA,TYPHLAT,Typha latifolia,L.,common cattail,Typha latifolia,L.,,Y
+F,VIAM,VICIAME,Vicia americana,Muhl.,wild vetch,Vicia americana,Muhl. Ex Willd.,,Y
+F,VIAD,VIOLADU,Viola adunca,J.E. Smith,early blue violet,Viola adunca,Sm.,,Y
+F,VIRE,VIOLREN,Viola renifolia,A. Gray,kidney-leaved violet,Viola renifolia,A. Gray,,Y
+G ,AGTR,AGROTRA,Agropyron trachycaulum,(Link) Malte,slender wheat grass,Elymus trachycaulum,(Link) Malte ex H.F. Lewis,identified by Derek Johnson - Sample collected in Stand 8 in 2005 was initially called Ag-inexpa. Was called AGSU - Agropyron subsecundum - in stands 1 and 2 before 2005 based on Moss 1st edition (verified by George LaRoi),N
+G,AGSC,AGROSCA,Agrostis scabra,Willd.,rough hair grass,Agrostis scabra,Willd.,,Y
+G,BRCI,BROMCIL,Bromus ciliatus,L.,fringed brome,Bromus ciliatus,L.,,Y
+G,CACA,CALACAN,Calamagrostis canadensis,(Michx.) Beauv.,bluejoint,Calamagrostis canadensis,(Michx.) P. Beauv.,,Y
+G,CAIN,CALAINE,Calamagrostis inexpansa,A. Gray,northern reed grass,Calamagrostis stricta ssp. inexpansa,(A. Gray) C.W. Greene,,N
+G,CXAE,CAREAEN,Carex aenea,Fern.,silvery-flowered sedge,Carex foenea,Willd.,"identified by Derek Johnson - called ""CX-NRLF"" in Stands 3 and 4 or ""CX-NWLF"" in Stands 6 and 8 on 2005 fieldsheet",N
+G,CXAQ,CAREAQU,Carex aquatilis,Wahlenb.,water sedge,Carex aquatilis,Wahlenb.,,Y
+G,CX-BYEL,,,,,0,0,"Derek was unable to give a confirmed identification for this carex species in 2005 - ""CX-BYEL"" = ""Carex Big Yellow"" was very abundant and collected in Stand 4 in 2005 - its average cover was ca. 10% (verified by George LaRoi)",
+G,CXCO,CARECON,Carex concinna,R.Br.,beautiful sedge,Carex concinna,R.Br.,,Y
+G,CXDE,CAREDEF,Carex deflexa,Hornem.,bent sedge,Carex deflexa,Hornem.,"identified by Derek Johnson - called ""CX-TUS"" on 2005 fieldsheet",Y
+G,CXDI,CAREDIA,Carex diandra,Schrank,two-stamened sedge,Carex diandra,Schrank,species name verified by George LaRoi,Y
+G,CXDS,CAREDIS,Carex disperma,Dewey,two-seeded sedge,Carex disperma,Dewey,species name verified by George LaRoi,Y
+G,CXGY,CAREGYN,Carex gynocrates,Wormsk.,northern bog sedge,Carex gynocrates,Wormsk. ex Drejer,,Y
+G,CXHO,CAREHOU,Carex houghtoniana,Torr.,sand sedge,Carex houghtoniana,Torr. ex Dewey,"identified by Derek Johnson - called ""CX-BIG"" in Stands 3 and 8 and ""CX-BIGFRUIT"" in Stand 4 on 2005 fieldsheet - Derek Johnson confirmed that they are the same species",Y
+G,CXIN,CAREINT,Carex interior,Bailey,inland sedge,Carex interior,L.H. Bailey,,Y
+G,CXLI,CARELIM,Carex limosa,L.,mud sedge,Carex limosa,L.,,Y
+G,CXRI,CARERIC,Carex richardsonii,R.Br.,Richardson's sedge,Carex richardsonii,R.Br.,,Y
+G,CXRO,CAREROS,Carex rostrata,Stokes,beaked sedge,Carex rostrata,Stokes,,Y
+G,CXSI,CARESIC,Carex siccata,Dewey,hay sedge,Carex siccata,Dewey,,Y
+G,CXSO,,,,,0,0,not sure of this species - verified by George La Roi,
+G,CXVA,CAREVAG,Carex vaginata,Tausch,sheathed sedge,Carex vaginata,Tausch,"identified by Derek Johnson - called ""CX-VLF"" on 2005 fieldsheet",Y
+G,CXYL,,,,,0,0,"""CXYL"" = ""CXYI"" = ""Carex Yellow"" - not collected - strongly chlorotic leaves (verified by George LaRoi)",
+G,ELGL,ELYMGLA,Elymus glaucus,Buckl.,smooth wild rye,Elymus glaucus,Buckley,,Y
+G,ELIN,ELYMINN,Elymus innovatus,Beal,hairy wild rye,Leymus innovatus,(Beal) Pilg.,,N
+G,ERGR,ERIOGRA,Eriophorum gracile,Koch,slender cotton grass,Eriophorum gracile,W.D.J. Koch,,Y
+G,FESA,FESTSAX,Festuca saximontana,Rydb.,Rocky Mountain fescue,Festuca saximontana,Rydb.,recorded by Robert Ellis in 1987 -  may have been Oryzopsis pungens (verified by George LaRoi),Y
+G,HOR-JUB,HORDJUB,Hordeum jubatum,L.,foxtail barley,Hordeum jubatum,L.,,Y
+G,MUGL,MUHLGLO,Muhlenbergia glomerata,(Willd.) Trin.,bog muhly,Muhlenbergia glomerata,(Willd.) Trin.,,Y
+G,ORAS,ORYZASP,Oryzopsis asperifolia,Michx.,white-grained mountain rice grass,Oryzopsis asperifolia,Michx.,,Y
+G,ORPU,ORYZPUN,Oryzopsis pungens,(Torr.) A.S. Hitchc.,northern rice grass,Piptatherum pungens,(Torr.) Dorn,,N
+G,SCPU,SCHIPUR,Schizachne purpurascens,(Torr.)  Swallen,purple oat grass,Schizachne purpurascens,(Torr.) Swallen,,Y
+G,TRMA,TRIGMAR,Triglochin maritima,L.,seaside arrow-grass,Triglochin maritima,L.,,Y

@@ -1,0 +1,98 @@
+EDIT
+PAGESIZE       120
+RUN NAME       Hondo-Slave Lake Stand 5: 1982 Bryoid Comm. Monthly Survey
+FILE NAME      S582B25
+               Stand 5 (73 y old Mixed Wood): 1982 Bryoid Cover % Data (5x5 m)
+VARIABLE LIST  PLOTNO
+               BRASAL DICPOL DREUNC EURPUL HEPSP
+               HYLSPL ORTFLA PLACUS PLESCH PTICC  PTIPUL
+               PYLPOL RHYTRI THUREC TOMNIT
+               CLACEN CLACHL CLACON
+               CLAGRA CLAMUL
+               PELAPH PELCAN PELPOL PELRUF PELHOR
+               ICMERI CLARAN DICSCO
+INPUT MEDIUM   DISK
+SUBFILE LIST   AU14 (25)
+INPUT FORMAT   FIXED (1X, A2, 25F3.0 / 3X, 3F3.0)
+COMPUTE        BRYOPHCV = 
+               BRASAL+DICPOL+DREUNC+EURPUL+HEPSP +
+               HYLSPL+ORTFLA+PLACUS+PLESCH+PTICC +PTIPUL+
+               PYLPOL+RHYTRI+THUREC+TOMNIT+DICSCO
+COUNT          BRYOPHRP = BRASAL TO TOMNIT DICSCO (0.01 TO HIGHEST)
+COMPUTE        LICHENCV = 
+               CLACEN+CLACHL+CLACON+
+               CLAGRA+CLAMUL+
+               PELAPH+PELCAN+PELPOL+PELRUF+PELHOR+
+               ICMERI+CLARAN
+COUNT          LICHENRP = CLACEN TO CLARAN (0.01 TO HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+PRINT FORMATS  PLOTNO (A)
+               BRASAL TO DICSCO (3)
+               BRYOPHCV LICHENCV TOTALCV (3)
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRASAL TO CLACEN (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 5'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACHL TO DICSCO (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 5'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 5'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover and Species Richness Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS     
+               BRASAL Brachythecium salebrosum                /
+               DICPOL Dicranum polysetum                      /
+               DICSCO Dicranum scoparium                      /
+               DREUNC Drepanocladus uncinatus                 /
+               EURPUL Eurhynchium pulchellum                  /
+               HYLSPL Hylocomium splendens                    /
+               HEPSP  Hepatic sp.                             /
+               ORTFLA Orthodicranum flagellare                /
+               PLACUS Plagiomnium cuspidatum                  /
+               PLESCH Pleurozium schreberi                    /
+               PTICC  Ptilium crista-castrensis               /
+               PTIPUL Ptilidium pulcherrium                   /
+               PYLPOL Pylaisiella polyantha                   /
+               RHYTRI Rhytidiadelphus triquetrus              /
+               THUREC Thuidium recognitum                     /
+               CLACEN Cladonia cenotea                        /
+               CLACHL Cladonia chlorophaea                    /
+               CLACON Cladonia coniocraea                     /
+               CLAGRA Cladonia gracilis                       /
+               CLAMUL Cladonia multiformis                    /
+               CLARAN Cladina rangiferina                     /
+               ICMERI Icmadophila ericetorum                  /
+               PELAPH Peltigera aphthosa                      /
+               PELCAN Peltigera canina                        /
+               PELHOR Peltigera horizontalis                  /
+               PELPOL Peltigera polydactyla                   /
+               PELRUF Peltigera rufescens                     /
+               TOMNIT Tomenthypnum nitens                     /
+               BRYOPHCV Mean Bryophyte Cover                    /
+               BRYOPHRP Mean Bryophyte Species Richness         /
+               LICHENCV Mean Lichen Cover                       /
+               LICHENRP Mean Lichen Species Richness            /
+               TOTALCV  Mean Cover of All Species               /
+               TOTALRP  Mean Richness of All Species            /
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and the Stand
+USER1          BRASAL TO DICSCO
+OPTIONS        2
+TASK NAME      Statistics for Synthetic Cover and Species Richness Variables
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+FINISH
