@@ -113,7 +113,6 @@ for (file in 1:length(file.list)){
 # same method as for stand2 Vascular Plant Survey (readLines)
 
 file.list <- list.files(path = "./cover_data_raw/double_entry", pattern = "*.txt")
-file <- read.csv2(paste("./cover_data_raw/double_entry/",file.list[1], sep = ""), header = FALSE, sep = "[")
 
 for (file in 1:length(file.list)){
   filename = file.list[file]
@@ -175,24 +174,110 @@ for (file in 1:length(file.list)){
 
 ## now on to the metadata
 
-file <- read.csv2("./species_codes/s181.b.sp.5.txt", sep = "", col.names = F)
+file.list <- list.files(path = "./species_codes/sp_files", pattern = "*.txt")
+list.headers.sp <- list()
+filename_save <- vector()
 
-start.trim <- min(grep("VARIABLE", file$EDIT, fixed = TRUE))
-end.trim <- min(grep("INPUT MEDIUM", file$EDIT, fixed = TRUE)) - 1
-
-column_names <- file[start.trim:end.trim,]
-
-full_col_names <- vector()
-
-for (i in 1:length(column_names)){
-  chunk <- column_names[i]
-  full_col_names <- paste(full_col_names, chunk)
+for (x in 1:length(file.list)){
+  print(x)
+  filename = file.list[x]
+  rawfileloc = paste("./species_codes/sp_files/", filename, sep = "")
+  file <- read.csv2(rawfileloc, header = FALSE)
+  start.trim <- min(grep("VARIABLE", file$V1, fixed = TRUE))
+  end.trim <- min(grep("INPUT MEDIUM", file$V1, fixed = TRUE)) - 1
+  column_names <- file[start.trim:end.trim,]
+  extract_col_names <- vector()
+  for (i in 1:length(column_names)){
+    chunk <- column_names[i]
+    extract_col_names <- paste(extract_col_names, chunk)
+  }
+  extract_col_names <- as.matrix(str_split(str_trim(extract_col_names, side = "both"), pattern = " ", 
+                                        simplify = T))
+  full_col_names <- as.vector(extract_col_names[, which(extract_col_names != "")])
+  full_col_names <- full_col_names[-(1:2)]
+  filename_save[x] <- str_remove_all(str_remove_all(filename, ".sp"), ".txt")
+  list.headers.sp[[x]] <- full_col_names
 }
 
-full_col_names <- str_trim(full_col_names, side = "both")
-full_col_names <- as.data.frame(str_split(full_col_names, pattern = " ", simplify = T))
-full_col_names <- full_col_names[, which(full_col_names != "")]
+names(list.headers.sp) <- filename_save
 
-# loop this for everything to get clean column names
+# output is list of vectors containing col names associated with their corresponding file name
+# some species code files appear to be missing, but these are present in the calculation (.sx files) metadata...
+# just need to modify a new loop to extract those as well
+
+file.list <- list.files(path = "./species_codes/sx_files", pattern = "*.txt")
+list.headers.sx <- list()
+filename_save <- vector()
+
+for (x in 1:length(file.list)){
+  print(x)
+  filename = file.list[x]
+  rawfileloc = paste("./species_codes/sx_files/", filename, sep = "")
+  file <- read.csv2(rawfileloc, header = FALSE)
+  start.trim <- min(grep("/PLOTNO", file[,1], fixed = TRUE))
+  end.trim <- grep("[(]", file[,1])[2] - 1
+  column_names <- file[start.trim:end.trim,]
+  extract_col_names <- vector()
+  for (i in 1:length(column_names)){
+    chunk <- column_names[i]
+    extract_col_names <- paste(extract_col_names, chunk)
+  }
+  extract_col_names <- as.matrix(str_split(str_trim(extract_col_names, side = "both"), pattern = " ", 
+                                           simplify = T))
+  full_col_names <- as.vector(extract_col_names[, which(extract_col_names != "")])
+  full_col_names <- full_col_names[-(1)]
+  filename_save[x] <- str_remove_all(str_remove_all(filename, ".sx"), ".txt")
+  list.headers.sx[[x]] <- full_col_names
+}
+
+names(list.headers.sx) <- filename_save
+
+list.all.headers <- c(list.headers, list.headers.sx)
+
 # associate data with column names
-# break down file names into informative columns
+
+# back to cleaned cover data ... let's make a list of these dfs now
+
+file.list <- list.files(path = "./cover_data_clean")
+filenames <- vector()
+data.list <- list()
+
+for (i in 1:length(file.list)){
+  file <- read_csv(paste("./cover_data_clean/", file.list[i], sep = ""), col_names = F)
+  filename <- file.list[i]
+  filenames[i] <- str_remove_all(str_remove_all(filename, ".st"), ".csv")
+  data.list[[i]] <- file
+}
+names(data.list) <- filenames
+
+for (x in 1:length(data.list)){
+  df <- data.list[[x]]
+  filename <- names(data.list)[x]
+  for (y in 1:length(list.all.headers)){
+    if (filename == names(list.all.headers)[y]){
+      column.header <- list.all.headers[[y]]
+      colnames(df) <- column.header
+    }
+  }
+  ### add in file name details - year column, quad size, stand number
+  df$stand <- substr(filename, 2, 2)
+  df$year <- paste("19", substr(filename, start = 3, stop = 4), sep = "")
+  if (str_detect("25", filename)){
+    df$stand_size = 25
+  }
+  else {
+    df$stand_size = 5
+  }
+  data.list[[x]] <- df
+}
+
+saveRDS(data.list, "dataframes_list.RDS")
+
+# finally, join and write a clean, enormous file?? -- check spp codes first and make a dataframe to associate known codes with species.
+
+for (i in 1:length(data.list)){
+  ### code here should load the dataframes and join them together over common columns
+  ### then should reorder columns to have stand name, year, and stand size, and quadrat name first
+  ### should also average duplicate measurements where they exist
+  ### and then output one large df
+}
