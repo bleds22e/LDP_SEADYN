@@ -1,0 +1,124 @@
+EDIT
+PAGESIZE       120
+RUN NAME       Hondo-Slave Lake Stand 2: 1983 Bryoid Comm. Monthly Survey
+FILE NAME      S283B25
+               Stand 2 (62 y old Jack Pine): 1983 Bryoid Cover % Data (5x5 m)
+VARIABLE LIST  PLOTNO
+               BRASAL CERPUR DICPOL DREUNC EURPUL
+               HYLSPL PLESCH POLJUN POLPIL
+               PTICIL PTICC  PTIPUL
+               CETERI CETNIV CETPIN 
+               CLACHL CLACOC CLACON CLACOR
+               CLACRP CLACRT CLAGON CLAGRA CLAMIT CLAMUL
+               CLAPHY CLAPYX CLARAN CLASTE CLAUNC CLAVER PARSUL
+               PELAPH PELMAL PELPUL PELRUF ORTFLA
+               DICSCO CLACEN STEALP CLACAP POHNUT
+INPUT MEDIUM   DISK
+SUBFILE LIST   AU16 (25)
+INPUT FORMAT   FIXED (A2, 1X, 25F3.0 / 3X, 17F3.0)
+COMPUTE        BRYOPHCV = 
+               BRASAL+CERPUR+DICPOL+DREUNC+EURPUL+
+               HYLSPL+PLESCH+POLJUN+POLPIL+
+               PTICIL+PTICC +PTIPUL+POHNUT+
+               ORTFLA+DICSCO
+COUNT          BRYOPHRP = BRASAL TO PTIPUL ORTFLA DICSCO POHNUT                       
+               (0.01 TO HIGHEST)
+COMPUTE        LICHENCV = 
+               CETERI+CETNIV+CETPIN+
+               CLACHL+CLACOC+CLACON+CLACOR+
+               CLACRP+CLACRT+CLAGON+CLAGRA+CLAMIT+CLAMUL+
+               CLAPHY+CLAPYX+CLARAN+CLASTE+CLAUNC+CLAVER+PARSUL+
+               PELAPH+PELMAL+PELPUL+PELRUF+CLACEN+STEALP+CLACAP 
+COUNT          LICHENRP = CETERI TO PELRUF CLACEN (0.01 TO HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+PRINT FORMATS  PLOTNO (A)
+               BRASAL TO POHNUT (3)
+               BRYOPHCV LICHENCV TOTALCV (3)
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRASAL TO CLACHL (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACOC TO PARSUL (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PELAPH TO POHNUT (6)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover and Species Richness Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS     
+               BRASAL Brachythecium salebrosum                /
+               CERPUR Ceratodon purpureus                     /
+               DICPOL Dicranum polysetum                      /
+               DICSCO Dicranum scoparium                      /
+               DREUNC Drepanocladus uncinatus                 /
+               EURPUL Eurhynchium pulchellum                  /
+               HYLSPL Hylocomium splendens                    /
+               ORTFLA Orthodicranum flagellare                /
+               PLESCH Pleurozium schreberi                    /
+               POLJUN Polytrichum juniperinum                 /
+               POLPIL Polytrichum piliferum                   /
+               PTICIL Ptilidium ciliare                       /
+               PTIPUL Ptilidium pulcherrimum                  /
+               PTICC  Ptilium crista-castrensis               /
+               CETERI Cetraria ericetorum                     /
+               CETPIN Cetraria pinastri                       /
+               CETNIV Cetraria nivalis                        /
+               CLACEN Cladonia cenotea                        /
+               CLACHL Cladonia chlorophaea                    /
+               CLACOC Cladonia coccifera                      /
+               CLACON Cladonia coniocraea                     /
+               CLACOR Cladonia cornuta                        /
+               CLACRP Cladonia crispata                       /
+               CLACRT Cladonia cristatella                    /
+               CLAGON Cladonia gonecha                        /
+               CLAGRA Cladonia gracilis                       /
+               CLAMIT Cladina mitis                           /
+               CLAMUL Cladonia multiformis                    /
+               CLAPHY Cladonia phyllophora                    /
+               CLAPYX Cladonia pyxidata                       /
+               CLARAN Cladina rangiferina                     /
+               CLASTE Cladina stellaris                       /
+               CLAUNC Cladonia uncialis                       /
+               CLAVER Cladonia verticillata                   /
+               PARSUL Parmelia sulcata                        /
+               PELAPH Peltigera aphthosa                      /
+               PELMAL Peltigera malacea                       /
+               PELPUL Peltigera pulverulenta                  /
+               PELRUF Peltigera rufescens                     /
+               STEALP Stereocaulon alpinum                    /
+               CLACAP Cladonia capitata                       /
+               POHNUT Pohlia nutans                           /
+               BRYOPHCV Mean Bryophyte Cover                    /
+               BRYOPHRP Mean Bryophyte Species Richness         /
+               LICHENCV Mean Lichen Cover                       /
+               LICHENRP Mean Lichen Species Richness            /
+               TOTALCV  Mean Cover of All Species               /
+               TOTALRP  Mean Richness of All Species            /
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and the Stand
+USER1          BRASAL TO POHNUT
+OPTIONS        2
+TASK NAME      Statistics for Synthetic Cover and Species Richness Variables
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+FINISH

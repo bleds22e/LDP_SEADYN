@@ -5,20 +5,19 @@
 
 library(janitor)
 library(tidyverse)
+library(snakecase)
 
-myfiles = list.files(path="./VascularPlantSurveys/Hondo_compiled/", pattern = "*.csv", full.names = TRUE)
-myfiles <- myfiles[-1]
-myfiles <- myfiles[-5]
-myfiles <- myfiles[-3]
+setwd("./VascularPlantSurvey/Hondo_compiled")
+myfiles <- list.files(pattern = "*.csv", full.names = FALSE)
 
-list2env(lapply(setNames(myfiles, make.names(gsub("Hondo_compiled.", "", tools::file_path_sans_ext(myfiles)))), 
-                read.csv), envir = .GlobalEnv)
+list2env(
+  lapply(setNames(myfiles, make.names(gsub("*.csv","", myfiles))), 
+         read.csv), envir = .GlobalEnv)
 
-list_df <- list(Stand_1_Cover, Stand_2_Cover_complete, Stand_3_Cover, Stand_4_Cover, Stand_5_Cover, Stand_6_Cover, Stand_7_Cover, Stand_8_Cover)
+setwd("../../")
 
 #take random decimals in column names out
 Stand_1_Cover <- clean_names(Stand_1_Cover, case = "parsed")
-Stand_1_Cover <- Stand_1_Cover %>% select(-TEMP)
 Stand_2_Cover_complete <- clean_names(Stand_2_Cover_complete, case = "parsed")
 Stand_3_Cover <- clean_names(Stand_3_Cover, case = "parsed")
 Stand_4_Cover <- clean_names(Stand_4_Cover, case = "parsed")
@@ -34,7 +33,7 @@ cover2 <- bind_rows(Stand_1_Cover, Stand_2_Cover_complete, Stand_3_Cover, Stand_
 #GEPU 
 gepu2 <- filter(cover2, !is.na(GEPU_2)) #all zeros
 gepu <- filter(cover2, !is.na(GEPU)) #these are actually values
-#no overlapping vlaues, merge into one column:
+#no overlapping values, merge into one column:
 cover2 <- cover2 %>% 
   mutate(GEPU = coalesce(GEPU, GEPU_2)) %>% 
   select(-GEPU_2)
@@ -88,7 +87,7 @@ species2 <- species2[,1]
 
 
 #read in master species list
-master <- read.csv("./VascularPlantSurveys/Archived species names/Species_List_Vascular_Surveys_not corrected.csv")
+master <- read.csv("./VascularPlantSurvey/metadata/Archived_species_names/Species_List_Vascular_Surveys_not corrected.csv")
 
 #add them together. The species with NA's are the ones we dont know!
 final_species <- semi_join(master, species2, copy = TRUE)
@@ -100,25 +99,40 @@ final_species <- final_species %>% select(-c(Order.from.csv.file, X, X.1, X.2))
 ##############################################################################
 
 #checking the temp data:
-temp <- bind_rows(Stand_1_Temp, Stand_2_Temp_complete, Stand_3_Temp, Stand_4_Temp, Stand_5_Temp, Stand_6_Temp, Stand_7_Temp, Stand_8_Temp)
-summary(temp)
-#temp data is fine!
+temp <- bind_rows(Stand_1_Temp, Stand_2_Temp_complete, Stand_3_Temp, Stand_4_Temp, Stand_5_Temp, Stand_6_Temp, Stand_7_Temp, Stand_8_Temp) %>% 
+  mutate(Temp_C = (Temp_F-32)*5/9, .keep = "unused") # convert to Celsius
+names(temp) <- to_snake_case(names(temp))
+#write_csv(temp, "./VascularPlantSurvey/Hondo_final/temps_all.csv")
 ##############################################################################
+
+# averaging double cover measurements
+
+cover3 <- cover2 %>% 
+  rename(month = Month, year = Year, stand = Stand, quad = Quad) %>% 
+  # scrub the .1 indicator of double surveys
+  mutate(quad = as.factor(str_remove_all(quad, ".1"))) %>% 
+  # replace all missing values with zeroes since these are true zeroes (plant not detected in quadrat)
+  na_replace(0) %>% 
+  group_by(month, year, stand, quad) %>% # group by time and plot
+  summarize_all(mean) # and take the average of double-surveyed plots
+
+#write_csv(cover3, "./VascularPlantSurvey/Hondo_final/cover_all.csv")
+
 # read all the data in to their own stand files:
 
-stand1 <- cover2 %>% filter(Stand == "1")
-write.csv(stand1, "./VascularPlantSurveys/Hondo_final/Stand_1_Cover.csv", row.names = F)
-stand2 <- cover2 %>% filter(Stand == "2")
-write.csv(stand1, "./VascularPlantSurveys/Hondo_final/Stand_2_Cover.csv", row.names = F)
-stand3 <- cover2 %>% filter(Stand == "3")
-write.csv(stand3, "./VascularPlantSurveys/Hondo_final/Stand_3_Cover.csv", row.names = F)
-stand4 <- cover2 %>% filter(Stand == "4")
-write.csv(stand4, "./VascularPlantSurveys/Hondo_final/Stand_4_Cover.csv", row.names = F)
-stand5 <- cover2 %>% filter(Stand == "5")
-write.csv(stand5, "./VascularPlantSurveys/Hondo_final/Stand_5_Cover.csv", row.names = F)
+stand1 <- cover3 %>% filter(stand == "1")
+write.csv(stand1, "./VascularPlantSurvey/Hondo_final/Stand_1_Cover.csv", row.names = F)
+stand2 <- cover3 %>% filter(Stand == "2")
+write.csv(stand1, "./VascularPlantSurvey/Hondo_final/Stand_2_Cover.csv", row.names = F)
+stand3 <- cover3 %>% filter(Stand == "3")
+write.csv(stand3, "./VascularPlantSurvey/Hondo_final/Stand_3_Cover.csv", row.names = F)
+stand4 <- cover3 %>% filter(Stand == "4")
+write.csv(stand4, "./VascularPlantSurvey/Hondo_final/Stand_4_Cover.csv", row.names = F)
+stand5 <- cover3 %>% filter(Stand == "5")
+write.csv(stand5, "./VascularPlantSurvey/Hondo_final/Stand_5_Cover.csv", row.names = F)
 stand6 <- cover2 %>% filter(Stand == "6")
-write.csv(stand6, "./VascularPlantSurveys/Hondo_final/Stand_6_Cover.csv", row.names = F)
-stand7 <- cover2 %>% filter(Stand == "7")
-write.csv(stand7, "./VascularPlantSurveys/Hondo_final/Stand_7_Cover.csv", row.names = F)
-stand8 <- cover2 %>% filter(Stand == "8")
-write.csv(stand8, "./VascularPlantSurveys/Hondo_final/Stand_8_Cover.csv", row.names = F)
+write.csv(stand6, "./VascularPlantSurvey/Hondo_final/Stand_6_Cover.csv", row.names = F)
+stand7 <- cover3 %>% filter(Stand == "7")
+write.csv(stand7, "./VascularPlantSurvey/Hondo_final/Stand_7_Cover.csv", row.names = F)
+stand8 <- cover3 %>% filter(Stand == "8")
+write.csv(stand8, "./VascularPlantSurvey/Hondo_final/Stand_8_Cover.csv", row.names = F)

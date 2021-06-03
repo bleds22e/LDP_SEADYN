@@ -41,3 +41,1406 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git add --all
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push --\\\\[K[K[K[K[K[Korigin master
+error: src refspec master does not match any.
+[31merror: failed to push some refs to 'https://github.com/avhesketh/LDP_SEADYN.git'
+[m]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git remote -v
+origin	https://github.com/avhesketh/LDP_SEADYN.git (fetch)
+origin	https://github.com/avhesketh/LDP_SEADYN.git (push)
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push origin p[Kmaster
+error: src refspec master does not match any.
+[31merror: failed to push some refs to 'https://github.com/avhesketh/LDP_SEADYN.git'
+[m]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push -u origin master
+error: src refspec master does not match any.
+[31merror: failed to push some refs to 'https://github.com/avhesketh/LDP_SEADYN.git'
+[m]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git branch -M main
+error: refname refs/heads/master not found
+fatal: Branch rename failed
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	[32mnew file:   .DS_Store[m
+	[32mnew file:   .Rproj.user/171C5B80/console06/E311632E[m
+	[32mnew file:   .Rproj.user/171C5B80/console06/E311632E.env[m
+	[32mnew file:   .Rproj.user/171C5B80/console06/INDEX001[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/59FA9BD0[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/6112BEB5[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/720230A3[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/A93D775C[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/B974A51A[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/C27A7634[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/C5A5824D[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/D6EFAB07[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/prop/INDEX[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/458F0EC8-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/4B6A0C6C-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/53035D87-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/74ED7EBD-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/75E510F5-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/7ECBB4C-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/8863174F-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/8F1E15CF-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/9F6850AE-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/AFC2854B-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/E96C4A2C-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/ED4CE226-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/F3FA4DF1-contents[m
+	[32mnew file:   .Rproj.user/171C5B80/sources/s-D07A1F7/lock_file[m
+	[32mnew file:   .Rproj.user/shared/notebooks/patch-chunk-names[m
+	[32mnew file:   .Rproj.user/shared/notebooks/paths[m
+	[32mnew file:   BryoidSurvey/HONDO_BryoidSurvey_Stand1_1980_08.csv[m
+	[32mnew file:   BryoidSurvey/HONDO_BryoidSurvey_Stand1_1980_08.xlsx[m
+	[32mnew file:   BryoidSurvey/Read Me.txt[m
+	[32mnew file:   BryoidSurvey/s181.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s181.b.sp25[m
+	[32mnew file:   BryoidSurvey/s181.b.st.5[m
+	[32mnew file:   BryoidSurvey/s181.b.st25[m
+	[32mnew file:   BryoidSurvey/s181.b.sx25[m
+	[32mnew file:   BryoidSurvey/s182.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s182.b.sp25[m
+	[32mnew file:   BryoidSurvey/s182.b.st.5[m
+	[32mnew file:   BryoidSurvey/s182.b.st25[m
+	[32mnew file:   BryoidSurvey/s182.b.sx25[m
+	[32mnew file:   BryoidSurvey/s183.b.sp25[m
+	[32mnew file:   BryoidSurvey/s183.b.st.5[m
+	[32mnew file:   BryoidSurvey/s183.b.st25[m
+	[32mnew file:   BryoidSurvey/s183.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s183.b.sx25[m
+	[32mnew file:   BryoidSurvey/s184.b.st.5[m
+	[32mnew file:   BryoidSurvey/s184.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s280.vb.sp25.txt[m
+	[32mnew file:   BryoidSurvey/s280.vb.spca.txt[m
+	[32mnew file:   BryoidSurvey/s280.vb.st25.txt[m
+	[32mnew file:   BryoidSurvey/s281.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s281.b.sp25[m
+	[32mnew file:   BryoidSurvey/s281.b.st.5[m
+	[32mnew file:   BryoidSurvey/s281.b.st25[m
+	[32mnew file:   BryoidSurvey/s281.b.sx25[m
+	[32mnew file:   BryoidSurvey/s282.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s282.b.sp25[m
+	[32mnew file:   BryoidSurvey/s282.b.st.5[m
+	[32mnew file:   BryoidSurvey/s282.b.st25[m
+	[32mnew file:   BryoidSurvey/s282.b.sx25[m
+	[32mnew file:   BryoidSurvey/s283.b.sp25[m
+	[32mnew file:   BryoidSurvey/s283.b.st.5[m
+	[32mnew file:   BryoidSurvey/s283.b.st25[m
+	[32mnew file:   BryoidSurvey/s283.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s283.b.sx25[m
+	[32mnew file:   BryoidSurvey/s284.b.st.5[m
+	[32mnew file:   BryoidSurvey/s284.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s381.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s381.b.sp25[m
+	[32mnew file:   BryoidSurvey/s381.b.st.5[m
+	[32mnew file:   BryoidSurvey/s381.b.st25[m
+	[32mnew file:   BryoidSurvey/s381.b.sx25[m
+	[32mnew file:   BryoidSurvey/s382.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s382.b.sp25[m
+	[32mnew file:   BryoidSurvey/s382.b.st.5[m
+	[32mnew file:   BryoidSurvey/s382.b.st25[m
+	[32mnew file:   BryoidSurvey/s382.b.sx25[m
+	[32mnew file:   BryoidSurvey/s383.b.sp25[m
+	[32mnew file:   BryoidSurvey/s383.b.st.5[m
+	[32mnew file:   BryoidSurvey/s383.b.st25[m
+	[32mnew file:   BryoidSurvey/s383.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s383.b.sx25[m
+	[32mnew file:   BryoidSurvey/s384.b.st.5[m
+	[32mnew file:   BryoidSurvey/s384.b.sx.5[m
+	[32mnew file:   BryoidSurvey/s481.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s481.b.sp25[m
+	[32mnew file:   BryoidSurvey/s481.b.st.5[m
+	[32mnew file:   BryoidSurvey/s481.b.st25[m
+	[32mnew file:   BryoidSurvey/s482.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s482.b.sp25[m
+	[32mnew file:   BryoidSurvey/s482.b.st.5[m
+	[32mnew file:   BryoidSurvey/s482.b.st25[m
+	[32mnew file:   BryoidSurvey/s483.b.sp25[m
+	[32mnew file:   BryoidSurvey/s483.b.st25[m
+	[32mnew file:   BryoidSurvey/s581.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s581.b.sp25[m
+	[32mnew file:   BryoidSurvey/s581.b.st.5[m
+	[32mnew file:   BryoidSurvey/s581.b.st25[m
+	[32mnew file:   BryoidSurvey/s582.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s582.b.sp25[m
+	[32mnew file:   BryoidSurvey/s582.b.st.5[m
+	[32mnew file:   BryoidSurvey/s582.b.st25[m
+	[32mnew file:   BryoidSurvey/s583.b.sp25[m
+	[32mnew file:   BryoidSurvey/s583.b.st25[m
+	[32mnew file:   BryoidSurvey/s681.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s681.b.sp25[m
+	[32mnew file:   BryoidSurvey/s681.b.st.5[m
+	[32mnew file:   BryoidSurvey/s681.b.st25[m
+	[32mnew file:   BryoidSurvey/s682.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s682.b.sp25[m
+	[32mnew file:   BryoidSurvey/s682.b.st.5[m
+	[32mnew file:   BryoidSurvey/s682.b.st25[m
+	[32mnew file:   BryoidSurvey/s683.b.sp25[m
+	[32mnew file:   BryoidSurvey/s683.b.st25[m
+	[32mnew file:   BryoidSurvey/s781.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s781.b.sp25[m
+	[32mnew file:   BryoidSurvey/s781.b.st.5[m
+	[32mnew file:   BryoidSurvey/s781.b.st25[m
+	[32mnew file:   BryoidSurvey/s782.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s782.b.sp25[m
+	[32mnew file:   BryoidSurvey/s782.b.st.5[m
+	[32mnew file:   BryoidSurvey/s782.b.st25[m
+	[32mnew file:   BryoidSurvey/s783.b.sp25[m
+	[32mnew file:   BryoidSurvey/s783.b.st25[m
+	[32mnew file:   BryoidSurvey/s881.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s881.b.sp25[m
+	[32mnew file:   BryoidSurvey/s881.b.st.5[m
+	[32mnew file:   BryoidSurvey/s881.b.st25[m
+	[32mnew file:   BryoidSurvey/s882.b.sp.5[m
+	[32mnew file:   BryoidSurvey/s882.b.sp25[m
+	[32mnew file:   BryoidSurvey/s882.b.st.5[m
+	[32mnew file:   BryoidSurvey/s882.b.st25[m
+	[32mnew file:   BryoidSurvey/s883.b.sp25[m
+	[32mnew file:   BryoidSurvey/s883.b.st25[m
+	[32mnew file:   HondoStandInfo/clean_data/Hondo_Stand_Coordinates.csv[m
+	[32mnew file:   HondoStandInfo/coordinates_conversion.R[m
+	[32mnew file:   HondoStandInfo/raw_data/Hondo_Stand_Coordinates.csv[m
+	[32mnew file:   HondoStandInfo/raw_data/Hondo_Stand_Coordinates.xlsx[m
+	[32mnew file:   LDP_SEADYN.Rproj[m
+	[32mnew file:   TreeDensiometerCover/Hondo_TreeCoverEstimates_Densiometer_1987.csv[m
+	[32mnew file:   TreeDensiometerCover/Tree Cover MetaData.txt[m
+	[32mnew file:   TreeDynamics/.DS_Store[m
+	[32mnew file:   TreeDynamics/.Rhistory[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 1 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 2 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 3 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 4 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 5 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 6 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 7 Data.csv[m
+	[32mnew file:   TreeDynamics/2003_clean_data/Seadyn Stand 8 Data.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_1.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_2.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_3.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_4.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_5.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_6.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_7.csv[m
+	[32mnew file:   TreeDynamics/clean_data/Tree_Dynamics_Stand_8.csv[m
+	[32mnew file:   TreeDynamics/metadata/SEADYN Stand Dynamics (Tree) 1981-2001 Data Notes.doc[m
+	[32mnew file:   TreeDynamics/metadata/Tree Dynamics MetaData.txt[m
+	[32mnew file:   TreeDynamics/scripts/TreeDynamics_ReadInCleaning.R[m
+	[32mnew file:   VascularPlantSurvey/.DS_Store[m
+	[32mnew file:   VascularPlantSurvey/Archived_species_names/Master_Species_List_2020.csv[m
+	[32mnew file:   VascularPlantSurvey/Archived_species_names/Species_List_Vascular_Surveys_not corrected.csv[m
+	[32mnew file:   VascularPlantSurvey/Archived_species_names/species_names_2021_02_23_EM.xlsx[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Hondo_VascularSurvey_Stand2_missingfiles.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_1_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_1_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_2_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_2_Cover_complete.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_2_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_2_Temp_complete.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_3_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_3_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_4_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_4_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_5_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_5_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_6_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_6_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_7_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_7_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_8_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_compiled/Stand_8_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_1_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_1_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_2_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_2_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_3_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_3_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_4_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_4_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_5_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_5_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_6_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_6_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_7_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_7_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_8_Cover.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_final/Stand_8_Temp.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/.DS_Store[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/.Rhistory[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO100.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO110.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO180.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.NOV.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO181_MAY.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/HONDO195.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/Hondo115.Aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand1/hondo105.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO200.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO290.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/HONDO295.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/Hondo205.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/HONDO_VascularSurvey_Stand2_1980_08.csv[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.sp25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.spca.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.st25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.sp25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.st25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.sx25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.sp25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.st25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.sx25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.sp25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.st25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.sx25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s284.v.st25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s284.v.sx25.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s285.v.columns.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s285.v_data.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO300.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO301.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO380.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.NOV.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/HONDO395.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/Hondo315.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/hondo305.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand3/hondo310.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO400.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO401.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO410.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO415.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO480.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/HONDO495.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/Hondo481.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/Hondo483.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo483.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo484.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo485.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand4/hondo485.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO500.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO505.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO580.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.NOV.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/HONDO595.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/Hondo515.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand5/hondo510.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO600.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO601.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO605.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO610.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO615.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO680.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.NOV.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand6/HONDO695.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO700.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.NOV.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.JUN.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.MAY.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.OCT.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/HONDO795.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/Hondo705.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/Hondo715.JUL.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/Hondo780.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand7/hondo710.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/Hondo815.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo800.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo801.SEP.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo805.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo810.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo880.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.nov.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo881.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo882.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo883.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo884.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo885.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo885.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo885.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo885.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo885.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo886.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo887.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo888.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo889.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.aug.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.jul.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.jun.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.may.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.oct.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo890.sep.txt[m
+	[32mnew file:   VascularPlantSurvey/Hondo_raw/Stand8/hondo895.AUG.txt[m
+	[32mnew file:   VascularPlantSurvey/Scripts/.DS_Store[m
+	[32mnew file:   VascularPlantSurvey/Scripts/.Rhistory[m
+	[32mnew file:   VascularPlantSurvey/Scripts/UofA_plants.R[m
+	[32mnew file:   VascularPlantSurvey/Scripts/Vascular_Data_Cleaning.R[m
+	[32mnew file:   VascularPlantSurvey/Scripts/functions.R[m
+	[32mnew file:   VascularPlantSurvey/Scripts/read_HONDO_files_to_df.R[m
+	[32mnew file:   VascularPlantSurvey/Scripts/stand2.R[m
+	[32mnew file:   VascularPlantSurvey/Species_List_Vascular_Surveys.csv[m
+	[32mnew file:   VascularPlantSurvey/Species_List_Vascular_Surveys.xlsx[m
+	[32mnew file:   VascularPlantSurvey/metadata/Vascular Survey Methods from 1987 Report.txt[m
+	[32mnew file:   VascularPlantSurvey/metadata/VascularSurveyMetaData.txt[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rproj.user/171C5B80/console06/E311632E[m
+
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git commit
+hint: Waiting for your editor to close the file... [?2004h[KAborting commit due to empty commit message.
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git commit -m "initial commit"
+[master (root-commit) 0683d52] initial commit
+ 671 files changed, 117696 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 .Rproj.user/171C5B80/console06/E311632E
+ create mode 100644 .Rproj.user/171C5B80/console06/E311632E.env
+ create mode 100644 .Rproj.user/171C5B80/console06/INDEX001
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/59FA9BD0
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/6112BEB5
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/720230A3
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/A93D775C
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/B974A51A
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/C27A7634
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/C5A5824D
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/D6EFAB07
+ create mode 100644 .Rproj.user/171C5B80/sources/prop/INDEX
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/458F0EC8-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/4B6A0C6C-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/53035D87-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/74ED7EBD-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/75E510F5-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/7ECBB4C-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/8863174F-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/8F1E15CF-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/9F6850AE-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/AFC2854B-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/E96C4A2C-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/ED4CE226-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/F3FA4DF1-contents
+ create mode 100644 .Rproj.user/171C5B80/sources/s-D07A1F7/lock_file
+ create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names
+ create mode 100644 .Rproj.user/shared/notebooks/paths
+ create mode 100755 BryoidSurvey/HONDO_BryoidSurvey_Stand1_1980_08.csv
+ create mode 100755 BryoidSurvey/HONDO_BryoidSurvey_Stand1_1980_08.xlsx
+ create mode 100755 BryoidSurvey/Read Me.txt
+ create mode 100755 BryoidSurvey/s181.b.sp.5
+ create mode 100755 BryoidSurvey/s181.b.sp25
+ create mode 100755 BryoidSurvey/s181.b.st.5
+ create mode 100755 BryoidSurvey/s181.b.st25
+ create mode 100755 BryoidSurvey/s181.b.sx25
+ create mode 100755 BryoidSurvey/s182.b.sp.5
+ create mode 100755 BryoidSurvey/s182.b.sp25
+ create mode 100755 BryoidSurvey/s182.b.st.5
+ create mode 100755 BryoidSurvey/s182.b.st25
+ create mode 100755 BryoidSurvey/s182.b.sx25
+ create mode 100755 BryoidSurvey/s183.b.sp25
+ create mode 100755 BryoidSurvey/s183.b.st.5
+ create mode 100755 BryoidSurvey/s183.b.st25
+ create mode 100755 BryoidSurvey/s183.b.sx.5
+ create mode 100755 BryoidSurvey/s183.b.sx25
+ create mode 100755 BryoidSurvey/s184.b.st.5
+ create mode 100755 BryoidSurvey/s184.b.sx.5
+ create mode 100755 BryoidSurvey/s280.vb.sp25.txt
+ create mode 100755 BryoidSurvey/s280.vb.spca.txt
+ create mode 100755 BryoidSurvey/s280.vb.st25.txt
+ create mode 100755 BryoidSurvey/s281.b.sp.5
+ create mode 100755 BryoidSurvey/s281.b.sp25
+ create mode 100755 BryoidSurvey/s281.b.st.5
+ create mode 100755 BryoidSurvey/s281.b.st25
+ create mode 100755 BryoidSurvey/s281.b.sx25
+ create mode 100755 BryoidSurvey/s282.b.sp.5
+ create mode 100755 BryoidSurvey/s282.b.sp25
+ create mode 100755 BryoidSurvey/s282.b.st.5
+ create mode 100755 BryoidSurvey/s282.b.st25
+ create mode 100755 BryoidSurvey/s282.b.sx25
+ create mode 100755 BryoidSurvey/s283.b.sp25
+ create mode 100755 BryoidSurvey/s283.b.st.5
+ create mode 100755 BryoidSurvey/s283.b.st25
+ create mode 100755 BryoidSurvey/s283.b.sx.5
+ create mode 100755 BryoidSurvey/s283.b.sx25
+ create mode 100755 BryoidSurvey/s284.b.st.5
+ create mode 100755 BryoidSurvey/s284.b.sx.5
+ create mode 100755 BryoidSurvey/s381.b.sp.5
+ create mode 100755 BryoidSurvey/s381.b.sp25
+ create mode 100755 BryoidSurvey/s381.b.st.5
+ create mode 100755 BryoidSurvey/s381.b.st25
+ create mode 100755 BryoidSurvey/s381.b.sx25
+ create mode 100755 BryoidSurvey/s382.b.sp.5
+ create mode 100755 BryoidSurvey/s382.b.sp25
+ create mode 100755 BryoidSurvey/s382.b.st.5
+ create mode 100755 BryoidSurvey/s382.b.st25
+ create mode 100755 BryoidSurvey/s382.b.sx25
+ create mode 100755 BryoidSurvey/s383.b.sp25
+ create mode 100755 BryoidSurvey/s383.b.st.5
+ create mode 100755 BryoidSurvey/s383.b.st25
+ create mode 100755 BryoidSurvey/s383.b.sx.5
+ create mode 100755 BryoidSurvey/s383.b.sx25
+ create mode 100755 BryoidSurvey/s384.b.st.5
+ create mode 100755 BryoidSurvey/s384.b.sx.5
+ create mode 100755 BryoidSurvey/s481.b.sp.5
+ create mode 100755 BryoidSurvey/s481.b.sp25
+ create mode 100755 BryoidSurvey/s481.b.st.5
+ create mode 100755 BryoidSurvey/s481.b.st25
+ create mode 100755 BryoidSurvey/s482.b.sp.5
+ create mode 100755 BryoidSurvey/s482.b.sp25
+ create mode 100755 BryoidSurvey/s482.b.st.5
+ create mode 100755 BryoidSurvey/s482.b.st25
+ create mode 100755 BryoidSurvey/s483.b.sp25
+ create mode 100755 BryoidSurvey/s483.b.st25
+ create mode 100755 BryoidSurvey/s581.b.sp.5
+ create mode 100755 BryoidSurvey/s581.b.sp25
+ create mode 100755 BryoidSurvey/s581.b.st.5
+ create mode 100755 BryoidSurvey/s581.b.st25
+ create mode 100755 BryoidSurvey/s582.b.sp.5
+ create mode 100755 BryoidSurvey/s582.b.sp25
+ create mode 100755 BryoidSurvey/s582.b.st.5
+ create mode 100755 BryoidSurvey/s582.b.st25
+ create mode 100755 BryoidSurvey/s583.b.sp25
+ create mode 100755 BryoidSurvey/s583.b.st25
+ create mode 100755 BryoidSurvey/s681.b.sp.5
+ create mode 100755 BryoidSurvey/s681.b.sp25
+ create mode 100755 BryoidSurvey/s681.b.st.5
+ create mode 100755 BryoidSurvey/s681.b.st25
+ create mode 100755 BryoidSurvey/s682.b.sp.5
+ create mode 100755 BryoidSurvey/s682.b.sp25
+ create mode 100755 BryoidSurvey/s682.b.st.5
+ create mode 100755 BryoidSurvey/s682.b.st25
+ create mode 100755 BryoidSurvey/s683.b.sp25
+ create mode 100755 BryoidSurvey/s683.b.st25
+ create mode 100755 BryoidSurvey/s781.b.sp.5
+ create mode 100755 BryoidSurvey/s781.b.sp25
+ create mode 100755 BryoidSurvey/s781.b.st.5
+ create mode 100755 BryoidSurvey/s781.b.st25
+ create mode 100755 BryoidSurvey/s782.b.sp.5
+ create mode 100755 BryoidSurvey/s782.b.sp25
+ create mode 100755 BryoidSurvey/s782.b.st.5
+ create mode 100755 BryoidSurvey/s782.b.st25
+ create mode 100755 BryoidSurvey/s783.b.sp25
+ create mode 100755 BryoidSurvey/s783.b.st25
+ create mode 100755 BryoidSurvey/s881.b.sp.5
+ create mode 100755 BryoidSurvey/s881.b.sp25
+ create mode 100755 BryoidSurvey/s881.b.st.5
+ create mode 100755 BryoidSurvey/s881.b.st25
+ create mode 100755 BryoidSurvey/s882.b.sp.5
+ create mode 100755 BryoidSurvey/s882.b.sp25
+ create mode 100755 BryoidSurvey/s882.b.st.5
+ create mode 100755 BryoidSurvey/s882.b.st25
+ create mode 100755 BryoidSurvey/s883.b.sp25
+ create mode 100755 BryoidSurvey/s883.b.st25
+ create mode 100644 HondoStandInfo/clean_data/Hondo_Stand_Coordinates.csv
+ create mode 100644 HondoStandInfo/coordinates_conversion.R
+ create mode 100755 HondoStandInfo/raw_data/Hondo_Stand_Coordinates.csv
+ create mode 100755 HondoStandInfo/raw_data/Hondo_Stand_Coordinates.xlsx
+ create mode 100644 LDP_SEADYN.Rproj
+ create mode 100755 TreeDensiometerCover/Hondo_TreeCoverEstimates_Densiometer_1987.csv
+ create mode 100755 TreeDensiometerCover/Tree Cover MetaData.txt
+ create mode 100644 TreeDynamics/.DS_Store
+ create mode 100755 TreeDynamics/.Rhistory
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 1 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 2 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 3 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 4 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 5 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 6 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 7 Data.csv
+ create mode 100755 TreeDynamics/2003_clean_data/Seadyn Stand 8 Data.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_1.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_2.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_3.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_4.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_5.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_6.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_7.csv
+ create mode 100755 TreeDynamics/clean_data/Tree_Dynamics_Stand_8.csv
+ create mode 100755 TreeDynamics/metadata/SEADYN Stand Dynamics (Tree) 1981-2001 Data Notes.doc
+ create mode 100755 TreeDynamics/metadata/Tree Dynamics MetaData.txt
+ create mode 100755 TreeDynamics/scripts/TreeDynamics_ReadInCleaning.R
+ create mode 100644 VascularPlantSurvey/.DS_Store
+ create mode 100755 VascularPlantSurvey/Archived_species_names/Master_Species_List_2020.csv
+ create mode 100755 VascularPlantSurvey/Archived_species_names/Species_List_Vascular_Surveys_not corrected.csv
+ create mode 100755 VascularPlantSurvey/Archived_species_names/species_names_2021_02_23_EM.xlsx
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Hondo_VascularSurvey_Stand2_missingfiles.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_1_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_1_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_2_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_2_Cover_complete.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_2_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_2_Temp_complete.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_3_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_3_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_4_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_4_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_5_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_5_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_6_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_6_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_7_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_7_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_8_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_compiled/Stand_8_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_1_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_1_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_2_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_2_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_3_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_3_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_4_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_4_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_5_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_5_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_6_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_6_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_7_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_7_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_8_Cover.csv
+ create mode 100755 VascularPlantSurvey/Hondo_final/Stand_8_Temp.csv
+ create mode 100755 VascularPlantSurvey/Hondo_raw/.DS_Store
+ create mode 100755 VascularPlantSurvey/Hondo_raw/.Rhistory
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO100.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO110.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO180.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.NOV.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO181_MAY.csv
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO182.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO183.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO184.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO185.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO186.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO187.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO188.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO189.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO190.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/HONDO195.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/Hondo115.Aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand1/hondo105.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO200.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO286.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO290.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/HONDO295.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/Hondo205.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/HONDO_VascularSurvey_Stand2_1980_08.csv
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.sp25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.spca.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s280.vb.st25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.sp25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.st25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s281.v.sx25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.sp25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.st25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s282.v.sx25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.sp25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.st25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s283.v.sx25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s284.v.st25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s284.v.sx25.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s285.v.columns.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand2/old_v_missing/s285.v_data.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO300.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO301.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO380.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.NOV.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO381.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO382.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO383.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO384.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO385.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO386.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO387.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO388.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO389.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO390.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/HONDO395.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/Hondo315.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/hondo305.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand3/hondo310.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO400.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO401.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO410.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO415.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO480.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO481.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO482.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO483.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/HONDO495.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/Hondo481.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/Hondo483.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo483.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo484.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo485.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand4/hondo485.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO500.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO505.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO580.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.NOV.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO581.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO582.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO583.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO584.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO585.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO586.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO587.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO588.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO589.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO590.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/HONDO595.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/Hondo515.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand5/hondo510.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO600.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO601.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO605.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO610.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO615.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO680.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.NOV.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO681.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO682.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO683.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO684.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO685.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO686.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO687.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO688.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO689.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO690.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand6/HONDO695.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO700.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.NOV.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO781.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO782.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO783.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO784.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO785.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO786.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO787.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO788.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO789.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.JUN.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.MAY.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.OCT.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO790.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/HONDO795.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/Hondo705.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/Hondo715.JUL.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/Hondo780.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand7/hondo710.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/Hondo815.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo800.AUG.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo801.SEP.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo805.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo810.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo880.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.nov.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo881.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo882.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo883.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo884.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo885.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo885.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo885.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo885.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo885.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo886.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo887.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo888.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo889.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.aug.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.jul.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.jun.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.may.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.oct.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo890.sep.txt
+ create mode 100755 VascularPlantSurvey/Hondo_raw/Stand8/hondo895.AUG.txt
+ create mode 100755 VascularPlantSurvey/Scripts/.DS_Store
+ create mode 100755 VascularPlantSurvey/Scripts/.Rhistory
+ create mode 100755 VascularPlantSurvey/Scripts/UofA_plants.R
+ create mode 100755 VascularPlantSurvey/Scripts/Vascular_Data_Cleaning.R
+ create mode 100755 VascularPlantSurvey/Scripts/functions.R
+ create mode 100755 VascularPlantSurvey/Scripts/read_HONDO_files_to_df.R
+ create mode 100755 VascularPlantSurvey/Scripts/stand2.R
+ create mode 100755 VascularPlantSurvey/Species_List_Vascular_Surveys.csv
+ create mode 100755 VascularPlantSurvey/Species_List_Vascular_Surveys.xlsx
+ create mode 100755 VascularPlantSurvey/metadata/Vascular Survey Methods from 1987 Report.txt
+ create mode 100755 VascularPlantSurvey/metadata/VascularSurveyMetaData.txt
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git push -u origin master
+Enumerating objects: 683, done.
+Counting objects:   0% (1/683)   Counting objects:   1% (7/683)   Counting objects:   2% (14/683)   Counting objects:   3% (21/683)   Counting objects:   4% (28/683)   Counting objects:   5% (35/683)   Counting objects:   6% (41/683)   Counting objects:   7% (48/683)   Counting objects:   8% (55/683)   Counting objects:   9% (62/683)   Counting objects:  10% (69/683)   Counting objects:  11% (76/683)   Counting objects:  12% (82/683)   Counting objects:  13% (89/683)   Counting objects:  14% (96/683)   Counting objects:  15% (103/683)   Counting objects:  16% (110/683)   Counting objects:  17% (117/683)   Counting objects:  18% (123/683)   Counting objects:  19% (130/683)   Counting objects:  20% (137/683)   Counting objects:  21% (144/683)   Counting objects:  22% (151/683)   Counting objects:  23% (158/683)   Counting objects:  24% (164/683)   Counting objects:  25% (171/683)   Counting objects:  26% (178/683)   Counting objects:  27% (185/683)   Counting objects:  28% (192/683)   Counting objects:  29% (199/683)   Counting objects:  30% (205/683)   Counting objects:  31% (212/683)   Counting objects:  32% (219/683)   Counting objects:  33% (226/683)   Counting objects:  34% (233/683)   Counting objects:  35% (240/683)   Counting objects:  36% (246/683)   Counting objects:  37% (253/683)   Counting objects:  38% (260/683)   Counting objects:  39% (267/683)   Counting objects:  40% (274/683)   Counting objects:  41% (281/683)   Counting objects:  42% (287/683)   Counting objects:  43% (294/683)   Counting objects:  44% (301/683)   Counting objects:  45% (308/683)   Counting objects:  46% (315/683)   Counting objects:  47% (322/683)   Counting objects:  48% (328/683)   Counting objects:  49% (335/683)   Counting objects:  50% (342/683)   Counting objects:  51% (349/683)   Counting objects:  52% (356/683)   Counting objects:  53% (362/683)   Counting objects:  54% (369/683)   Counting objects:  55% (376/683)   Counting objects:  56% (383/683)   Counting objects:  57% (390/683)   Counting objects:  58% (397/683)   Counting objects:  59% (403/683)   Counting objects:  60% (410/683)   Counting objects:  61% (417/683)   Counting objects:  62% (424/683)   Counting objects:  63% (431/683)   Counting objects:  64% (438/683)   Counting objects:  65% (444/683)   Counting objects:  66% (451/683)   Counting objects:  67% (458/683)   Counting objects:  68% (465/683)   Counting objects:  69% (472/683)   Counting objects:  70% (479/683)   Counting objects:  71% (485/683)   Counting objects:  72% (492/683)   Counting objects:  73% (499/683)   Counting objects:  74% (506/683)   Counting objects:  75% (513/683)   Counting objects:  76% (520/683)   Counting objects:  77% (526/683)   Counting objects:  78% (533/683)   Counting objects:  79% (540/683)   Counting objects:  80% (547/683)   Counting objects:  81% (554/683)   Counting objects:  82% (561/683)   Counting objects:  83% (567/683)   Counting objects:  84% (574/683)   Counting objects:  85% (581/683)   Counting objects:  86% (588/683)   Counting objects:  87% (595/683)   Counting objects:  88% (602/683)   Counting objects:  89% (608/683)   Counting objects:  90% (615/683)   Counting objects:  91% (622/683)   Counting objects:  92% (629/683)   Counting objects:  93% (636/683)   Counting objects:  94% (643/683)   Counting objects:  95% (649/683)   Counting objects:  96% (656/683)   Counting objects:  97% (663/683)   Counting objects:  98% (670/683)   Counting objects:  99% (677/683)   Counting objects: 100% (683/683)   Counting objects: 100% (683/683), done.
+Delta compression using up to 4 threads
+Compressing objects:   0% (1/680)   Compressing objects:   1% (7/680)   Compressing objects:   2% (14/680)   Compressing objects:   3% (21/680)   Compressing objects:   4% (28/680)   Compressing objects:   5% (34/680)   Compressing objects:   6% (41/680)   Compressing objects:   7% (48/680)   Compressing objects:   8% (55/680)   Compressing objects:   9% (62/680)   Compressing objects:  10% (68/680)   Compressing objects:  11% (75/680)   Compressing objects:  12% (82/680)   Compressing objects:  13% (89/680)   Compressing objects:  14% (96/680)   Compressing objects:  15% (102/680)   Compressing objects:  16% (109/680)   Compressing objects:  17% (116/680)   Compressing objects:  18% (123/680)   Compressing objects:  19% (130/680)   Compressing objects:  20% (136/680)   Compressing objects:  21% (143/680)   Compressing objects:  22% (150/680)   Compressing objects:  23% (157/680)   Compressing objects:  24% (164/680)   Compressing objects:  25% (170/680)   Compressing objects:  26% (177/680)   Compressing objects:  27% (184/680)   Compressing objects:  28% (191/680)   Compressing objects:  29% (198/680)   Compressing objects:  30% (204/680)   Compressing objects:  31% (211/680)   Compressing objects:  32% (218/680)   Compressing objects:  33% (225/680)   Compressing objects:  34% (232/680)   Compressing objects:  35% (238/680)   Compressing objects:  36% (245/680)   Compressing objects:  37% (252/680)   Compressing objects:  38% (259/680)   Compressing objects:  39% (266/680)   Compressing objects:  40% (272/680)   Compressing objects:  41% (279/680)   Compressing objects:  42% (286/680)   Compressing objects:  43% (293/680)   Compressing objects:  44% (300/680)   Compressing objects:  45% (306/680)   Compressing objects:  46% (313/680)   Compressing objects:  47% (320/680)   Compressing objects:  48% (327/680)   Compressing objects:  49% (334/680)   Compressing objects:  50% (340/680)   Compressing objects:  51% (347/680)   Compressing objects:  52% (354/680)   Compressing objects:  53% (361/680)   Compressing objects:  54% (368/680)   Compressing objects:  55% (374/680)   Compressing objects:  56% (381/680)   Compressing objects:  57% (388/680)   Compressing objects:  58% (395/680)   Compressing objects:  59% (402/680)   Compressing objects:  60% (408/680)   Compressing objects:  61% (415/680)   Compressing objects:  62% (422/680)   Compressing objects:  63% (429/680)   Compressing objects:  64% (436/680)   Compressing objects:  65% (442/680)   Compressing objects:  66% (449/680)   Compressing objects:  67% (456/680)   Compressing objects:  68% (463/680)   Compressing objects:  69% (470/680)   Compressing objects:  70% (476/680)   Compressing objects:  71% (483/680)   Compressing objects:  72% (490/680)   Compressing objects:  73% (497/680)   Compressing objects:  74% (504/680)   Compressing objects:  75% (510/680)   Compressing objects:  76% (517/680)   Compressing objects:  77% (524/680)   Compressing objects:  78% (531/680)   Compressing objects:  79% (538/680)   Compressing objects:  80% (544/680)   Compressing objects:  81% (551/680)   Compressing objects:  82% (558/680)   Compressing objects:  83% (565/680)   Compressing objects:  84% (572/680)   Compressing objects:  85% (578/680)   Compressing objects:  86% (585/680)   Compressing objects:  87% (592/680)   Compressing objects:  88% (599/680)   Compressing objects:  89% (606/680)   Compressing objects:  90% (612/680)   Compressing objects:  91% (619/680)   Compressing objects:  92% (626/680)   Compressing objects:  93% (633/680)   Compressing objects:  94% (640/680)   Compressing objects:  95% (646/680)   Compressing objects:  96% (653/680)   Compressing objects:  97% (660/680)   Compressing objects:  98% (667/680)   Compressing objects:  99% (674/680)   Compressing objects: 100% (680/680)   Compressing objects: 100% (680/680), done.
+Writing objects:   0% (1/683)   Writing objects:   1% (7/683)   Writing objects:   2% (14/683)   Writing objects:   3% (21/683)   Writing objects:   4% (28/683)   Writing objects:   5% (35/683)   Writing objects:   6% (42/683)   Writing objects:   7% (48/683)   Writing objects:   8% (57/683)   Writing objects:   9% (62/683)   Writing objects:  10% (69/683)   Writing objects:  11% (78/683)   Writing objects:  12% (82/683)   Writing objects:  13% (89/683)   Writing objects:  14% (96/683)   Writing objects:  15% (103/683)   Writing objects:  16% (110/683)   Writing objects:  17% (117/683)   Writing objects:  18% (123/683)   Writing objects:  19% (130/683)   Writing objects:  20% (137/683)   Writing objects:  21% (144/683)   Writing objects:  22% (151/683)   Writing objects:  23% (158/683)   Writing objects:  24% (164/683)   Writing objects:  25% (171/683)   Writing objects:  26% (178/683)   Writing objects:  27% (185/683)   Writing objects:  28% (192/683)   Writing objects:  29% (199/683)   Writing objects:  29% (201/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  30% (205/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  31% (212/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  32% (221/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  33% (226/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  34% (237/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  35% (241/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  36% (251/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  37% (253/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  38% (263/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  39% (267/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  40% (279/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  41% (281/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  42% (287/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  44% (301/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  45% (310/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  46% (315/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  47% (322/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  48% (330/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  49% (335/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  50% (342/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  51% (349/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  52% (357/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  53% (362/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  54% (369/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  55% (376/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  56% (384/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  57% (390/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  58% (397/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  59% (403/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  60% (410/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  61% (417/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  62% (426/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  63% (435/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  64% (439/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  65% (444/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  66% (451/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  67% (458/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  68% (465/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  69% (473/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  70% (479/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  71% (487/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  72% (492/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  73% (499/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  74% (507/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  75% (513/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  76% (520/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  77% (526/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  78% (533/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  79% (540/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  80% (547/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  81% (554/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  82% (561/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  83% (567/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  84% (574/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  85% (581/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  86% (588/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  87% (595/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  88% (602/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  89% (608/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  90% (616/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  91% (623/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  92% (629/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  93% (636/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  94% (643/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  95% (649/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  96% (657/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  97% (663/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  98% (670/683), 1.07 MiB | 810.00 KiB/s   Writing objects:  99% (677/683), 1.07 MiB | 810.00 KiB/s   Writing objects: 100% (683/683), 1.07 MiB | 810.00 KiB/s   Writing objects: 100% (683/683), 1.89 MiB | 1.01 MiB/s, done.
+Total 683 (delta 517), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/517)[Kremote: Resolving deltas:   1% (6/517)[Kremote: Resolving deltas:   2% (11/517)[Kremote: Resolving deltas:   3% (16/517)[Kremote: Resolving deltas:   4% (21/517)[Kremote: Resolving deltas:   5% (26/517)[Kremote: Resolving deltas:   6% (32/517)[Kremote: Resolving deltas:   7% (37/517)[Kremote: Resolving deltas:   8% (42/517)[Kremote: Resolving deltas:   9% (47/517)[Kremote: Resolving deltas:  10% (52/517)[Kremote: Resolving deltas:  11% (57/517)[Kremote: Resolving deltas:  12% (63/517)[Kremote: Resolving deltas:  13% (68/517)[Kremote: Resolving deltas:  14% (73/517)[Kremote: Resolving deltas:  15% (78/517)[Kremote: Resolving deltas:  16% (83/517)[Kremote: Resolving deltas:  17% (88/517)[Kremote: Resolving deltas:  18% (94/517)[Kremote: Resolving deltas:  19% (99/517)[Kremote: Resolving deltas:  20% (104/517)[Kremote: Resolving deltas:  21% (109/517)[Kremote: Resolving deltas:  22% (114/517)[Kremote: Resolving deltas:  23% (119/517)[Kremote: Resolving deltas:  24% (125/517)[Kremote: Resolving deltas:  25% (130/517)[Kremote: Resolving deltas:  26% (135/517)[Kremote: Resolving deltas:  27% (140/517)[Kremote: Resolving deltas:  28% (145/517)[Kremote: Resolving deltas:  29% (150/517)[Kremote: Resolving deltas:  30% (156/517)[Kremote: Resolving deltas:  31% (161/517)[Kremote: Resolving deltas:  32% (166/517)[Kremote: Resolving deltas:  33% (171/517)[Kremote: Resolving deltas:  34% (176/517)[Kremote: Resolving deltas:  35% (181/517)[Kremote: Resolving deltas:  36% (187/517)[Kremote: Resolving deltas:  37% (192/517)[Kremote: Resolving deltas:  38% (197/517)[Kremote: Resolving deltas:  39% (202/517)[Kremote: Resolving deltas:  40% (207/517)[Kremote: Resolving deltas:  41% (212/517)[Kremote: Resolving deltas:  42% (218/517)[Kremote: Resolving deltas:  43% (223/517)[Kremote: Resolving deltas:  44% (228/517)[Kremote: Resolving deltas:  45% (233/517)[Kremote: Resolving deltas:  46% (238/517)[Kremote: Resolving deltas:  47% (243/517)[Kremote: Resolving deltas:  48% (249/517)[Kremote: Resolving deltas:  49% (254/517)[Kremote: Resolving deltas:  50% (259/517)[Kremote: Resolving deltas:  51% (264/517)[Kremote: Resolving deltas:  52% (269/517)[Kremote: Resolving deltas:  53% (275/517)[Kremote: Resolving deltas:  54% (280/517)[Kremote: Resolving deltas:  55% (285/517)[Kremote: Resolving deltas:  56% (290/517)[Kremote: Resolving deltas:  57% (295/517)[Kremote: Resolving deltas:  58% (300/517)[Kremote: Resolving deltas:  59% (306/517)[Kremote: Resolving deltas:  60% (311/517)[Kremote: Resolving deltas:  61% (316/517)[Kremote: Resolving deltas:  62% (321/517)[Kremote: Resolving deltas:  63% (326/517)[Kremote: Resolving deltas:  64% (331/517)[Kremote: Resolving deltas:  65% (337/517)[Kremote: Resolving deltas:  66% (342/517)[Kremote: Resolving deltas:  67% (347/517)[Kremote: Resolving deltas:  68% (352/517)[Kremote: Resolving deltas:  69% (357/517)[Kremote: Resolving deltas:  70% (362/517)[Kremote: Resolving deltas:  71% (368/517)[Kremote: Resolving deltas:  72% (373/517)[Kremote: Resolving deltas:  73% (378/517)[Kremote: Resolving deltas:  74% (383/517)[Kremote: Resolving deltas:  75% (388/517)[Kremote: Resolving deltas:  76% (393/517)[Kremote: Resolving deltas:  77% (399/517)[Kremote: Resolving deltas:  78% (404/517)[Kremote: Resolving deltas:  79% (409/517)[Kremote: Resolving deltas:  80% (414/517)[Kremote: Resolving deltas:  81% (419/517)[Kremote: Resolving deltas:  82% (424/517)[Kremote: Resolving deltas:  83% (430/517)[Kremote: Resolving deltas:  84% (435/517)[Kremote: Resolving deltas:  85% (440/517)[Kremote: Resolving deltas:  86% (445/517)[Kremote: Resolving deltas:  87% (450/517)[Kremote: Resolving deltas:  88% (455/517)[Kremote: Resolving deltas:  89% (461/517)[Kremote: Resolving deltas:  90% (466/517)[Kremote: Resolving deltas:  91% (471/517)[Kremote: Resolving deltas:  92% (476/517)[Kremote: Resolving deltas:  93% (481/517)[Kremote: Resolving deltas:  94% (486/517)[Kremote: Resolving deltas:  95% (492/517)[Kremote: Resolving deltas:  96% (497/517)[Kremote: Resolving deltas:  97% (502/517)[Kremote: Resolving deltas:  98% (507/517)[Kremote: Resolving deltas:  99% (512/517)[Kremote: Resolving deltas: 100% (517/517)[Kremote: Resolving deltas: 100% (517/517), done.[K
+To https://github.com/avhesketh/LDP_SEADYN.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ git pull
+Already up to date.
+]0;~/Documents/UBC/R_projects/LDP_SEADYNAmelias-MacBook-Pro-3:LDP_SEADYN Amelia$ 
