@@ -12,7 +12,7 @@ library(janitor)
 
 ## 1981:
 # open a connection to the file we want to read in
-con <- file('Hondo_raw/Stand2/old_v_missing/s281.v.st25.txt') 
+con <- file('./cover_data_raw/double_entry/s284.b.st.5.txt') 
 open(con)
 
 # make a list to put the results into
@@ -95,7 +95,7 @@ data_pt2 <- data %>% filter(row_number() %% 2 == 0)
 data1981 <- cbind(data_pt1, data_pt2)
 
 # de-select the NA rows I added to make it a data frame:
-data1981 <- data1981[c(1:44)]
+data1981 <- data1981 %>% remove_empty(which = c("cols"))
 
 # To add columns, will get rows from the corresponding file that has the column names:
 con <- file('Hondo_raw/Stand2/old_v_missing/s281.v.sp25.txt') 
