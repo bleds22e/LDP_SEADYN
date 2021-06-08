@@ -5,7 +5,7 @@
 library(tidyverse)
 library(janitor)
 
-setwd("./BryoidSurvey/txt_files/")
+setwd("./BryoidSurvey/raw_data/txt_files/")
 file.list <- list.files(path = "./cover_data_raw/single_entry", pattern = "*.txt")
 
 # for quadrats where name of quad was entered only once w/ data split over multiple lines
@@ -174,13 +174,15 @@ for (file in 1:length(file.list)){
 
 ## now on to the metadata
 
+code_convert <- read_csv("../../metadata/bryoid_codes_final.csv") %>% 
+  select(code, unified_code) 
+
 file.list <- list.files(path = "./species_codes/sp_files", pattern = "*.txt")
 list.headers.sp <- list()
 list.dates.sp <- list()
 filename_save <- vector()
 
 for (x in 1:length(file.list)){
-  print(x)
   filename = file.list[x]
   rawfileloc = paste("./species_codes/sp_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE)
@@ -196,6 +198,10 @@ for (x in 1:length(file.list)){
                                         simplify = T))
   full_col_names <- as.vector(extract_col_names[, which(extract_col_names != "")])
   full_col_names <- full_col_names[-(1:2)]
+  
+  column_correction <- data.frame(full_col_names) %>% rename(code = full_col_names) %>% 
+    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), code, unified_code))
+  full_col_names <- column_correction$correct_code
   
   date.start.trim <- min(grep("SUBFILE LIST", file[,1], fixed = TRUE))
   date.end.trim <- min(grep("INPUT FORMAT", file[,1], fixed = TRUE)) - 1
@@ -220,7 +226,6 @@ list.dates.sx <- list()
 filename_save <- vector()
 
 for (x in 1:length(file.list)){
-  print(x)
   filename = file.list[x]
   rawfileloc = paste("./species_codes/sx_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE)
@@ -236,6 +241,10 @@ for (x in 1:length(file.list)){
                                            simplify = T))
   full_col_names <- str_remove(as.vector(extract_col_names[, which(extract_col_names != "")]), "/")
 
+  column_correction <- data.frame(full_col_names) %>% rename(code = full_col_names) %>% 
+    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), code, unified_code))
+  full_col_names <- column_correction$correct_code
+  
   date.start.trim <- min(grep("VALUE LABELS DATE", file[,1], fixed = TRUE))
   date.end.trim <- min(grep("SORT CASES BY DATE", file[,1], fixed = TRUE)) - 1
   date.list <- as.vector(unlist(str_split(str_trim(str_remove(file[date.start.trim:date.end.trim,], "VALUE LABELS DATE"), side = "both"), " ")))
@@ -250,7 +259,7 @@ for (x in 1:length(file.list)){
 names(list.headers.sx) <- filename_save
 names(list.dates.sx) <- filename_save
 
-list.all.headers <- c(list.headers, list.headers.sx)
+list.all.headers <- c(list.headers.sp, list.headers.sx)
 list.all.dates <- c(list.dates.sp, list.dates.sx)
 
 # associate data with column names
@@ -281,7 +290,7 @@ for (x in 1:length(data.list)){
   ### add in file name details - year column, quad size, stand number
   df$stand <- substr(filename, 2, 2)
   df$year <- paste("19", substr(filename, start = 3, stop = 4), sep = "")
-  if (str_detect("25", filename)){
+  if (str_detect(filename, "25")){
     df$stand_size = 25
   }
   else {
@@ -311,14 +320,12 @@ for (x in 1:length(data.list)){
   data.list[[x]] <- df
 }
 
-
-#saveRDS(data.list, "dataframes_list.RDS")
-
-# finally, join and write a clean, enormous file?? -- check spp codes first and make a dataframe to associate known codes with species.
+# finally, join and write a clean, enormous file -- check spp codes first and make a dataframe to associate known codes with species.
 
 #big.list <- unique(unlist(list.all.headers))
-#write.csv(big.list, "./sp_codes_list.csv")
-
+#write.csv(big.list, "../../metadata/sp_codes_list.csv")
+#this has been gone over in detail using taxize.R now to generate the earlier referenced
+#bryoid_codes_final.csv
 ## check out taxize.R for script to resolve taxonomy questions
 
 # little fixes to individual dataframes
@@ -330,6 +337,12 @@ data.list[[20]] <- as.data.frame(data.list[[20]]) %>% select(-28) # after cross-
 data.list[[22]] <- as.data.frame(data.list[[22]]) %>% select(-28) # same stand (3) but in 1984 - if we assume the same data sheet was being used, then the last col of empty zeores does not correspond to anything
 data.list[[35]] <- as.data.frame(data.list[[35]]) %>% select(-30) # only numbers in last col are for plot D, and are the same as data value reported elsewhere, suggesting maybe one species was double-counted?
 data.list[[36]] <- as.data.frame(data.list[[36]]) %>% select(-30) # last col is all zeroes
+
+vasc.codes <- c("PIBA","SHCA","ROAC","AMAL","ARUV", "VAVI", "ALCR", "VAMY", "ANMU", "ASLA",
+                "ORPU", "MACA","CARO","MELI","GABO","SODE","VIAD","PRPE","SYAL","CXRI",
+                "SABE","LIBO","ELIN","ARNU","GELI","PYSE","RUST","EQAR","EQVA","PIGL","HICA",
+                "LYTR","PYVI","ORAS","ERGL")
+data.list[[8]] <- as.data.frame(data.list[[8]][,-which(colnames(data.list[[8]]) %in% vasc.codes)])
 
 # some problem with s782.b.5 and s782.b.st25 - more data than column headers (by 2)
 # I think based on s783.b.25 data, that the two missing species are ICMERI and PELPUL
@@ -346,10 +359,9 @@ for (i in 1:length(data.list)){
     df_length <- length(df)
     cover_length <- df_length - 3
     df <- df %>% mutate(PLOTNO = as.character(PLOTNO),
-                        stand = as.factor(stand),
+                        stand = as.integer(stand),
                         year = as.numeric(year),
                         stand_size = as.factor(stand_size)) %>%
-      mutate_at(2:cover_length, as.numeric) %>% 
       rename(quadrat = PLOTNO)
     if (i == 1){
       full.bryoid.data <- df
@@ -360,12 +372,54 @@ for (i in 1:length(data.list)){
   }
 
 # fix date codes to be actual months and dates
-fixed.bryoid.data <- full.bryoid.data %>% 
-  mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")),
-         day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>%
-  full_join(month_convert) %>% select(-month_code, -date_code) %>% 
-  relocate(stand, year, stand_size, quadrat, month_numeric, day)
-?str_extract_all
+
 month_code <- levels(as.factor(str_remove_all(substr(full.bryoid.data$date_code,1,3), "[1234567890]")))
 month_numeric <- c(8,8,7,6,7,6,5,5,5,10,9)
 month_convert <- as.data.frame(cbind(month_code, month_numeric))
+
+
+fixed.bryoid.data <- full.bryoid.data %>% 
+  mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")),
+         day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>%
+  full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric) %>% 
+  unite(key, c(stand,year,month,day,stand_size,quadrat), sep = "_") %>% 
+  separate(key, into = c("stand","year","month","day","stand_size","quadrat"), sep = "_")
+
+## still need to QC, but for now, looking GREAT!
+
+# 1980s files that were manually entered (25 m2 stands 1-3)
+
+setwd("../1980_files/") 
+
+file.list <- list.files(path = "./", pattern = "*.csv")
+hondo_1980s <- data.frame()
+
+for (i in 1:length(file.list)){
+  df <- read_csv(paste("./", file.list[i], sep = ""))
+  df_length <- length(df)
+  df2 <- df %>% pivot_longer(cols = 3:df_length, names_to = "quadrat", values_to = "cover")
+  df3 <- df2 %>% pivot_wider(id_cols = c(key,quadrat), names_from = species, values_from = cover) %>% 
+    separate(key, into = c("stand","year","date_code","stand_size"), sep = "_") %>% 
+    mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")),
+           day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>%
+    full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric)
+  if (i == 1){
+    hondo_1980s <- df3
+  }
+  else {
+    hondo_1980s <- hondo_1980s %>% full_join(df3)
+  }
+}
+
+hondo_1980s <- hondo_1980s %>% mutate(stand = as.factor(stand),
+                                    stand_size = as.factor(stand_size),
+                                    quadrat = as.factor(quadrat),
+                                    day = as.factor(day),
+                                    month = as.factor(day))
+
+# join the files together
+all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s)
+
+#setwd("../../")
+#write_csv(all_bryoid_data, "./clean_data/SEADYN_bryoidcover_1980_1984.csv")
+

@@ -11,8 +11,9 @@ sp.list <- temp %>%
   full_join(bryoid_spp) %>% 
   select(-2,-3,-4) %>% 
   rename(repaired_name_1980 = matched_name2)
-
-sp.list$repaired_name_1980[25] <- "Ptilidium crista-castrensis"
+View(sp.list)
+sp.list$repaired_name_1980[79] <- "Ptilidium crista-castrensis"
+sp.list$repaired_name_1980[4] <- "Bryum pseudotriquetum"
 
 sp.list <- sp.list %>% 
   mutate(current_name = str_replace_all(repaired_name_1980, c("Cladina" = "Cladonia",
@@ -27,9 +28,8 @@ sp.list <- sp.list %>%
                                                    "Pylaisiella" = "Pylaisia"))) 
 
 
-sp.list.bryoids <- sp.list %>% filter(group == "b") %>% select(-group, -notes) %>% separate(current_name, into = c("genus", "species"),
-                                                                                            sep = " ") %>% 
-  filter(sp_name_1980 != "?")
+sp.list.bryoids <- sp.list %>% filter(group == "b") %>% select(-group, -notes) %>%
+  separate(current_name, into = c("genus", "species"), sep = " ") 
 
 sp.list.bryoids.fill <- sp.list.bryoids %>% 
   select(genus) %>% 
@@ -65,4 +65,4 @@ all.sp.codes.taxonomy$accepted_name[all.sp.codes.taxonomy$accepted_name == "NA N
 all.sp.codes.taxonomy[all.sp.codes.taxonomy == "NULL"] <- NA
 
 write_csv(all.sp.codes.taxonomy, "./bryoid_codes_roughdraft.csv")
-
+# then write out unified codes -> final csv
