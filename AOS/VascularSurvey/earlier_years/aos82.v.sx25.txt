@@ -1,0 +1,386 @@
+$SIG * 'RUN SPSSx AOS 1982 VASCULAR' PRIORITY=L FORMAT=FMTP4 OVERLAY=NONE T=60S PAGES=500 PACKAGE=LOOSE PRINTON=BOTHSIDES
+$SET COST=OFF ETM=
+$COM
+$COM  This file contains both the batch job and the SPSSx
+$COM  control cards for running all the USER1 statistics for the AOS
+$COM  vascular cover % survey data in the 19 reference stands
+$COM  surveyed in 1982. Don't do anything such as renumbering any
+$COM  portion of this file before you understand how it is put
+$COM  together. Note that:
+$COM  1. The batch job is in the negative line number range.
+$COM  2. Each reference stand has its own first few lines of the
+$COM     control cards it requires (most importantly the file name
+$COM     and the subfile name(s)), and then the $CONTINUE WITH
+$COM     statement gets SPSSX onto reading the control cards which
+$COM     are in common with every other stand. This avoids a great
+$COM     deal of duplication; most of the control cards are
+$COM     identical because one species list is used for all stands.
+$COM  3. To execute this program COPY AOS82.V.SX25(-200,-139.7) to
+$COM     *BATCH*. Make sure the appropriate data files are on disk.
+$COM     To list the entire file List AOS82.V.SX25@-IC(*F).
+$COM
+$SET COST=ON ETM=HTR
+$RUN *SPSSX scards=AOS82.V.SX25(-139) + AOS82.V.SX25(-136.9) sprint=-6BH T=5S SERCOM=-ERR
+COPY -USER1* CEP.AOS82(*L)
+$IF RC > 0 SIGNOFF
+$RUN *SPSSX scards=AOS82.V.SX25(-136) + AOS82.V.SX25(-133.9) sprint=-6BP T=5S 
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-133) + AOS82.V.SX25(-130.9) sprint=-6FD T=5S 
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-130) + AOS82.V.SX25(-127.9) sprint=-6FS T=5S 
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-127) + AOS82.V.SX25(-124.9) sprint=-6JS T=5S 
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-124) + AOS82.V.SX25(-121.9) sprint=-6LF T=5S 
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-121) + AOS82.V.SX25(-118.9) sprint=-6MD T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-118) + AOS82.V.SX25(-115.9) sprint=-6MF T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-115) + AOS82.V.SX25(-112.9) sprint=-6ML T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-112) + AOS82.V.SX25(-109.9) sprint=-6OI T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-109) + AOS82.V.SX25(-106.9) sprint=-6OP T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-106) + AOS82.V.SX25(-103.9) sprint=-6RL T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-103) + AOS82.V.SX25(-100.9) sprint=-6SA T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-100) + AOS82.V.SX25(-97.9) sprint=-6SJ T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-97) + AOS82.V.SX25(-94.9) sprint=-6TT  T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-94) + AOS82.V.SX25(-91.9) sprint=-6WO  T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$RUN *SPSSX scards=AOS82.V.SX25(-91) + AOS82.V.SX25(-88.9) sprint=-6WY  T=5S
+COPY -USER1* CEP.AOS82(*L+1)
+$SET COST=OFF ECHO=OFF ETM=
+$COPY -6BH
+$COPY -6BP
+$COPY -6FD
+$COPY -6FS
+$COPY -6JS
+$COPY -6LF
+$COPY -6MD
+$COPY -6MF
+$COPY -6ML
+$COPY -6OI
+$COPY -6OP
+$COPY -6RL
+$COPY -6SA
+$COPY -6SJ
+$COPY -6TT
+$COPY -6WO
+$COPY -6WY
+$SIGNOFF
+$ENDFILE
+SUBTITLE "BEAR HOLLOW: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='AOS82.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+  (01)'AU08'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "BEAVER POND: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='BP83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY09' (02)'MY20' (03)'JN06' (04)'JN17' (05)'JL01' (06)'JL14'
+ (07)'AU07' (08)'AU25' (09)'SE12' (10)'SE23' (11)'OC08'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "FIREBAG DOGHAIR: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='FD83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU09'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "FIREBAG SAVANNA: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='FS83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU09'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "JACK STRAWS: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='JS83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY07' (02)'MY23' (03)'JN03' (04)'JN19' (05)'JL03' (06)'JL20'
+ (07)'AU10' (08)'AU28' (09)'SE08' (10)'SE25' (11)'OC07'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "LICHEN FOREST: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='LF83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY07' (02)'MY22' (03)'JN04' (04)'JN18' (05)'JL02' (06)'JL19'
+ (07)'AU10' (08)'AU24' (09)'SE11' (10)'SE24' (11)'OC07'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "MCCLELLAND DOG.: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='MD83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU11'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "MCCLELLAND OLD: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='MF83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU11'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "MILDRED LAKE: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='ML83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY05' (02)'MY18' (03)'JN01' (04)'JN15' (05)'JN29' (06)'JL13'
+ (07)'AU06' (08)'AU23' (09)'SE07' (10)'SE21' (11)'OC06'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "OASIS ISLAND: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='OI83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY06' (02)'MY19' (03)'JN02' (04)'JN16' (05)'JN30' (06)'Jl15'
+ (07)'AU12' (08)'AU24' (09)'SE09' (10)'SE22' (11)'OC06'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "OLD PINE: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='OP83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU12'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "RAFT LANDING: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='RL83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU08'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "SAND ALTA: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='SA83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY10' (02)'MY21' (03)'JN05' (04)'JN20' (05)'JL04' (06)'JL16'
+ (07)'AU10' (08)'AU26' (09)'SE10' (10)'SE27' (11)'OC09'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "SEISMIC JUNC.: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='SJ83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU06'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "TWO TERRACES: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='TT83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'AU07'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "WINTER ROAD OLD: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='WO83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY12' (02)'MY25' (03)'JN07' (04)'JN22' (05)'JL06' (06)'JL18'
+ (07)'AU11' (08)'AU30' (09)'SE14' (10)'SE26' (11)'OC13'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SUBTITLE "WINTER ROAD YG.: 1982 VASCULAR COVER % DATA (5M X 5M)"
+FILE HANDLE DATA/NAME='WY83.V.ST25'
+$CONTINUE WITH AOS82.V.SX25
+VALUE LABELS DATE
+ (01)'MY12' (02)'MY24' (03)'JN08' (04)'JN21' (05)'JL05' (06)'JL17'
+ (07)'AU11' (08)'AU29' (09)'SE13' (10)'SE26' (11)'OC13'
+$CONTINUE WITH AOS82.V.SX25(-88)
+SORT CASES BY DATE PLOT
+SPLIT FILE BY DATE
+USERPROC NAME=SEADYN
+  /VARIABLES=PIBA TO EQAR PRVI TO RUPU ERIsp TO CHUM
+  /OPTIONS=2,5,11,15
+FINISH
+USERPROC NAME=SEADYN
+  /VARIABLES=TEMP TREE TO TOTRP
+  /STATISTICS=1
+FINISH
+$ENDFILE
+TITLE          Athabasca Oil Sands Ecological Monitoring: 1982
+               Surveys
+SUBTITLE       August, 1982 Vascular Cover % Data (5m X 5m)
+SET LENGTH=120
+SET BLANKS=0
+FILE HANDLE DATA/NAME='AOS82.V.ST25'
+DATA LIST FILE=DATA RECORDS=5  NOTABLE
+              /PLOT
+               PIBA PIGL PIMA POTR POBA BEPA LALA VAMY VAVI ARUV
+               ROAC PRPE AMAL RUID LODI VIED HUTO SABE ALCR LEGR
+               SAPS SYAL BEPU SASC SHCA SALsp VACA SAMY MACA ASLA
+               ANMU GABO MELI LIBO CARO SOSP VIAD APAN COUM FRVI
+               POTRI GELI PYCH HIUM ORSE EPAN ARCA ARNU COCA LIPH
+               ANPA TRBO VIRE GORE LAOC VIAM PEPA ASCI ACMI ANRA
+               DRAsp SESP SEIN SEST STLO RAsp DRPA GEBI ARLY PELA
+               AQFL CHEN
+               GEAM RUAR PYAS MINU ORPU ELIN CXRI CXSI ORAS AGSC
+               BRCI SCPU JUBA ELGL CACA CAIN FESA BRIN CXsp EQVA
+               LYCO LYAN EQSY EQSC SEDE EQPR LYCL EQAR TEMP PRVI
+               LOCA PEGR EMNI COTRI LYOB RUPU STLO2 ERIsp PHFR SOTR
+               CHUM
+                     (A2,1X,25F3.0 / 3(3X,25F3.0/),3X,13F3.0)
+MISSING VALUES TEMP (0)
+COMPUTE        STLO = STLO+STLO2
+COMPUTE        SEIN = SEIN+SESP
+COMPUTE        PELA = PELA+PEGR
+COMPUTE        TREE =    PIBA+PIGL+PIMA+POTR+POBA+BEPA+LALA 
+COUNT          TREERP =  PIBA TO LALA (0.01 THRU HIGHEST)
+COMPUTE        SHRUB =   VAMY+VAVI+ARUV+
+                         ROAC+PRPE+AMAL+RUID+LODI+VIED+HUTO+SABE+ALCR+LEGR+
+                         SAPS+SYAL+BEPU+SASC+SHCA+
+                         SALsp+VACA+SAMY+PRVI+LOCA+EMNI+LIBO
+COUNT          SHRUBRP = VAMY TO SAMY LIBO PRVI LOCA EMNI (0.01 THRU HIGHEST)
+COMPUTE        FORB =    MACA+ASLA+ANMU+GABO+MELI+CARO+
+                         SOSP+VIAD+APAN+COUM+FRVI+POTRI+GELI+PYCH+HIUM+ORSE+
+                         EPAN+ARCA+ARNU+COCA+LIPH+
+                         ANPA+TRBO+VIRE+GORE+LAOC+VIAM+PEPA+ASCI+ACMI+ANRA+
+                         DRAsp+SEIN+SEST+STLO+RAsp+DRPA+GEBI+ARLY+CHEN+
+                         AQFL+GEAM+RUAR+PYAS+PEGR+MINU+
+                         COTRI+RUPU+ERIsp+PHFR+SOTR+CHUM
+COUNT          FORBRP =  MACA TO MELI CARO TO MINU PEGR
+                         COTRI RUPU ERIsp TO CHUM (0.01 THRU HIGHEST)
+COMPUTE        GRAM  =   ORPU+ELIN+CXRI+CXSI+ORAS+AGSC+BRCI+SCPU+JUBA+ELGL+
+                         CACA+CAIN+FESA+BRIN+CXsp 
+COUNT          GRAMRP =  ORPU TO CXSP (0.01 THRU HIGHEST)
+COMPUTE        PTER   =  EQVA+LYCO+LYAN+EQSY+EQSC+SEDE+EQPR+LYCL+EQAR
+COUNT          PTERRP =  EQVA TO EQAR LYOB (0.01 THRU HIGHEST)
+COMPUTE        TOT =     TREE+SHRUB+FORB+GRAM+PTER
+COMPUTE        TOTRP   = TREERP+SHRUBRP+FORBRP+GRAMRP+PTERRP
+VAR LABELS     PIBA  'Pinus banksiana'
+               PIGL  'Picea glauca'
+               PIMA  'Picea mariana'
+               POTR  'Populus tremuloides'
+               POBA  'Populus balsamifera'
+               BEPA  'Betula papyrifera'
+               LALA  'Larix laricina'
+               VAMY  'Vaccinium myrtilloides'
+               VAVI  'Vaccinium vitis-idaea'
+               ARUV  'Arctostaphylos uva-ursi'
+               ROAC  'Rosa acicularis'
+               PRPE  'Prunus pensylvanica'
+               AMAL  'Amelanchier alnifolia'
+               RUID  'Rubus idaeus'
+               LODI  'Lonicera dioica'
+               VIED  'Viburnum edule'
+               HUTO  'Hudsonia tomentosa'
+               SABE  'Salix bebbiana'
+               ALCR  'Alnus crispa'
+               LEGR  'Ledum groenlandicum'
+               SAPS  'Salix pseudomonticola'
+               SYAL  'Symphoricarpos albus'
+               BEPU  'Betula pumila'
+               SASC  'Salix scouleriana'
+               SHCA  'Shepherdia canadensis'
+               SALsp  'Salix sp.'
+               VACA  'Vaccinium caespitosum'
+               SAMY  'Salix myrtillifolia'
+               MACA  'Maianthemum canadense'
+               ASLA  'Aster laevis'
+               ANMU  'Anemone multifida'
+               GABO  'Galium boreale'
+               MELI  'Melampyrum lineare'
+               LIBO  'Linnaea borealis'
+               CARO  'Campanula rotundifolia'
+               SOSP  'Solidago spathulata'
+               VIAD  'Viola adunca'
+               APAN  'Apocynum androsaemifolium'
+               COUM  'Comandra umbellata'
+               FRVI  'Fragaria virginiana'
+               POTRI 'Potentilla tridentata'
+               GELI  'Geocaulon lividum'
+               PYCH  'Pyrola chlorantha'
+               HIUM  'Hieracium umbellatum'
+               ORSE  'Orthilia secunda'
+               EPAN  'Epilobium angustifolium'
+               ARCA  'Artemisia campestris'
+               ARNU  'Aralia nudicaulis'
+               COCA  'Cornus canadensis'
+               LIPH  'Lilium philadelphicum'
+               ANPA  'Anemone patens'
+               TRBO  'Trientalis borealis'
+               VIRE  'Viola renifolia'
+               GORE  'Goodyera repens'
+               LAOC  'Lathyrus ochroleucus'
+               VIAM  'Vicia americana'
+               PEPA  'Petasites palmatus'
+               ASCI  'Aster ciliolatus'
+               ACMI  'Achillea millefolium'
+               ANRA  'Antennaria racemosa'
+               DRAsp 'Draba sp.'
+               SEIN  'Senecio integerrimus'
+               SEST  'Senecio streptanthifolius'
+               STLO  'Stellaria longipes'
+               RASP  'Ranunculus sp.'
+               DRPA  'Dracocephalum parviflorum'
+               GEBI  'Geranium bicknellii'
+               ARLY  'Arabis lyallii'
+               CHEN  'Chenopodium sp.'
+               AQFL  'Aquilegia  flavescens'
+               GEAM  'Gentianella amarella'
+               RUAR  'Rubus arcticus'
+               PYAS  'Pyrola asarifolia'
+               MINU  'Mitella nuda'
+               ORPU  'Oryzopsis pungens'
+               ELIN  'Elymus innovatus'
+               CXRI  'Carex richardsonii'
+               CXSI  'Carex siccata'
+               ORAS  'Oryzopsis asperifolia'
+               AGSC  'Agrostis scabra'
+               BRCI  'Bromus ciliatus'
+               SCPU  'Schizachne purpurascens'
+               JUBA  'Juncus balticus'
+               ELGL  'Elymus glaucus'
+               CACA  'Calamagrostis canadensis'
+               CAIN  'Calamagrostis inexpansa'
+               FESA  'Festuca saximontana'
+               BRIN  'Bromus inermis'
+               CXsp  'Carex sp.'
+               EQVA  'Equisetum variegatum'
+               LYCO  'Lycopodium complanatum'
+               LYAN  'Lycopodium annotinum'
+               EQSY  'Equisetum sylvaticum'
+               EQSC  'Equisetum scirpoides'
+               SEDE  'Selaginella densa'
+               EQPR  'Equisetum pratense'
+               LYCL  'Lycopodium clavatum'
+               EQAR  'Equisetum arvense'
+               TEMP  'Soil temperature 5-10 cm degrees F'
+               PRVI  'Prunus virginiana'
+               LOCA  'Lonicera villosa'
+               PEGR  'Pedicularis groenlandica'
+               EMNI  'Empetrum nigrum'
+               COTRI 'Coptis trifolia'
+               LYOB  'Lycopodium obscurum'
+               RUPU  'Rubus pubescens'
+               STLO2 'Stellaria longipes--duplicate'
+               ERIsp 'Erigeron sp.'
+               PHFR  'Phacelia franklinii'
+               SOTR  'Solanum triflorum'
+               CHUM  'Chimaphila umbellata'
+               TREE    'Total Tree Cover per Plot'
+               TREERP  'Tree Species Richness per Plot'
+               SHRUB   'Total Shrub Cover per Plot'
+               SHRUBRP 'Shrub Species Richness per Plot'
+               FORB    'Total Forb Cover per Plot'
+               FORBRP  'Forb Species Richness per Plot'
+               GRAM    'Total Graminoid Cover per Plot'
+               GRAMRP  'Graminoid Species Richness per Plot'
+               PTER    'Total Pteridophyte Cover per Plot'
+               PTERRP  'Pteridophyte Species Richness per Plot'
+               TOT     'Total Vascular Cover per Plot'
+               TOTRP   'Species Richness per Plot'
+COMPUTE NUM=25
+COMPUTE STAND=TRUNC(($CASENUM+NUM-1)/NUM)
+VALUE LABELS STAND
+  (01)'FS1N' (02)'FD2N' (03)'WY3N' (04)'WO4N' (05)'FY1B' (06)'MD02' 
+  (07)'ML03' (08)'OI04' (09)'SJ05' (10)'BH07' (11)'JS08' (12)'RL09'
+  (13)'LF10' (14)'FA11B' (15)'MF12' (16)'OP14' (17)'BP15' (18)'TT16'
+SORT CASES BY STAND PLOT
+SPLIT FILE BY STAND
+USERPROC NAME=SEADYN
+ /VARIABLES=PIBA TO DRAsp SEIN TO ARLY AQFL TO EQAR 
+  PRVI TO RUPU ERIsp TO CHUM
+ /OPTIONS=2,5,11,15
+USERPROC NAME=SEADYN
+ /VARIABLES=TEMP TREE TO TOTRP
+ /STATISTICS=1
+FINISH

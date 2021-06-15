@@ -1,0 +1,135 @@
+This SPSS version 9 control card file corresponds to the Hondo-Slave
+Lake vascular stand tables (1981 or 1982) that were generated as a
+result of the fix-up effort of 11-1983 thru 2-1984. In particular,
+variable order is the same for both years and will hopefully remain
+so for 1983 stand tables. Also, species names (and hence variable
+names) have been brought up-to-date with current taxonomy.
+ 
+EDIT
+PAGESIZE       120
+RUN NAME       Hondo-Slave Lake Stand 2: 1981 Vascular Monthly Survey
+FILE NAME      S281V
+               Stand 2 (62 y old Jack Pine) 1981 Vascular Cover % Data (5x5 m)
+VARIABLE LIST  PLOT
+               PIBA PIGL POTR ALCR AMAL ARUV PRPE ROAC ROWO RUID
+               SABE SHCA SYAL ANMU ANPA ARNU ASLA CARO ERGL GABO
+               GELI HIUM LIBO LIPH MELI ORSE PYCH SOSP VIAD CXSI
+               CXRI ELGL ELIN ORAS ORPU EQAR EQVA LYCO TEMP VAMY
+               VAVI MACA OBSN
+INPUT MEDIUM   DISK
+SUBFILE LIST   MY13 (25)
+               JN12 (25)
+               JL14 (25)
+               AU18 (25)
+               SE24 (25)
+               NO04 (25)
+INPUT FORMAT   FIXED (A2, 1X, 25F3.0 / 3X, 18F3.0)
+MISSING VALUES TEMP (0) OBSN (0)
+VALUE LABELS   OBSN (0) Not known (2) GHLR (3) RAE (4) MSR (5) MO /
+COMPUTE        TREECV = PIBA+PIGL+POTR
+COMPUTE        SHRBCV = ALCR+AMAL+ARUV+PRPE+ROAC+
+                        ROWO+RUID+SABE+SHCA+SYAL+LIBO+VAMY+VAVI
+COMPUTE        FORBCV = ANMU+ANPA+ARNU+ASLA+
+                        CARO+ERGL+GABO+GELI+HIUM+LIPH+MELI+ORSE+PYCH+
+                        SOSP+VIAD+MACA
+COMPUTE        GRAMCV = CXSI+CXRI+ELGL+ELIN+ORAS+ORPU
+COMPUTE        PTERCV = EQAR+EQVA+LYCO
+COUNT          TREERP = PIBA TO POTR (0.01 TO HIGHEST)
+COUNT          SHRBRP = ALCR TO SYAL LIBO VAMY VAVI (0.01 TO HIGHEST)
+COUNT          FORBRP = ANMU TO HIUM LIPH TO VIAD MACA (0.01 TO HIGHEST)
+COUNT          GRAMRP = CXSI TO ORPU (0.01 TO HIGHEST)
+COUNT          PTERRP = EQAR TO LYCO (0.01 TO HIGHEST)
+COMPUTE        TOTLCV = TREECV+SHRBCV+FORBCV+GRAMCV+PTERCV
+COMPUTE        TOTLRP = TREERP+SHRBRP+FORBRP+GRAMRP+PTERRP
+PRINT FORMATS  PLOT (A)
+               PIBA TO LYCO VAMY TO MACA (3)
+               TEMP (1) TREECV TO PTERCV TOTLCV (3)
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) PIBA TO LIPH (4)   /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) MELI TO LYCO (4) VAMY TO MACA (4) /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST /
+               VARIABLES = PLOT'Plot'(4) TEMP (4) OBSN (4)
+                                           TREECV TO TOTLRP (6) /
+               HEAD = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Vascular Plant Community'
+               '1981 Soil Temperature and Synthetic Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Date' (4) /
+               SUMMARY = MEAN 'Mean' /
+VAR LABELS 
+               ALCR Alnus crispa                            /
+               AMAL Amelanchier alnifolia                   /
+               ANMU Anemone multifida                       /
+               ANPA Anemone patens                          /
+               ARNU Aralia nudicaulis                       /
+               ARUV Arctostaphylos uva-ursi                 /
+               ASLA Aster laevis                            /
+               PIBA Betula papyrifera                       /
+               CARO Campanula rotundifolia                  /
+               CXRI Carex richardsonii                      /
+               CXSI Carex siccata                           /
+               ELGL Elymus glaucus                          /
+               ELIN Elymus innovatus                        /
+               EQAR Equisetum arvense                       /
+               EQVA Equisetum variegatum                    /
+               ERGL Erigeron glabellus                      /
+               GABO Galium boreale                          /
+               GELI Geocaulon lividum                       /
+               HIUM Hieracium umbellatum                    /
+               LIBO Linnaea borealis                        /
+               LIPH Lilium philadelphicum                   / 
+               LYCO Lycopodium complanatum                  /
+               MACA Maianthemum canadense                   /
+               MELI Melampyrum lineare                      /
+               ORAS Oryzopsis asperifolia                   /
+               ORPU Oryzopsis pungens                       /
+               ORSE Orthilia secunda                        /
+               PIBA Pinus banksiana                         /
+               PIGL Picea glauca                            /
+               POTR Populus tremuloides                     /
+               PRPE Prunus pensylvanica                     /
+               PYCH Pyrola chlorantha                       /
+               ROAC Rosa acicularis                         /
+               ROWO Rosa woodsii                            /
+               RUID Rubus idaeus var. aculeatissimus        /
+               SABE Salix bebbiana                          /
+               SHCA Shepherdia canadensis                   /
+               SOSP Solidago spathulata                     /
+               SYAL Symphoricarpos albus                    /
+               VAMY Vaccinium myrtilloides                  /
+               VAVI Vaccinium vitis-idaea                   /
+               VIAD Viola adunca                            /
+               OBSN Observer number                         /
+               PLOT Plot or quadrat number                  /
+               TEMP Soil temperature at 5-10 cm, degrees F  /
+               FORBCV Forb Species Cover %                  /
+               FORBRP Forb Species Richness                 /
+               GRAMCV Graminoid Species Cover %             /
+               GRAMRP Graminoid Species Richness            /
+               PTERCV Pteridophyte Species Cover %          /
+               PTERRP Pteridophyte Species Richness         /
+               SHRBCV Shrub Species Cover %                 /
+               SHRBRP Shrub Species Richness                /
+               TOTLCV Total Vascular Species Cover %        /
+               TOTLRP Total Vascular Species Richness       /
+               TREECV Tree Species Cover %                  /
+               TREERP Tree Species Richness                 /
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and the Stand
+USER1          PIBA TO EQVA VAMY TO MACA
+OPTIONS        2,5,11,15
+READ INPUT DATA
+TASK NAME      Statistics for Soil Temperature and Synthetic Variables
+USER1          TEMP TREECV TO TOTLRP
+STATISTICS     1
+FINISH

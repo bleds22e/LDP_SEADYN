@@ -1,0 +1,127 @@
+TITLE          Athabasca Oil Sands Ecological Monitoring: August 1981 
+FILE HANDLE DATA/NAME='AOS81.B.ST25'
+SET LENGTH=120
+SET BLANKS=0
+DATA LIST FILE=DATA RECORDS=3 NOTABLE
+              /PLOTNO
+               AULPAL BRASAL CERPUR DICPOL DICSCO DITFLE DREUNC
+               EURPUL HYLSPL ORTFLA PLESCH POHNUT POLJUN POLPIL
+               PTICIL PTIPUL PTICC  SPLSPP TETANG TOMNIT CETCUC
+               CETERI CETNIV CLAMIT CLARAN
+               CLASTE CLAAMA CLACAP CLACAR CLACEN CLACHL CLACOC
+               CLACON CLACOR CLACRP CLACRT CLAGON CLAGRA CLAMUL
+               CLAPHY CLAPYX CLASQU CLASUB CLAUNC CLAVER LECGRA
+               PELAPH PELMAL PELPUL PELRUF
+               STEALP BRYSPP CETHAL CETPIN EVEMES HYPPHY PARELE
+               PARSUL PARAMB PARHYP PLAGLA USNSPP PELCAN DISCAP
+               DICFUS
+                     (A2, 1X, 25F3.0 / 3X, 25F3.0 / 3X, 15F3.0)
+COMPUTE        BRYOPHCV = AULPAL+BRASAL+CERPUR+DICPOL+DICSCO+DITFLE+DREUNC+
+                          EURPUL+HYLSPL+ORTFLA+PLESCH+POHNUT+POLJUN+POLPIL+
+                          PTICIL+PTIPUL+PTICC +SPLSPP+TETANG+TOMNIT +DISCAP+DICFUS
+COUNT          BRYOPHRP = AULPAL TO TOMNIT DISCAP DICFUS (0.01 THRU HIGHEST)
+COMPUTE        LCHTERCV = CETCUC+CETERI+CETNIV+CLAMIT+CLARAN+
+                          CLASTE+CLAAMA+CLACAP+CLACAR+CLACEN+CLACHL+CLACOC+
+                          CLACON+CLACOR+CLACRP+CLACRT+CLAGON+CLAGRA+CLAMUL+
+                          CLAPHY+CLAPYX+CLASQU+CLASUB+CLAUNC+CLAVER+PELAPH+
+                          PELMAL+PELPUL+PELRUF+STEALP+LECGRA+PELCAN
+COUNT          LCHTERRP = CETCUC TO STEALP (0.01 THRU HIGHEST)
+COMPUTE        LCHEPICV = BRYSPP+CETHAL+CETPIN+EVEMES+HYPPHY+PARELE+PARSUL+
+                          PARAMB+PARHYP+PLAGLA+USNSPP
+COUNT          LCHEPIRP = BRYSPP TO USNSPP (0.01 THRU HIGHEST)
+COMPUTE        LCHALLCV = LCHTERCV+LCHEPICV
+COMPUTE        LCHALLRP = LCHTERRP+LCHEPIRP
+COMPUTE        TOTALCV  = BRYOPHCV+LCHALLCV
+COMPUTE        TOTALRP  = BRYOPHRP+LCHALLRP
+VAR LABELS     AULPAL 'Aulacomnium palustre'
+               BRASAL 'Brachythecium salebrosum'
+               CERPUR 'Ceratodon purpureus'
+               DICPOL 'Dicranum polysetum' 
+               DICSCO 'Dicranum scoparium'
+               DREUNC 'Drepanocladus uncinatus'
+               EURPUL 'Eurhynchium pulchellum'
+               HYLSPL 'Hylocomium splendens' 
+               ORTFLA 'Orthodicranum flagillare'
+               PLESCH 'Pleurozium schreberi'
+               POHNUT 'Pohlia nutans'
+               POLJUN 'Polytrichum juniperinum'
+               POLPIL 'Polytrichum piliferum'
+               PTICIL 'Ptilidium ciliare'
+               PTIPUL 'Ptilidium pulcherrimum'
+               PTICC  'Ptilium crista-castrensis'
+               CETERI 'Cetraria ericetorum'
+               CETPIN 'Cetraria pinastri' 
+               CETNIV 'Cetraria nivalis'
+               CLACAP 'Cladonia capitata' 
+               CLACEN 'Cladonia cenotea'
+               CLACHL 'Cladonia chlorophaea'
+               CLACOC 'Cladonia coccifera'
+               CLACON 'Cladonia coniocraea' 
+               CLACOR 'Cladonia cornuta'
+               CLACRP 'Cladonia crispata' 
+               CLACRT 'Cladonia cristatella'
+               CLAGON 'Cladonia gonecha'
+               CLAGRA 'Cladonia gracilis'
+               CLAMIT 'Cladina mitis'
+               CLAMUL 'Cladonia multiformis'
+               CLAPHY 'Cladonia phyllophora' 
+               CLAPYX 'Cladonia pyxidata'
+               CLARAN 'Cladina rangiferina'
+               CLASTE 'Cladina stellaris'
+               CLASUB 'Cladonis subulata' 
+               CLAUNC 'Cladonia uncialis'
+               CLAVER 'Cladonia verticillata'
+               LECGRA 'Lecidea granulosa'
+               PARSUL 'Parmelia sulcata'
+               PELAPH 'Peltigera aphthosa'
+               PELMAL 'Peltigera malacea'
+               PELPUL 'Peltigera pulverulenta'
+               PELRUF 'Peltigera rufescens' 
+               STEALP 'Stereocaulon alpinum'
+               DITFLE 'Ditrichum flexicaule'
+               USNSPP 'Usnea spp.'
+               PLAGLA 'Platismatia glauca'
+               PARHYP 'Parmeliopsis hyperopta'
+               PARAMB 'Parmeliopsis ambigua'
+               PARELE 'Parmelia elegantula'
+               HYPPHY 'Hypogymnia physodes'
+               EVEMES 'Evernia mesomorpha'
+               CETHAL 'Cetraria halei'
+               BRYSPP 'Bryoria spp.'
+               CLAAMA 'Cladonia amaurocraea'
+               CETCUC 'Cetraria cucullata'
+               TOMNIT 'Tomenthypnum nitens'
+               TETANG 'Tetraplodon angustatus'
+               SPLSPP 'Splachnum spp.'
+               CLACAR 'Cladonia cariosa'
+               CLASQU 'Cladonia squamosa' 
+               PELCAN 'Peltigera canina'
+               DISCAP 'Distichium capillaceum'
+               DICFUS 'Dicranum fuscescens'
+               BRYOPHCV 'Bryophyte Cover % per Plot'
+               BRYOPHRP 'Bryophyte Spp. Richness per Plot'
+               LCHTERCV 'Terr. Lichen Cover % per Plot'
+               LCHTERRP 'Terr. Lichen Spp. Richness per Plot'
+               LCHEPICV 'Epiph. Lichen Cover % per Plot'
+               LCHEPIRP 'Epiph. Lichen Spp. Richness per Plot'
+               LCHALLCV 'Lichen Cover % per Plot'
+               LCHALLRP 'Lichen Spp. Richness per Plot'
+               TOTALCV  'Cover % per Plot of All Spp.'
+               TOTALRP  'Richness per Plot of All Spp.'
+COMPUTE NUM =  15
+COMPUTE STAND = TRUNC(($CASENUM+NUM-1)/NUM)
+VALUE LABELS STAND
+ (01)'FY1B' (02)'MD02' (03)'ML03' (04)'OI04' (05)'SJ05'
+ (06)'RY6B' (07)'BH07' (08)'JS08' (09)'RL09' (10)'LF10' 
+ (11)'FA11B'
+ (12)'MF12' (13)'RO13B' (14)'OP14' (15)'BP15' (16)'TT16' 
+SORT CASES BY STAND
+SPLIT FILE BY STAND
+USERPROC NAME = SEADYN 
+   /VARIABLES AULPAL TO CERPUR DICFUS DICPOL TO DICSCO DISCAP
+              DITFLE TO PELAPH PELCAN PELMAL TO USNSPP
+   /OPTIONS = 2,11,14
+USERPROC NAME = SEADYN
+   /VARIABLES BRYOPHCV TO TOTALRP
+   /STATISTICS = 1
+FINISH

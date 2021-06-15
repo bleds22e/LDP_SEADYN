@@ -1,0 +1,286 @@
+$SIG * 'RUN SPSS AOS 1983 INTENSIVE BRYOID' PRIORITY=d FORMAT=FMTP4 OVERLAY=NONE T=60S PAGES=500 printon=bothsides package=loose delivery=biol
+$SET COST=OFF ETM=
+$COM
+$COM  This file contains both the batch job and the SPSS version 9
+$COM  control cards for running all the USER1 statistics for the AOS
+$COM  intensive bryoid cover % survey data in the 8 reference stands
+$COM  surveyed in 1983. Don't do anything such as renumbering any
+$COM  portion of this file before you understand how it is put
+$COM  together. Note that:
+$COM  1. The batch job is in the negative line number range.
+$COM  2. Each reference stand has its own first few lines of the
+$COM     control cards it requires (most importantly the file name
+$COM     and the subfile name(s)), and then the $CONTINUE WITH
+$COM     statement gets SPSS onto reading the control cards which
+$COM     are in common with every other stand. This avoids a great
+$COM     deal of duplication; most of the control cards are
+$COM     identical because one species list is used for all stands.
+$COM   3.To execute this program COPY AOS83.B.SP.5(-100,-55) to
+$COM     *BATCH* . Make sure the appropriate data files are on disk.
+$COM     To list the whole file LIST AOS83.B.SP.5@-IC(*F).
+$COM
+$SET COST=ON ETM=HTR
+$COPY GHLR:USER1.-USER1@-IC -USER1
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-54) 6=-6ML 8=ML83.B.ST.5 T=5S
+$IF RC > 0 SIGNOFF
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-50) 6=-6OI 8=OI83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-46) 6=-6JS 8=JS83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-42) 6=-6LF 8=LF83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-38) 6=-6BP 8=BP83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-34) 6=-6WY 8=WY83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-30) 6=-6WO 8=WO83.B.ST.5 T=5S
+$RUN OLD:SPSS 5=AOS83.B.SP.5(-26) 6=-6SA 8=SA83.B.ST.5 T=5S
+$COPY -6ML
+$COPY -6OI
+$COPY -6JS
+$COPY -6LF
+$COPY -6BP
+$COPY -6WY
+$COPY -6WO
+$COPY -6SA
+$SIGNOFF
+$ENDFILE
+FILE NAME      ML83B.5
+               St 3 "Mildred Lake": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY18 (25)  JN15 (25)  JL13 (25)  AU23 (25) SE21 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      OI83B.5
+               St 4 "Oasis Island": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY19 (25)  JN16 (25)  JL15 (25)  AU24 (25) SE22 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      JS83B.5
+               St 8 "Jack Straw": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY23 (25)  JN19 (25)  JL20 (25)  AU28 (25) SE25 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      LF83B.5
+               St 10 "Lichen Forest": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY22 (25)  JN18 (25)  JL19 (25)  AU27 (25) SE24 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      BP83B.5
+               St 15 "Beaver Pond": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY20 (25)  JN17 (25)  JL14 (25)  AU25 (25)  SE23 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      WY83B.5
+               St 3N"Winteroad Young":1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY24 (25)  JN21 (25)  JL17 (25)  AU29 (25)  SE28 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      WO83B.5
+               St 4N "Winteroad Old": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY25 (25)  JN22 (25)  JL18 (25)  AU30 (25)  SE26 (25)
+$CONTINUE WITH AOS83.B.SP.5
+FILE NAME      SA83B.5
+               St 5N "Sand Alta": 1983 (May-Oct) Bryoid Cover % Data (.5m2)
+SUBFILE LIST   MY21 (25) JN20 (25)  JL16 (25)  AU26 (25)  SE27 (25)
+$CONTINUE WITH AOS83.B.SP.5
+$SIGNOFF
+$ENDFILE
+EDIT
+PAGESIZE       120
+RUN NAME       Athabasca Oil Sands Ecological Monitoring: 1983 Intensive Surveys
+VARIABLE LIST  PLOTNO
+               AULPAL BRASAL CERPUR DICPOL DICSCO DITFLE DREUNC
+               EURPUL HYLSPL ORTFLA PLESCH POHNUT POLJUN POLPIL
+               PTICIL PTIPUL PTICC  SPLSPP TETANG TOMNIT CETCUC
+               CETERI CETNIV CLAMIT CLARAN
+               CLASTE CLAAMA CLACAP CLACAR CLACEN CLACHL CLACOC
+               CLACON CLACOR CLACRP CLACRT CLAGON CLAGRA CLAMUL
+               CLAPHY CLAPYX CLASQU CLASUB CLAUNC CLAVER LECGRA
+               PELAPH PELMAL PELPUL PELRUF
+               STEALP BRYSPP CETHAL CETPIN EVEMES HYPPHY PARELE
+               PARSUL PARAMB PARHYP PLAGLA USNSPP POLCOM PELCAN
+INPUT MEDIUM   DISK
+INPUT FORMAT   FIXED (A2, 1X, 25F3.0 / 3X, 25F3.0 / 3X, 14F3.0)
+COMPUTE        BRYOPHCV = AULPAL+BRASAL+CERPUR+DICPOL+DICSCO+DITFLE+DREUNC+
+                          EURPUL+HYLSPL+ORTFLA+PLESCH+POHNUT+POLJUN+POLPIL+
+                          PTICIL+PTIPUL+PTICC +SPLSPP+TETANG+TOMNIT +POLCOM
+COUNT          BRYOPHRP = AULPAL TO TOMNIT POLCOM (0.01 TO HIGHEST)
+COMPUTE        LCHTERCV = CETCUC+CETERI+CETNIV+CLAMIT+CLARAN+
+                          CLASTE+CLAAMA+CLACAP+CLACAR+CLACEN+CLACHL+CLACOC+
+                          CLACON+CLACOR+CLACRP+CLACRT+CLAGON+CLAGRA+CLAMUL+
+                          CLAPHY+CLAPYX+CLASQU+CLASUB+CLAUNC+CLAVER+PELAPH+
+                          PELMAL+PELPUL+PELRUF+STEALP+LECGRA+PELCAN
+COUNT          LCHTERRP = CETCUC TO STEALP PELCAN(0.01 TO HIGHEST)
+COMPUTE        LCHEPICV = BRYSPP+CETHAL+CETPIN+EVEMES+HYPPHY+PARELE+PARSUL+
+                          PARAMB+PARHYP+PLAGLA+USNSPP
+COUNT          LCHEPIRP = BRYSPP TO USNSPP (0.01 TO HIGHEST)
+COMPUTE        LCHALLCV = LCHTERCV+LCHEPICV
+COMPUTE        LCHALLRP = LCHTERRP+LCHEPIRP
+COMPUTE        TOTALCV  = BRYOPHCV+LCHALLCV
+COMPUTE        TOTALRP  = BRYOPHRP+LCHALLRP
+PRINT FORMATS  PLOTNO (A)
+               AULPAL TO POLCOM (3)
+               BRYOPHCV LCHTERCV LCHEPICV LCHALLCV TOTALCV (3) 
+               BRYOPHRP LCHTERRP LCHEPIRP LCHALLRP TOTALRP (0) 
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) AULPAL TO PTIPUL (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PTICC  TO CLACOC (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACON TO PELMAL (6) /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PELPUL TO PELCAN (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by .7x.7 m Plots' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP (8)/
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Synthetic Cover & Richness Variables by .7x.7 m Plots' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = AULPAL TO PTIPUL (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per .7x.7 m Plot by Stand' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PTICC  TO CLACOC (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per .7x.7 m Plot by Stand' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = CLACON TO PELPUL (6)        /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per .7x.7 m Plot by Stand' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PELRUF TO PELCAN (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per .7x.7 m Plot by Stand' /
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = BRYOPHCV TO TOTALRP (8)/
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               '1983 Intensive Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Synthetic Cover & Richness Variables by .7x.7m Plots by Stand'/
+               BREAK = SUBFILE 'DATE' (4)                        /
+               SUMMARY = MEAN 'Mean '
+VAR LABELS     AULPAL Aulacomnium palustre                    /
+               BRASAL Brachythecium salebrosum                /
+               CERPUR Ceratodon purpureus                     /
+               DICPOL Dicranum polysetum                      /
+               DICSCO Dicranum scoparium                      /
+               DREUNC Drepanocladus uncinatus                 /
+               EURPUL Eurhynchium pulchellum                  /
+               HYLSPL Hylocomium splendens                    /
+               ORTFLA Orthodicranum flagillare                /
+               PLESCH Pleurozium schreberi                    /
+               POHNUT Pohlia nutans                           /
+               POLCOM Polytrichum commune                     /
+               POLJUN Polytrichum juniperinum                 /
+               POLPIL Polytrichum piliferum                   /
+               PTICIL Ptilidium ciliare                       /
+               PTIPUL Ptilidium pulcherrimum                  /
+               PTICC  Ptilium crista-castrensis               /
+               CETERI Cetraria ericetorum                     /
+               CETPIN Cetraria pinastri                       /
+               CETNIV Cetraria nivalis                        /
+               CLACAP Cladonia capitata                       /
+               CLACEN Cladonia cenotea                        /
+               CLACHL Cladonia chlorophaea                    /
+               CLACOC Cladonia coccifera                      /
+               CLACON Cladonia coniocraea                     /
+               CLACOR Cladonia cornuta                        /
+               CLACRP Cladonia crispata                       /
+               CLACRT Cladonia cristatella                    /
+               CLAGON Cladonia gonecha                        /
+               CLAGRA Cladonia gracilis                       /
+               CLAMIT Cladina mitis                           /
+               CLAMUL Cladonia multiformis                    /
+               CLAPHY Cladonia phyllophora                    /
+               CLAPYX Cladonia pyxidata                       /
+               CLARAN Cladina rangiferina                     /
+               CLASTE Cladina stellaris                       /
+               CLASUB Cladonis subulata                       /
+               CLAUNC Cladonia uncialis                       /
+               CLAVER Cladonia verticillata                   /
+               LECGRA Lecidea granulosa                       /
+               PARSUL Parmelia sulcata                        /
+               PELAPH Peltigera aphthosa                      /
+               PELCAN Peltigera canina                        /
+               PELMAL Peltigera malacea                       /
+               PELPUL Peltigera pulverulenta                  /
+               PELRUF Peltigera rufescens                     /
+               STEALP Stereocaulon alpinum                    /
+               DITFLE Ditrichum flexicaule                    /
+               USNSPP Usnea spp.                              /
+               PLAGLA Platismatia glauca                      /
+               PARHYP Parmeliopsis hyperopta                  /
+               PARAMB Parmeliopsis ambigua                    /
+               PARELE Parmelia elegantula                     /
+               HYPPHY Hypogymnia physodes                     /
+               EVEMES Evernia mesomorpha                      /
+               CETHAL Cetraria halei                          /
+               BRYSPP Bryoria spp.                            /
+               CLAAMA Cladonia amaurocraea                    /
+               CETCUC Cetraria cucullata                      /
+               TOMNIT Tomenthypnum nitens                     /
+               TETANG Tetraplodon angustatus                  /
+               SPLSPP Splachnum spp.                          /
+               CLACAR Cladonia cariosa                        /
+               CLASQU Cladonia squamosa                       /
+               BRYOPHCV Bryophyte Cover % per Plot /
+               BRYOPHRP Bryophyte Spp. Richness per Plot /
+               LCHTERCV Terr. Lichen Cover % per Plot /
+               LCHTERRP Terr. Lichen Spp. Richness per Plot /
+               LCHEPICV Epiph. Lichen Cover % per Plot /
+               LCHEPIRP Epiph. Lichen Spp. Richness per Plot/
+               LCHALLCV Lichen Cover % per Plot /
+               LCHALLRP Lichen Spp. Richness per Plot /
+               TOTALCV  Cover % per Plot of All Spp. /
+               TOTALRP  Richness per Plot of All Spp. /
+RUN SUBFILES   ALL
+TASK NAME      Descriptive Statistics for Each Species Variable and Each Stand
+USER1          AULPAL TO POHNUT POLCOM POLJUN TO PELAPH
+               PELCAN PELMAL TO USNSPP
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Each Synthetic Variable 
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and Each Stand
+USER1          AULPAL TO POHNUT POLCOM POLJUN TO PELAPH
+               PELCAN PELMAL TO USNSPP
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Each Synthetic Variable 
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+FINISH

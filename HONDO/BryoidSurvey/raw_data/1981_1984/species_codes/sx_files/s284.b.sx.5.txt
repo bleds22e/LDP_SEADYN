@@ -1,0 +1,124 @@
+TITLE          Hondo-Slave Lake Stand 2: 1984 Bryoid Monthly Survey
+SUBTITLE       Stand 2 -- 1984 Bryoid Cover % Data (.5x.5 m)
+SET LENGTH=120
+SET BLANKS=0
+FILE HANDLE DATA/NAME='S284.B.ST.5'
+DATA LIST FILE=DATA RECORDS=2 NOTABLE
+              /PLOTNO
+               BRASAL CERPUR DICPOL DREUNC EURPUL
+               HYLSPL PLESCH POLJUN POLPIL
+               PTICIL PTICC  PTIPUL
+               CETERI CETNIV CETPIN 
+               CLACHL CLACOC CLACON CLACOR
+               CLACRP CLACRT CLAGON CLAGRA CLAMIT CLAMUL
+               CLAPHY CLAPYX CLARAN CLASTE CLAUNC CLAVER PARSUL
+               PELAPH PELMAL PELPUL PELRUF ORTFLA
+               DICSCO CLACEN
+                     (A2, 1X, 25F3.0 / 3X, 14F3.0)
+COMPUTE NUM = 25
+COMPUTE DATE=TRUNC(($CASENUM+NUM-1)/NUM)
+COMPUTE        BRYOPHCV = 
+               BRASAL+CERPUR+DICPOL+DREUNC+EURPUL+
+               HYLSPL+PLESCH+POLJUN+POLPIL+
+               PTICIL+PTICC +PTIPUL+
+               ORTFLA+DICSCO
+COUNT          BRYOPHRP = BRASAL TO PTIPUL ORTFLA DICSCO (0.01 THRU HIGHEST)
+COMPUTE        LICHENCV = 
+               CETERI+CETNIV+CETPIN+
+               CLACHL+CLACOC+CLACON+CLACOR+
+               CLACRP+CLACRT+CLAGON+CLAGRA+CLAMIT+CLAMUL+
+               CLAPHY+CLAPYX+CLARAN+CLASTE+CLAUNC+CLAVER+PARSUL+
+               PELAPH+PELMAL+PELPUL+PELRUF+CLACEN
+COUNT          LICHENRP = CETERI TO PELRUF CLACEN (0.01 THRU HIGHEST)
+COMPUTE        TOTALCV  = BRYOPHCV+LICHENCV
+COMPUTE        TOTALRP  = BRYOPHRP+LICHENRP
+STRING SUBFILE(A8)
+RECODE DATE (1='MY04')(2='JN05')(3='JL04')(4='AU01')(5='SE06')
+      INTO SUBFILE
+PRINT FORMATS  BRASAL TO CLACEN (F5.2)
+               BRYOPHCV LICHENCV TOTALCV (F5.2)
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRASAL TO CLACHL (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .5x.5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACOC TO PARSUL (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .5x.5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PELAPH TO CLACEN (6)   /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Species Cover % Values by .5x.5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = TSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP    /
+               TITLE = 'SEADYN Project, Hondo-Slave Lake: Stand 2'
+               'Monthly Survey of Bryophyte and Lichen Community'
+               'Synthetic Cover and Species Richness Variables by .5x.5 m Plots' /
+               BREAK = SUBFILE 'Date' (4)                         /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS 
+               BRASAL 'Brachythecium salebrosum'
+               CERPUR 'Ceratodon purpureus' 
+               DICPOL 'Dicranum polysetum'
+               DICSCO 'Dicranum scoparium'
+               DREUNC 'Drepanocladus uncinatus'
+               EURPUL 'Eurhynchium pulchellum'
+               HYLSPL 'Hylocomium splendens'
+               ORTFLA 'Orthodicranum flagellare'
+               PLESCH 'Pleurozium schreberi'
+               POLJUN 'Polytrichum juniperinum'
+               POLPIL 'Polytrichum piliferum'
+               PTICIL 'Ptilidium ciliare' 
+               PTIPUL 'Ptilidium pulcherrimum'
+               PTICC  'Ptilium crista-castrensis' 
+               CETERI 'Cetraria ericetorum' 
+               CETPIN 'Cetraria pinastri'
+               CETNIV 'Cetraria nivalis'
+               CLACEN 'Cladonia cenotea'
+               CLACHL 'Cladonia chlorophaea'
+               CLACOC 'Cladonia coccifera'
+               CLACON 'Cladonia coniocraea'
+               CLACOR 'Cladonia cornuta'
+               CLACRP 'Cladonia crispata'
+               CLACRT 'Cladonia cristatella'
+               CLAGON 'Cladonia gonecha'
+               CLAGRA 'Cladonia gracilis'
+               CLAMIT 'Cladina mitis'
+               CLAMUL 'Cladonia multiformis'
+               CLAPHY 'Cladonia phyllophora'
+               CLAPYX 'Cladonia pyxidata'
+               CLARAN 'Cladina rangiferina'
+               CLASTE 'Cladina stellaris'
+               CLAUNC 'Cladonia uncialis'
+               CLAVER 'Cladonia verticillata'
+               PARSUL 'Parmelia sulcata'
+               PELAPH 'Peltigera aphthosa'
+               PELMAL 'Peltigera malacea' 
+               PELPUL 'Peltigera pulverulenta'
+               PELRUF 'Peltigera rufescens'
+               BRYOPHCV 'Mean Bryophyte Cover'
+               BRYOPHRP 'Mean Bryophyte Species Richness'
+               LICHENCV 'Mean Lichen Cover'
+               LICHENRP 'Mean Lichen Species Richness'
+               TOTALCV  'Mean Cover of All Species'
+               TOTALRP  'Mean Richness of All Species'
+VALUE LABELS DATE
+ (01)'MY04' (02)'JN05' (03)'JL04' (04)'AU01' (05)'SE06'
+SORT CASES BY DATE
+SPLIT FILE BY DATE
+USERPROC NAME = SEADYN
+    /VARIABLES =BRASAL TO CLACEN
+    /OPTIONS = 2,11,14
+USERPROC NAME = SEADYN
+    /VARIABLES = BRYOPHCV TO TOTALRP
+    /STATISTICS = 1
+FINISH

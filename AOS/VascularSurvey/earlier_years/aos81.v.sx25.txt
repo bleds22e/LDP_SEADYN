@@ -1,0 +1,189 @@
+TITLE          Athabasca Oil Sands Ecological Monitoring: 1981
+               Surveys
+SUBTITLE       August, 1981 Vascular Cover % Data (5m X 5m)
+SET LENGTH=120
+SET BLANKS=0
+FILE HANDLE DATA/NAME='AOS81.V.ST25'
+DATA LIST FILE=DATA RECORDS=5  NOTABLE
+              /PLOT
+               PIBA PIGL PIMA POTR POBA BEPA LALA VAMY VAVI ARUV
+               ROAC PRPE AMAL RUID LODI VIED HUTO SABE ALCR LEGR
+               SAPS SYAL BEPU SASC SHCA SALsp VACA SAMY MACA ASLA
+               ANMU GABO MELI LIBO CARO SOSP VIAD APAN COUM FRVI
+               POTRI GELI PYCH HIUM ORSE EPAN ARCA ARNU COCA LIPH
+               ANPA TRBO VIRE GORE LAOC VIAM PEPA ASCI ACMI ANRA
+               DRAsp SESP SEIN SEST STLO RAsp DRPA GEBI ARLY PELA
+               AQFL CHEN
+               GEAM RUAR PYAS MINU ORPU ELIN CXRI CXSI ORAS AGSC
+               BRCI SCPU JUBA ELGL CACA CAIN FESA BRIN CXsp EQVA
+               LYCO LYAN EQSY EQSC SEDE EQPR LYCL EQAR TEMP PRVI
+               LOCA PEGR EMNI COTRI LYOB RUPU STLO2 ERIsp PHFR SOTR
+               CHUM
+                     (A2,1X,25F3.0 / 3(3X,25F3.0/),3X,13F3.0)
+MISSING VALUES TEMP (0)
+COMPUTE        STLO = STLO+STLO2
+COMPUTE        SEIN = SEIN+SESP
+COMPUTE        PELA = PELA+PEGR
+COMPUTE        TREE =    PIBA+PIGL+PIMA+POTR+POBA+BEPA+LALA 
+COUNT          TREERP =  PIBA TO LALA (0.01 THRU HIGHEST)
+COMPUTE        SHRUB =   VAMY+VAVI+ARUV+
+                         ROAC+PRPE+AMAL+RUID+LODI+VIED+HUTO+SABE+ALCR+LEGR+
+                         SAPS+SYAL+BEPU+SASC+SHCA+
+                         SALsp+VACA+SAMY+PRVI+LOCA+EMNI+LIBO
+COUNT          SHRUBRP = VAMY TO SAMY LIBO PRVI LOCA EMNI (0.01 THRU HIGHEST)
+COMPUTE        FORB =    MACA+ASLA+ANMU+GABO+MELI+CARO+
+                         SOSP+VIAD+APAN+COUM+FRVI+POTRI+GELI+PYCH+HIUM+ORSE+
+                         EPAN+ARCA+ARNU+COCA+LIPH+
+                         ANPA+TRBO+VIRE+GORE+LAOC+VIAM+PEPA+ASCI+ACMI+ANRA+
+                         DRAsp+SEIN+SEST+STLO+RAsp+DRPA+GEBI+ARLY+CHEN+
+                         AQFL+GEAM+RUAR+PYAS+PEGR+MINU+
+                         COTRI+RUPU+ERIsp+PHFR+SOTR+CHUM
+COUNT          FORBRP =  MACA TO MELI CARO TO MINU PEGR
+                         COTRI RUPU ERIsp TO CHUM (0.01 THRU HIGHEST)
+COMPUTE        GRAM  =   ORPU+ELIN+CXRI+CXSI+ORAS+AGSC+BRCI+SCPU+JUBA+ELGL+
+                         CACA+CAIN+FESA+BRIN+CXsp 
+COUNT          GRAMRP =  ORPU TO CXSP (0.01 THRU HIGHEST)
+COMPUTE        PTER   =  EQVA+LYCO+LYAN+EQSY+EQSC+SEDE+EQPR+LYCL+EQAR
+COUNT          PTERRP =  EQVA TO EQAR LYOB (0.01 THRU HIGHEST)
+COMPUTE        TOT =     TREE+SHRUB+FORB+GRAM+PTER
+COMPUTE        TOTRP   = TREERP+SHRUBRP+FORBRP+GRAMRP+PTERRP
+VAR LABELS     PIBA  'Pinus banksiana'
+               PIGL  'Picea glauca'
+               PIMA  'Picea mariana'
+               POTR  'Populus tremuloides'
+               POBA  'Populus balsamifera'
+               BEPA  'Betula papyrifera'
+               LALA  'Larix laricina'
+               VAMY  'Vaccinium myrtilloides'
+               VAVI  'Vaccinium vitis-idaea'
+               ARUV  'Arctostaphylos uva-ursi'
+               ROAC  'Rosa acicularis'
+               PRPE  'Prunus pensylvanica'
+               AMAL  'Amelanchier alnifolia'
+               RUID  'Rubus idaeus'
+               LODI  'Lonicera dioica'
+               VIED  'Viburnum edule'
+               HUTO  'Hudsonia tomentosa'
+               SABE  'Salix bebbiana'
+               ALCR  'Alnus crispa'
+               LEGR  'Ledum groenlandicum'
+               SAPS  'Salix pseudomonticola'
+               SYAL  'Symphoricarpos albus'
+               BEPU  'Betula pumila'
+               SASC  'Salix scouleriana'
+               SHCA  'Shepherdia canadensis'
+               SALsp  'Salix sp.'
+               VACA  'Vaccinium caespitosum'
+               SAMY  'Salix myrtillifolia'
+               MACA  'Maianthemum canadense'
+               ASLA  'Aster laevis'
+               ANMU  'Anemone multifida'
+               GABO  'Galium boreale'
+               MELI  'Melampyrum lineare'
+               LIBO  'Linnaea borealis'
+               CARO  'Campanula rotundifolia'
+               SOSP  'Solidago spathulata'
+               VIAD  'Viola adunca'
+               APAN  'Apocynum androsaemifolium'
+               COUM  'Comandra umbellata'
+               FRVI  'Fragaria virginiana'
+               POTRI 'Potentilla tridentata'
+               GELI  'Geocaulon lividum'
+               PYCH  'Pyrola chlorantha'
+               HIUM  'Hieracium umbellatum'
+               ORSE  'Orthilia secunda'
+               EPAN  'Epilobium angustifolium'
+               ARCA  'Artemisia campestris'
+               ARNU  'Aralia nudicaulis'
+               COCA  'Cornus canadensis'
+               LIPH  'Lilium philadelphicum'
+               ANPA  'Anemone patens'
+               TRBO  'Trientalis borealis'
+               VIRE  'Viola renifolia'
+               GORE  'Goodyera repens'
+               LAOC  'Lathyrus ochroleucus'
+               VIAM  'Vicia americana'
+               PEPA  'Petasites palmatus'
+               ASCI  'Aster ciliolatus'
+               ACMI  'Achillea millefolium'
+               ANRA  'Antennaria racemosa'
+               DRAsp 'Draba sp.'
+               SEIN  'Senecio integerrimus'
+               SEST  'Senecio streptanthifolius'
+               STLO  'Stellaria longipes'
+               RASP  'Ranunculus sp.'
+               DRPA  'Dracocephalum parviflorum'
+               GEBI  'Geranium bicknellii'
+               ARLY  'Arabis lyallii'
+               CHEN  'Chenopodium sp.'
+               AQFL  'Aquilegia  flavescens'
+               GEAM  'Gentianella amarella'
+               RUAR  'Rubus arcticus'
+               PYAS  'Pyrola asarifolia'
+               MINU  'Mitella nuda'
+               ORPU  'Oryzopsis pungens'
+               ELIN  'Elymus innovatus'
+               CXRI  'Carex richardsonii'
+               CXSI  'Carex siccata'
+               ORAS  'Oryzopsis asperifolia'
+               AGSC  'Agrostis scabra'
+               BRCI  'Bromus ciliatus'
+               SCPU  'Schizachne purpurascens'
+               JUBA  'Juncus balticus'
+               ELGL  'Elymus glaucus'
+               CACA  'Calamagrostis canadensis'
+               CAIN  'Calamagrostis inexpansa'
+               FESA  'Festuca saximontana'
+               BRIN  'Bromus inermis'
+               CXsp  'Carex sp.'
+               EQVA  'Equisetum variegatum'
+               LYCO  'Lycopodium complanatum'
+               LYAN  'Lycopodium annotinum'
+               EQSY  'Equisetum sylvaticum'
+               EQSC  'Equisetum scirpoides'
+               SEDE  'Selaginella densa'
+               EQPR  'Equisetum pratense'
+               LYCL  'Lycopodium clavatum'
+               EQAR  'Equisetum arvense'
+               TEMP  'Soil temperature 5-10 cm degrees F'
+               PRVI  'Prunus virginiana'
+               LOCA  'Lonicera villosa'
+               PEGR  'Pedicularis groenlandica'
+               EMNI  'Empetrum nigrum'
+               COTRI 'Coptis trifolia'
+               LYOB  'Lycopodium obscurum'
+               RUPU  'Rubus pubescens'
+               STLO2 'Stellaria longipes--duplicate'
+               ERIsp 'Erigeron sp.'
+               PHFR  'Phacelia franklinii'
+               SOTR  'Solanum triflorum'
+               CHUM  'Chimaphila umbellata'
+               TREE    'Total Tree Cover per Plot'
+               TREERP  'Tree Species Richness per Plot'
+               SHRUB   'Total Shrub Cover per Plot'
+               SHRUBRP 'Shrub Species Richness per Plot'
+               FORB    'Total Forb Cover per Plot'
+               FORBRP  'Forb Species Richness per Plot'
+               GRAM    'Total Graminoid Cover per Plot'
+               GRAMRP  'Graminoid Species Richness per Plot'
+               PTER    'Total Pteridophyte Cover per Plot'
+               PTERRP  'Pteridophyte Species Richness per Plot'
+               TOT     'Total Vascular Cover per Plot'
+               TOTRP   'Species Richness per Plot'
+COMPUTE NUM=25
+COMPUTE STAND=TRUNC(($CASENUM+NUM-1)/NUM)
+VALUE LABELS STAND
+  (01)'FY1N' (02)'MD02' (03)'ML03' (04)'OI04' (05)'SJ05' (06)'RY6B' 
+  (07)'BHO7' (08)'JS08' (09)'RL09' (10)'LF10' (11)'FA11B' (12)'MF12'
+  (13)'RO13B' (14)'OP14' (15)'BP15' (16)'TT16' 
+SORT CASES BY STAND PLOT
+SPLIT FILE BY STAND
+USERPROC NAME=SEADYN
+ /VARIABLES=PIBA TO DRAsp SEIN TO ARLY AQFL TO EQAR 
+  PRVI TO RUPU ERIsp TO CHUM
+ /OPTIONS=5
+FINISH
+USERPROC NAME=SEADYN
+ /VARIABLES=TEMP TREE TO TOTRP
+ /STATISTICS=1
+FINISH

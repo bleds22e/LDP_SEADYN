@@ -1,0 +1,218 @@
+This is a preliminary, untested set of control cards.  It was
+generated while awaiting completion of data entry.
+ 
+EDIT
+PAGESIZE       120
+RUN NAME       Athabasca Oil Sands Ecological Monitoring: August 1981 Surveys
+FILE NAME      AOS81B25
+               Sixteen Stand Tables of 1981 Bryoid Cover % Data (25m2)
+VARIABLE LIST  PLOTNO
+               AULPAL BRASAL CERPUR DICPOL DICSCO DITFLE DREUNC
+               EURPUL HYLSPL ORTFLA PLESCH POHNUT POLJUN POLPIL
+               PTICIL PTIPUL PTICC  SPLSPP TETANG TOMNIT CETCUC
+               CETERI CETNIV CLAMIT CLARAN
+               CLASTE CLAAMA CLACAP CLACAR CLACEN CLACHL CLACOC
+               CLACON CLACOR CLACRP CLACRT CLAGON CLAGRA CLAMUL
+               CLAPHY CLAPYX CLASQU CLASUB CLAUNC CLAVER PELAPH
+               PELMAL PELPUL PELRUF STEALP
+               BRYSPP CETHAL CETPIN EVEMES HYPPHY PARELE PARSUL
+               PARAMB PARHYP PLAGLA USNSPP LECGRA
+INPUT MEDIUM   DISK
+SUBFILE LIST   S01N (15) S02N (15) S03N (15) S04N (15) 
+                         S02  (15) S03  (15) S04  (15) S05  (15)
+                         S07  (15) S08  (15) S09  (15) S10  (15) 
+                         S12  (15)           S14  (15) S15  (15)
+               S16  (15) 
+INPUT FORMAT   FIXED (A2, 1X, 25F3.0 / 3X, 25F3.0 / 3X, 12F3.0)
+COMPUTE        BRYOPHCV = AULPAL+BRASAL+CERPUR+DICPOL+DICSCO+DITFLE+DREUNC+
+                          EURPUL+HYLSPL+ORTFLA+PLESCH+POHNUT+POLJUN+POLPIL+
+                          PTICIL+PTIPUL+PTICC +SPLSPP+TETANG+TOMNIT 
+COUNT          BRYOPHRP = AULPAL TO TOMNIT (0.01 TO HIGHEST)
+COMPUTE        LCHTERCV = CETCUC+CETERI+CETNIV+CLAMIT+CLARAN+
+                          CLASTE+CLAAMA+CLACAP+CLACAR+CLACEN+CLACHL+CLACOC+
+                          CLACON+CLACOR+CLACRP+CLACRT+CLAGON+CLAGRA+CLAMUL+
+                          CLAPHY+CLAPYX+CLASQU+CLASUB+CLAUNC+CLAVER+PELAPH+
+                          PELMAL+PELPUL+PELRUF+STEALP+LECGRA
+COUNT          LCHTERRP = CETCUC TO STEALP LECGRA (0.01 TO HIGHEST)
+COMPUTE        LCHEPICV = BRYSPP+CETHAL+CETPIN+EVEMES+HYPPHY+PARELE+PARSUL+
+                          PARAMB+PARHYP+PLAGLA+USNSPP
+COUNT          LCHEPIRP = BRYSPP TO USNSPP (0.01 TO HIGHEST)
+COMPUTE        LCHALLCV = LCHTERCV+LCHEPICV
+COMPUTE        LCHALLRP = LCHTERRP+LCHEPIRP
+COMPUTE        TOTALCV  = BRYOPHCV+LCHALLCV
+COMPUTE        TOTALRP  = BRYOPHRP+LCHALLRP
+PRINT FORMATS  PLOTNO (A)
+               AULPAL TO LECGRA (3)
+               BRYOPHCV LCHTERCV LCHEPICV LCHALLCV TOTALCV (3) 
+               BRYOPHRP LCHTERRP LCHEPIRP LCHALLRP TOTALRP (0) 
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) AULPAL TO PTIPUL (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PTICC  TO CLACOC (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CLACON TO CLAVER (6) 
+                           LECGRA (6) PELAPH TO PELMAL (6) /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PELPUL TO USNSPP (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) BRYOPHCV TO TOTALRP (8)/
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Synthetic Cover & Richness Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = AULPAL TO PTIPUL (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PTICC  TO CLACOC (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PLOTNO'Plot'(4) CLACON TO CLAVER (6) 
+                           LECGRA (6) PELAPH TO PELMAL (6) /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PELRUF TO USNSPP (6)   /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = BRYOPHCV TO TOTALRP (8)/
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1981 Survey of Bryophyte and Lichen Communities'
+               'in Pinus banksiana Reference Stands'
+               'Synthetic Cover & Richness Variables by 5x5 m Plots by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS     AULPAL Aulacomnium palustre                    /
+               BRASAL Brachythecium salebrosum                /
+               CERPUR Ceratodon purpureus                     /
+               DICPOL Dicranum polysetum                      /
+               DICSCO Dicranum scoparium                      /
+               DREUNC Drepanocladus uncinatus                 /
+               EURPUL Eurhynchium pulchellum                  /
+               HYLSPL Hylocomium splendens                    /
+               ORTFLA Orthodicranum flagillare                /
+               PLESCH Pleurozium schreberi                    /
+               POHNUT Pohlia nutans                           /
+               POLJUN Polytrichum juniperinum                 /
+               POLPIL Polytrichum piliferum                   /
+               PTICIL Ptilidium ciliare                       /
+               PTIPUL Ptilidium pulcherrimum                  /
+               PTICC  Ptilium crista-castrensis               /
+               CETERI Cetraria ericetorum                     /
+               CETPIN Cetraria pinastri                       /
+               CETNIV Cetraria nivalis                        /
+               CLACAP Cladonia capitata                       /
+               CLACEN Cladonia cenotea                        /
+               CLACHL Cladonia chlorophaea                    /
+               CLACOC Cladonia coccifera                      /
+               CLACON Cladonia coniocraea                     /
+               CLACOR Cladonia cornuta                        /
+               CLACRP Cladonia crispata                       /
+               CLACRT Cladonia cristatella                    /
+               CLAGON Cladonia gonecha                        /
+               CLAGRA Cladonia gracilis                       /
+               CLAMIT Cladina mitis                           /
+               CLAMUL Cladonia multiformis                    /
+               CLAPHY Cladonia phyllophora                    /
+               CLAPYX Cladonia pyxidata                       /
+               CLARAN Cladina rangiferina                     /
+               CLASTE Cladina stellaris                       /
+               CLASUB Cladonis subulata                       /
+               CLAUNC Cladonia uncialis                       /
+               CLAVER Cladonia verticillata                   /
+               LECGRA Lecidea granulosa                       /
+               PARSUL Parmelia sulcata                        /
+               PELAPH Peltigera aphthosa                      /
+               PELMAL Peltigera malacea                       /
+               PELPUL Peltigera pulverulenta                  /
+               PELRUF Peltigera rufescens                     /
+               STEALP Stereocaulon alpinum                    /
+               DITFLE Ditrichum flexicaule                    /
+               USNSPP Usnea spp.                              /
+               PLAGLA Platismatia glauca                      /
+               PARHYP Parmeliopsis hyperopta                  /
+               PARAMB Parmeliopsis ambigua                    /
+               PARELE Parmelia elegantula                     /
+               HYPPHY Hypogymnia physodes                     /
+               EVEMES Evernia mesomorpha                      /
+               CETHAL Cetraria halei                          /
+               BRYSPP Bryoria spp.                            /
+               CLAAMA Cladonia amaurocraea                    /
+               CETCUC Cetraria cucullata                      /
+               TOMNIT Tomenthypnum nitens                     /
+               TETANG Tetraplodon angustatus                  /
+               SPLSPP Splachnum spp.                          /
+               CLACAR Cladonia cariosa                        /
+               CLASQU Cladonia squamosa                       /
+               BRYOPHCV Bryophyte Cover % per Plot /
+               BRYOPHRP Bryophyte Spp. Richness per Plot /
+               LCHTERCV Terr. Lichen Cover % per Plot /
+               LCHTERRP Terr. Lichen Spp. Richness per Plot /
+               LCHEPICV Epiph. Lichen Cover % per Plot /
+               LCHEPIRP Epiph. Lichen Spp. Richness per Plot/
+               LCHALLCV Lichen Cover % per Plot /
+               LCHALLRP Lichen Spp. Richness per Plot /
+               TOTALCV  Cover % per Plot of All Spp. /
+               TOTALRP  Richness per Plot of All Spp. /
+RUN SUBFILES   ALL
+TASK NAME      Descriptive Statistics for Each Species Variable and Each Stand
+USER1          AULPAL TO CLAVER LECGRA PELAPH TO USNSPP
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Each Synthetic Variable 
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and Each Stand
+USER1          AULPAL TO CLAVER LECGRA PELAPH TO USNSPP
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Each Synthetic Variable 
+USER1          BRYOPHCV TO TOTALRP
+STATISTICS     1
+FINISH

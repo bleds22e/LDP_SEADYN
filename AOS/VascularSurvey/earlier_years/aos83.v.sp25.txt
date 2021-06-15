@@ -1,0 +1,362 @@
+$SIG * 'RUN SPSS AOS 1983 VASCULAR' PRIORITY=l FORMAT=FMTP4 OVERLAY=NONE T=60S PAGES=500 PAPER=xk PRINTON=frontonly PACKAGE=LOOSE
+$SET COST=OFF ETM=
+$COM
+$COM  This file contains both the batch job and the SPSS version 9
+$COM  control cards for running all the USER1 statistics for the AOS
+$COM  vascular cover % survey data in the 19 reference stands
+$COM  surveyed in 1983. Don't do anything such as renumbering any
+$COM  portion of this file before you understand how it is put
+$COM  together. Note that:
+$COM  1. The batch job is in the negative line number range.
+$COM  2. Each reference stand has its own first few lines of the
+$COM     control cards it requires (most importantly the file name
+$COM     and the subfile name(s)), and then the $CONTINUE WITH
+$COM     statement gets SPSS onto reading the control cards which
+$COM     are in common with every other stand. This avoids a great
+$COM     deal of duplication; most of the control cards are
+$COM     identical because one species list is used for all stands.
+$COM
+$SET COST=ON ETM=HTR
+$COPY GHLR:USER1.-USER1@-IC -USER1
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(1) 6=-6BH 8=GHLR:BH83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(11) 6=-6BP 8=GHLR:BP83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(21) 6=-6FA 8=GHLR:FA83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(31) 6=-6FD 8=GHLR:FD83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(41) 6=-6FS 8=GHLR:FS83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(51) 6=-6FY 8=GHLR:FY83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(61) 6=-6JS 8=GHLR:JS83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(71) 6=-6LF 8=GHLR:LF83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(81) 6=-6MD 8=GHLR:MD83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(91) 6=-6MF 8=GHLR:MF83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(101) 6=-6ML 8=GHLR:ML83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(111) 6=-6OI 8=GHLR:OI83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(121) 6=-6OP 8=GHLR:OP83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(131) 6=-6RL 8=GHLR:RL83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(141) 6=-6SA 8=GHLR:SA83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(151) 6=-6SJ 8=GHLR:SJ83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(161) 6=-6TT 8=GHLR:TT83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(171) 6=-6WO 8=GHLR:WO83.V.ST25
+$RUN OLD:SPSS 5=GHLR:AOS83.V.SP25(181) 6=-6WY 8=GHLR:WY83.V.ST25
+$SET COST=OFF ECHO=OFF ETM=
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6BH
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6BP
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6FA
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6FD
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6FS
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6FY
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6JS
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6LF
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6MD
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6MF
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6ML
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6OI
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6OP
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6RL
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6SA
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6SJ
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6TT
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6WO
+$CON *PRINT* SKIPTO=NEXTFRONT
+$copy -6WY
+$SIGNOFF
+$ENDFILE
+ 
+EDIT
+FILE NAME      BH83V25
+               Stand 7 "Bear Hollow": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU08(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      BP83V25
+               Stand 15 "Beaver Pond": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY09(25) MY20(25) JN06(25) JN17(25) JL01(25) JL14(25)
+               AU07(25) AU25(25) SE12(25) SE23(25) OC08(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      FA83V25
+               Stand 11B "Firebag Alder": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU09(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      FD83V25
+               Stand 2N "Firebag Doghair": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU09(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      FS83V25
+               Stand 1N "Firebag Savanna": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU09(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      FY83V25
+               Stand 1B "Firebag Young": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU09(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      JS83V25
+               Stand 8 "Jack Straws": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY07(25) MY23(25) JN03(25) JN19(25) JL03(25) JL20(25)
+               AU10(25) AU28(25) SE08(25) SE25(25) OC07(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      LF83V25
+               Stand 10 "Lichen Forest": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY07(25) MY22(25) JN04(25) JN18(25) JL02(25) JL19(25)
+               AU10(25) AU24(25) SE11(25) SE24(25) OC07(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      MD83V25
+               Stand 2 "McClelland Doghair": 1983 Vascular Cover % Data (5mx5m)
+SUBFILE LIST   AU11(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      MF83V25
+               Stand 12 "McClelland Forest": 1983 Vascular Cover % Data (5mx5m)
+SUBFILE LIST   AU11(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      ML83V25
+               Stand 3 "Mildred Lake": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY05(25) MY18(25) JN01(25) JN15(25) JN29(25) JL13(25)
+               AU06(25) AU23(25) SE07(25) SE21(25) OC06(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      OI83V25
+               Stand 4 "Oasis Island": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY06(25) MY19(25) JN02(25) JN16(25) JN30(25) JL15(25)
+               AU12(25) AU24(25) SE09(25) SE22(25) OC06(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      OP83V25
+               Stand 14 "Old Pine": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU12(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      RL83V25
+               Stand 9 "Raft Landing": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU08(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      SA83V25
+               Stand 5N "Sand Alta": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY10(25) MY21(25) JN05(25) JN20(25) JL04(25) JL16(25)
+               AU10(25) AU26(25) SE10(25) SE27(25) OC09(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      SJ83V25
+               Stand 5 "Seismic Junction": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU06(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      TT83V25
+               Stand 16 "Two Terraces": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   AU07(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      WO83V25
+               Stand 4N "Winteroad Old": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY12(25) MY25(25) JN07(25) JN22(25) JL06(25) JL18(25)
+               AU11(25) AU30(25) SE14(25) SE26(25) OC13(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+FILE NAME      WY83V25
+               Stand 3N "Winteroad Young": 1983 Vascular Cover % Data (5m x 5m)
+SUBFILE LIST   MY12(25) MY24(25) JN08(25) JN21(25) JL05(25) JL17(25)
+               AU11(25) AU29(25) SE13(25) SE26(25) OC13(25)
+$CONTINUE WITH GHLR:AOS83.V.SP25(200)
+ 
+PAGESIZE       120
+RUN NAME       Athabasca Oil Sands Ecological Monitoring: 1983 Surveys
+VARIABLE LIST  PLOT
+               PIBA PIGL PIMA POTR POBA BEPA LALA VAMY VAVI ARUV
+               ROAC PRPE AMAL RUID LODI VIED HUTO SABE ALCR LEGR
+               SAPS SYAL BEPU SASC SHCA SALsp VACA SAMY MACA ASLA
+               ANMU GABO MELI LIBO CARO SOSP VIAD APAN COUM FRVI
+               POTRI GELI PYCH HIUM ORSE EPAN ARCA ARNU COCA LIPH
+               ANPA TRBO VIRE GORE LAOC VIAM PEPA ASCI ACMI ANRA
+               DRAsp SEIN SEST STLO RAsp DRPA GEBI ARLY CHEN AQFL
+               GEAM RUAR PYAS MINU ORPU ELIN CXRI CXSI ORAS AGSC
+               BRCI SCPU JUBA ELGL CACA CAIN FESA BRIN CXsp EQVA
+               LYCO LYAN EQSY EQSC SEDE EQPR LYCL EQAR TEMP PRVI
+               LOCA PEGR EMNI COTRI LYOB RUPU STLO2 ERIsp PHFR SOTR
+               CHUM
+INPUT MEDIUM   DISK
+INPUT FORMAT   FIXED (A2,1X,25F3.0 / 3X,25F3.0 / 3X,11F3.0,3X,8F3.0,3X,4F3.0 /
+                      3X,25F3.0 / 3X,13F3.0)
+MISSING VALUES TEMP (0)
+COMPUTE        STLO = STLO+STLO2
+COMPUTE        TREE =    PIBA+PIGL+PIMA+POTR+POBA+BEPA+LALA 
+COUNT          TREERP =  PIBA TO LALA (0.01 TO HIGHEST)
+COMPUTE        SHRUB =   VAMY+VAVI+ARUV+
+                         ROAC+PRPE+AMAL+RUID+LODI+VIED+HUTO+SABE+ALCR+LEGR+
+                         SAPS+SYAL+BEPU+SASC+SHCA+
+                         SALsp+VACA+SAMY+PRVI+LOCA+EMNI+LIBO
+COUNT          SHRUBRP = VAMY TO SAMY LIBO PRVI LOCA EMNI (0.01 TO HIGHEST)
+COMPUTE        FORB =    MACA+ASLA+ANMU+GABO+MELI+CARO+
+                         SOSP+VIAD+APAN+COUM+FRVI+POTRI+GELI+PYCH+HIUM+ORSE+
+                         EPAN+ARCA+ARNU+COCA+LIPH+
+                         ANPA+TRBO+VIRE+GORE+LAOC+VIAM+PEPA+ASCI+ACMI+ANRA+
+                         DRAsp+SEIN+SEST+STLO+RAsp+DRPA+GEBI+ARLY+CHEN+
+                         AQFL+GEAM+RUAR+PYAS+PEGR+MINU+
+                         COTRI+RUPU+ERIsp+PHFR+SOTR+CHUM
+COUNT          FORBRP =  MACA TO MELI CARO TO MINU PEGR
+                         COTRI RUPU ERIsp TO CHUM (0.01 TO HIGHEST)
+COMPUTE        GRAM  =   ORPU+ELIN+CXRI+CXSI+ORAS+AGSC+BRCI+SCPU+JUBA+ELGL+
+                         CACA+CAIN+FESA+BRIN+CXsp 
+COUNT          GRAMRP =  ORPU TO CXSP (0.01 TO HIGHEST)
+COMPUTE        PTER   =  EQVA+LYCO+LYAN+EQSY+EQSC+SEDE+EQPR+LYCL+EQAR
+COUNT          PTERRP =  EQVA TO EQAR LYOB (0.01 TO HIGHEST)
+COMPUTE        TOT =     TREE+SHRUB+FORB+GRAM+PTER
+COMPUTE        TOTRP   = TREERP+SHRUBRP+FORBRP+GRAMRP+PTERRP
+PRINT FORMATS  PLOT (A)
+               PIBA TO CHUM TREE SHRUB FORB GRAM PTER TOT (2)
+               TREERP SHRUBRP FORBRP GRAMRP PTERRP TOTRP (0)
+VAR LABELS     PIBA Pinus banksiana /
+               PIGL Picea glauca /
+               PIMA Picea mariana /
+               POTR Populus tremuloides /
+               POBA Populus balsamifera /
+               BEPA Betula papyrifera /
+               LALA Larix laricina /
+               VAMY Vaccinium myrtilloides /
+               VAVI Vaccinium vitis-idaea /
+               ARUV Arctostaphylos uva-ursi /
+               ROAC Rosa acicularis /
+               PRPE Prunus pensylvanica /
+               AMAL Amelanchier alnifolia /
+               RUID Rubus idaeus /
+               LODI Lonicera dioica /
+               VIED Viburnum edule /
+               HUTO Hudsonia tomentosa /
+               SABE Salix bebbiana /
+               ALCR Alnus crispa /
+               LEGR Ledum groenlandicum /
+               SAPS Salix pseudomonticola /
+               SYAL Symphoricarpos albus /
+               BEPU Betula pumila /
+               SASC Salix scouleriana /
+               SHCA Sheperdia canadensis /
+               SALsp Salix sp. /
+               VACA Vaccinium caespitosum /
+               SAMY Salix myrtillifolia /
+               MACA Maianthemum canadense /
+               ASLA Aster laevis /
+               ANMU Anemone multifida /
+               GABO Galium boreale /
+               MELI Melampyrum lineare /
+               LIBO Linnaea borealis /
+               CARO Campanula rotundifolia /
+               SOSP Solidago spathulata /
+               VIAD Viola adunca /
+               APAN Apocynum androsaemifolium /
+               COUM Comandra umbellata /
+               FRVI Fragaria virginiana /
+               POTRI Potentilla tridentata /
+               GELI Geocaulon lividum /
+               PYCH Pyrola chlorantha /
+               HIUM Hieracium umbellata /
+               ORSE Orthilia secunda /
+               EPAN Epilobium angustifolium /
+               ARCA Artemisia campestris /
+               ARNU Aralia nudicaulis /
+               COCA Cornus canadensis /
+               LIPH Lilium philadelphicum /
+               ANPA Anemone patens /
+               TRBO Trientalis borealis /
+               VIRE Viola renifolia /
+               GORE Goodyera repens /
+               LAOC Lathyrus ochroleucus /
+               VIAM Vicia americana /
+               PEPA Petasites palmatus /
+               ASCI Aster ciliolatus /
+               ACMI Achillea millefolium /
+               ANRA Antennaria racemosa /
+               DRAsp Draba sp. /
+               SEIN Senecio integerrimus /
+               SEST Senecio streptanthifolius /
+               STLO Stellaria longipes /
+               RASP Ranunculus sp. /
+               DRPA Dracocephalum parviflorum /
+               GEBI Geranium bicknellii /
+               ARLY Arabis lyallii /
+               CHEN Chenopodium sp. /
+               AQFL Aquilegia  flavescens /
+               GEAM Gentianella amarella /
+               RUAR Rubus arcticus /
+               PYAS Pyrola asarifolia /
+               MINU Mitella nuda /
+               ORPU Oryzopsis pungens /
+               ELIN Elymus innovatus /
+               CXRI Carex richardsonii /
+               CXSI Carex siccata /
+               ORAS Oryzopsis asperifolia /
+               AGSC Agrostis scabra /
+               BRCI Bromus ciliatus /
+               SCPU Schizachne purpurascens /
+               JUBA Juncus balticus /
+               ELGL Elymus glaucus /
+               CACA Calamagrostis canadensis /
+               CAIN Calamagrostis inexpansa /
+               FESA Festuca saximontana /
+               BRIN Bromus inermis /
+               CXsp Carex sp. /
+               EQVA Equisetum variegatum /
+               LYCO Lycopodium complanatum /
+               LYAN Lycopodium annotinum /
+               EQSY Equisetum sylvaticum /
+               EQSC Equisetum scirpoides /
+               SEDE Selaginella densa /
+               EQPR Equisetum pratense /
+               LYCL Lycopodium clavatum /
+               EQAR Equisetum arvense /
+               TEMP Soil temperature 5-10 cm degrees F/
+               PRVI Prunus virginiana /
+               LOCA Lonicera villosa /
+               PEGR Pedicularis groenlandica /
+               EMNI Empetrum nigrum /
+               COTRI Coptis trifolia /
+               LYOB Lycopodium obscurum /
+               RUPU Rubus pubescens /
+               STLO2 Stellaria longipes--duplicate /
+               ERIsp Erigeron sp. /
+               PHFR Phacelia franklinii /
+               SOTR Solanum triflorum /
+               CHUM Chimaphila umbellata /
+               TREE    Total Tree Cover per Plot /
+               TREERP  Tree Species Richness per Plot /
+               SHRUB   Total Shrub Cover per Plot /
+               SHRUBRP Shrub Species Richness per Plot /
+               FORB    Total Forb Cover per Plot /
+               FORBRP  Forb Species Richness per Plot /
+               GRAM    Total Graminoid Cover per Plot/
+               GRAMRP  Graminoid Species Richness per Plot /
+               PTER    Total Pteridophyte Cover per Plot/
+               PTERRP  Pteridophyte Species Richness per Plot /
+               TOT     Total Vascular Cover per Plot /
+               TOTRP   Species Richness per Plot /
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and The Stand
+USER1          PIBA TO EQAR PRVI TO RUPU ERIsp TO CHUM
+OPTIONS        2,11,15
+TASK NAME      Descriptive Statistics for the Synthetic Variables
+USER1          TEMP TREE TO TOTRP
+STATISTICS     1
+FINISH
