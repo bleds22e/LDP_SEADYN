@@ -11,7 +11,7 @@ sp.list <- temp %>%
   full_join(bryoid_spp) %>% 
   select(-2,-3,-4) %>% 
   rename(repaired_name_1980 = matched_name2)
-View(sp.list)
+
 sp.list$repaired_name_1980[79] <- "Ptilidium crista-castrensis"
 sp.list$repaired_name_1980[4] <- "Bryum pseudotriquetum"
 

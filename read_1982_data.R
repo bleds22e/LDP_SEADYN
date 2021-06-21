@@ -40,7 +40,6 @@ for (line in 1:length(results_list)){
   quad.col[line] <- substr(line.lengthened, 1, 3)
 }
 
-
 join.lines <- seq(from = 1, to = length(vc_df$X3), by = 5)
 
 vc_df2 <- data.frame()
@@ -98,7 +97,7 @@ for (line in sp.names){
   name_string <- paste(name_string, results_list[[line]])
 }
 
-sp_string2 <- unlist(str_split(str_squish(str_trim(sp_string, side = "both")), " "))
+sp_string2 <- toupper(unlist(str_split(str_squish(str_trim(sp_string, side = "both")), " ")))
 col.names <- c("quad",sp_string2)
 colnames(vc_1982) <- col.names
 
@@ -112,7 +111,7 @@ taxonomy.1982 <- as.data.frame(name_string2) %>%
   separate(1, into = c("sp.code.1982", "genus", "species"), sep = " ") %>% 
   unite(sci.name.1980, c(genus, species), sep = " ")
 
-write_csv(taxonomy.1982, "./AOS/VascularSurvey/metadata/sp_codes_1982.csv")
+#write_csv(taxonomy.1982, "./AOS/VascularSurvey/metadata/sp_codes_1982.csv")
 
 file_string2 <- unlist(str_split(str_squish(str_trim(str_remove_all(str_remove_all(str_remove_all(file_string, c(fixed("25"))), fixed("SUBFILE LIST")), "[S()]"), side = "both")), " "))
 
@@ -129,11 +128,14 @@ stand_info <- read_csv("./AOS/StandInfo/AOS_coordinates.csv")
 
 stand2 <- stand %>% left_join(stand_info) %>% select(plot_code) %>% rename(stand = plot_code)
 
+vc_1982$month <- 8
+vc_1982$year <- 1982
+
 vc_1982 <- cbind(stand2, vc_1982) 
 vc_1982x <- vc_1982
 vc_1982x[is.na(vc_1982x)] <- 0
 
-#write_csv(vc_1982x, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vasc_198208.csv")
+#write_csv(vc_1982x, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1982.csv")
 
 ## 1981 data
 
@@ -218,30 +220,35 @@ for (line in sp.names){
 }
 
 
-sp_string2 <- unlist(str_split(str_squish(str_trim(sp_string, side = "both")), " "))
+sp_string2 <- toupper(unlist(str_split(str_squish(str_trim(sp_string, side = "both")), " ")))
 col.names <- c("quad",sp_string2)
 colnames(vc_1981) <- col.names
 
-file_string
 file_string2 <- unlist(str_split(str_trim(file_string, side = "both"), " "))
 file_string3 <- substr(file_string2[file_string2 != ""], 6,7)
 
 stand <- rep(file_string3, each = 25)
 
+vc_1981$month <- 8
+vc_1981$year <- 1981
+
 vc_1981 <- cbind(stand, vc_1981)
 
-write_csv(vc_1981, "./AOS/VascularSurvey/raw_data/csv_files/AOS_")
+#write_csv(vc_1981, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1981.csv")
 
-name_string2 <- str_remove(str_squish(str_trim(name_string, side = "both")), "VAR LABELS ")
-name_string2
-sci.name.1981 <- str_remove_all(unlist(str_extract_all(name_string2, "'.*?'")), "[']")
-names.and.codes <- unlist(str_split(name_string2, pattern =  " "))
-sci.codes.1981 <- names.and.codes[nchar(names.and.codes) == 4 & 
-                               names.and.codes != "sp.'" & 
-                               names.and.codes != "5-10"]
-taxonomy <- as.data.frame(cbind(sci.codes.1981, sci.name.1981))
+name_string2 <- unlist(str_split(str_remove(str_squish(str_trim(name_string, side = "both")), fixed("VAR LABELS ")), "[']"))
 
-#write_csv(taxonomy, "./AOS/VascularSurvey/metadata/sp_codes_1981.csv")
+name_string2 <- name_string2[name_string2 != ""]
+
+sp.codes <- seq(from = 1, to = 222, by = 2)
+sp.sci.names <- seq(from = 2, to = 222, by = 2)
+
+sp.code.1981 <- name_string2[sp.codes]
+sci.name.1981 <- name_string2[sp.sci.names]
+
+taxonomy.1981 <- as.data.frame(cbind(sp.code.1981, sci.name.1981))
+
+#write_csv(taxonomy.1981, "./AOS/VascularSurvey/metadata/sp_codes_1981.csv")
 # filled in file manually where there were codes >4 characters (x 6)
 
 # Fin
