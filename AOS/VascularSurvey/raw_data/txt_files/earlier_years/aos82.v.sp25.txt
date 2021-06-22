@@ -1,4 +1,4 @@
-EDIT
+soEDIT
 PAGESIZE       120
 RUN NAME       Athabasca Oil Sands Ecological Monitoring: August 1982 Surveys
 FILE NAME      AOS82V25

@@ -28,8 +28,8 @@ sp.list <- sp.list %>%
                                                    "Pylaisiella" = "Pylaisia"))) 
 
 
-sp.list.bryoids <- sp.list %>% filter(group == "b") %>% select(-group, -notes) %>%
-  separate(current_name, into = c("genus", "species"), sep = " ") 
+sp.list.bryoids <- corrected_taxa %>% 
+  separate(correct.sp.name, into = c("genus", "species"), sep = " ") 
 
 sp.list.bryoids.fill <- sp.list.bryoids %>% 
   select(genus) %>% 
