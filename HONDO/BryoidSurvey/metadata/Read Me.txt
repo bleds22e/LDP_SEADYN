@@ -1,3 +1,0 @@
-Note for Bryoid Surveys:
-
-In 1980, vascular and bryoid surveys are taken together (files are named "vb"). After 1980, the files are named "b". The data for 1980 stand 2 has been re-entered in a CSV.

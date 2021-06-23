@@ -326,8 +326,17 @@ for (file in 1:length(file.list)){
   for (line in 1:length(results_list)){
     split_line <- c() # same as with 1981, 1982 data ... need to get string to vector
     for (trim_pos in 2:length(start_boundary)){
-      cover.value <- as.numeric(substr(results_list[line], start_boundary[trim_pos], end_boundary[trim_pos]))
-      split_line <- c(split_line, cover.value)
+      cover.value <- str_trim(substr(results_list[line], start_boundary[trim_pos], end_boundary[trim_pos]), side = "both")
+      if (cover.value == "+"){  # fix where trace amts represented by +/r/.
+        cover.value <- "0.5"
+      }
+      if (cover.value == "r"){
+        cover.value <- "0.1"
+      }
+      if (cover.value == "."){
+        cover.value <- "0.01"
+      }
+      split_line <- c(split_line, as.numeric(cover.value))
     }
     df <- rbind(df, split_line)
     quad <- substr(results_list[[line]], 1, 2) # extract quadrat
@@ -335,7 +344,8 @@ for (file in 1:length(file.list)){
     year <- paste("19",substr(filename, 3, 4), sep = "") # and year
     quad.info[line,] <- c(quad,stand,year) # and add this to the quadrat info vector to eventually join to df
   }
-  
+
+
   all_quads <- all_quads %>% full_join(quad.info)
   
   join.lines <- seq(from = 1, to = length(df[,1]), by = 5) 
@@ -427,10 +437,13 @@ sp.string <- c() # get species codes
 for (line in sp.lines){
   sp.string <- paste(sp.string, results_list[[line]])
 }
-
+sp.string
 col.names <- unlist(str_split(str_squish(str_trim(sp.string, side = "both")), " "))
+col.names <- col.names[col.names != "STLO2"]
 
-vc_1983_2 <- vc_1983 %>% select(1:111)
+
+vc_1983_2 <- vc_1983 %>% select(1:113) %>% select(-67, -77, -109)
+
 colnames(vc_1983_2) <- toupper(col.names)
 
 name_string <- c() # get scientific names
@@ -451,29 +464,9 @@ sci.name.1983 <- name_string2[sp.sci.names]
 taxonomy.1983 <- as.data.frame(cbind(sp.code.1983, sci.name.1983)) %>% 
   mutate(sp.code.1983 = str_trim(sp.code.1983, side = "both")) # save the taxonomic equivalence of code and name
 
-# 1984 metadata
+# 1984 metadata = same as 1983 metadata
 
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/later_years/metadata/aos84.v.sx25.txt")
-open(con)
-results_list <- list()
-current_line <- 1
-while (length(line <- readLines(con, n = 1, warn = FALSE)) > 0){
-  results_list[current_line] <- line
-  current_line <- current_line + 1
-} 
-close(con)
-
-sp.lines <- seq(from = 213, to = 225, by = 1)
-sp.names <- seq(from = 322, to = 432, by = 1)
-
-sp.string <- c()
-for (line in sp.lines){
-  sp.string <- paste(sp.string, results_list[[line]])
-}
-
-col.names <- unlist(str_split(str_squish(str_trim(sp.string, side = "both")), " "))
-
-vc_1984_2 <- vc_1984 %>% select(1:111)
+vc_1984_2 <- vc_1984 %>% select(1:113) %>% select(-67,-77,-109)
 colnames(vc_1984_2) <- toupper(col.names)
 
 aos_vc_1983 <- cbind(quads_1983, vc_1983_2) # bind together quadrat information (quadrat + date + stand) and cover data
@@ -482,28 +475,7 @@ aos_vc_1984 <- cbind(quads_1984, vc_1984_2)
 #write_csv(aos_vc_1983, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1983.csv")
 #write_csv(aos_vc_1984, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1984.csv")
 
-# and extract the scientific codes and names to save for later
-
-name_string <- c()
-for (line in sp.names){
-  name_string <- paste(name_string, results_list[[line]])
-}
-
-name_string2 <- unlist(str_split(str_remove(str_squish(str_trim(name_string, side = "both")), fixed("VAR LABELS ")), "[']"))
-
-name_string2 <- name_string2[name_string2 != ""]
-
-sp.codes <- seq(from = 1, to = 222, by = 2)
-sp.sci.names <- seq(from = 2, to = 222, by = 2)
-
-sp.code.1984 <- name_string2[sp.codes]
-sci.name.1984 <- name_string2[sp.sci.names]
-
-taxonomy.1984 <- as.data.frame(cbind(sp.code.1984, sci.name.1984)) %>% 
-  mutate(sp.code.1984 = str_trim(sp.code.1984, side = "both"))
-
 #write_csv(taxonomy.1983, "./AOS/VascularSurvey/metadata/sp_codes_1983.csv")
-#write_csv(taxonomy.1984, "./AOS/VascularSurvey/metadata/sp_codes_1984.csv")
 
 # now join data across all years
 
@@ -581,11 +553,10 @@ corrected_taxa <- unique_taxa %>%
   unique() %>% 
   mutate(repaired_name_1980 = sp.name) %>% 
   mutate(code = sp.code, unified_code = correct.sp.code) %>% 
-  select(code, unified_code, repaired_name_1980)# and re-isolate unique taxon codes
-
-corrected_taxa <- corrected_taxa[-c(120,121),] # remove temperature since not taxonomic
+  select(code, unified_code, accepted_name) # and re-isolate unique taxon codes
 
 corrected_taxa <- corrected_taxa[-grep("SP.CODE", corrected_taxa$code),] # remove "SP.CODE..." artifacts
+corrected_taxa <- corrected_taxa[-c(117,118),] # remove temperature since not taxonomic
 
 sp.list.vasc <- corrected_taxa %>% 
   separate(accepted_name, into = c("genus", "species"), sep = " ") 
@@ -606,12 +577,13 @@ for (i in 1:length(sp.list.vasc.fill$genus)){
 
 all.sp.codes.taxonomy <-  sp.list.vasc.fill %>% 
   full_join(sp.list.vasc) %>% 
-  unite(col = "accepted_name", c(genus, species), sep = " ", remove = FALSE)
+  unite(col = "accepted_name", c(genus, species), sep = " ", remove = FALSE) %>% unique()
 
 #write.csv(all.sp.codes.taxonomy, "./AOS/VascularSurvey/metadata/AOS_vascular_species_list.csv")
 
 # finally, to join together the data
 
+corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/AOS_vascular_species_list.csv") %>% select(-X1)
 file.list <- list.files("./AOS/VascularSurvey/raw_data/csv_files", pattern = "*.csv")
 
 all_vc <- data.frame() # create empty dataframe to join everything together
@@ -619,7 +591,7 @@ all_vc <- data.frame() # create empty dataframe to join everything together
 for (file in 1:length(file.list)){
   # read in csv file
   df <- read_csv(paste("./AOS/VascularSurvey/raw_data/csv_files/", file.list[file], sep = ""))
-  
+  df$TEMP
   # need to first sum duplicate columns
   code <- as.data.frame(colnames(df)) %>% rename(code = 1) # create data frame of column names
   join <- left_join(code, corrected_taxa) %>% # join this column with the taxonomic data to rename incorrect codes with correct version
@@ -651,9 +623,10 @@ for (file in 1:length(file.list)){
   }
 } # join the data
 
-temperature <- all_vc %>% select(stand,year,month,day,quad,TEMP) # isolate soil temperature
+temperature <- all_vc %>% select(stand,year,month,quad,TEMP) %>% 
+  mutate(temp_C = (TEMP-32)*5/9) %>% filter(year != "1981") # isolate soil temperature
 
 cover_only <- all_vc %>% select(-TEMP) %>% relocate(stand,year,month,day,quad) # isolate cover only and rearrange data before saving
 
-write_csv(temperature, "./AOS/VascularSurvey/clean_data/AOS_soil_temp_1981_1984.csv")
-write_csv(cover_only, "./AOS/VascularSurvey/clean_data/AOS_vascular_cover_1981_1984.csv")
+#write_csv(temperature, "./AOS/VascularSurvey/clean_data/AOS_soil_temp_1981_1984.csv")
+#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/AOS_vascular_cover_1981_1984.csv")
