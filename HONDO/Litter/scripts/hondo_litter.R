@@ -67,4 +67,19 @@ for (file in 1:length(file.list)){
 
 write_csv(all_hondo_litter, "./HONDO/Litter/clean_data/HONDO_litter.csv")
 
-     
+# QC the data
+
+library(assertr)
+
+hondo_litter <- read_csv("./HONDO/Litter/clean_data/HONDO_litter.csv")
+
+levels(as.factor(hondo_litter$component))
+
+hondo_litter <- hondo_litter %>% filter(component != "empty") # we don't need the empty data since this doesn't actually correspond to anything 
+
+hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 1,4) %in% c("1983", "1984"))
+hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
+hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
+hondo_litter %>% verify(biomass >= 0)
+
+write_csv(hondo_litter, "./HONDO/Litter/clean_data/SEADYN_Hondo_Litter.csv")

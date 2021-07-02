@@ -118,21 +118,15 @@ cover3 <- cover2 %>%
 
 #write_csv(cover3, "./HONDO/VascularPlantSurvey/Hondo_final/cover_all.csv")
 
-# read all the data in to their own stand files:
+# now to QC the data...
 
-stand1 <- cover3 %>% filter(stand == "1")
-write.csv(stand1, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_1_Cover.csv", row.names = F)
-stand2 <- cover3 %>% filter(Stand == "2")
-write.csv(stand1, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_2_Cover.csv", row.names = F)
-stand3 <- cover3 %>% filter(Stand == "3")
-write.csv(stand3, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_3_Cover.csv", row.names = F)
-stand4 <- cover3 %>% filter(Stand == "4")
-write.csv(stand4, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_4_Cover.csv", row.names = F)
-stand5 <- cover3 %>% filter(Stand == "5")
-write.csv(stand5, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_5_Cover.csv", row.names = F)
-stand6 <- cover2 %>% filter(Stand == "6")
-write.csv(stand6, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_6_Cover.csv", row.names = F)
-stand7 <- cover3 %>% filter(Stand == "7")
-write.csv(stand7, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_7_Cover.csv", row.names = F)
-stand8 <- cover3 %>% filter(Stand == "8")
-write.csv(stand8, "./HONDO/VascularPlantSurvey/Hondo_final/Stand_8_Cover.csv", row.names = F)
+cover <- read_csv("./HONDO/VascularPlantSurvey/Hondo_final/cover_all.csv")
+
+library(assertr)
+
+cover %>% assert(within_bounds(0,100), 5:219) 
+cover %>% assert(within_bounds(1, 12), 1)
+cover %>% assert(within_bounds(1980,2021), 2)
+cover %>% assert(within_bounds(1,8), 3)
+
+# all looking good

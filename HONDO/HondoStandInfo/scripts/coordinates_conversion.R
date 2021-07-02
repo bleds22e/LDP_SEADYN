@@ -1,4 +1,5 @@
-### converting coordinates from degrees-minutes-seconds to decimal degrees
+### Converting coordinates from degrees-minutes-seconds to decimal degrees
+### Also, adding data inventory information
 
 library(tidyverse)
 
@@ -16,9 +17,19 @@ to_degrees <- stand_coords %>%
   # convert from character to numeric data
   mutate_at(3:8, as.numeric) %>% 
   # calculate the decimal degree coordinates from the incorrect format
-  mutate(lat_dec = lat_d + lat_m/60 + lat_s/3600,
-            long_dec= -1*(long_d + long_m/60 + long_s/3600), .keep = "unused") %>% 
+  mutate(lat = lat_d + lat_m/60 + lat_s/3600,
+            long= -1*(long_d + long_m/60 + long_s/3600), .keep = "unused") %>% 
   # this comments column doesn't include any useful information, so remove that
   select(-comments)
 
-write.csv(to_degrees, "./HONDO/HondoStandInfo/clean_data/Hondo_Stand_Coordinates.csv")
+#write_csv(to_degrees, "./HONDO/HondoStandInfo/clean_data/SEADYN_Hondo_StandCoords.csv")
+
+means_only <- to_degrees %>% filter(corner == "Means") %>% select(-corner) %>% mutate(bryoid_cover = rep(1, times = 8),
+                                                                                      vascular_cover = rep(1, times = 8),
+                                                                                      litter = c(1,1,1,0,0,0,0,0),
+                                                                                      soil = c(1,1,1,0,0,0,0,0),
+                                                                                      saplings = c(1,1,1,1,1,1,1,0),
+                                                                                      densiometer = rep(1, times = 8),
+                                                                                      tree_dynamics = rep(1, times = 8),
+                                                                                      dates_burned = c(NA, NA, 2001, 2001, NA, 2001, NA, 2001))
+#write_csv(means_only, "./HONDO/HondoStandInfo/clean_data/SEADYN_Hondo_StandInfo.csv")

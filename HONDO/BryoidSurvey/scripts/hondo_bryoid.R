@@ -352,3 +352,24 @@ all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for
 
 #write_csv(all_bryoid_data, "./HONDO/BryoidSurvey/clean_data/SEADYN_bryoidcover_1980_1984.csv")
 
+cover <- read_csv("./HONDO/BryoidSurvey/clean_data/SEADYN_bryoidcover_1980_1984.csv") %>% 
+  mutate_at(7:90, as.numeric)
+
+cover %>% assert(within_bounds(0,100), 7:90) 
+cover %>% assert(within_bounds(1, 8), 1)
+cover %>% assert(within_bounds(1980,2021), 2)
+cover %>% assert(within_bounds(1,12), 3)
+
+cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
+
+cover %>% assert(within_bounds(1,12), 3)
+cover %>% verify(stand_size %in% c(5,25))
+
+cover2 <- cover %>% slice(-(3101:3147))
+
+cover2 %>% verify(stand_size %in% c(5,25))
+
+# all done! now overwrite original data with QCed data
+
+#write_csv(cover2, "./HONDO/BryoidSurvey/clean_data/SEADYN_bryoidcover_1980_1984.csv")
+
