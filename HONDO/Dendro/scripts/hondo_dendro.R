@@ -1,10 +1,10 @@
 ### AOS DENDROCHRONOLOGY : reading & cleaning ###
 ## AVH June 2021 ##
 
-file.list <- list.files("./AOS/Dendro/raw_data/")
+file.list <- list.files("./HONDO/Dendro/raw_data/")
 
 all_dendro_data <- data.frame(matrix(ncol = 4))
-colnames(all_dendro_data) <- c("year","tree_no","ring_width_mm","stand")
+colnames(all_dendro_data) <- c("year","tree_no","ring_width_mm","site")
 
 start.trim <- seq(from = 1, to = 44, by = 4)
 end.trim <- seq(from = 4, to = 44, by = 4)
@@ -12,7 +12,7 @@ end.trim <- seq(from = 4, to = 44, by = 4)
 for (file in 1:length(file.list)){
   filename = file.list[file]
   location = substr(filename, 11,12)
-  filedir = paste("./AOS/Dendro/raw_data/",filename,sep = "")
+  filedir = paste("./HONDO/Dendro/raw_data/",filename,sep = "")
   con <- file(filedir)
   open(con)
   results_list <- list()
@@ -36,19 +36,19 @@ for (file in 1:length(file.list)){
   colnames <- c("year", seq(from = 1, to = no_trees, by = 1))
   colnames(df) <- colnames # create a column names vector, and bind this to the df to help with joining
   df_pivot <- df %>% pivot_longer(2:(no_trees+1), names_to = "tree_no", values_to = "ring_width_mm") %>% 
-    mutate(stand = location) # pivot to long format where each row is a unique ring width observation
+    mutate(site = location) # pivot to long format where each row is a unique ring width observation
   all_dendro_data <- rbind(all_dendro_data, df_pivot)
 }
 
 all_dendro_data <- all_dendro_data %>%
-  na.omit() %>% mutate(stand = toupper(stand)) %>% select(-tree_no) # and unite the tree number and stand into a unique id for each tree followed
+  na.omit() %>% mutate(site = as.numeric(site)) %>% select(-tree_no) %>% 
+  rename(stand = site) # and unite the tree number and site into a unique id for each tree followed
 
 # write dataframe in long format for now
+View(all_dendro_data)
+#write_csv(all_dendro_data,"./HONDO/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
 
-write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
-
-dendro <- read_csv("./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
-
+dendro <- read_csv("./HONDO/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
+summary(dendro)
 levels(as.factor(dendro$stand))
-
 hist(dendro$ring_width_mm)

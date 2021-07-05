@@ -1,9 +1,9 @@
 ## LITTER PRODUCTION IN AOS SURVEY AREAS IN 1983-1984 ##
 ## AVH June 2021 ##
 
-# This script takes all the litter txt files for AOS subsites where litter was collected in traps,
+# This script takes all the litter txt files for AOS substands where litter was collected in traps,
 # and joins this wide format data into a five-column long format where the trap number, litter component, 
-# sampling date (in the case of AOS_litter_interannual.csv), sampling site, and corresponding biomass are recorded.
+# sampling date (in the case of AOS_litter_interannual.csv), sampling stand, and corresponding biomass are recorded.
 
 # Column headers are entered in AOS_litter_dates.csv from a physical GLR report.
 
@@ -16,7 +16,7 @@ for (file in 1:length(file.list)){ # read in each individual litter file
   rawfileloc = paste("./AOS/litter/raw_data/txt_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE, sep = "")
   empty_data <- data.frame()
-  site_names <- c()
+  stand_names <- c()
   row_started = 0
   for (row in 1:length(file$V1)){ # if there is no ampersand (indicates line break) and the row for a trap has started...
     if (length(which(file[row,] == "&")) > 0 & row_started == "1"){
@@ -52,8 +52,8 @@ dates_cols <- read_csv("./AOS/Litter/metadata/AOS_litter_dates.csv") %>%
   unite(comp_date, c(component, date), sep = "/") # combine the component & date info into one name for now
 
 all_aos_litter <- as.data.frame(matrix(ncol = 5, nrow = 0)) # start a blank file to join to eventually
-colnames(all_aos_litter) <- c("component","sample_date","biomass","site", "trap_number")
-all_aos_litter <- all_aos_litter %>% mutate_at(c("component", "sample_date", "site"), as.factor) %>% 
+colnames(all_aos_litter) <- c("component","sample_date","biomass","stand", "trap_number")
+all_aos_litter <- all_aos_litter %>% mutate_at(c("component", "sample_date", "stand"), as.factor) %>% 
   mutate_at(c("trap_number", "biomass"), as.numeric)
 
 for (file in 1:length(file.list)){
@@ -62,20 +62,20 @@ for (file in 1:length(file.list)){
   df <- read_csv(paste("./AOS/Litter/raw_data/csv_files/", filename, sep = ""))
   remove.cols <- which(df[1,] == "&") # remove cols with ampersand
   df <- df %>% select(-remove.cols) %>% mutate_all(as.numeric)
-  df_names <- dates_cols %>% filter(site == location) %>% select(comp_date) # get vector of column names for that site
+  df_names <- dates_cols %>% filter(stand == location) %>% select(comp_date) # get vector of column names for that stand
   df_names <- rbind(as.vector(df_names), "trap_number")
   colnames(df) <- df_names$comp_date #rename columns correctly
   df_end <- length(df) - 1
   df_pivot <- df %>% pivot_longer(cols = (1:df_end), names_to = c("component","sample_date"), names_sep = "/",
                                   values_to = "biomass") %>%
     mutate(sample_date = if_else(sample_date == "NA", "annual_mean", sample_date)) %>% 
-    mutate(site = location) # get in long format, and create a column to indicate site before joining data
+    mutate(stand = location) # get in long format, and create a column to indicate stand before joining data
   all_aos_litter <- all_aos_litter %>% full_join(df_pivot) 
 }
 
 # save files for discrete sampling dates and annual means
 
-all_aos_litter <- all_aos_litter  %>% mutate(site = toupper(site))
+all_aos_litter <- all_aos_litter  %>% mutate(stand = toupper(stand))
 
 #write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/AOS_litter_interannual.csv")
 #write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/AOS_litter_annual.csv")
@@ -85,7 +85,7 @@ library(assertr)
 ia_litter <- read_csv("./AOS/Litter/clean_data/AOS_litter_interannual.csv")
 
 summary(ia_litter)
-levels(as.factor(ia_litter$site))
+levels(as.factor(ia_litter$stand))
 levels(as.factor(ia_litter$component))
 
 hist(ia_litter$biomass) # need to clarify units of mass in col name (g? mg?)
@@ -96,7 +96,7 @@ ia_litter %>% verify(substr(sample_date, 9,10) %in% as.character(as.vector(sprin
 
 a_litter <-  read_csv("./AOS/Litter/clean_data/AOS_litter_annual.csv")
 summary(a_litter)
-levels(as.factor(a_litter$site))
+levels(as.factor(a_litter$stand))
 levels(as.factor(a_litter$component))
 
        
