@@ -86,3 +86,7 @@ saplings %>% verify(diameter_mm < 80 | is.na(diameter_mm)) # roughly less than 3
 saplings$diameter_mm[204] <- 13.3
 
 #write_csv(saplings, "./HONDO/Saplings/clean_data/SEADYN_saplings.csv")
+
+sap_info <- read_csv("./HONDO/Saplings/raw_data/tree_info/SEADYN_saplings_treeid.csv")
+summary(sap_info)
+levels(as.factor(sap_info$substratum))

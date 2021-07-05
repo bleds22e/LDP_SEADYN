@@ -711,4 +711,7 @@ all_bc[is.na(all_bc)] <- 0 # replace NA values with explicit zeroes
 
 write_csv(all_bc, "./AOS/BryoidSurvey/clean_data/AOS_bryoid_cover_1981_1984.csv")
 
-
+cover <- read_csv("./AOS/BryoidSurvey/clean_data/AOS_bryoid_cover_1981_1984.csv")
+summary(cover)
+levels(as.factor(cover$stand))
+cover %>% verify(stand_size %in% c(5,25))

@@ -103,21 +103,21 @@ tree_dyn2$stem_lean_amt_scaled_1983[tree_dyn2$stem_lean_amt_scaled_1983 == "l"] 
 View(tree_dyn3)
 # change coordinate system to match saplings (stem position S becomes negative stem position N, same with E -> W)
 
-tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_N_1983_m = if_else(is.na(base_coord_S_1983_m),
-                                                                base_coord_N_1983_m, (5 - base_coord_S_1983_m)),
+tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_S_1983_m = if_else(is.na(base_coord_N_1983_m),
+                                                                base_coord_S_1983_m, (5 - base_coord_N_1983_m)),
                                   base_coord_W_1983_m = if_else(is.na(base_coord_E_1983_m),
                                                                 base_coord_W_1983_m, (5 - base_coord_E_1983_m))) %>% 
-                           mutate_at(12:15, as.numeric) %>% mutate(exit_coord_N_1983_m = if_else(is.na(exit_coord_S_1983_m),
-                                                                          exit_coord_N_1983_m, (5 - exit_coord_S_1983_m)),
+                           mutate_at(12:15, as.numeric) %>% mutate(exit_coord_S_1983_m = if_else(is.na(exit_coord_N_1983_m),
+                                                                          exit_coord_S_1983_m, (5 - exit_coord_N_1983_m)),
                                             exit_coord_W_1983_m = if_else(is.na(exit_coord_E_1983_m),
                                                                           exit_coord_W_1983_m, (5 - exit_coord_E_1983_m))) %>% 
-  select(-base_coord_S_1983_m, -base_coord_E_1983_m, -exit_coord_S_1983_m, -exit_coord_E_1983_m) %>% 
+  select(-base_coord_N_1983_m, -base_coord_E_1983_m, -exit_coord_N_1983_m, -exit_coord_E_1983_m) %>% 
   rename(quadrat = plot)
-View(tree_dyn3)
+
 ###########################################################################################
 summary(tree_dyn3)
 
-#write_csv(tree_dyn3, "./HONDO/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv")
+write_csv(tree_dyn3, "./HONDO/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv")
 
 # now to QC
 library(assertr)
@@ -129,7 +129,7 @@ tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag
 
 levels(as.factor(tree_dynamics$species_code)) # species codes valid and spelled correctly
 
-tree_dynamics %>% assert(within_bounds(-5,5), c(base_coord_N_1983_m,base_coord_W_1983_m,exit_coord_N_1983_m,exit_coord_W_1983_m))
+tree_dynamics %>% assert(within_bounds(-5,5), c(base_coord_S_1983_m,base_coord_W_1983_m,exit_coord_S_1983_m,exit_coord_W_1983_m))
 # only one value is much beyond the upper extreme expected (since stems can lean over plots to be counted, and the max. crown diameter is 5m, one would expect the 
 # extreme outlier for stem position relative to the centre of the plot to be ~5m).
 
@@ -168,4 +168,8 @@ tree_dynamics <- tree_dynamics %>% mutate(tree_code_2000 = if_else(tree_code_200
                                                                                    tree_code_2000)))
 tree_dynamics$tree_code_2000[tree_dynamics$tree_code_2000 == "---"] <- NA
 
-levels(as.factor(tree_dynamics$fire_code_2000))
+levels(as.factor(tree_dynamics$fire_code_2000)) # can't find what these codes mean. remove column?
+
+tree_dynamics <- tree_dynamics %>% select(-fire_code_2000)
+
+#write_csv(tree_dynamics, "./HONDO/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_QC.csv")

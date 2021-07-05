@@ -70,10 +70,33 @@ for (file in 1:length(file.list)){
                                   values_to = "biomass") %>%
     mutate(sample_date = if_else(sample_date == "NA", "annual_mean", sample_date)) %>% 
     mutate(site = location) # get in long format, and create a column to indicate site before joining data
-  all_aos_litter <- all_aos_litter %>% full_join(df_pivot)
+  all_aos_litter <- all_aos_litter %>% full_join(df_pivot) 
 }
 
 # save files for discrete sampling dates and annual means
 
-write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/AOS_litter_interannual.csv")
-write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/AOS_litter_annual.csv")
+all_aos_litter <- all_aos_litter  %>% mutate(site = toupper(site))
+
+#write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/AOS_litter_interannual.csv")
+#write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/AOS_litter_annual.csv")
+
+library(assertr)
+
+ia_litter <- read_csv("./AOS/Litter/clean_data/AOS_litter_interannual.csv")
+
+summary(ia_litter)
+levels(as.factor(ia_litter$site))
+levels(as.factor(ia_litter$component))
+
+hist(ia_litter$biomass) # need to clarify units of mass in col name (g? mg?)
+
+ia_litter %>% verify(substr(sample_date, 1, 4) %in% c("1983", "1984"))
+ia_litter %>% verify(substr(sample_date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
+ia_litter %>% verify(substr(sample_date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
+
+a_litter <-  read_csv("./AOS/Litter/clean_data/AOS_litter_annual.csv")
+summary(a_litter)
+levels(as.factor(a_litter$site))
+levels(as.factor(a_litter$component))
+
+       

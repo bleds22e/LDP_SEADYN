@@ -100,3 +100,14 @@ sp_conversion <- as.data.frame(cbind(sp_codes, tree_sp))
 stem_data4 <- stem_data3 %>% full_join(sp_conversion) %>% select(-tree_sp)
 
 #write_csv(stem_data4, "./AOS/StemData/clean_data/AOS_stems_1983.csv")
+
+stems <- read_csv("./AOS/StemData/clean_data/AOS_stems_1983.csv")
+
+summary(stems)
+
+# check on stand numbers - are these really AOS 1-8, or do they encode other things?
+
+stems %>% verify(dead %in% c("l", "d") | is.na(dead))
+levels(as.factor(stems$sp_codes))
+
+

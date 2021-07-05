@@ -6,6 +6,9 @@ file.list <- list.files("./AOS/Dendro/raw_data/")
 all_dendro_data <- data.frame(matrix(ncol = 4))
 colnames(all_dendro_data) <- c("year","tree_no","ring_width_mm","site")
 
+start.trim <- seq(from = 1, to = 44, by = 4)
+end.trim <- seq(from = 4, to = 44, by = 4)
+
 for (file in 1:length(file.list)){
   filename = file.list[file]
   location = substr(filename, 11,12)
@@ -20,9 +23,14 @@ for (file in 1:length(file.list)){
   } 
   close(con) # at this point, have read in the file line by line
   df <- data.frame() # create a dataframe to store unlisted data
+  
   for (line in 1:length(results_list)){ # for each line, ensure that white space entries are logged as being really there
-    x <- str_replace_all(results_list[[line]], c("    " = " NA", "   " = "NA "))
-    df <- rbind(df, as.vector(unlist(str_split(x, " ")))) # split up values, reclass as vector, and join to df
+    line_vector <- c()
+    for (trim in 1:11){
+      x <- as.numeric(substr(results_list[[line]], start.trim[trim], end.trim[trim]))
+      line_vector <- c(line_vector, x)
+    }
+    df <- rbind(df, line_vector) # split up values, reclass as vector, and join to df
   }
   no_trees = length(df) - 1
   colnames <- c("year", seq(from = 1, to = no_trees, by = 1))
@@ -32,9 +40,15 @@ for (file in 1:length(file.list)){
   all_dendro_data <- rbind(all_dendro_data, df_pivot)
 }
 
-all_dendro_data <- all_dendro_data %>% mutate(ring_width_mm = as.numeric(ring_width_mm)) %>% 
-  na.omit() %>% unite(tree_id, c(tree_no, site), sep = "_") # and unite the tree number and site into a unique id for each tree followed
+all_dendro_data <- all_dendro_data %>%
+  na.omit() %>% mutate(site = toupper(site)) %>% select(-tree_no) # and unite the tree number and site into a unique id for each tree followed
 
 # write dataframe in long format for now
 
 #write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
+
+dendro <- read_csv("./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
+
+levels(as.factor(dendro_clean$site))
+
+hist(dendro$ring_width_mm)
