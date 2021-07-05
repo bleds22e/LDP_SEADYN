@@ -102,18 +102,19 @@ final_species <- final_species %>% select(-c(Order.from.csv.file, X, X.1, X.2))
 temp <- bind_rows(Stand_1_Temp, Stand_2_Temp_complete, Stand_3_Temp, Stand_4_Temp, Stand_5_Temp, Stand_6_Temp, Stand_7_Temp, Stand_8_Temp) %>% 
   mutate(Temp_C = (Temp_F-32)*5/9, .keep = "unused") # convert to Celsius
 names(temp) <- to_snake_case(names(temp))
+temp <- temp %>% rename(temp_C = temp_c)
 #write_csv(temp, "./HONDO/VascularPlantSurvey/Hondo_final/temps_all.csv")
 ##############################################################################
 
 # averaging double cover measurements
 
 cover3 <- cover2 %>% 
-  rename(month = Month, year = Year, stand = Stand, quad = Quad) %>% 
+  rename(month = Month, year = Year, stand = Stand, quadrat = Quad) %>% 
   # scrub the .1 indicator of double surveys
-  mutate(quad = as.factor(str_remove_all(quad, ".1"))) %>% 
+  mutate(quad = as.factor(str_remove_all(quadrat, ".1"))) %>% 
   # replace all missing values with zeroes since these are true zeroes (plant not detected in quadrat)
   na_replace(0) %>% 
-  group_by(month, year, stand, quad) %>% # group by time and plot
+  group_by(month, year, stand, quadrat) %>% # group by time and plot
   summarize_all(mean) # and take the average of double-surveyed plots
 
 #write_csv(cover3, "./HONDO/VascularPlantSurvey/Hondo_final/cover_all.csv")
