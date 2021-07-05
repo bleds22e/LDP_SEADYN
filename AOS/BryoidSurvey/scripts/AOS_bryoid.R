@@ -260,9 +260,9 @@ for (q in 1:length(file_string3)){
 stand <- as.data.frame(rep(file_string3, each = 15)) %>% rename(plot_number = 1) %>% 
   left_join(stand_info) %>% select(plot_code)
 
-quad.info <- cbind(quad.sub, stand) %>%  mutate(stand_size = 25)
+quad.info <- cbind(quad, stand) %>%  mutate(stand_size = 25, year = 1982)
 
-bc_1982x <- cbind(quad.info, bc_1982) %>% rename(stand = plot_code) %>% mutate(stand_size = 25)
+bc_1982x <- cbind(quad.info, bc_1982) %>% rename(stand = plot_code)
 
 name_string <- c() # get scientific names
 for (line in sp.names){
@@ -696,7 +696,7 @@ all_bc <- data.frame() # create empty dataframe to join everything together
 
 for (file in 1:length(file.list)){
   # read in csv file
-  df <- read_csv(paste("./AOS/BryoidSurvey/raw_data/csv_files/", file.list[file], sep = ""))
+  df <- read_csv(paste("./AOS/BryoidSurvey/raw_data/csv_files/", file.list[file], sep = ""), guess_max = 8000)
   if (file == 1){
     all_bc <- df
   }
@@ -709,9 +709,9 @@ all_bc <- all_bc %>%  relocate(stand,year,month,day,stand_size,quad) # isolate c
 
 all_bc[is.na(all_bc)] <- 0 # replace NA values with explicit zeroes
 
-write_csv(all_bc, "./AOS/BryoidSurvey/clean_data/AOS_bryoid_cover_1981_1984.csv")
+write_csv(all_bc, "./AOS/BryoidSurvey/clean_data/SEADYN_AOS_bryoid_cover_1981_1984.csv")
 
-cover <- read_csv("./AOS/BryoidSurvey/clean_data/AOS_bryoid_cover_1981_1984.csv")
+cover <- read_csv("./AOS/BryoidSurvey/clean_data/SEADYN_AOS_bryoid_cover_1981_1984.csv")
 summary(cover)
-levels(as.factor(cover$stand))
+levels(as.factor(cover$year))
 cover %>% verify(stand_size %in% c(5,25))

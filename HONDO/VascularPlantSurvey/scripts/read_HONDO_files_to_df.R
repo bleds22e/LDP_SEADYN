@@ -24,7 +24,7 @@ for (s in 1:length(stands)) {
   ## PREP DATA ##
   
   # make df with .txt file paths
-  file_path <- paste0("./HONDO/VascularPlantSurvey/raw_data/", stands[s])
+  file_path <- paste0("./Hondo/VascularPlantSurvey/raw_data/", stands[s])
   myfiles <- as.list(list.files(file_path, full.names = TRUE, pattern = "*.txt"))
   
   # make df with metadata pulled from file names (see 'functions.R' script)
@@ -126,7 +126,7 @@ for (l in 1:length(df_list)){
   
   #for (d in 1:length(stand)){
    # write_csv(stand[[d]],
-              #paste(".HONDO/VascularPlantSurvey/HONDO_compiled/", df_names[d], ".csv", sep = ""))
+              #paste(".Hondo/VascularPlantSurvey/Hondo_compiled/", df_names[d], ".csv", sep = ""))
  # }
   
 #}  

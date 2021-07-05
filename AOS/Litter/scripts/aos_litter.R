@@ -77,12 +77,12 @@ for (file in 1:length(file.list)){
 
 all_aos_litter <- all_aos_litter  %>% mutate(stand = toupper(stand))
 
-#write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/AOS_litter_interannual.csv")
-#write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/AOS_litter_annual.csv")
+#write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/SEADYN_AOS_LitterInterannual_1983_1984.csv")
+#write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/SEADYN_AOS_LitterAnnual_1983_1984.csv")
 
 library(assertr)
 
-ia_litter <- read_csv("./AOS/Litter/clean_data/AOS_litter_interannual.csv")
+ia_litter <- read_csv("./AOS/Litter/clean_data/SEADYN_AOS_LitterInterannual_1983_1984.csv")
 
 summary(ia_litter)
 levels(as.factor(ia_litter$stand))
@@ -94,7 +94,7 @@ ia_litter %>% verify(substr(sample_date, 1, 4) %in% c("1983", "1984"))
 ia_litter %>% verify(substr(sample_date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
 ia_litter %>% verify(substr(sample_date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
 
-a_litter <-  read_csv("./AOS/Litter/clean_data/AOS_litter_annual.csv")
+a_litter <-  read_csv("./AOS/Litter/clean_data/SEADYN_AOS_LitterAnnual_1983_1984.csv")
 summary(a_litter)
 levels(as.factor(a_litter$stand))
 levels(as.factor(a_litter$component))

@@ -2,14 +2,14 @@
 
 filename_to_metadata <- function(file_path){
   
-  # fxn to read in HONDO file names and pull out metadata (stand, month, year)
+  # fxn to read in Hondo file names and pull out metadata (stand, month, year)
   myfiles <- as.data.frame(list.files(file_path, 
                                       full.names = FALSE, 
                                       pattern = "*.txt"))
   colnames(myfiles) <- c("file_name")
   
   myfiles <- myfiles %>% 
-    # split the name into columns named hondo and month (aka HONDO189 and JUN)
+    # split the name into columns named hondo and month (aka Hondo189 and JUN)
     separate(file_name, c("hondo", "month", NA)) %>% 
     # make sure the month is capitalized
     # make a new column called year, fill with last 2 characters from hondo col

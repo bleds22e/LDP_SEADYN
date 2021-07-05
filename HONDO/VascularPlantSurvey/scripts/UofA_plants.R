@@ -33,7 +33,7 @@ library(janitor)
 ## this attempt using a txt file
 
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurveys/raw_data/Stand1/HONDO181.AUG.txt') 
+con <- file('./Hondo/VascularPlantSurveys/raw_data/Stand1/Hondo181.AUG.txt') 
 open(con)
 
 # make a list to put the results into

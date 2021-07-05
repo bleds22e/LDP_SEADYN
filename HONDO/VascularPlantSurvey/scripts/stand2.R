@@ -12,7 +12,7 @@ library(janitor)
 
 ## 1981:
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s281.b.st25.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s281.b.st25.txt') 
 open(con)
 
 # make a list to put the results into
@@ -98,7 +98,7 @@ data1981 <- cbind(data_pt1, data_pt2)
 data1981 <- data1981 %>% remove_empty(which = c("cols"))
 
 # To add columns, will get rows from the corresponding file that has the column names:
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s281.v.sp25.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s281.v.sp25.txt') 
 open(con)
 
 # make a list to put the results into
@@ -166,7 +166,7 @@ data1981_clean <- data1981_clean %>%
 
 ## 1982
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s282.v.st25.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s282.v.st25.txt') 
 open(con)
 
 # make a list to put the results into
@@ -283,7 +283,7 @@ data1982_clean <- data1982 %>%
 ## 1983
 
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s283.v.st25.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s283.v.st25.txt') 
 open(con)
 
 # make a list to put the results into
@@ -402,7 +402,7 @@ data1983_clean <- data1983 %>%
 #########################################
 ## 1984:
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s284.v.st25.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s284.v.st25.txt') 
 open(con)
 
 # make a list to put the results into
@@ -553,7 +553,7 @@ data1984_clean[data1984_clean == "+"] <- ".5"
 #################################################################################################
 # 1985:
 # open a connection to the file we want to read in
-con <- file('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s285.v_data.txt') 
+con <- file('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/s285.v_data.txt') 
 open(con)
 
 # make a list to put the results into
@@ -705,7 +705,7 @@ data1985_clean <- data1985 %>%
 ## 1980
 
 # Addding in 1980 data that was re-entered from field copies:
-data1980 <- read.csv('./HONDO/VascularPlantSurvey/raw_data/Stand2/old_v_missing/HONDO_VascularSurvey_Stand2_1980_08.csv')
+data1980 <- read.csv('./Hondo/VascularPlantSurvey/raw_data/Stand2/old_v_missing/Hondo_VascularSurvey_Stand2_1980_08.csv')
 # what needs to be done here:
 # -  either reformat to look like others, or wait until later
 # - rename quadrats at some point (can't start with a number)
@@ -776,12 +776,12 @@ Stand_2_Cover_80s <- stand2 %>% select(-Temp_F)
 Stand_2_Temp_80s <- stand2 %>% select(c(Quad, Temp_F, Month, Year, Stand))
 
 #read in Ellen's stand 2 files
-Stand_2_Cover_recent <- read.csv('./HONDO/VascularPlantSurvey/Hondo_compiled/Stand_2_Cover.csv') 
-Stand_2_Temp_recent <- read.csv('./HONDO/VascularPlantSurvey/Hondo_compiled/Stand_2_Temp.csv') 
+Stand_2_Cover_recent <- read.csv('./Hondo/VascularPlantSurvey/Hondo_compiled/Stand_2_Cover.csv') 
+Stand_2_Temp_recent <- read.csv('./Hondo/VascularPlantSurvey/Hondo_compiled/Stand_2_Temp.csv') 
 Stand_2_Cover <- bind_rows(Stand_2_Cover_80s, Stand_2_Cover_recent)
 
 Stand_2_Temp <- bind_rows(Stand_2_Temp_80s, Stand_2_Temp_recent)
 
 #add these to the cleaned data file
-#write_csv(Stand_2_Cover, './HONDO/VascularPlantSurvey/Hondo_compiled/Stand_2_Cover_complete.csv')
-#write_csv(Stand_2_Temp, './HONDO/VascularPlantSurvey/Hondo_compiled/Stand_2_Temp_complete.csv')
+#write_csv(Stand_2_Cover, './Hondo/VascularPlantSurvey/Hondo_compiled/Stand_2_Cover_complete.csv')
+#write_csv(Stand_2_Temp, './Hondo/VascularPlantSurvey/Hondo_compiled/Stand_2_Temp_complete.csv')

@@ -45,10 +45,10 @@ all_dendro_data <- all_dendro_data %>%
 
 # write dataframe in long format for now
 
-write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
+write_csv(all_dendro_data,"./AOS/Dendro/clean_data/SEADYN_AOS_Dendrochronology_1983.csv")
 
-dendro <- read_csv("./AOS/Dendro/clean_data/AOS_dendrochronology.csv")
+dendro <- read_csv("./AOS/Dendro/clean_data/SEADYN_AOS_Dendrochronology_1983.csv")
 
-levels(as.factor(dendro$stand))
+levels(as.factor(dendro$year))
 
 hist(dendro$ring_width_mm)

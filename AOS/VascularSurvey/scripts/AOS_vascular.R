@@ -628,23 +628,25 @@ temperature <- all_vc %>% select(stand,year,month,quad,TEMP) %>%
 
 cover_only <- all_vc %>% select(-TEMP) %>% relocate(stand,year,month,day,quad) # isolate cover only and rearrange data before saving
 
-#write_csv(temperature, "./AOS/VascularSurvey/clean_data/AOS_soil_temp_1981_1984.csv")
-#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/AOS_vascular_cover_1981_1984.csv")
+#write_csv(temperature, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")
+#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_1981_1984.csv")
 #
 #
 
 library(assertr)
 
-temp <- read_csv("./AOS/VascularSurvey/clean_data/AOS_soil_temp_1981_1984.csv")
+temp <- read_csv("./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")
 
-levels(as.factor(temp$stand))
+levels(as.factor(temp$year))
 summary(temp)
 
-cover <- read_csv("./AOS/VascularSurvey/clean_data/AOS_vascular_cover_1981_1984.csv")
+cover <- read_csv("./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_1981_1984.csv")
+cover_select <- cover %>% filter(stand != "RY" & stand != "RO")
+write_csv(cover_select, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_noRORY_1981_1984.csv")
 
-levels(as.factor(cover$stand))
+levels(as.factor(cover$year))
 summary(cover)
 
 temp <- temp %>% select(-TEMP)
 
-write_csv(temp, "./AOS/VascularSurvey/clean_data/AOS_soil_temp_1981_1984.csv")
+write_csv(temp, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")

@@ -1,7 +1,7 @@
 ### AOS DENDROCHRONOLOGY : reading & cleaning ###
 ## AVH June 2021 ##
 
-file.list <- list.files("./HONDO/Dendro/raw_data/")
+file.list <- list.files("./Hondo/Dendro/raw_data/")
 
 all_dendro_data <- data.frame(matrix(ncol = 4))
 colnames(all_dendro_data) <- c("year","tree_no","ring_width_mm","site")
@@ -12,7 +12,7 @@ end.trim <- seq(from = 4, to = 44, by = 4)
 for (file in 1:length(file.list)){
   filename = file.list[file]
   location = substr(filename, 11,12)
-  filedir = paste("./HONDO/Dendro/raw_data/",filename,sep = "")
+  filedir = paste("./Hondo/Dendro/raw_data/",filename,sep = "")
   con <- file(filedir)
   open(con)
   results_list <- list()
@@ -46,9 +46,9 @@ all_dendro_data <- all_dendro_data %>%
 
 # write dataframe in long format for now
 View(all_dendro_data)
-#write_csv(all_dendro_data,"./HONDO/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
+#write_csv(all_dendro_data,"./Hondo/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
 
-dendro <- read_csv("./HONDO/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
+dendro <- read_csv("./Hondo/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
 summary(dendro)
 levels(as.factor(dendro$stand))
 hist(dendro$ring_width_mm)

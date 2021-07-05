@@ -7,7 +7,7 @@ library(janitor)
 library(tidyverse)
 library(snakecase)
 
-setwd("./HONDO/VascularPlantSurvey/Hondo_compiled")
+setwd("./Hondo/VascularPlantSurvey/Hondo_compiled")
 myfiles <- list.files(pattern = "*.csv", full.names = FALSE)
 
 list2env(
@@ -87,14 +87,14 @@ species2 <- species2[,1]
 
 
 #read in master species list
-master <- read.csv("./HONDO/VascularPlantSurvey/metadata/Archived_species_names/Species_List_Vascular_Surveys_not corrected.csv")
+master <- read.csv("./Hondo/VascularPlantSurvey/metadata/Archived_species_names/Species_List_Vascular_Surveys_not corrected.csv")
 
 #add them together. The species with NA's are the ones we dont know!
 final_species <- semi_join(master, species2, copy = TRUE)
 final_species <- final_species %>% select(-c(Order.from.csv.file, X, X.1, X.2))
 
 #writing this as its own file:
-#write.csv(final_species, "./HONDO/VascularPlantSurveys/metadata/Species_List_Vascular_Surveys.csv", row.names = F)
+#write.csv(final_species, "./Hondo/VascularPlantSurveys/metadata/Species_List_Vascular_Surveys.csv", row.names = F)
 
 ##############################################################################
 
@@ -103,7 +103,7 @@ temp <- bind_rows(Stand_1_Temp, Stand_2_Temp_complete, Stand_3_Temp, Stand_4_Tem
   mutate(Temp_C = (Temp_F-32)*5/9, .keep = "unused") # convert to Celsius
 names(temp) <- to_snake_case(names(temp))
 temp <- temp %>% rename(temp_C = temp_c)
-#write_csv(temp, "./HONDO/VascularPlantSurvey/Hondo_final/temps_all.csv")
+#write_csv(temp, "./Hondo/VascularPlantSurvey/Hondo_final/temps_all.csv")
 ##############################################################################
 
 # averaging double cover measurements
@@ -117,11 +117,11 @@ cover3 <- cover2 %>%
   group_by(month, year, stand, quadrat) %>% # group by time and plot
   summarize_all(mean) # and take the average of double-surveyed plots
 
-#write_csv(cover3, "./HONDO/VascularPlantSurvey/Hondo_final/cover_all.csv")
+write_csv(cover3, "./Hondo/VascularPlantSurvey/Hondo_final/SEADYN_Hondo_VascularCover_1980_2015.csv")
 
 # now to QC the data...
 
-cover <- read_csv("./HONDO/VascularPlantSurvey/Hondo_final/cover_all.csv")
+cover <- read_csv("./Hondo/VascularPlantSurvey/Hondo_final/SEADYN_Hondo_VascularCover_1980_2015.csv")
 
 library(assertr)
 
@@ -129,5 +129,9 @@ cover %>% assert(within_bounds(0,100), 5:219)
 cover %>% assert(within_bounds(1, 12), 1)
 cover %>% assert(within_bounds(1980,2021), 2)
 cover %>% assert(within_bounds(1,8), 3)
+
+temps <- read_csv("./Hondo/VascularPlantSurvey/Hondo_final/temps_all.csv")
+
+levels(as.factor(temp$year))
 
 # all looking good
