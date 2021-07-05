@@ -100,25 +100,72 @@ tree_dyn2 <-  tree_dyn2 %>%
 # for scaled stem lean in 1983, s, m, and l are small, medium, and large. Changing m and l to upper case:
 tree_dyn2$stem_lean_amt_scaled_1983[tree_dyn2$stem_lean_amt_scaled_1983 == "m"] <- "M"
 tree_dyn2$stem_lean_amt_scaled_1983[tree_dyn2$stem_lean_amt_scaled_1983 == "l"] <- "L"
+View(tree_dyn3)
+# change coordinate system to match saplings (stem position S becomes negative stem position N, same with E -> W)
 
+tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_N_1983_m = if_else(is.na(base_coord_S_1983_m),
+                                                                base_coord_N_1983_m, (5 - base_coord_S_1983_m)),
+                                  base_coord_W_1983_m = if_else(is.na(base_coord_E_1983_m),
+                                                                base_coord_W_1983_m, (5 - base_coord_E_1983_m))) %>% 
+                           mutate_at(12:15, as.numeric) %>% mutate(exit_coord_N_1983_m = if_else(is.na(exit_coord_S_1983_m),
+                                                                          exit_coord_N_1983_m, (5 - exit_coord_S_1983_m)),
+                                            exit_coord_W_1983_m = if_else(is.na(exit_coord_E_1983_m),
+                                                                          exit_coord_W_1983_m, (5 - exit_coord_E_1983_m))) %>% 
+  select(-base_coord_S_1983_m, -base_coord_E_1983_m, -exit_coord_S_1983_m, -exit_coord_E_1983_m) %>% 
+  rename(quadrat = plot)
+View(tree_dyn3)
 ###########################################################################################
-summary(tree_dyn2)
+summary(tree_dyn3)
 
+#write_csv(tree_dyn3, "./HONDO/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv")
 
-# reading these into their own files:
-stand1 <- tree_dyn2 %>% filter(stand == "1")
-write.csv(stand1, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_1.csv", row.names = F)
-stand2 <- tree_dyn2 %>% filter(stand == "2")
-write.csv(stand2, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_2.csv", row.names = F)
-stand3 <- tree_dyn2 %>% filter(stand == "3")
-write.csv(stand3, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_3.csv", row.names = F)
-stand4 <- tree_dyn2 %>% filter(stand == "4")
-write.csv(stand4, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_4.csv", row.names = F)
-stand5 <- tree_dyn2 %>% filter(stand == "5")
-write.csv(stand5, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_5.csv", row.names = F)
-stand6 <- tree_dyn2 %>% filter(stand == "6")
-write.csv(stand6, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_6.csv", row.names = F)
-stand7 <- tree_dyn2 %>% filter(stand == "7")
-write.csv(stand7, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_7.csv", row.names = F)
-stand8 <- tree_dyn2 %>% filter(stand == "8")
-write.csv(stand8, "./HONDO/TreeDynamics/clean_data/Tree_Dynamics_Stand_8.csv", row.names = F)
+# now to QC
+library(assertr)
+
+tree_dynamics <- read_csv("./HONDO/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv", guess_max = 5000)
+
+tree_dynamics %>% assert(within_bounds(1,8), stand)
+tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag number?
+
+levels(as.factor(tree_dynamics$species_code)) # species codes valid and spelled correctly
+
+tree_dynamics %>% assert(within_bounds(-5,5), c(base_coord_N_1983_m,base_coord_W_1983_m,exit_coord_N_1983_m,exit_coord_W_1983_m))
+# only one value is much beyond the upper extreme expected (since stems can lean over plots to be counted, and the max. crown diameter is 5m, one would expect the 
+# extreme outlier for stem position relative to the centre of the plot to be ~5m).
+
+tree_dynamics %>% verify(year_dead <= 2015 | is.na(year_dead))
+
+tree_dynamics %>% verify(year_fallen_1983 <= 1983 | is.na(year_fallen_1983))
+# 1988 is the latest year that appears in this column; thus, I am renaming
+tree_dynamics <- tree_dynamics %>% rename(year_fallen_1988 = year_fallen_1983)
+
+levels(as.factor(tree_dynamics$stem_lean_amt_scaled_1983))
+tree_dynamics <- tree_dynamics %>% mutate(stem_lean_amt_scaled_1983 = if_else(
+  stem_lean_amt_scaled_1983 == "0", "Z", if_else(
+    stem_lean_amt_scaled_1983 == "O", "Z", if_else(
+      stem_lean_amt_scaled_1983 == "N", "M", if_else(
+        stem_lean_amt_scaled_1983 == "H", "M", stem_lean_amt_scaled_1983
+      )
+    )
+  ) 
+)) # corrections noted in the metadata
+
+levels(as.factor(tree_dynamics$stem_lean_dir_1983))
+tree_dynamics <- tree_dynamics %>% mutate(stem_lean_dir_1983 = if_else(
+  stem_lean_dir_1983 == "SES", "SSE", if_else(stem_lean_dir_1983 == "SWS", "SSW", stem_lean_dir_1983)))
+
+levels(as.factor(tree_dynamics$stem_lean_dir_1991))
+levels(as.factor(tree_dynamics$stem_lean_dir_2000))
+
+tree_dynamics %>% assert(within_bounds(0,90), c(stem_lean_amt_1991, stem_lean_amt_2000))
+
+levels(as.factor(tree_dynamics$tree_code_2000)) # what is ---, DB, DDB ?? DB only one occurrence, looks like DB2 (since DBH could be recorded)
+# --- looks like it should be NA
+# DDB ... dead down broken? DD is good enough for this
+
+tree_dynamics <- tree_dynamics %>% mutate(tree_code_2000 = if_else(tree_code_2000 == "DB", "DB2",
+                                                                           if_else(tree_code_2000 == "DDB", "DD",
+                                                                                   tree_code_2000)))
+tree_dynamics$tree_code_2000[tree_dynamics$tree_code_2000 == "---"] <- NA
+
+levels(as.factor(tree_dynamics$fire_code_2000))
