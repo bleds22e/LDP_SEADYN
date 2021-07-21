@@ -48,7 +48,7 @@ for (file in 1:length(file.list)){ # read in each individual litter file
 file.list <- list.files("./AOS/Litter/raw_data/csv_files")
 
 # read in the collection dates and components from the metadata file
-dates_cols <- read_csv("./AOS/Litter/metadata/AOS_litter_dates.csv") %>% 
+dates_cols <- read_csv("./AOS/Litter/metadata/SEADYN_AOS_LitterDates.csv") %>% 
   unite(comp_date, c(component, date), sep = "/") # combine the component & date info into one name for now
 
 all_aos_litter <- as.data.frame(matrix(ncol = 5, nrow = 0)) # start a blank file to join to eventually
@@ -68,21 +68,21 @@ for (file in 1:length(file.list)){
   df_end <- length(df) - 1
   df_pivot <- df %>% pivot_longer(cols = (1:df_end), names_to = c("component","sample_date"), names_sep = "/",
                                   values_to = "biomass") %>%
-    mutate(sample_date = if_else(sample_date == "NA", "annual_mean", sample_date)) %>% 
+    mutate(sample_date = if_else(sample_date == "NA", "annual_total", sample_date)) %>% 
     mutate(stand = location) # get in long format, and create a column to indicate stand before joining data
   all_aos_litter <- all_aos_litter %>% full_join(df_pivot) 
 }
 
 # save files for discrete sampling dates and annual means
 
-all_aos_litter <- all_aos_litter  %>% mutate(stand = toupper(stand))
+all_aos_litter_noann <- all_aos_litter  %>% mutate(stand = toupper(stand)) %>% filter(sample_date != "annual_total") %>% 
+  rename(biomass_g_per_m2 = biomass)
 
-#write_csv(all_aos_litter %>% filter(sample_date != "annual_mean"), "./AOS/Litter/clean_data/SEADYN_AOS_LitterInterannual_1983_1984.csv")
-#write_csv(all_aos_litter %>% filter(sample_date == "annual_mean") %>% select(-sample_date), "./AOS/Litter/clean_data/SEADYN_AOS_LitterAnnual_1983_1984.csv")
+write_csv(all_aos_litter, "./AOS/Litter/clean_data/SEADYN_AOS_LitterBiomass_1983_1984.csv")
 
 library(assertr)
 
-ia_litter <- read_csv("./AOS/Litter/clean_data/SEADYN_AOS_LitterInterannual_1983_1984.csv")
+ia_litter <- read_csv("./AOS/Litter/clean_data/SEADYN_AOS_LitterBiomass_1983_1984.csv")
 
 summary(ia_litter)
 levels(as.factor(ia_litter$stand))
@@ -93,10 +93,5 @@ hist(ia_litter$biomass) # need to clarify units of mass in col name (g? mg?)
 ia_litter %>% verify(substr(sample_date, 1, 4) %in% c("1983", "1984"))
 ia_litter %>% verify(substr(sample_date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
 ia_litter %>% verify(substr(sample_date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
-
-a_litter <-  read_csv("./AOS/Litter/clean_data/SEADYN_AOS_LitterAnnual_1983_1984.csv")
-summary(a_litter)
-levels(as.factor(a_litter$stand))
-levels(as.factor(a_litter$component))
 
        

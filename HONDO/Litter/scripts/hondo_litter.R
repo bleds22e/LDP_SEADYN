@@ -34,14 +34,14 @@ for (file in 1:length(file.list)){
       new_row <- c()
     }
   }
-  save_file <- paste("./Litter/raw_data/csv_files/", paste(str_remove(filename, ".txt"), ".csv", sep = ''),
+  save_file <- paste("./Hondo/Litter/raw_data/csv_files/", paste(str_remove(filename, ".txt"), ".csv", sep = ''),
                      sep = "")
   write.csv(empty_data, save_file, row.names = FALSE)
 }
 
 file.list <- list.files("./Hondo/Litter/raw_data/csv_files/")
 
-dates_cols <- read_csv("./Hondo/Litter/metadata/Hondo_litter_dates.csv") %>% 
+dates_cols <- read_csv("./Hondo/Litter/metadata/SEADYN_Hondo_LitterDates.csv") %>% 
   unite(comp_date, c(component, date), sep = "/")
 
 all_hondo_litter <- as.data.frame(matrix(ncol = 4, nrow = 0))
@@ -60,18 +60,18 @@ for (file in 1:length(file.list)){
   df_end <- length(df)
   df_pivot <- df %>% pivot_longer(cols = 1:df_end, names_to = c("component","sample_date"), names_sep = "/", 
                                   values_to = "biomass") %>% 
-    mutate(sample_date = if_else(sample_date == "NA", "annual_mean", sample_date)) %>% 
+    mutate(sample_date = if_else(sample_date == "NA", "annual_total", sample_date)) %>% 
     mutate(stand = location)
   all_hondo_litter <- all_hondo_litter %>% full_join(df_pivot)
 }
 
-write_csv(all_hondo_litter, "./Hondo/Litter/clean_data/Hondo_litter.csv")
+#write_csv(all_hondo_litter %>% filter(sample_date != "annual_total"), "./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")
 
 # QC the data
 
 library(assertr)
 
-hondo_litter <- read_csv("./Hondo/Litter/clean_data/Hondo_litter.csv")
+hondo_litter <- read_csv("./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")
 
 levels(as.factor(hondo_litter$component))
 
@@ -82,4 +82,4 @@ hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 6
 hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
 hondo_litter %>% verify(biomass >= 0)
 
-write_csv(hondo_litter, "./Hondo/Litter/clean_data/SEADYN_Hondo_Litter.csv")
+write_csv(hondo_litter, "./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")

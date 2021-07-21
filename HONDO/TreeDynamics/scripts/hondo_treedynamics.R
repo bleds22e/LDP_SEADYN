@@ -100,7 +100,7 @@ tree_dyn2 <-  tree_dyn2 %>%
 # for scaled stem lean in 1983, s, m, and l are small, medium, and large. Changing m and l to upper case:
 tree_dyn2$stem_lean_amt_scaled_1983[tree_dyn2$stem_lean_amt_scaled_1983 == "m"] <- "M"
 tree_dyn2$stem_lean_amt_scaled_1983[tree_dyn2$stem_lean_amt_scaled_1983 == "l"] <- "L"
-View(tree_dyn3)
+
 # change coordinate system to match saplings (stem position S becomes negative stem position N, same with E -> W)
 
 tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_S_1983_m = if_else(is.na(base_coord_N_1983_m),
@@ -112,17 +112,19 @@ tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_S_19
                                             exit_coord_W_1983_m = if_else(is.na(exit_coord_E_1983_m),
                                                                           exit_coord_W_1983_m, (5 - exit_coord_E_1983_m))) %>% 
   select(-base_coord_N_1983_m, -base_coord_E_1983_m, -exit_coord_N_1983_m, -exit_coord_E_1983_m) %>% 
-  rename(quadrat = plot)
+  rename(quadrat = plot) %>% 
+  mutate(fire_code_2000 = str_remove_all(fire_code_2000, "F")) %>% # F denotes (I think) that tree was killed by fire, and L denotes (in one case) living-ness
+  mutate(fire_code_2000 = str_remove_all(fire_code_2000, "L")) # remove F and L to leave only RBC
 
 ###########################################################################################
 summary(tree_dyn3)
 
-write_csv(tree_dyn3, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv")
+write_csv(tree_dyn3, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv")
 
 # now to QC
 library(assertr)
 
-tree_dynamics <- read_csv("./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics.csv", guess_max = 5000)
+tree_dynamics <- read_csv("./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv", guess_max = 5000)
 
 tree_dynamics %>% assert(within_bounds(1,8), stand)
 tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag number?
@@ -170,6 +172,4 @@ tree_dynamics$tree_code_2000[tree_dynamics$tree_code_2000 == "---"] <- NA
 
 levels(as.factor(tree_dynamics$fire_code_2000)) # can't find what these codes mean. remove column?
 
-tree_dynamics <- tree_dynamics %>% select(-fire_code_2000)
-
-#write_csv(tree_dynamics, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_QC.csv")
+#write_csv(tree_dynamics, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv")

@@ -1,6 +1,6 @@
 ### AOS DENDROCHRONOLOGY : reading & cleaning ###
 ## AVH June 2021 ##
-
+library(tidyverse)
 file.list <- list.files("./Hondo/Dendro/raw_data/")
 
 all_dendro_data <- data.frame(matrix(ncol = 4))
@@ -41,14 +41,14 @@ for (file in 1:length(file.list)){
 }
 
 all_dendro_data <- all_dendro_data %>%
-  na.omit() %>% mutate(site = as.numeric(site)) %>% select(-tree_no) %>% 
-  rename(stand = site) # and unite the tree number and site into a unique id for each tree followed
+  na.omit() %>% mutate(site = as.numeric(site)) %>%
+  rename(stand = site) %>% mutate(ring_width_mm = ring_width_mm/100) # and unite the tree number and site into a unique id for each tree followed
 
 # write dataframe in long format for now
 View(all_dendro_data)
-#write_csv(all_dendro_data,"./Hondo/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
+#write_csv(all_dendro_data,"./Hondo/Dendro/clean_data/SEADYN_Hondo_Dendrochronology_1983.csv")
 
-dendro <- read_csv("./Hondo/Dendro/clean_data/SEADYN_Hondo_dendrochronology.csv")
+dendro <- read_csv("./Hondo/Dendro/clean_data/SEADYN_Hondo_Dendrochronology_1983.csv")
 summary(dendro)
 levels(as.factor(dendro$stand))
 hist(dendro$ring_width_mm)

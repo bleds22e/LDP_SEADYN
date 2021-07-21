@@ -387,7 +387,7 @@ subset_rows <- seq(from = 1, to = 16875, by = 5)
 all_quads3 <- all_quads2[subset_rows,] # get the quadrat names
 
 # read in survey dates to associate with survey data
-survey_dates <- read_csv("./AOS/VascularSurvey/metadata/vascular_survey_dates.csv") %>% 
+survey_dates <- read_csv("./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSurveyDates.csv") %>% 
   separate(month, into = c("month", "day"), sep = "_") %>% 
   mutate(month = as.numeric(month), day = as.numeric(day)) %>% 
   arrange(stand, year, month, day)
@@ -579,11 +579,11 @@ all.sp.codes.taxonomy <-  sp.list.vasc.fill %>%
   full_join(sp.list.vasc) %>% 
   unite(col = "accepted_name", c(genus, species), sep = " ", remove = FALSE) %>% unique()
 
-#write.csv(all.sp.codes.taxonomy, "./AOS/VascularSurvey/metadata/AOS_vascular_species_list.csv")
+#write.csv(all.sp.codes.taxonomy, "./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSpList.csv")
 
 # finally, to join together the data
 
-corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/AOS_vascular_species_list.csv") %>% select(-X1)
+corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSpList.csv") %>% select(-X1)
 file.list <- list.files("./AOS/VascularSurvey/raw_data/csv_files", pattern = "*.csv")
 
 all_vc <- data.frame() # create empty dataframe to join everything together

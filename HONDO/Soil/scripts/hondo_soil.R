@@ -2,9 +2,10 @@
 ## AVH June 2021 ##
 
 library(tidyverse)
+library(lubridate)
 
 file.list <- list.files("./Hondo/Soil/raw_data", full.names = F)
-col_names <- c("relative_day","stand","sensor_id","soil_temp_C", "soil_matric_potential_bars",
+col_names <- c("relative_day","stand","sensor_id","temp_C", "matric_potential_bars",
                "sensor_error", "year")
 
 hondo_soil_data <- as.data.frame(matrix(ncol = 7))
@@ -22,13 +23,15 @@ for (file in 1:length(file.list)){
 
 hondo_soil_data <- hondo_soil_data %>% select(-sensor_error) %>% na.omit()
 
-#write_csv(hondo_soil_data, "./Hondo/Soil/clean_data/hondo_soil.csv")
+hondo_soil_dates <- hondo_soil_data %>% mutate(date = ymd(paste(year, "05-01", sep = "")) + relative_day) %>% select(-year, -relative_day)
+
+#write_csv(hondo_soil_dates, "./Hondo/Soil/clean_data/SEADYN_Hondo_SoilTempMP_1982_1984.csv")
 
 # now to QC the data
 
 library(assertr)
 
-soil <- read_csv("./Hondo/Soil/clean_data/hondo_soil.csv")
+soil <- read_csv("./Hondo/Soil/clean_data/SEADYN_Hondo_SoilTempMP_1982_1984.csv")
 
 soil %>% verify(relative_day > 0) # some values of -1, but as this is a relative day, it seems that some soil measurements were taken before the 0 mark
 soil %>% verify(stand %in% c(1,2,3))

@@ -494,7 +494,7 @@ subset_rows <- seq(from = 1, to = 5550, by = 3)
 all_quads3 <- all_quads2[subset_rows,]  # get the quadrat names
 
 # read in survey dates to associate with survey data
-survey_dates <- read_csv("./AOS/BryoidSurvey/metadata/bryoid_survey_dates.csv") %>% 
+survey_dates <- read_csv("./AOS/BryoidSurvey/metadata/SEADYN_AOS_BryoidSurveyDates.csv") %>% 
   separate(month, into = c("month", "day"), sep = "_") %>% 
   mutate(month = as.numeric(month), day = as.numeric(day), year = as.numeric(year)) %>% 
   arrange(stand, year, month, day)
@@ -686,7 +686,7 @@ sp.list.bryoids.fill <-  sp.list.bryoids.fill %>%
 all.sp.codes.taxonomy <- corrected_taxa %>%  mutate(accepted_name = correct.sp.name) %>% 
   full_join(sp.list.bryoids.fill)
 
-#write_csv(all.sp.codes.taxonomy, "./AOS/BryoidSurvey/metadata/AOS_bryoid_codes.csv")
+#write_csv(all.sp.codes.taxonomy, "./AOS/BryoidSurvey/metadata/SEADYN_AOS_BryoidSpList.csv")
 
 # finally, to join together the data
 
@@ -715,3 +715,6 @@ cover <- read_csv("./AOS/BryoidSurvey/clean_data/SEADYN_AOS_bryoid_cover_1981_19
 summary(cover)
 levels(as.factor(cover$year))
 cover %>% verify(stand_size %in% c(5,25))
+
+cover <- cover %>% select(-day) # day not super important, only month + year
+write_csv(cover, "./AOS/BryoidSurvey/clean_data/SEADYN_AOS_bryoid_cover_1981_1984.csv")

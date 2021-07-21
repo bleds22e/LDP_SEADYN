@@ -1,0 +1,112 @@
+original_code,strata,sci_name_original,sci_authority_original,common_name,accepted_name,sci_authority_accepted,comments,unified_code,kingdom,division
+AMBJUR,,Amblystegium juratzkanum,Schimp.,,Amblystegium serpens,(Hedw.) Schimp.,NA,AMBSER,Plantae,Bryophyta
+AULPAL,,Aulacomnium palustre,(Hedw.) Schwägr.,,Aulacomnium palustre,(Hedw.) Schwägr.,NA,AULPAL,Plantae,Bryophyta
+BACSPH,,Bacidia sphaeroides,(Dicks.) Zahlbr.,,Biatora sphaeroides,(Dicks.) Hornem.,NA,BACSPH,Fungi,Ascomycota
+BRAPSE,,Brachythecium,,,?,,NA,?,Plantae,Bryophyta
+BRASAL,,Brachythecium salebrosum,(Hoffm. Ex F. Weber & D. Mohr) Schimp.,,Brachythecium salebrosum,(Hoffm. Ex F. Weber & D. Mohr) Schimp.,NA,BRASAL,Plantae,Bryophyta
+BRYPSE,,Bryum pseudotriquetrum,,common green bryum moss,Ptychostomum pseudotriquetrum,,NA,PTYPSE,Plantae,Bryophyta
+CAMSTE,,Campylium stellatum,,,Campylium stellatum,,NA,CAMSTE,Plantae,Bryophyta
+CEPLUN,,Cephalozia lunulifolia,,,Cephalozia lunulifolia,,NA,CEPLUN,Plantae,Marchantiophyta
+CERPUR,,Ceratodon purpureus,,,Ceratodon purpureus,,NA,CERPUR,Plantae,Bryophyta
+CETCUC,,Cetraria cucullata,,,Cetraria cucullata,,only in AOS stands,CETCUC,Fungi,Ascomycota
+CETERI,,Cetraria ericetorum,,,Cetraria ericetorum,,NA,CETERI,Fungi,Ascomycota
+CETHAL,,Cetraria halei,,,Cetraria halei,,only in AOS stands,CETHAL,Fungi,Ascomycota
+CETPIN,,Cetraria pinastri,,,Cetraria pinastri,,NA,CETPIN,Fungi,Ascomycota
+CETNIV,,Cetraria nivalis,,,Cetraria nivalis,,NA,CETNIV,Fungi,Ascomycota
+CLASP,,Cladonia,,,Cladonia,,NA,CLASP,Fungi,Ascomycota
+CLASPP,,Cladonia,,,Cladonia,,NA,CLASP,Fungi,Ascomycota
+CLACEN,,Cladonia cenotea,,,Cladonia cenotea,,NA,CLACEN,Fungi,Ascomycota
+CLACHL,,Cladonia chlorophaea,,,Cladonia chlorophaea,,NA,CLACHL,Fungi,Ascomycota
+CLACOC,,Cladonia coccifera,,,Cladonia coccifera,,NA,CLACOC,Fungi,Ascomycota
+CLACON,,Cladonia coniocraea,,,Cladonia coniocraea,,NA,CLACON,Fungi,Ascomycota
+CLACOR,,Cladonia cornuta,,,Cladonia cornuta,,NA,CLACOR,Fungi,Ascomycota
+CLACRP,,Cladonia crispata,,,Cladonia crispata,,NA,CLACRP,Fungi,Ascomycota
+CLACRI,,Cladonia cristatella,,,Cladonia cristatella,,Mis-spelled? Makes the most sense‚Ä¶ the T could have been easily misread as I,CLACRT,Fungi,Ascomycota
+CLACRT,,Cladonia cristatella,,,Cladonia cristatella,,NA,CLACRT,Fungi,Ascomycota
+CLAFIM,,Cladonia fimbriata,,,Cladonia fimbriata,,NA,CLAFIM,Fungi,Ascomycota
+CLAFUR,,Cladonia furcata,,,Cladonia furcata,,NA,CLAFUR,Fungi,Ascomycota
+CLAAMA,,Cladonia amaurocraea,,,Cladonia amaurocraea,,only in AOS stands,CLAAMA,Fungi,Ascomycota
+CLAGRA,,Cladonia gracilis,,,Cladonia gracilis,,NA,CLAGRA,Fungi,Ascomycota
+CLAMIT,,Cladina mitis,,,Cladonia mitis,,NA,CLAMIT,Fungi,Ascomycota
+CLAMUL,,Cladonia multiformis,,,Cladonia multiformis,,NA,CLAMUL,Fungi,Ascomycota
+CLACAP,,Cladonia capitata,,,Cladonia peziziformis,,NA,CLACAP,Fungi,Ascomycota
+CLACAR,,Cladonia cariosa,,,Cladonia cariosa,,only in AOS stands,CLACAR,Fungi,Ascomycota
+CLAPHY,,Cladonia phyllophora,,,Cladonia phyllophora,,NA,CLAPHY,Fungi,Ascomycota
+CLAPYX,,Cladonia pyxidata,,,Cladonia pyxidata,,NA,CLAPYX,Fungi,Ascomycota
+CLARAN,,Cladina rangiferina,,,Cladonia rangiferina,,NA,CLARAN,Fungi,Ascomycota
+CLASEA,,Cladonia scabriuscula,,,Cladonia scabriuscula,,Misspelling?,CLASCA,Fungi,Ascomycota
+CLASQU,,Cladonia squamosa,,,Cladonia squamosa,,only in AOS stands,CLASQU,Fungi,Ascomycota
+CLASTE,,Cladina stellaris,,,Cladonia stellaris,,NA,CLASTE,Fungi,Ascomycota
+CLASUB,,Cladonia subulata,,,Cladonia subulata,,NA,CLASUB,Fungi,Ascomycota
+CLAGON,,Cladonia gonecha,,,Cladonia sulphurina,,NA,CLAGON,Fungi,Ascomycota
+CLAUNC,,Cladonia uncialis,,,Cladonia uncialis,,NA,CLAUNC,Fungi,Ascomycota
+CLAVER,,Cladonia verticillata,,,Cladonia verticillata,,NA,CLAVER,Fungi,Ascomycota
+DICSP,,Dicranum,,,Dicranum,,NA,DICSP,Plantae,Bryophyta
+ORTH,,Orthodicranum,,,Dicranum,,NA,DICSP,Plantae,Bryophyta
+ORTFLA,,Orthodicranum flagellare,,,Dicranum flagellare,,NA,DICFLA,Plantae,Bryophyta
+DICFUS,,Dicranum fuscescens,,,Dicranum fuscescens,,NA,DICFUS,Plantae,Bryophyta
+DICPOL,,Dicranum polysetum,,,Dicranum polysetum,,NA,DICPOL,Plantae,Bryophyta
+DICSCO,,Dicranum scoparium,,,Dicranum scoparium,,NA,DICSCO,Plantae,Bryophyta
+DICUND,,Dicranum undulatum,,,Dicranum undulatum,,NA,DICUND,Plantae,Bryophyta
+DISCAP,,Distichium capillaceum,,,Distichium capillaceum,,only in AOS stands,DISCAP,Plantae,Bryophyta
+DITFLE,,Ditrichum flexicaule,,,Ditrichum flexicaule,,only in AOS stands,DITFLE,Plantae,Bryophyta
+DREUNC,,Drepanocladus uncinatus,,,Drepanocladus uncinatus,,NA,DREUNC,Plantae,Bryophyta
+HELBLA,,Helodium blandowii,,,Elodium blandowii,,NA,ELOBLA,Plantae,Bryophyta
+EURSP,,Eurhynchium,,,Eurhynchium,,NA,EURSP,Plantae,Bryophyta
+EURPUI,,Eurhynchium pulchellum,,,Eurhynchium pulchellum,,Mis-spelled?,EURPUL,Plantae,Bryophyta
+EURPUL,,Eurhynchium pulchellum,,,Eurhynchium pulchellum,,NA,EURPUL,Plantae,Bryophyta
+EVEMES,,Evernia mesomorpha,,,Evernia mesomorpha,,only in AOS stands,EVEMES,Fungi,Ascomycota
+HYLSPL,,Hylocomium splendens,,,Hylocomium splendens,,NA,HYLSPL,Plantae,Bryophyta
+HYPPHY,,Hypogymnia physodes,,,Hypogymnia physodes,,only in AOS stands,HYPPHY,Fungi,Ascomycota
+ICMERI,,Icmadophila ericetorum,,,Icmadophila ericetorum,,NA,ICMERI,Fungi,Ascomycota
+IMAERI,,Icmadophila ericetorum,,,Icmadophila ericetorum,,NA,ICMERI,Fungi,Ascomycota
+LECGRA,,Lecidea granulosa,,,Lecidea granulosa,,only in AOS stands,LECGRA,Fungi,Ascomycota
+LEPSAT,,Leptogium saturninum,,,Leptogium saturninum,,NA,LEPSAT,Fungi,Ascomycota
+HEP002,,Marchantiophyta,,,Marchantiophyta,,Originally 'hepatic species',MARSP2,Plantae,Marchantiophyta
+HEP003,,Marchantiophyta,,,Marchantiophyta,,Originally 'hepatic species',MARSP3,Plantae,Marchantiophyta
+HEPSP,,Marchantiophyta,,,Marchantiophyta,,Originally 'hepatic species',MARSP1,Plantae,Marchantiophyta
+MNISP,,Mnium,,,Mnium,,NA,MNISP,Plantae,Bryophyta
+MNICUS,,Mnium cuspidatum,,,Mnium cuspidatum,,NA,MNICUS,Plantae,Bryophyta
+ORTSPE,,Orthotrichum speciosum,,,Orthotrichum speciosum,,NA,ORTSPE,Plantae,Bryophyta
+PARAMB,,Parmeliopsis ambigua,,,Parmeliopsis ambigua,,only in AOS stands,PARAMB,Fungi,Ascomycota
+PARHYP,,Parmeliopsis hyperopta,,,Parmeliopsis hyperopta,,only in AOS stands,PARHYP,Fungi,Ascomycota
+PARELE,,Parmelia elegantula,,,Parmelia elegantula,,only in AOS stands,PARELE,Fungi,Ascomycota
+PARSUL,,Parmelia sulcata,,,Parmelia sulcata,,NA,PARSUL,Fungi,Ascomycota
+PELSP,,Peltigera,,,Peltigera,,NA,PELSP,Fungi,Ascomycota
+PELAPH,,Peltigera aphthosa,,,Peltigera aphthosa,,NA,PELAPH,Fungi,Ascomycota
+PELCAN,,Peltigera canina,,,Peltigera canina,,NA,PELCAN,Fungi,Ascomycota
+PELHOR,,Peltigera horizontalis,,,Peltigera horizontalis,,NA,PELHOR,Fungi,Ascomycota
+PELMAL,,Peltigera malacea,,,Peltigera malacea,,NA,PELMAL,Fungi,Ascomycota
+PELPOL,,Peltigera polydactylon,,,Peltigera polydactylon,,NA,PELPOL,Fungi,Ascomycota
+PELPUL,,Peltigera pulverulenta,,,Peltigera pulverulenta,,NA,PELPUL,Fungi,Ascomycota
+PELRUF,,Peltigera rufescens,,,Peltigera rufescens,,NA,PELRUF,Fungi,Ascomycota
+PLACUS,,Plagiomnium cuspidatum,,,Plagiomnium cuspidatum,,NA,PLACUS,Plantae,Bryophyta
+PLAGLA,,Platismatia glauca,,,Platismatia glauca,,NA,PLAGLA,Fungi,Ascomycota
+PLESCH,,Pleurozium schreberi,,,Pleurozium schreberi,,NA,PLESCH,Plantae,Bryophyta
+POHNUT,,Pohlia nutans,,,Pohlia nutans,,NA,POHNUT,Plantae,Bryophyta
+POLCOM,,Polytrichum commune,,,Polytrichum commune,,only in AOS stands,POLCOM,Plantae,Bryophyta
+POLJUN,,Polytrichum juniperinum,,,Polytrichum juniperinum,,NA,POLJUN,Plantae,Bryophyta
+POLPIL,,Polytrichum piliferum,,,Polytrichum piliferum,,NA,POLPIL,Plantae,Bryophyta
+POLSTR,,Polytrichum strictum,,,Polytrichum strictum,,NA,POLSTR,Plantae,Bryophyta
+PTISP,,Ptilidium,,,Ptilidium,,NA,PTISP,Plantae,Marchantiophyta
+PTICIL,,Ptilidium ciliare,,,Ptilidium ciliare,,NA,PTICIL,Plantae,Marchantiophyta
+PTICC,,Ptilidium crista-castrensis,,,Ptilidium crista-castrensis,,NA,PTICC,Plantae,Marchantiophyta
+PITPUL,,Ptilidium pulcherrimum,,,Ptilidium pulcherrimum,,Mis-spelled?,PTIPUL,Plantae,Marchantiophyta
+PTIPUL,,Ptilidium pulcherrimum,,,Ptilidium pulcherrimum,,NA,PTIPUL,Plantae,Marchantiophyta
+PYLPOL,,Pylaisiella polyantha,,,Pylaisia polyantha,,NA,PYLPOL,Plantae,Bryophyta
+RHYTRI,,Rhytidiadelphus triquetrus,,,Rhytidiadelphus triquetrus,,NA,RHYTRI,Plantae,Bryophyta
+DREREV,,Drepanocladus revolvens,,,Scorpidium revolvens,,NA,SCOREV,Plantae,Bryophyta
+SPHANG,,Sphagnum angustifolium,,,Sphagnum angustifolium,,NA,SPHANG,Plantae,Bryophyta
+SPHFUS,,Sphagnum fuscum,,,Sphagnum fuscum,,NA,SPHFUS,Plantae,Bryophyta
+SPHMEM,,Sphagnum nemoreum,,,Sphagnum nemoreum,,Mis-spelled?,SPHNEM,Plantae,Bryophyta
+SPHNEM,,Sphagnum nemoreum,,,Sphagnum nemoreum,,NA,SPHNEM,Plantae,Bryophyta
+SPHRUS,,Sphagnum russowii,,,Sphagnum russowii,,NA,SPHRUS,Plantae,Bryophyta
+SPHWAR,,Sphagnum warnstorfii,,,Sphagnum warnstorfii,,NA,SPHWAR,Plantae,Bryophyta
+SPLSPP,,Splachnum sp.,,,Splachnum sp.,,only in AOS stands,SPLSP,Plantae,Bryophyta
+STEALP,,Stereocaulon alpinum,,,Stereocaulon alpinum,,NA,STEALP,Fungi,Ascomycota
+THUREC,,Thuidium recognitum,,,Thuidium recognitum,,NA,THUREC,Plantae,Bryophyta
+TOMFAL,,Tomentypnum falcifolium,,,Tomentypnum falcifolium,,NA,TOMFAL,Plantae,Bryophyta
+TOMNIT,,Tomentypnum nitens,,,Tomentypnum nitens,,NA,TOMNIT,Plantae,Bryophyta
+CETPIN,,Cetraria pinastri,,,Vulpicida pinastri,,NA,VULPIN,Fungi,Ascomycota
+TETANG,,Tetraplodon angustatus,,,Tetraplodon angustatus,,only in AOS stands,TETANG,Plantae,Bryophyta
+USNSPP,,Usnea sp.,,,Usnea sp.,,only in AOS stands,USNSP,Fungi,Ascomycota

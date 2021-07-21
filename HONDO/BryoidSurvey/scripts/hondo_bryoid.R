@@ -368,7 +368,7 @@ cover %>% verify(stand_size %in% c(5,25))
 cover2 <- cover %>% slice(-(3101:3147))
 
 cover2 %>% verify(stand_size %in% c(5,25))
-
+cover2 <- cover2 %>% select(-day) # day not super important, just month and year
 # all done! now overwrite original data with QCed data
 
 #write_csv(cover2, "./Hondo/BryoidSurvey/clean_data/SEADYN_bryoidcover_1980_1984.csv")

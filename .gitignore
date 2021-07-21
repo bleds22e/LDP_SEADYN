@@ -3,4 +3,6 @@
 .RData
 .Ruserdata
 
-.tiff
+*.tiff
+
+maps.R

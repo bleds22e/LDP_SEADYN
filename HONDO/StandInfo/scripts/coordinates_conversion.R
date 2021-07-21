@@ -22,7 +22,7 @@ to_degrees <- stand_coords %>%
   # this comments column doesn't include any useful information, so remove that
   select(-comments)
 
-#write_csv(to_degrees, "./Hondo/StandInfo/clean_data/SEADYN_Hondo_StandCoords.csv")
+#write_csv(to_degrees, "./Hondo/StandInfo/clean_data/SEADYN_Hondo_StandInformation.csv")
 
 means_only <- to_degrees %>% filter(corner == "Means") %>% select(-corner) %>% mutate(bryoid_cover = rep(1, times = 8),
                                                                                       vascular_cover = rep(1, times = 8),

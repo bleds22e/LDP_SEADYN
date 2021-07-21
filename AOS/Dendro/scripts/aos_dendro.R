@@ -41,7 +41,7 @@ for (file in 1:length(file.list)){
 }
 
 all_dendro_data <- all_dendro_data %>%
-  na.omit() %>% mutate(stand = toupper(stand)) %>% select(-tree_no) # and unite the tree number and stand into a unique id for each tree followed
+  na.omit() %>% mutate(stand = toupper(stand)) %>% mutate(ring_width_mm = ring_width_mm/100)# and unite the tree number and stand into a unique id for each tree followed
 
 # write dataframe in long format for now
 

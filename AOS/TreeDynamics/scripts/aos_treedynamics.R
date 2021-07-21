@@ -17,9 +17,8 @@ replace_ws <- function(i){
 }
 
 # get rid of whitespace to make single string with all information
-results_list2 <- lapply(results_list, str_trim, side = "both") %>%  # trim whitespace
-  lapply(., str_squish) %>% 
-  lapply(., replace_ws)
+results_list2 <- lapply(results_list, str_trim, side = "right")  #trim whitespace
+
 
 # create blank dataframe to fill in
 stem_data <- as.data.frame(matrix(ncol = 8))
@@ -32,10 +31,11 @@ for (row in 1:length(results_list2)){ # for each row of original text file
   empty_row <- c() # start an empty row to hold data
   data_string <- as.character(results_list2[[row]]) # read in line
   char.rem = nchar(data_string) # figure out how long the string is
-  stand <- substr(data_string, 1, 1) # subset first position to get stand number
+  stand <- substr(data_string, 1, 2) # subset first position to get stand number
   empty_row[1] <- as.numeric(stand)
-  data_string <- substr(data_string, 2, char.rem) # and trim this off data string
-
+  data_string <- substr(data_string, 3, char.rem) # and trim this off data string
+  data_string <- replace_ws(data_string)
+  
   char.rem = nchar(data_string)
   quadrat <- substr(data_string, 1, 2) # scrub 2-character quadrat code 
   empty_row[2] <- toupper(quadrat)
@@ -88,9 +88,8 @@ stem_data2 <- stem_data[which(stem_data$stand != ""),] # get rid of first row (b
 stem_data3 <- stem_data2 %>% 
   mutate_at(c(5, 7, 8), as.numeric) %>% 
   mutate_at(c(1:4, 6), as.factor) %>% 
-  mutate(dbh_m = (dbh_units*10)/0.393701/100) %>% # convert from 0.1 inch units to m
+  mutate(dbh_m = (dbh_units*10)*(2.54)/100) %>% # convert from 0.1 inch units to m
   select(-dbh_units)
-
 
 # create species code that is consistent with other data
 sp_codes <- c("POTR", "PIGL", "PIMA", "PIBA")
@@ -99,15 +98,34 @@ sp_conversion <- as.data.frame(cbind(sp_codes, tree_sp))
 
 stem_data4 <- stem_data3 %>% full_join(sp_conversion) %>% select(-tree_sp)
 
-#write_csv(stem_data4, "./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
+#convert numeric codes to two-letter conventional code for stand
 
-stems <- read_csv("./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
+stand_info <- read_csv("./AOS/StandInfo/SEADYN_AOS_StandInformation.csv") %>% 
+  select(plot_number, stand_code) %>% rename(stand = plot_number)
+
+stem_data5 <- stem_data4 %>% left_join(stand_info) %>% select(-stand) %>% 
+  rename(stand = stand_code, species_code = sp_codes)
+
+#write_csv(stem_data5, "./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
+
+stems <- read_csv("./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv") %>% 
+  mutate(DBH_1983_cm = dbh_m,
+            tree_code_1983 = toupper(dead)) %>% 
+  rename(
+         quad = quadrat,
+         height_1983_m = height_m,
+         age_1983 = age
+         ) %>% 
+  select(-dbh_m, -dead)
 
 summary(stems)
 
 # check on stand numbers - are these really AOS 1-8, or do they encode other things?
 
-stems %>% verify(dead %in% c("l", "d") | is.na(dead))
-levels(as.factor(stems$sp_codes))
+levels(as.factor(stems$species_codes))
+levels(as.factor(stems$tree_code_1983))
 
+stems <- stems %>% relocate(stand, quad, tree_tag, species_code, 
+                            tree_code_1983, DBH_1983_cm, height_1983_m, age_1983)
 
+write_csv(stems, "./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
