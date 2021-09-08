@@ -100,25 +100,23 @@ stem_data4 <- stem_data3 %>% full_join(sp_conversion) %>% select(-tree_sp)
 
 #convert numeric codes to two-letter conventional code for stand
 
-stand_info <- read_csv("./AOS/StandInfo/SEADYN_AOS_StandInformation.csv") %>% 
+stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv") %>% 
   select(plot_number, stand_code) %>% rename(stand = plot_number)
 
 stem_data5 <- stem_data4 %>% left_join(stand_info) %>% select(-stand) %>% 
   rename(stand = stand_code, species_code = sp_codes)
 
-#write_csv(stem_data5, "./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
+#write_csv(stem_data5, "./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv")
 
-stems <- read_csv("./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv") %>% 
+stems <- read_csv("./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv") %>% 
   mutate(DBH_1983_cm = dbh_m,
-            tree_code_1983 = toupper(dead)) %>% 
+         tree_code_1983 = toupper(dead)) %>% 
   rename(
          quad = quadrat,
-         height_1983_m = height_m,
+         stem_height_1983_m = height_m,
          age_1983 = age
          ) %>% 
   select(-dbh_m, -dead)
-
-summary(stems)
 
 # check on stand numbers - are these really AOS 1-8, or do they encode other things?
 
@@ -126,6 +124,9 @@ levels(as.factor(stems$species_codes))
 levels(as.factor(stems$tree_code_1983))
 
 stems <- stems %>% relocate(stand, quad, tree_tag, species_code, 
-                            tree_code_1983, DBH_1983_cm, height_1983_m, age_1983)
+                            tree_code_1983, DBH_1983_cm, stem_height_1983_m, age_1983)
 
-write_csv(stems, "./AOS/TreeDynamics/clean_data/SEADYN_AOS_TreeDynamics_1983.csv")
+write_csv(stems, "./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv")
+
+
+

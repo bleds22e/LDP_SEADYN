@@ -387,7 +387,7 @@ subset_rows <- seq(from = 1, to = 16875, by = 5)
 all_quads3 <- all_quads2[subset_rows,] # get the quadrat names
 
 # read in survey dates to associate with survey data
-survey_dates <- read_csv("./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSurveyDates.csv") %>% 
+survey_dates <- read_csv("./AOS/VascularSurvey/metadata/AOS_VascularSurveyDates.csv") %>% 
   separate(month, into = c("month", "day"), sep = "_") %>% 
   mutate(month = as.numeric(month), day = as.numeric(day)) %>% 
   arrange(stand, year, month, day)
@@ -579,11 +579,11 @@ all.sp.codes.taxonomy <-  sp.list.vasc.fill %>%
   full_join(sp.list.vasc) %>% 
   unite(col = "accepted_name", c(genus, species), sep = " ", remove = FALSE) %>% unique()
 
-#write.csv(all.sp.codes.taxonomy, "./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSpList.csv")
+#write.csv(all.sp.codes.taxonomy, "./AOS/VascularSurvey/metadata/AOS_VascularSpList.csv")
 
 # finally, to join together the data
 
-corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/SEADYN_AOS_VascularSpList.csv") %>% select(-X1)
+corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/AOS_VascularSpList.csv") %>% select(-X1)
 file.list <- list.files("./AOS/VascularSurvey/raw_data/csv_files", pattern = "*.csv")
 
 all_vc <- data.frame() # create empty dataframe to join everything together
@@ -628,25 +628,42 @@ temperature <- all_vc %>% select(stand,year,month,quad,TEMP) %>%
 
 cover_only <- all_vc %>% select(-TEMP) %>% relocate(stand,year,month,day,quad) # isolate cover only and rearrange data before saving
 
-#write_csv(temperature, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")
-#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_1981_1984.csv")
+#write_csv(temperature, "./AOS/VascularSurvey/clean_data/AOS_SoilTemp_1981_1984.csv")
+#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/AOS_VascularCover_1981_1984.csv")
 #
 #
 
 library(assertr)
 
-temp <- read_csv("./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")
+temp <- read_csv("./AOS/VascularSurvey/clean_data/AOS_SoilTemp_1981_1984.csv")
 
 levels(as.factor(temp$year))
 summary(temp)
 
-cover <- read_csv("./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_1981_1984.csv")
+cover <- read_csv("./AOS/VascularSurvey/clean_data/AOS_VascularCover_1981_1984.csv")
 cover_select <- cover %>% filter(stand != "RY" & stand != "RO")
-write_csv(cover_select, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_VascularCover_noRORY_1981_1984.csv")
+write_csv(cover_select, "./AOS/VascularSurvey/clean_data/AOS_VascularCover_noRORY_1981_1984.csv")
 
 levels(as.factor(cover$year))
 summary(cover)
 
 temp <- temp %>% select(-TEMP)
 
-write_csv(temp, "./AOS/VascularSurvey/clean_data/SEADYN_AOS_SoilTemp_1981_1984.csv")
+write_csv(temp, "./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
+
+# QC temp data
+
+qc_temp <- read_csv("./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
+hist(qc_temp$temp_C) # some temp values seem WAY too low (in August) - looking back, the temps measured are 0 F, which is ridiculous.
+qc_temp2 <- qc_temp %>% filter(temp_C > 0)
+hist(qc_temp2$temp_C) # much more reasonable
+
+qc_temp2 %>% verify(year %in% c(1982,1983,1984)) %>% 
+  verify(month %in% 1:12)
+
+levels(as.factor(qc_temp2$stand))
+levels(as.factor(qc_temp2$quad))
+
+qc_temp2 <- qc_temp2 %>% arrange(stand,quad,year,month,temp_C)
+
+write_csv(qc_temp2, "./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
