@@ -2,6 +2,7 @@
 ### AVH June 2021 ###
 
 library(tidyverse)
+library(assertr)
 
 # similar to the analogous script for AOS: taking txt files, reading in litter data according 
 # to file format described in the GLR 1987 report on these data
@@ -41,7 +42,7 @@ for (file in 1:length(file.list)){
 
 file.list <- list.files("./Hondo/Litter/raw_data/csv_files/")
 
-dates_cols <- read_csv("./Hondo/Litter/metadata/SEADYN_Hondo_LitterDates.csv") %>% 
+dates_cols <- read_csv("./Hondo/Litter/metadata/Hondo_LitterDates.csv") %>% 
   unite(comp_date, c(component, date), sep = "/")
 
 all_hondo_litter <- as.data.frame(matrix(ncol = 4, nrow = 0))
@@ -65,13 +66,13 @@ for (file in 1:length(file.list)){
   all_hondo_litter <- all_hondo_litter %>% full_join(df_pivot)
 }
 
-#write_csv(all_hondo_litter %>% filter(sample_date != "annual_total"), "./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")
+#write_csv(all_hondo_litter %>% filter(sample_date != "annual_total"), "./Hondo/Litter/clean_data/Hondo_LitterBiomass_1983_1984.csv")
 
 # QC the data
 
 library(assertr)
 
-hondo_litter <- read_csv("./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")
+hondo_litter <- read_csv("./Hondo/Litter/clean_data/Hondo_LitterBiomass_1983_1984.csv")
 
 levels(as.factor(hondo_litter$component))
 
@@ -82,4 +83,6 @@ hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 6
 hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
 hondo_litter %>% verify(biomass >= 0)
 
-write_csv(hondo_litter, "./Hondo/Litter/clean_data/SEADYN_Hondo_LitterBiomass_1983_1984.csv")
+hondo_litter <- hondo_litter %>% rename(biomass_g_per_m2 = biomass) %>% arrange(stand, sample_date, component, biomass_g_per_m2)
+
+write_csv(hondo_litter, "./Hondo/Litter/clean_data/Hondo_LitterBiomass_1983_1984.csv")

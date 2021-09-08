@@ -25,19 +25,23 @@ hondo_soil_data <- hondo_soil_data %>% select(-sensor_error) %>% na.omit()
 
 hondo_soil_dates <- hondo_soil_data %>% mutate(date = ymd(paste(year, "05-01", sep = "")) + relative_day) %>% select(-year, -relative_day)
 
-#write_csv(hondo_soil_dates, "./Hondo/Soil/clean_data/SEADYN_Hondo_SoilTempMP_1982_1984.csv")
+#write_csv(hondo_soil_dates, "./Hondo/Soil/clean_data/Hondo_SoilConditions_1982_1984.csv")
 
 # now to QC the data
 
 library(assertr)
 
-soil <- read_csv("./Hondo/Soil/clean_data/SEADYN_Hondo_SoilTempMP_1982_1984.csv")
+soil <- read_csv("./Hondo/Soil/clean_data/Hondo_SoilConditions_1982_1984.csv")
 
-soil %>% verify(relative_day > 0) # some values of -1, but as this is a relative day, it seems that some soil measurements were taken before the 0 mark
 soil %>% verify(stand %in% c(1,2,3))
 soil %>% verify(sensor_id > 0)
 soil %>% assert(within_bounds(-30,30), soil_temp_C)
 soil %>% verify(soil_matric_potential_bars > 0)
 soil %>% assert(within_bounds(1982,1984), year)
+range(soil$matric_potential_bars)
+range(soil$temp_C)
+# everything looks fine
 
-# everything looks fine, no need to resave
+soil <- soil %>% arrange(stand, sensor_id, date, temp_C, matric_potential_bars)
+
+write_csv(soil, "./Hondo/Soil/clean_data/Hondo_SoilConditions_1982_1984.csv")

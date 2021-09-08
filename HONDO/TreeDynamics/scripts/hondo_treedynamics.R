@@ -119,30 +119,35 @@ tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_S_19
 ###########################################################################################
 summary(tree_dyn3)
 
-write_csv(tree_dyn3, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv")
+#write_csv(tree_dyn3, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv")
 
 # now to QC
 library(assertr)
 
-tree_dynamics <- read_csv("./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv", guess_max = 5000)
+tree_dynamics <- read_csv("./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv", guess_max = 5000)
 
 tree_dynamics %>% assert(within_bounds(1,8), stand)
 tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag number?
 
 levels(as.factor(tree_dynamics$species_code)) # species codes valid and spelled correctly
 
-tree_dynamics %>% assert(within_bounds(-5,5), c(base_coord_S_1983_m,base_coord_W_1983_m,exit_coord_S_1983_m,exit_coord_W_1983_m))
-# only one value is much beyond the upper extreme expected (since stems can lean over plots to be counted, and the max. crown diameter is 5m, one would expect the 
-# extreme outlier for stem position relative to the centre of the plot to be ~5m).
+tree_dynamics %>% assert(within_bounds(0,5), c(base_coord_S_1983_m,base_coord_W_1983_m,
+                                               exit_coord_S_1983_m, exit_coord_W_1983_m))
+# base stem position relative to the centre of the plot should be within the quadrat (5 m max value)
+# as should be exit position. one case has exit coordinate of 6. This was changed to 5.
+
+tree_dynamics[1972,"exit_coord_S_1983_m"] <- 5
 
 tree_dynamics %>% verify(year_dead <= 2015 | is.na(year_dead))
 
 tree_dynamics %>% verify(year_fallen_1983 <= 1983 | is.na(year_fallen_1983))
 # 1988 is the latest year that appears in this column; thus, I am renaming
-tree_dynamics <- tree_dynamics %>% rename(year_fallen_1988 = year_fallen_1983)
+tree_dynamics2 <- tree_dynamics %>% rename(year_fallen_1988 = year_fallen_1983,
+                                           tree_tag = tag,
+                                           quad = quadrat)
 
-levels(as.factor(tree_dynamics$stem_lean_amt_scaled_1983))
-tree_dynamics <- tree_dynamics %>% mutate(stem_lean_amt_scaled_1983 = if_else(
+levels(as.factor(tree_dynamics2$stem_lean_amt_scaled_1983))
+tree_dynamics3 <- tree_dynamics2 %>% mutate(stem_lean_amt_scaled_1983 = if_else(
   stem_lean_amt_scaled_1983 == "0", "Z", if_else(
     stem_lean_amt_scaled_1983 == "O", "Z", if_else(
       stem_lean_amt_scaled_1983 == "N", "M", if_else(
@@ -152,24 +157,37 @@ tree_dynamics <- tree_dynamics %>% mutate(stem_lean_amt_scaled_1983 = if_else(
   ) 
 )) # corrections noted in the metadata
 
-levels(as.factor(tree_dynamics$stem_lean_dir_1983))
-tree_dynamics <- tree_dynamics %>% mutate(stem_lean_dir_1983 = if_else(
+levels(as.factor(tree_dynamics3$stem_lean_dir_1983))
+tree_dynamics4 <- tree_dynamics3 %>% mutate(stem_lean_dir_1983 = if_else(
   stem_lean_dir_1983 == "SES", "SSE", if_else(stem_lean_dir_1983 == "SWS", "SSW", stem_lean_dir_1983)))
 
-levels(as.factor(tree_dynamics$stem_lean_dir_1991))
-levels(as.factor(tree_dynamics$stem_lean_dir_2000))
+levels(as.factor(tree_dynamics4$stem_lean_dir_1991))
+levels(as.factor(tree_dynamics4$stem_lean_dir_2000))
 
-tree_dynamics %>% assert(within_bounds(0,90), c(stem_lean_amt_1991, stem_lean_amt_2000))
+tree_dynamics4 %>% assert(within_bounds(0,90), c(stem_lean_amt_1991, stem_lean_amt_2000))
 
-levels(as.factor(tree_dynamics$tree_code_2000)) # what is ---, DB, DDB ?? DB only one occurrence, looks like DB2 (since DBH could be recorded)
+levels(as.factor(tree_dynamics4$tree_code_2000)) # what is ---, DB, DDB ?? DB only one occurrence, looks like DB2 (since DBH could be recorded)
 # --- looks like it should be NA
 # DDB ... dead down broken? DD is good enough for this
 
-tree_dynamics <- tree_dynamics %>% mutate(tree_code_2000 = if_else(tree_code_2000 == "DB", "DB2",
+tree_dynamics5 <- tree_dynamics4 %>% mutate(tree_code_2000 = if_else(tree_code_2000 == "DB", "DB2",
                                                                            if_else(tree_code_2000 == "DDB", "DD",
                                                                                    tree_code_2000)))
-tree_dynamics$tree_code_2000[tree_dynamics$tree_code_2000 == "---"] <- NA
+tree_dynamics5$tree_code_2000[tree_dynamics5$tree_code_2000 == "---"] <- NA
 
-levels(as.factor(tree_dynamics$fire_code_2000)) # can't find what these codes mean. remove column?
+levels(as.factor(tree_dynamics5$fire_code_2000)) # can't find what these codes mean. remove column?
 
-#write_csv(tree_dynamics, "./Hondo/TreeDynamics/clean_data/SEADYN_Hondo_TreeDynamics_1980_2000.csv")
+# check to see if the stem height (from ground to top of tree) greater than/equal to height to canopy
+
+tree_dyn6 <- tree_dynamics5 %>% select(tree_tag, stem_height_1983_m, height_to_crown_1983_m) %>% na.omit() 
+tree_dyn6 %>% verify(stem_height_1983_m >= height_to_crown_1983_m) # this is violated in 15 cases
+
+problem_tree <- (tree_dyn6[which(tree_dyn6$height_to_crown_1983_m > tree_dyn6$stem_height_1983_m),])
+remove <- as.vector(problem_tree$tree_tag)
+tree_dynamics6 <- tree_dynamics5 %>% filter((tree_tag %in% remove) == FALSE) %>% 
+  # remove cases where height to canopy absurdly large compared to stem height
+  rename(BSD_1983_cm = BSD_1983)
+
+# everything has units, is consistent with other dfs and is of a reasonable value
+
+#write_csv(tree_dynamics6, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv")

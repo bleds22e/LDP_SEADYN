@@ -17,19 +17,38 @@ to_degrees <- stand_coords %>%
   # convert from character to numeric data
   mutate_at(3:8, as.numeric) %>% 
   # calculate the decimal degree coordinates from the incorrect format
-  mutate(lat = lat_d + lat_m/60 + lat_s/3600,
-            long= -1*(long_d + long_m/60 + long_s/3600), .keep = "unused") %>% 
+  mutate(latitude_degrees = lat_d + lat_m/60 + lat_s/3600,
+            longitude_degrees = -1*(long_d + long_m/60 + long_s/3600), .keep = "unused") %>% 
   # this comments column doesn't include any useful information, so remove that
-  select(-comments)
+  select(-comments) %>% 
+  mutate(elevation_m = elevation_ft*0.3048) %>% select(-elevation_ft) %>% 
+  rename(stand_code = stand)
+  
+#write_csv(to_degrees, "./Hondo/StandInfo/clean_data/Hondo_StandLocation.csv")
 
-#write_csv(to_degrees, "./Hondo/StandInfo/clean_data/SEADYN_Hondo_StandInformation.csv")
-
-means_only <- to_degrees %>% filter(corner == "Means") %>% select(-corner) %>% mutate(bryoid_cover = rep(1, times = 8),
-                                                                                      vascular_cover = rep(1, times = 8),
-                                                                                      litter = c(1,1,1,0,0,0,0,0),
-                                                                                      soil = c(1,1,1,0,0,0,0,0),
-                                                                                      saplings = c(1,1,1,1,1,1,1,0),
-                                                                                      densiometer = rep(1, times = 8),
+means_only <- to_degrees %>% filter(corner == "Means") %>% select(-corner) %>% mutate(vascular_cover = rep(1, times = 8),
+                                                                                      bryoid_cover = rep(1, times = 8),
                                                                                       tree_dynamics = rep(1, times = 8),
+                                                                                      saplings = c(1,1,1,1,1,1,1,0),
+                                                                                      dendrochronology = c(1,1,1,0,0,0,0,0),
+                                                                                      litter = c(1,1,1,0,0,0,0,0),
+                                                                                      probe_temp = rep(1, times = 8),
+                                                                                      soil_conditions = c(1,1,1,0,0,0,0,0),
+                                                                                      tree_cover = rep(1, times = 8),
                                                                                       dates_burned = c(NA, NA, 2001, 2001, NA, 2001, NA, 2001))
-#write_csv(means_only, "./Hondo/StandInfo/clean_data/SEADYN_Hondo_StandInfo.csv")
+#write_csv(means_only, "./Hondo/StandInfo/clean_data/Hondo_StandInformation1.csv")
+
+#QC contour data... 
+
+qc_contours <- read_csv("./Hondo/StandInfo/clean_data/Hondo_StandContours.csv")
+qc_contours2 <- qc_contours %>% 
+  mutate(contour_value = contour_value - 10) %>% 
+  rename(relative_elevation_m = contour_value,
+         WE_marker = east_west,
+         SN_marker = north_south)
+summary(qc_contours2)
+
+levels(as.factor(qc_contours2$SN_marker))
+
+write_csv(qc_contours2, "./Hondo/StandInfo/clean_data/Hondo_StandContours.csv" )
+
