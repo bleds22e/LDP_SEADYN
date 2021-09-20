@@ -29,7 +29,7 @@ stand1_clean <- rbind(column_names, stand1)
 stand1_clean <- janitor::row_to_names(stand1_clean, row_number = 1)
 stand1_clean <- stand1_clean[-c(1:6),]
 
-# each df has different numbers of rows at the beginning, so need to change them seperately:
+# each df has different numbers of rows at the beginning, so need to change them separately:
 stand2_clean <- rbind(column_names, stand2)
 stand2_clean <- janitor::row_to_names(stand2_clean, row_number = 1)
 stand2_clean <- stand2_clean[-c(1:5),]
