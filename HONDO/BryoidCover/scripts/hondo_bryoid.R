@@ -4,14 +4,14 @@
 library(tidyverse)
 library(janitor)
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1981_1984/txt_files/single_entry")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry")
 
 # first set of data: surveys for quadrats where name of quad was entered only once with data split over multiple lines
 # of each txt file
 
 for (file in 1:length(file.list)){
   filename = file.list[file]
-  rawfileloc = paste("./Hondo/BryoidSurvey/raw_data/1981_1984/txt_files/single_entry/", filename, sep = "")
+  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE, sep = "")
   trim.positions <- grep("[AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz]", file$V1) 
   # one can tell the start of a new line by the presence of a letter, so identify these break points
@@ -39,7 +39,7 @@ for (file in 1:length(file.list)){
   }
   empty_data[,1] <- str_remove_all(empty_data[,1], "[']")
   csvname <- gsub(".txt", ".csv", filename)
-  cleanfileloc <- paste("./Hondo/BryoidSurvey/raw_data/1981_1984/csv_files/", csvname, sep = "")
+  cleanfileloc <- paste("./Hondo/BryoidCover/raw_data/1981_1984/csv_files/", csvname, sep = "")
   write_csv(empty_data, cleanfileloc, col_names = F)
 }
 
@@ -47,11 +47,11 @@ for (file in 1:length(file.list)){
 # problem with this file = decimal cover entries run together with prior numbers. sep by "." and whitespace
 # same method as for stand2 Vascular Plant Survey (readLines)
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1981_1984/txt_files/double_entry")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/txt_files/double_entry")
 
 for (file in 1:length(file.list)){
   filename = file.list[file]
-  rawfileloc = paste("./Hondo/BryoidSurvey/raw_data/1981_1984/txt_files/double_entry/", filename, sep = "")
+  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/txt_files/double_entry/", filename, sep = "")
   con <- file(rawfileloc)
   open(con)
   results_list <- list()
@@ -103,7 +103,7 @@ for (file in 1:length(file.list)){
   data_pt2 <- data %>% filter(row_number() %% 2 == 0) %>% select(-1) # extract all even rows, and remove the first col (since entry should be the quadrat name)
   alldata <- cbind(data_pt1, data_pt2) %>% remove_empty(which = "cols")
   csvname <- gsub(".txt", ".csv", filename)
-  cleanfileloc <- paste("./Hondo/BryoidSurvey/raw_data/1981_1984/csv_files/", csvname, sep = "")
+  cleanfileloc <- paste("./Hondo/BryoidCover/raw_data/1981_1984/csv_files/", csvname, sep = "")
   write_csv(alldata, cleanfileloc, col_names = F)
 }
 
@@ -111,17 +111,17 @@ for (file in 1:length(file.list)){
 ## now on to the metadata
 
 # read in the species taxonomic codes
-code_convert <- read_csv("./Hondo/BryoidSurvey/metadata/bryoid_codes_final.csv") %>% 
+code_convert <- read_csv("./Hondo/BryoidCover/metadata/bryoid_codes_final.csv") %>% 
   select(code, unified_code) 
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1981_1984/species_codes/sp_files", pattern = "*.txt")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sp_files", pattern = "*.txt")
 list.headers.sp <- list()
 list.dates.sp <- list()
 filename_save <- vector()
 
 for (x in 1:length(file.list)){
   filename = file.list[x]
-  rawfileloc = paste("./Hondo/BryoidSurvey/raw_data/1981_1984/species_codes/sp_files/", filename, sep = "")
+  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sp_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE)
   start.trim <- min(grep("VARIABLE", file[,1], fixed = TRUE)) # identify where col names start
   end.trim <- min(grep("INPUT MEDIUM", file[,1], fixed = TRUE)) - 1 # and where they end
@@ -157,14 +157,14 @@ names(list.dates.sp) <- filename_save
 # some species code files appear to be missing, but these are present in the calculation (.sx files) metadata...
 # just need to modify a new loop to extract those as well
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1981_1984/species_codes/sx_files", pattern = "*.txt")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sx_files", pattern = "*.txt")
 list.headers.sx <- list()
 list.dates.sx <- list()
 filename_save <- vector()
 
 for (x in 1:length(file.list)){
   filename = file.list[x]
-  rawfileloc = paste("./Hondo/BryoidSurvey/raw_data/1981_1984/species_codes/sx_files/", filename, sep = "")
+  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sx_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE)
   start.trim <- min(grep("/PLOTNO", file[,1], fixed = TRUE))
   end.trim <- grep("[(]", file[,1])[2] - 1
@@ -205,12 +205,12 @@ list.all.dates <- c(list.dates.sp, list.dates.sx)
 
 # back to the bryoid cover data, now in csv files ... let's make a list of these dfs now
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1981_1984/csv_files")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/csv_files")
 filenames <- vector()
 data.list <- list()
 
 for (i in 1:length(file.list)){
-  file <- read_csv(paste("./Hondo/BryoidSurvey/raw_data/1981_1984/csv_files/", file.list[i], sep = ""), col_names = F)
+  file <- read_csv(paste("./Hondo/BryoidCover/raw_data/1981_1984/csv_files/", file.list[i], sep = ""), col_names = F)
   filename <- file.list[i]
   filenames[i] <- str_remove_all(str_remove_all(filename, ".st"), ".csv")
   data.list[[i]] <- file
@@ -321,11 +321,11 @@ fixed.bryoid.data <- full.bryoid.data %>%
 
 # 1980s files that were manually entered (25 m2 stands 1-3)
 
-file.list <- list.files(path = "./Hondo/BryoidSurvey/raw_data/1980_files")
+file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1980_files")
 hondo_1980s <- data.frame()
 
 for (i in 1:length(file.list)){
-  df <- read_csv(paste("./Hondo/BryoidSurvey/raw_data/1980_files/", file.list[i], sep = ""))
+  df <- read_csv(paste("./Hondo/BryoidCover/raw_data/1980_files/", file.list[i], sep = ""))
   df_length <- length(df)
   df2 <- df %>% pivot_longer(cols = 3:df_length, names_to = "quadrat", values_to = "cover") # need to change format to put quadrat as a grouping variable
   df3 <- df2 %>% pivot_wider(id_cols = c(key,quadrat), names_from = species, values_from = cover) %>% # and then pivot back to wide format where species is the column, quadrat is associated with each observation
@@ -350,9 +350,9 @@ hondo_1980s <- hondo_1980s %>% mutate(stand = as.factor(stand),
 # join the files together
 all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for all years together
 
-#write_csv(all_bryoid_data, "./Hondo/BryoidSurvey/clean_data/bryoidcover_1980_1984.csv")
+#write_csv(all_bryoid_data, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
 
-cover <- read_csv("./Hondo/BryoidSurvey/clean_data/bryoidcover_1980_1984.csv") %>% 
+cover <- read_csv("./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv") %>% 
   mutate_at(7:90, as.numeric)
 
 cover %>% assert(within_bounds(0,100), 7:90) 
@@ -371,5 +371,5 @@ cover2 %>% verify(stand_size %in% c(5,25))
 cover2 <- cover2 %>% select(-day) # day not super important, just month and year
 # all done! now overwrite original data with QCed data
 
-#write_csv(cover2, "./Hondo/BryoidSurvey/clean_data/bryoidcover_1980_1984.csv")
+#write_csv(cover2, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
 

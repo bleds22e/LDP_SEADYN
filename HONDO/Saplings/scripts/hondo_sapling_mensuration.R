@@ -69,13 +69,13 @@ for (row in 1:length(all_data$stand)){
 
 valid_data2 <- valid_data %>% select(-browsed) %>% rename(basal_diameter_mm = diameter_mm, tree_tag = id)
 
-#write_csv(valid_data2, "./Hondo/Saplings/clean_data/Hondo_SaplingMorphology_1983_1985.csv")
+#write_csv(valid_data2, "./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
 #write_csv(tree_info, "./Hondo/Saplings/clean_data/Hondo_SaplingID_1983_1985.csv")
 
 # now to QC the data
 
 library(assertr)
-saplings <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingMorphology_1983_1985.csv")
+saplings <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
 
 saplings %>% assert(within_bounds(1,8), stand)
 saplings %>% assert(within_bounds(1,12), month)
@@ -92,7 +92,7 @@ saplings %>% verify(diameter_mm < 80 | is.na(diameter_mm)) # roughly less than 3
 saplings$basal_diameter_mm[204] <- 13.3
 saplings <- saplings %>% rename(BSD_mm = basal_diameter_mm, stem_height_cm = height_cm)
 
-#write_csv(saplings, "./Hondo/Saplings/clean_data/Hondo_SaplingMorphology_1983_1985.csv")
+#write_csv(saplings, "./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
 
 sap_info <- read_csv("./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv")
 summary(sap_info)

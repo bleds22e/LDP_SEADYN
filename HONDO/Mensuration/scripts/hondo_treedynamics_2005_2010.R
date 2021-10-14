@@ -1,7 +1,9 @@
 ### Extracting 2005 and 2010 tree data from messy dataframes
 ### AVH September 2021
 
-library(tidyverse)
+pkgs <- c("dplyr","stringr","assertr","skimr","readr")
+
+lapply(pkgs, library, character.only = T)
 
 ## First, read in the relevant files
 
@@ -54,5 +56,44 @@ treedyn_1980_2010 <- treedyn_1980_2001 %>% full_join(tidy_file3)
 
 # need to qc, but all joined together for now.
 
-write_csv(treedyn_1980_2010, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2010.csv")
+# QC data
 
+# 1) tree species should be in the list of valid tree species codes
+# 2) quadrats can only have certain specified values as well (1st character 0-9, 2nd letter A-J)
+# 3) stand must be in 1:8
+# 4) tree tag must be numeric
+# 5) DBH and height for 2005/2010 must be greater than zero
+# 6) Lean amount must be 0-90
+# 7) Lean direction must be a compass direction in c(N, S, E, W, NE, NW, SE, SW)
+# 8) Codes must be in list already described in metadata
+# 
+# TO DO: 
+# - rename comments as comments_2000 & take out all the underscores
+# - rename code as tree_code for 2005 and 2010 columns
+# - inspect ranges of numeric data
+
+treedyn_1980_2010 %>% assert(in_set(1:8), stand) %>% 
+  mutate(quad_number = as.numeric(substr(quad,1,1)), quad_letter = substr(quad,2,2)) %>% 
+  assert(in_set(0:9), quad_number) %>% 
+  assert(in_set(c("A","B","C","D","E","F","G","H","I","J")), quad_letter) %>% 
+  assert(in_set(c("PIBA","PIGL", "POTR","PIMA","LALA", "BEPA","ABBA")), species_code) %>% 
+  verify(DBH_2005_cm > 0 | is.na(DBH_2005_cm)) %>% 
+  verify(DBH_2010_cm > 0 | is.na(DBH_2010_cm)) %>% 
+  verify(height_2005_m > 0 | is.na(height_2005_m)) %>% 
+  verify(height_2010_m > 0 | is.na(height_2010_m)) %>% 
+  verify(lean_amount_2005_degrees >= 0 & lean_amount_2005_degrees < 90 | is.na(lean_amount_2005_degrees)) %>% 
+  verify(lean_amount_2010_degrees >= 0 & lean_amount_2010_degrees < 90 | is.na(lean_amount_2010_degrees)) %>% 
+  assert(in_set(c("N","NE","E","SE","S","SW","W","NW")), c(lean_direction_2005,lean_direction_2010)) %>% 
+  assert(in_set(c("DD","DL","DS","LB","LL","DB1","DB2", "LB_LL")), c(code_2005, code_2010))
+  
+skim(treedyn_1980_2010 %>% select(DBH_2005_cm,DBH_2010_cm,height_2005_m,height_2010_m))
+# no outliers, looks good.
+
+qc_treedyn <- treedyn_1980_2010 %>% rename(tree_code_2005 = code_2005,
+                                           tree_code_2010 = code_2010,
+                                           comments_2000 = comments) %>% 
+  mutate(comments_2000 = str_replace_all(comments_2000, "_", " "))
+
+# save QCed file
+
+write_csv(qc_treedyn, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2010.csv")
