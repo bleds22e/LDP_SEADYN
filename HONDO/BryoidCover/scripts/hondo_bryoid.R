@@ -232,10 +232,10 @@ for (x in 1:length(data.list)){
   df$stand <- substr(filename, 2, 2) #stand number is in position 2 of the file name string
   df$year <- paste("19", substr(filename, start = 3, stop = 4), sep = "") # and the date (19**) in the 3-4 position
   if (str_detect(filename, "25")){
-    df$stand_size = 25
+    df$quadrat_size = 25
   }
   else {
-    df$stand_size = 5
+    df$quadrat_size = 5
   } # note which stand size we are dealing with
   # change quadrats to all have uppercase characters in them and drop trailing characters where present
   df$PLOTNO <- substr(toupper(df$PLOTNO), 1, 2)
@@ -294,7 +294,7 @@ for (i in 1:length(data.list)){
     df <- df %>% mutate(PLOTNO = as.factor(PLOTNO),
                         stand = as.integer(stand),
                         year = as.numeric(year),
-                        stand_size = as.factor(stand_size)) %>%
+                        quadrat_size = as.factor(quadrat_size)) %>%
       rename(quadrat = PLOTNO)
     if (i == 1){
       full.bryoid.data <- df
@@ -314,8 +314,8 @@ fixed.bryoid.data <- full.bryoid.data %>%
   mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")), # isolate month code
          day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>% # isolate day
   full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric) %>% 
-  unite(key, c(stand,year,month,day,stand_size,quadrat), sep = "_") %>% 
-  separate(key, into = c("stand","year","month","day","stand_size","quadrat"), sep = "_") # unite into key and then split to put columns at the beginning of the df
+  unite(key, c(stand,year,month,day,quadrat_size,quadrat), sep = "_") %>% 
+  separate(key, into = c("stand","year","month","day","quadrat_size","quadrat"), sep = "_") # unite into key and then split to put columns at the beginning of the df
 
 ## still need to QC, but for now, looking GREAT!
 
@@ -329,7 +329,7 @@ for (i in 1:length(file.list)){
   df_length <- length(df)
   df2 <- df %>% pivot_longer(cols = 3:df_length, names_to = "quadrat", values_to = "cover") # need to change format to put quadrat as a grouping variable
   df3 <- df2 %>% pivot_wider(id_cols = c(key,quadrat), names_from = species, values_from = cover) %>% # and then pivot back to wide format where species is the column, quadrat is associated with each observation
-    separate(key, into = c("stand","year","date_code","stand_size"), sep = "_") %>% 
+    separate(key, into = c("stand","year","date_code","quadrat_size"), sep = "_") %>% 
     mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")),
            day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>%
     full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric)
@@ -342,7 +342,7 @@ for (i in 1:length(file.list)){
 }
 
 hondo_1980s <- hondo_1980s %>% mutate(stand = as.factor(stand),
-                                    stand_size = as.factor(stand_size),
+                                    quadrat_size = as.factor(quadrat_size),
                                     quadrat = as.factor(quadrat),
                                     day = as.factor(day),
                                     month = as.factor(day))
@@ -363,11 +363,11 @@ cover %>% assert(within_bounds(1,12), 3)
 cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
 
 cover %>% assert(within_bounds(1,12), 3)
-cover %>% verify(stand_size %in% c(5,25))
+cover %>% verify(quadrat_size %in% c(5,25))
 
 cover2 <- cover %>% slice(-(3101:3147))
 
-cover2 %>% verify(stand_size %in% c(5,25))
+cover2 %>% verify(quadrat_size %in% c(5,25))
 cover2 <- cover2 %>% select(-day) # day not super important, just month and year
 # all done! now overwrite original data with QCed data
 
