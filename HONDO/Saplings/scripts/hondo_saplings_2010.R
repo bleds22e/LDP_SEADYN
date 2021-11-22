@@ -6,7 +6,7 @@ library(assertr)
 
 data <- read_csv("./Hondo/Saplings/raw_data/2010_data/Hondo_Saplings_Stand7_2010.csv",
                  col_names = c("stand", "quad","tree_tag","species_code","base_coord_N_m",
-                               "base_coord_S_m","base_coord_E_m","base_coord_W_m","DBH_m",
+                               "base_coord_S_m","base_coord_E_m","base_coord_W_m","DBH_cm",
                                "stem_height_m","tree_code","stem_lean_amt","stem_lean_direction", "comments"),
                  skip = 1, col_types = c("f","f","f", "n","n",
                                          "n","n","n","n","c","n",
@@ -31,7 +31,7 @@ data %>% verify(stand == 7) %>% verify(substr(quad, 1,1) %in% 0:9) %>%
            verify(species_code %in% c("PIMA","LALA")) %>% 
   verify(base_coord_S_m > 0 & base_coord_S_m < 5) %>% 
   verify(base_coord_W_m > 0 & base_coord_W_m < 5) %>% 
-  verify(DBH_m > 0) %>% verify(stem_height_m > 0) %>% 
+  verify(DBH_cm > 0) %>% verify(stem_height_m > 0) %>% 
   verify(tree_code %in% c("LL","LD","DD")) %>% 
   verify(stem_lean_amt > 0 & stem_lean_amt < 90) %>% 
   verify(stem_lean_direction %in% c("N","S","E","W","NW","SW","NE","SE"))
