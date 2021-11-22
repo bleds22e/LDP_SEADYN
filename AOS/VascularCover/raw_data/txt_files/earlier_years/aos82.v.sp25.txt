@@ -1,0 +1,300 @@
+soEDIT
+PAGESIZE       120
+RUN NAME       Athabasca Oil Sands Ecological Monitoring: August 1982 Surveys
+FILE NAME      AOS82V25
+               Eighteen Stand Tables of 1982 Vascular Cover % Data (5m x 5m)
+VARIABLE LIST  PLOTNO
+               PIBA PIGL PIMA POTR POBA BEPA LALA VAMY VAVI ARUV 
+               ROAC PRPE AMAL RUST LODI VIED HUTO SABE ALCR LEGR 
+               SAPS SYAL BEPU SASC SHCA
+               SASP VACA SAMY MACA ASLA ANMU GABO MELI LIBO CARO
+               SODE VIAD APAN COPA FRVI POTRI GELI PYVI HICA PYSE
+               EPAN ARCA ARNU COCA LIPH 
+               ANPA TRBO VIRE GORE LAOC VIAM PEPA ASCI ACMI ANRA
+               DRSP SESP SESE SECY STLO RACE MINT GEBI ARLY CHEN
+               PELA AQFL GEAM RUAC PYAS 
+               MINU ORPU ELIN CXRI CXFO ORAS AGSC BRCI SCPU JUBA
+               ELGL CACA CAIN FESA BRPU CXSP EQVA LYTR LYAN EQSY
+               EQSC SEDE EQPR LYCL EQAR
+               TEMP PRVI LOVI PEGR EMNI
+INPUT MEDIUM   DISK
+COMMENT        Subfile names take the form Snna, where: 
+                 nn refers to the stand number, 
+                 a=N is a new stand in 1982, and 
+                 a=B is a stand that was burned after the survey of 1981.
+SUBFILE LIST   S01N (25) S02N (25) S03N (25) S04N (25) 
+               S01B (25) S02 (25)  S03 (25)  S04 (25)  S05 (25) 
+                         S07 (25)  S08 (25)  S09 (25)  S10 (25)  
+               S11B (25) S12 (25)            S14 (25)  S15 (25) 
+               S16  (25) 
+INPUT FORMAT   FIXED (A2,1X,25F3.0 / 3(3X,25F3.0 /), 3X,5F3.0)
+MISSING VALUES TEMP (0)
+COMPUTE        TREE =    PIBA+PIGL+PIMA+POTR+POBA+BEPA+LALA 
+COUNT          TREERP =  PIBA TO LALA (0.01 TO HIGHEST)
+COMPUTE        SHRUB =   VAMY+VAVI+ARUV+
+                         ROAC+PRPE+AMAL+RUST+LODI+VIED+HUTO+SABE+ALCR+LEGR+
+                         SAPS+SYAL+BEPU+SASC+SHCA+
+                         SASP+VACA+SAMY+PRVI+LOVI+EMNI+LIBO
+COUNT          SHRUBRP = VAMY TO SAMY LIBO PRVI LOVI EMNI (0.01 TO HIGHEST)
+COMPUTE        FORB =    MACA+ASLA+ANMU+GABO+MELI+CARO+
+                         SODE+VIAD+APAN+COPA+FRVI+POTRI+GELI+PYVI+HICA+PYSE+
+                         EPAN+ARCA+ARNU+COCA+LIPH+
+                         ANPA+TRBO+VIRE+GORE+LAOC+VIAM+PEPA+ASCI+ACMI+ANRA+
+                         DRSP+SESP+SESE+SECY+STLO+RACE+MINT+GEBI+ARLY+CHEN+
+                         PELA+AQFL+GEAM+RUAC+PYAS+PEGR+MINU
+COUNT          FORBRP =  MACA TO MELI CARO TO MINU PEGR (0.01 TO HIGHEST)
+COMPUTE        GRAM  =   ORPU+ELIN+CXRI+CXFO+ORAS+AGSC+BRCI+SCPU+JUBA+ELGL+
+                         CACA+CAIN+FESA+BRPU+CXSP 
+COUNT          GRAMRP =  ORPU TO CXSP (0.01 TO HIGHEST)
+COMPUTE        PTER   =  EQVA+LYTR+LYAN+EQSY+EQSC+SEDE+EQPR+LYCL+EQAR
+COUNT          PTERRP =  EQVA TO EQAR (0.01 TO HIGHEST)
+COMPUTE        TOT =     TREE+SHRUB+FORB+GRAM+PTER
+COMPUTE        TOTRP   = TREERP+SHRUBRP+FORBRP+GRAMRP+PTERRP
+PRINT FORMATS  PLOTNO (A)
+               PIBA TO EMNI TREE SHRUB FORB GRAM PTER TOT (2)
+               TREERP SHRUBRP FORBRP GRAMRP PTERRP TOTRP (0)
+RUN SUBFILES   ALL
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) PIBA TO SABE (5)     /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+READ INPUT DATA
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) ALCR TO SODE (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) VIAD TO GORE (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) LAOC TO AQFL (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) GEAM TO BRPU (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) CXSP TO EQAR (5) PRVI TO EMNI (5) /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0) LIST    /
+               VARIABLES = PLOTNO'Plot'(4) TEMP (4) TREE TO TOTRP (7)  /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Soil Temperature & Synthetic Variables by 5x5 m Plots' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = PIBA TO SABE (5)     /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = ALCR TO SODE (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = VIAD TO GORE (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = LAOC TO AQFL (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = GEAM TO BRPU (5)       /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = CXSP TO EQAR (5) PRVI TO EMNI (5) /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Species Cover % Values per 5x5 m Plot by Stand' /
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+REPORT         FORMAT = HDSPACE(1) BRKSPACE(0) FTSPACE(0)         /
+               VARIABLES = TEMP (4) TREE TO TOTRP (7)  /
+               HEAD = 'Athabasca Oil Sands Ecological Monitoring Program'
+               'August 1982 Survey of Vascular Plant Communities'
+               'in Pinus banksiana Reference Stands'
+               'Soil Temperature & Synthetic Variables per 5x5 m Plot by Stand'/
+               BREAK = SUBFILE 'Stand' (5)                        /
+               SUMMARY = MEAN 'Mean'
+VAR LABELS     PIBA Pinus banksiana /
+               PIGL Picea glauca /
+               PIMA Picea mariana /
+               POTR Populus tremuloides /
+               POBA Populus balsamifera /
+               BEPA Betula papyrifera /
+               LALA Larix laricina /
+               VAMY Vaccinium myrtilloides /
+               VAVI Vaccinium vitis-idaea /
+               ARUV Arctostaphylos uva-ursi /
+               ROAC Rosa acicularis /
+               PRPE Prunus pensylvanica /
+               AMAL Amelanchier alnifolia /
+               RUST Rubus strigosus /
+               LODI Lonicera dioica /
+               VIED Viburnum edule /
+               HUTO Hudsonia tomentosa /
+               SABE Salix bebbiana /
+               ALCR Alnus crispa /
+               LEGR Ledum groenlandicum /
+               SAPS Salix pseudomonticola /
+               SYAL Symphoricarpos albus /
+               BEPU Betula pumila /
+               SASC Salix scouleriana /
+               SHCA Sheperdia canadensis /
+               SASP Salix sp. /
+               VACA Vaccinium caespitosum /
+               SAMY Salix myrtillifolia /
+               MACA Maianthemum canadense /
+               ASLA Aster laevis /
+               ANMU Anemone multifida /
+               GABO Galium boreale /
+               MELI Melampyrum lineare /
+               LIBO Linnaea borealis /
+               CARO Campanula rotundifolia /
+               SODE Solidago decumbens /
+               VIAD Viola adunca /
+               APAN Apocynum androsaemifolium /
+               COPA Comandra pallida /
+               FRVI Fragaria virginiana /
+               POTRI Potentilla tridentata /
+               GELI Geocaulon lividum /
+               PYVI Pyrola virens /
+               HICA Hieracium canadense /
+               PYSE Pyrola secunda /
+               EPAN Epilobium angustifolium /
+               ARCA Artemisia campestris /
+               ARNU Aralia nudicaulis /
+               COCA Cornus canadensis /
+               LIPH Lilium philadelphicum /
+               ANPA Anemone patens /
+               TRBO Trientalis borealis /
+               VIRE Viola renifolia /
+               GORE Goodyera repens /
+               LAOC Lathyrus ochroleucus /
+               VIAM Vicia americana /
+               PEPA Petasites palmatus /
+               ASCI Aster ciliolatus /
+               ACMI Achillea millefolium /
+               ANRA Antennaria racemosa /
+               DRSP Draba sp. /
+               SESP Senecio sp. /
+               SESE Senecio sp. /
+               SECY Senecio cymbalarioides /
+               STLO Stellaria longipes /
+               RACE Ranunculus sp. /
+               MINT Labiatae sp. /
+               GEBI Geranium bicknellii /
+               ARLY Arabis lyallii /
+               CHEN Chenopodium sp. /
+               PELA Pedicularis labradorica /
+               AQFL Aquilegia  flavescens /
+               GEAM Gentianella amarella /
+               RUAC Rubus acaulis /
+               PYAS Pyrola asarifolia /
+               MINU Mitella nuda /
+               ORPU Oryzopsis pungens /
+               ELIN Elymus innovatus /
+               CXRI Carex richardsonii /
+               CXFO Carex foenea /
+               ORAS Oryzopsis asperifolia /
+               AGSC Agrostis scabra /
+               BRCI Bromus ciliatus /
+               SCPU Schizachne purpurascens /
+               JUBA Juncus balticus /
+               ELGL Elymus glaucus /
+               CACA Calamagrostis canadensis /
+               CAIN Calamagrostis inexpansa /
+               FESA Festuca saximontana /
+               BRPU Bromus pumpellianus /
+               CXSP Carex sp. /
+               EQVA Equisetum variegatum /
+               LYTR Lycopodium tristachyum /
+               LYAN Lycopodium annotinum /
+               EQSY Equisetum sylvaticum /
+               EQSC Equisetum scirpoides /
+               SEDE Selaginella densa /
+               EQPR Equisetum pratense /
+               LYCL Lycopodium clavatum /
+               EQAR Equisetum arvense /
+               TEMP Soil temperature 5-10 cm degrees F/
+               PRVI Prunus virginiana /
+               LOVI Lonicera villosa /
+               PEGR Pedicularis groenlandica /
+               EMNI Empetrum nigrum /
+               TREE    Total Tree Cover per Plot /
+               TREERP  Tree Species Richness per Plot /
+               SHRUB   Total Shrub Cover per Plot /
+               SHRUBRP Shrub Species Richness per Plot /
+               FORB    Total Forb Cover per Plot /
+               FORBRP  Forb Species Richness per Plot /
+               GRAM    Total Graminoid Cover per Plot/
+               GRAMRP  Graminoid Species Richness per Plot /
+               PTER    Total Pteridophyte Cover per Plot/
+               PTERRP  Pteridophyte Species Richness per Plot /
+               TOT     Total Vascular Cover per Plot /
+               TOTRP   Species Richness per Plot /
+TASK NAME      Descriptive Statistics for Each Species Variable Over All Stands
+USER1          PIBA TO EQAR PRVI TO EMNI
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Synthetic Variables Over All Stands
+USER1          TEMP TREE TO TOTRP
+STATISTICS     1
+RUN SUBFILES   EACH
+TASK NAME      Descriptive Statistics for Each Species Variable and Each Stand
+USER1          PIBA TO EQAR PRVI TO EMNI
+OPTIONS        2
+TASK NAME      Descriptive Statistics for Synthetic Variables at Each Stand
+USER1          TEMP TREE TO TOTRP
+STATISTICS     1
+FINISH

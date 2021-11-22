@@ -1,0 +1,271 @@
+$SIG * 'RUN SPSSx AOS 1983 NON-VASCULAR' PRIORITY=L FORMAT=FMTP4 OVERLAY=NONE T=60S PAGES=500 PACKAGE=LOOSE PRINTON=ONESIDE 
+$SET COST=OFF ETM=
+$COM
+$COM  This file contains both the batch job and the SPSSx
+$COM  control cards for running all the USER1 statistics for the AOS
+$COM  non-vascular cover % survey data in the 19 reference stands
+$COM  surveyed in 1983. Don't do anything such as renumbering any
+$COM  portion of this file before you understand how it is put
+$COM  together. Note that:
+$COM  1. The batch job is in the negative line number range.
+$COM  2. Each reference stand has its own first few lines of the
+$COM     control cards it requires (most importantly the file name
+$COM     and the subfile name(s)), and then the $CONTINUE WITH
+$COM     statement gets SPSSX onto reading the control cards which
+$COM     are in common with every other stand. This avoids a great
+$COM     deal of duplication; most of the control cards are
+$COM     identical because one species list is used for all stands.
+$COM  3. To execute this program COPY AOS83.B.SX.5(-200,-139.7) to
+$COM     *BATCH*. Make sure the appropriate data files are on disk.
+$COM     To list the entire file List AOS83.B.SX.5@-IC(*F).
+$COM
+$SET COST=ON ETM=HTR
+$RUN *SPSSX scards=AOS83.B.SX.5(-136)+AOS83.B.SX.5(-133.9) sprint=-6BP T=5S
+$IF RC > 0 SIGNOFF
+$RUN *SPSSX scards=AOS83.B.SX.5(-127)+AOS83.B.SX.5(-124.9) sprint=-6JS T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-124)+AOS83.B.SX.5(-121.9) sprint=-6LF T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-115)+AOS83.B.SX.5(-112.9) sprint=-6ML T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-112)+AOS83.B.SX.5(-109.9) sprint=-6OI T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-103)+AOS83.B.SX.5(-100.9) sprint=-6SA T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-94)+AOS83.B.SX.5(-91.9) sprint=-6WO  T=5S
+$RUN *SPSSX scards=AOS83.B.SX.5(-91)+AOS83.B.SX.5(-88.9) sprint=-6WY  T=5S
+$SET COST=OFF ECHO=OFF ETM=
+$COPY -6BH
+$COPY -6BP
+$COPY -6FD
+$COPY -6FS
+$COPY -6JS
+$COPY -6LF
+$COPY -6MD
+$COPY -6MF
+$COPY -6ML
+$COPY -6OI
+$COPY -6OP
+$COPY -6RL
+$COPY -6SA
+$COPY -6SJ
+$COPY -6TT
+$COPY -6WO
+$COPY -6WY
+$SIGNOFF
+$ENDFILE
+SUBTITLE "BEAR HOLLOW: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='BH83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+  (01)'AU08'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "BEAVER POND: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='BP83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY20' (02)'JN17' (03)'JL14' (04)'AU25' (05)'SE23' 
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "FIREBAG DOGHAIR: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='FD83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU09'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "FIREBAG SAVANNA: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='FS83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU09'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "JACK STRAWS: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='JS83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY23' (02)'JN19' (03)'JL20' (04)'AU28' (05)'SE25' 
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "LICHEN FOREST: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='LF83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY22' (02)'JN18' (03)'JL19' (04)'AU27' (05)'SE24' 
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "MCCLELLAND DOG.: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='MD83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU11'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "MCCLELLAND OLD: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='MF83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU11'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "MILDRED LAKE: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='ML83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY18' (02)'JN15' (03)'JL13' (04)'AU23' (05)'SE21'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "OASIS ISLAND: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='OI83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY19' (02)'JN16' (03)'JL15' (04)'AU23' (05)'SE22' 
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "OLD PINE: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='OP83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU12'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "RAFT LANDING: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='RL83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU08'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "SAND ALTA: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='SA83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY21' (02)'JN20' (03)'JL16' (04)'AU26' (05)'SE27'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "SEISMIC JUNC.: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='SJ83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU06'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "TWO TERRACES: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='TT83.V.ST25'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'AU07'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "WINTER ROAD OLD: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='WO83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY25' (02)'JN22' (03)'JL18' (04)'AU30' (05)'SE26'
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SUBTITLE "WINTER ROAD YG.: 1983 NON-VASCULAR COVER % DATA (.5M X .5M)"
+FILE HANDLE DATA/NAME='WY83.B.ST.5'
+$CONTINUE WITH AOS83.B.SX.5
+VALUE LABELS DATE
+ (01)'MY24' (02)'JN21' (03)'JL17' (04)'AU29' (05)'SE28' 
+$CONTINUE WITH AOS83.B.SX.5(-88)
+SORT CASES BY DATE 
+SPLIT FILE BY DATE
+USERPROC NAME=SEADYN
+  /VARIABLES=AULPAL TO POHNUT POLCOM POLJUN TO USNSPP
+  /OPTIONS=2,11,14
+USERPROC NAME=SEADYN
+  /VARIABLES=BRYOPHCV TO TOTALRP
+  /STATISTICS=1
+FINISH
+$ENDFILE
+TITLE          Athabasca Oil Sands Ecological Monitoring: 1983 Surveys
+SET LENGTH=120
+SET BLANKS=0
+DATA LIST FILE=DATA RECORDS=3 NOTABLE
+              /PLOTNO
+               AULPAL BRASAL CERPUR DICPOL DICSCO DITFLE DREUNC
+               EURPUL HYLSPL ORTFLA PLESCH POHNUT POLJUN POLPIL
+               PTICIL PTIPUL PTICC  SPLSPP TETANG TOMNIT CETCUC
+               CETERI CETNIV CLAMIT CLARAN
+               CLASTE CLAAMA CLACAP CLACAR CLACEN CLACHL CLACOC
+               CLACON CLACOR CLACRP CLACRT CLAGON CLAGRA CLAMUL
+               CLAPHY CLAPYX CLASQU CLASUB CLAUNC CLAVER LECGRA
+               PELAPH PELMAL PELPUL PELRUF
+               STEALP BRYSPP CETHAL CETPIN EVEMES HYPPHY PARELE
+               PARSUL PARAMB PARHYP PLAGLA USNSPP POLCOM
+                     (A2, 1X, 25F3.0 / 3X, 25F3.0 / 3X, 13F3.0)
+COMPUTE        BRYOPHCV = AULPAL+BRASAL+CERPUR+DICPOL+DICSCO+DITFLE+DREUNC+
+                          EURPUL+HYLSPL+ORTFLA+PLESCH+POHNUT+POLJUN+POLPIL+
+                          PTICIL+PTIPUL+PTICC +SPLSPP+TETANG+TOMNIT +POLCOM
+COUNT          BRYOPHRP = AULPAL TO TOMNIT POLCOM (0.01 THRU HIGHEST)
+COMPUTE        LCHTERCV = CETCUC+CETERI+CETNIV+CLAMIT+CLARAN+
+                          CLASTE+CLAAMA+CLACAP+CLACAR+CLACEN+CLACHL+CLACOC+
+                          CLACON+CLACOR+CLACRP+CLACRT+CLAGON+CLAGRA+CLAMUL+
+                          CLAPHY+CLAPYX+CLASQU+CLASUB+CLAUNC+CLAVER+PELAPH+
+                          PELMAL+PELPUL+PELRUF+STEALP+LECGRA
+COUNT          LCHTERRP = CETCUC TO STEALP (0.01 THRU HIGHEST)
+COMPUTE        LCHEPICV = BRYSPP+CETHAL+CETPIN+EVEMES+HYPPHY+PARELE+PARSUL+
+                          PARAMB+PARHYP+PLAGLA+USNSPP
+COUNT          LCHEPIRP = BRYSPP TO USNSPP (0.01 THRU HIGHEST)
+COMPUTE        LCHALLCV = LCHTERCV+LCHEPICV
+COMPUTE        LCHALLRP = LCHTERRP+LCHEPIRP
+COMPUTE        TOTALCV  = BRYOPHCV+LCHALLCV
+COMPUTE        TOTALRP  = BRYOPHRP+LCHALLRP
+COMPUTE NUM=25
+COMPUTE DATE=TRUNC(($CASENUM+NUM-1)/NUM)
+VAR LABELS     AULPAL 'Aulacomnium palustre'
+               BRASAL 'Brachythecium salebrosum'
+               CERPUR 'Ceratodon purpureus'
+               DICPOL 'Dicranum polysetum' 
+               DICSCO 'Dicranum scoparium'
+               DREUNC 'Drepanocladus uncinatus'
+               EURPUL 'Eurhynchium pulchellum'
+               HYLSPL 'Hylocomium splendens' 
+               ORTFLA 'Orthodicranum flagillare'
+               PLESCH 'Pleurozium schreberi'
+               POHNUT 'Pohlia nutans'
+               POLCOM 'Polytrichum commune'
+               POLJUN 'Polytrichum juniperinum'
+               POLPIL 'Polytrichum piliferum'
+               PTICIL 'Ptilidium ciliare'
+               PTIPUL 'Ptilidium pulcherrimum'
+               PTICC  'Ptilium crista-castrensis'
+               CETERI 'Cetraria ericetorum'
+               CETPIN 'Cetraria pinastri' 
+               CETNIV 'Cetraria nivalis'
+               CLACAP 'Cladonia capitata' 
+               CLACEN 'Cladonia cenotea'
+               CLACHL 'Cladonia chlorophaea'
+               CLACOC 'Cladonia coccifera'
+               CLACON 'Cladonia coniocraea' 
+               CLACOR 'Cladonia cornuta'
+               CLACRP 'Cladonia crispata' 
+               CLACRT 'Cladonia cristatella'
+               CLAGON 'Cladonia gonecha'
+               CLAGRA 'Cladonia gracilis'
+               CLAMIT 'Cladina mitis'
+               CLAMUL 'Cladonia multiformis'
+               CLAPHY 'Cladonia phyllophora' 
+               CLAPYX 'Cladonia pyxidata'
+               CLARAN 'Cladina rangiferina'
+               CLASTE 'Cladina stellaris'
+               CLASUB 'Cladonis subulata' 
+               CLAUNC 'Cladonia uncialis'
+               CLAVER 'Cladonia verticillata'
+               LECGRA 'Lecidea granulosa'
+               PARSUL 'Parmelia sulcata'
+               PELAPH 'Peltigera aphthosa'
+               PELMAL 'Peltigera malacea'
+               PELPUL 'Peltigera pulverulenta'
+               PELRUF 'Peltigera rufescens' 
+               STEALP 'Stereocaulon alpinum'
+               DITFLE 'Ditrichum flexicaule'
+               USNSPP 'Usnea spp.'
+               PLAGLA 'Platismatia glauca'
+               PARHYP 'Parmeliopsis hyperopta'
+               PARAMB 'Parmeliopsis ambigua'
+               PARELE 'Parmelia elegantula'
+               HYPPHY 'Hypogymnia physodes'
+               EVEMES 'Evernia mesomorpha'
+               CETHAL 'Cetraria halei'
+               BRYSPP 'Bryoria spp.'
+               CLAAMA 'Cladonia amaurocraea'
+               CETCUC 'Cetraria cucullata'
+               TOMNIT 'Tomenthypnum nitens'
+               TETANG 'Tetraplodon angustatus'
+               SPLSPP 'Splachnum spp.'
+               CLACAR 'Cladonia cariosa'
+               CLASQU 'Cladonia squamosa' 
+               BRYOPHCV 'Bryophyte Cover % per Plot'
+               BRYOPHRP 'Bryophyte Spp. Richness per Plot'
+               LCHTERCV 'Terr. Lichen Cover % per Plot'
+               LCHTERRP 'Terr. Lichen Spp. Richness per Plot'
+               LCHEPICV 'Epiph. Lichen Cover % per Plot'
+               LCHEPIRP 'Epiph. Lichen Spp. Richness per Plot'
+               LCHALLCV 'Lichen Cover % per Plot'
+               LCHALLRP 'Lichen Spp. Richness per Plot'
+               TOTALCV  'Cover % per Plot of All Spp.'
+               TOTALRP  'Richness per Plot of All Spp.'
