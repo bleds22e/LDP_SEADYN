@@ -1,4 +1,4 @@
-STAND 3, SURVEY DATE: 20 & 22 Sep 2001, OBSERVERS: Kim Ozeroff (#5) & Beth D (#6) ROWS: 0,2,4,6,8, DATA ENTRY: 21 Nov 2001 (notes: Kim & Beth used thermistor probe for Soil Temps; GHLR
+09-22STAND 3, SURVEY DATE: 20 & 22 Sep 2001, OBSERVERS: Kim Ozeroff (#5) & Beth D (#6) ROWS: 0,2,4,6,8, DATA ENTRY: 21 Nov 2001 (notes: Kim & Beth used thermistor probe for Soil Temps; GHLR
      transcribed data to standard sheet & converted Celsius x.x to Fahrenheit y; Quads 0A-4E surveyed 20 Sep, Quads 4G-8I on 22 Sep [temps "much warmer" on 22 Sep]; <1% cover estimates
      much finer-grained than in 1980-2000)
 

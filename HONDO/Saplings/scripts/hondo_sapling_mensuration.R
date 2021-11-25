@@ -45,19 +45,19 @@ for (tree in 1:length(all_data$id)){
 # tree id position/substratum information
 
 browsing_time <- unique(cbind(years_browsed, id_browsed))
+
 browsing_time <- as.data.frame(browsing_time) %>% rename(id = id_browsed) %>% 
-  mutate(id = as.factor(id), years_browsed = na_if(years_browsed, "")) # if tree was not browsed, put in explicit NA for this column
+  mutate(id = as.factor(id), years_browsed = na_if(years_browsed, "")) %>% 
+  rename(tree_tag = id)# if tree was not browsed, put in explicit NA for this column
 
 # read in tree info to add browsing observations
 
-tree_info <- read_csv("./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv") %>% mutate(id = as.factor(id)) %>% 
-  left_join(browsing_time)  %>% rename(species_code = species, base_coord_S_m = location_south_m,
-                                       base_coord_W_m = location_west_m, quad = quadrat,
-                                       tree_tag = id)
+tree_info <- read_csv("./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv") %>% mutate(tree_tag = as.factor(tree_tag)) %>% 
+  left_join(browsing_time)
 
 # and remove from age data any trees that don't have an established position/identifier
 
-id_valid <- as.numeric(tree_info$id)
+id_valid <- as.numeric(tree_info$tree_tag)
 
 valid_data <- data.frame()
 
@@ -67,34 +67,38 @@ for (row in 1:length(all_data$stand)){
   }
 }
 
-valid_data2 <- valid_data %>% select(-browsed) %>% rename(basal_diameter_mm = diameter_mm, tree_tag = id)
+valid_data2 <- valid_data %>% select(-browsed, -notes) %>% rename(basal_diameter_mm = diameter_mm, tree_tag = id)
 
-#write_csv(valid_data2, "./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
-#write_csv(tree_info, "./Hondo/Saplings/clean_data/Hondo_SaplingID_1983_1985.csv")
+saps_1983 <- valid_data2 %>% filter(year == 1983)
+saps_1983$tree_tag[which(duplicated(saps_1983$tree_tag))]
+saps_1983$stand[which(duplicated(saps_1983$tree_tag))]
+
+saps_1984 <- valid_data2 %>% filter(year == 1984)
+saps_1984$tree_tag[which(duplicated(saps_1984$tree_tag))]
+saps_1984$stand[which(duplicated(saps_1984$tree_tag))]
+
+saps_1985 <- valid_data2 %>% filter(year == 1985)
+saps_1985$tree_tag[which(duplicated(saps_1985$tree_tag))]
+saps_1985$stand[which(duplicated(saps_1985$tree_tag))]
+
+# double checked duplicates, and corrected a couple of mistakes (1985 data for stand 6 hidden in 1984 dataset)
+# duplicate tree tags remaining are real, or else an artifact of the recorder (not me!)
 
 # now to QC the data
 
 library(assertr)
-saplings <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
+saplings <- valid_data2
 
-saplings %>% assert(within_bounds(1,8), stand)
-saplings %>% assert(within_bounds(1,12), month)
-saplings %>% assert(within_bounds(1,31), day)
-saplings %>% assert(within_bounds(1980,1985), year)
-saplings %>% verify(id > 0)
-saplings %>% verify(age > 0 | is.na(age))
-saplings %>% verify(height_cm > 0 | is.na(height_cm))
-saplings %>% verify(diameter_mm > 0 | is.na(diameter_mm))
-saplings %>% verify(diameter_mm < 80 | is.na(diameter_mm)) # roughly less than 3 inches DBH
+saplings %>% assert(within_bounds(1,8), stand) %>% assert(within_bounds(1,12), month) %>% 
+  assert(within_bounds(1,31), day) %>% 
+  assert(within_bounds(1980,1985), year) %>% verify(tree_tag > 0) %>% verify(age > 0 | is.na(age)) %>% 
+  verify(height_cm > 0 | is.na(height_cm)) %>% verify(basal_diameter_mm > 0 | is.na(basal_diameter_mm)) %>% 
+  verify(basal_diameter_mm < 80 | is.na(basal_diameter_mm)) # roughly less than 3 inches DBH
 # one exception, which seems off by a factor of 10 (id 634, year 1985)
-
-
-saplings$basal_diameter_mm[204] <- 13.3
-saplings <- saplings %>% rename(BSD_mm = basal_diameter_mm, stem_height_cm = height_cm)
 
 #write_csv(saplings, "./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv")
 
-sap_info <- read_csv("./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv")
+sap_info <- tree_info
 summary(sap_info)
 levels(as.factor(sap_info$substratum))
 

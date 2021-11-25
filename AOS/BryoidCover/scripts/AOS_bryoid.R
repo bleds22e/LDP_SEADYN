@@ -4,8 +4,9 @@
 
 library(tidyverse)
 library(taxize)
+library(lubridate)
 
-stand_info <- read_csv("./AOS/StandInfo/AOS_coordinates.csv")
+stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv")
 
 # 1: 1981, 5x5 m plots
 
@@ -211,6 +212,8 @@ quad <- substr(quad.col[join.lines], 1, 2) # extract the quadrat info (leave out
 
 bc_1982 <- df2 # some empty columns present at the end, so retain only columns with actual data in them to match colnames
 
+View(bc_1982)
+
 # read in metadata
 
 con <- file("./AOS/BryoidCover/raw_data/txt_files/earlier_years/aos82.b.sp25.txt")
@@ -257,12 +260,13 @@ for (q in 1:length(file_string3)){
   }
 }
 
-stand <- as.data.frame(rep(file_string3, each = 15)) %>% rename(plot_number = 1) %>% 
-  left_join(stand_info) %>% select(plot_code)
+stand <- as.data.frame(rep(file_string3, each = 15)) %>% rename(stand_number = 1) %>% 
+  left_join(stand_info) %>% select(stand_code)
 
 quad.info <- cbind(quad, stand) %>%  mutate(quadrat_size = 25, year = 1982)
 
-bc_1982x <- cbind(quad.info, bc_1982) %>% rename(stand = plot_code)
+bc_1982x <- cbind(quad.info, bc_1982) %>% rename(stand = stand_code) %>% mutate(month = 8) %>% 
+  relocate(month, .after = year)
 
 name_string <- c() # get scientific names
 for (line in sp.names){
@@ -705,16 +709,9 @@ for (file in 1:length(file.list)){
   }
 } # join the data
 
-all_bc <- all_bc %>%  relocate(stand,year,month,day,quadrat_size,quad) # isolate cover only and rearrange data before saving
+all_bc2 <- all_bc %>%  relocate(stand,year,month,day,quadrat_size,quad) %>% # isolate cover only and rearrange data before saving
+  mutate_at(c(7:50), ~replace_na(., 0)) %>% 
+  unite("date", c("year","month","day"), sep = "-", remove = F) %>% 
+  mutate(date = ymd(date)) %>% select(-day) %>% relocate(date, .after = day)
 
-all_bc[is.na(all_bc)] <- 0 # replace NA values with explicit zeroes
-
-write_csv(all_bc, "./AOS/BryoidCover/clean_data/AOS_bryoid_cover_1981_1984.csv")
-
-cover <- read_csv("./AOS/BryoidCover/clean_data/AOS_bryoid_cover_1981_1984.csv")
-summary(cover)
-levels(as.factor(cover$year))
-cover %>% verify(quadrat_size %in% c(5,25))
-
-cover <- cover %>% select(-day) # day not super important, only month + year
-write_csv(cover, "./AOS/BryoidCover/clean_data/AOS_bryoid_cover_1981_1984.csv")
+write_csv(all_bc2, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")

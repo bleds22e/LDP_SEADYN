@@ -3,6 +3,7 @@
 
 library(tidyverse)
 library(janitor)
+library(assertr)
 
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry")
 
@@ -345,7 +346,7 @@ hondo_1980s <- hondo_1980s %>% mutate(stand = as.factor(stand),
                                     quadrat_size = as.factor(quadrat_size),
                                     quadrat = as.factor(quadrat),
                                     day = as.factor(day),
-                                    month = as.factor(day))
+                                    month = as.factor(month))
 
 # join the files together
 all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for all years together
@@ -355,21 +356,38 @@ all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for
 cover <- read_csv("./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv") %>% 
   mutate_at(7:90, as.numeric)
 
-cover %>% assert(within_bounds(0,100), 7:90) 
-cover %>% assert(within_bounds(1, 8), 1)
-cover %>% assert(within_bounds(1980,2021), 2)
-cover %>% assert(within_bounds(1,12), 3)
+cover %>% assert(within_bounds(0,100), 7:90) %>% 
+  assert(within_bounds(1, 8), 1) %>%
+  assert(within_bounds(1980,2021), 2) %>% 
+  assert(within_bounds(1,12), 3) %>% 
+  assert(within_bounds(1,12), 3) %>% 
+  verify(quadrat_size %in% c(5,25))
 
-cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
+#cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
 
-cover %>% assert(within_bounds(1,12), 3)
-cover %>% verify(quadrat_size %in% c(5,25))
+cover2 <- cover %>% unite("date", c(year,month,day), sep = "-", remove = F) %>% 
+  mutate(date = ymd(date)) %>% select(-day) # day not super important, just month and year
 
-cover2 <- cover %>% slice(-(3101:3147))
+# loop to associate dates didn't work for Stand 5 quad size 5 in 1981 or for Stand 3 in 1983. Need to input dates.
 
-cover2 %>% verify(quadrat_size %in% c(5,25))
-cover2 <- cover2 %>% select(-day) # day not super important, just month and year
-# all done! now overwrite original data with QCed data
 
-#write_csv(cover2, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
+cover_st3problem <- cover2 %>% filter(is.na(date) == T & year == 1983) %>% 
+  mutate(month = 10, date = as.Date("1983-10-06"))
+
+cover_st5problems <- cover2 %>% filter(is.na(date) == T & year == 1981)
+
+month.vec <- c(rep(6, times = 47), rep(7, times = 25))
+date.vec <- c(rep(as.Date("1981-06-12"), times = 47), rep(as.Date("1981-07-30"), times = 25))
+
+cover_st5_problems2 <- cover_st5problems %>%  mutate(month = month.vec, date = date.vec)
+
+# join back with other data, replace NA with explicit zeroes
+
+cover_fixed <- cover2 %>% filter(is.na(date) == F) %>% 
+  full_join(cover_st3problem) %>% 
+  full_join(cover_st5_problems2) %>% 
+  mutate_at(.vars = 7:50, ~replace_na(., 0))
+
+write_csv(cover_fixed, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
+
 

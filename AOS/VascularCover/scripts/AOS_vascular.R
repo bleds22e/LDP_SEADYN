@@ -583,18 +583,17 @@ all.sp.codes.taxonomy <-  sp.list.vasc.fill %>%
 
 # finally, to join together the data
 
-corrected_taxa <- read_csv("./AOS/VascularSurvey/metadata/AOS_VascularSpList.csv") %>% select(-X1)
-file.list <- list.files("./AOS/VascularSurvey/raw_data/csv_files", pattern = "*.csv")
+corrected_taxa <- read_csv("./AOS/VascularCover/metadata/AOS_VascularSpList.csv") %>% select(-1)
+file.list <- list.files("./AOS/VascularCover/raw_data/csv_files", pattern = "*.csv")
 
 all_vc <- data.frame() # create empty dataframe to join everything together
 
 for (file in 1:length(file.list)){
   # read in csv file
-  df <- read_csv(paste("./AOS/VascularSurvey/raw_data/csv_files/", file.list[file], sep = ""))
-  df$TEMP
+  df <- read_csv(paste("./AOS/VascularCover/raw_data/csv_files/", file.list[file], sep = ""))
   # need to first sum duplicate columns
   code <- as.data.frame(colnames(df)) %>% rename(code = 1) # create data frame of column names
-  join <- left_join(code, corrected_taxa) %>% # join this column with the taxonomic data to rename incorrect codes with correct version
+  join <- code %>% left_join(corrected_taxa) %>% # join this column with the taxonomic data to rename incorrect codes with correct version
     mutate(sp.code = if_else(is.na(unified_code), code, unified_code))
   colnames(df) <- join$sp.code # and rename the dataframe columns
 
@@ -602,18 +601,22 @@ for (file in 1:length(file.list)){
   dupes <- df[,which(colnames(df) %in% dupe_cols)] # and isolate those columns that need to be summed
   
   sum_col <- data.frame() # create dataframe to hold these sums
-  cn <- as.vector(colnames(dupes[,col])) # isolate column name(s) aka sp. codes for these duplicates
-  for (dc in 1:length(cn)){ # for each duplicate code in this vector of codes
-    subset <- dupes[colnames(dupes) == cn[dc]] # subset those columns associated with a given code
-    for (row in 1:nrow(dupes)){ # and then sum those two columns (never more than that present) to make a unified column
-      sum_col[row,dc] <- dupes[row, 1] + dupes[row, 2]
-      colnames(sum_col) <- cn # and name the column with the code
-    }
-  }
+  cn <- unique(as.vector(colnames(dupes))) # isolate column name(s) aka sp. codes for these duplicates
   
+  if (is_empty(cn) == F){
+    for (dc in 1:length(cn)){ # for each duplicate code in this vector of codes
+      subset <- dupes[colnames(dupes) == cn[dc]] # subset those columns associated with a given code
+      for (row in 1:nrow(dupes)){ # and then sum those two columns (never more than that present) to make a unified column
+        sum_col[row,dc] <- dupes[row, 1] + dupes[row, 2]
+        colnames(sum_col) <- cn[dc] # and name the column with the code
+      }
+    }
+
   nodupe_df <- df[,-which(colnames(df) %in% dupe_cols)] # isolate non-duplicate codes
   
   df <- cbind(nodupe_df, sum_col) # and join with the summed, unified column for any duplicates
+  
+  }
   
   if (file == 1){
     all_vc <- df
@@ -623,37 +626,27 @@ for (file in 1:length(file.list)){
   }
 } # join the data
 
-temperature <- all_vc %>% select(stand,year,month,quad,TEMP) %>% 
-  mutate(temp_C = (TEMP-32)*5/9) %>% filter(year != "1981") # isolate soil temperature
+all_vc2 <- all_vc %>% unite("date",c("year","month","day"), sep = "-", remove = F) %>% 
+  mutate(date = ymd(date))
 
-cover_only <- all_vc %>% select(-TEMP) %>% relocate(stand,year,month,day,quad) # isolate cover only and rearrange data before saving
+temperature <- all_vc2 %>% select(stand,year,month,date, quad,TEMP) %>% #isolate soil temperature
+  mutate(temp_C = (TEMP-32)*5/9) %>% filter(year != "1981") %>%  # 1981 temperatures always incorrect
+  filter((stand %in% c("RY","RO")) == F) %>% select(-TEMP) # RY and RO not sampled extensively since burned
 
-#write_csv(temperature, "./AOS/VascularSurvey/clean_data/AOS_SoilTemp_1981_1984.csv")
-#write_csv(cover_only, "./AOS/VascularSurvey/clean_data/AOS_VascularCover_1981_1984.csv")
-#
-#
+cover_only <- all_vc2 %>% select(-TEMP) %>% select(-day) %>% relocate(stand,year,month,date,quad) %>%  
+  filter((stand %in% c("RY","RO")) == F) %>% mutate_at(.vars = 6:50, ~replace_na(., 0))
+# isolate cover only and rearrange data before saving, replace na values with 0
+# take out RY and RO - these two stands burned and were not sampled much in time series
+
+#write_csv(temperature, "./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
+#write_csv(cover_only, "./AOS/VascularCover/clean_data/AOS_VascularCover_1981_1984.csv")
+
 
 library(assertr)
 
-temp <- read_csv("./AOS/VascularSurvey/clean_data/AOS_SoilTemp_1981_1984.csv")
-
-levels(as.factor(temp$year))
-summary(temp)
-
-cover <- read_csv("./AOS/VascularSurvey/clean_data/AOS_VascularCover_1981_1984.csv")
-cover_select <- cover %>% filter(stand != "RY" & stand != "RO")
-write_csv(cover_select, "./AOS/VascularSurvey/clean_data/AOS_VascularCover_noRORY_1981_1984.csv")
-
-levels(as.factor(cover$year))
-summary(cover)
-
-temp <- temp %>% select(-TEMP)
-
-write_csv(temp, "./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
-
 # QC temp data
 
-qc_temp <- read_csv("./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
+qc_temp <- read_csv("./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
 hist(qc_temp$temp_C) # some temp values seem WAY too low (in August) - looking back, the temps measured are 0 F, which is ridiculous.
 qc_temp2 <- qc_temp %>% filter(temp_C > 0)
 hist(qc_temp2$temp_C) # much more reasonable
@@ -666,4 +659,4 @@ levels(as.factor(qc_temp2$quad))
 
 qc_temp2 <- qc_temp2 %>% arrange(stand,quad,year,month,temp_C)
 
-write_csv(qc_temp2, "./AOS/VascularSurvey/clean_data/AOS_ProbeTemp_1981_1984.csv")
+write_csv(qc_temp2, "./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
