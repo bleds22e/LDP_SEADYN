@@ -87,10 +87,11 @@ saps_1985$stand[which(duplicated(saps_1985$tree_tag))]
 # now to QC the data
 
 library(assertr)
-saplings <- valid_data2
+saplings <- valid_data2 %>% unite("date",c(year,month,day), sep = "-", remove = F) %>% 
+  mutate(date = ymd(date)) %>% 
+  select(-day) %>% relocate(year, .before = month) %>% relocate(date, .after = month)
 
 saplings %>% assert(within_bounds(1,8), stand) %>% assert(within_bounds(1,12), month) %>% 
-  assert(within_bounds(1,31), day) %>% 
   assert(within_bounds(1980,1985), year) %>% verify(tree_tag > 0) %>% verify(age > 0 | is.na(age)) %>% 
   verify(height_cm > 0 | is.na(height_cm)) %>% verify(basal_diameter_mm > 0 | is.na(basal_diameter_mm)) %>% 
   verify(basal_diameter_mm < 80 | is.na(basal_diameter_mm)) # roughly less than 3 inches DBH
@@ -101,11 +102,11 @@ saplings %>% assert(within_bounds(1,8), stand) %>% assert(within_bounds(1,12), m
 sap_info <- tree_info
 summary(sap_info)
 levels(as.factor(sap_info$substratum))
-
+range(saplings$date, na.rm = T)
 sap_info <- sap_info %>% rename(base_coord_S_m = location_south_m,
                                 base_coord_W_m = location_west_m,
                                 tree_tag = id,
                                 species_code = species,
                                 quad = quadrat)
 
-write_csv(sap_info, "./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv")
+#write_csv(sap_info, "./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv")

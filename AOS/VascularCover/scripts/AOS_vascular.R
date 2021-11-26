@@ -648,7 +648,7 @@ library(assertr)
 
 qc_temp <- read_csv("./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
 hist(qc_temp$temp_C) # some temp values seem WAY too low (in August) - looking back, the temps measured are 0 F, which is ridiculous.
-qc_temp2 <- qc_temp %>% filter(temp_C > 0)
+qc_temp2 <- qc_temp %>% filter(temp_C > -5)
 hist(qc_temp2$temp_C) # much more reasonable
 
 qc_temp2 %>% verify(year %in% c(1982,1983,1984)) %>% 
@@ -657,6 +657,7 @@ qc_temp2 %>% verify(year %in% c(1982,1983,1984)) %>%
 levels(as.factor(qc_temp2$stand))
 levels(as.factor(qc_temp2$quad))
 
-qc_temp2 <- qc_temp2 %>% arrange(stand,quad,year,month,temp_C)
+qc_temp2 <- qc_temp2 %>% arrange(stand,year,month,quad,temp_C)
 
 write_csv(qc_temp2, "./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
+

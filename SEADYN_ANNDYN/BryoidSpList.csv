@@ -1,0 +1,111 @@
+original_code,strata,sci_name_original,sci_authority_original,common_name,accepted_name,sci_authority_accepted,comments,unified_code
+AMBJUR,B,Amblystegium juratzkanum,Schimp.,Juratzk's amblystegium moss,Amblystegium serpens,(Hedw.) Schimp.,NA,AMBSER
+AULPAL,B,Aulacomnium palustre,(Hedw.) Schwägr.,aulcomnium moss,Aulacomnium palustre,(Hedw.) Schwägr.,NA,AULPAL
+BACSPH,L,Bacidia sphaeroides,(Dicks.) Zahlbr.,,Biatora sphaeroides,(Dicks.) Hornem.,NA,BIASPH
+BRAPSE,B,Brachythecium pseudotriquetrum,"(Hedw.) G.Gaertn, B.Mey & Scherb",common green bryum moss,Ptychostomum pseudotriquetrum,(Hedw.) J.R.Spence & H.P.Ramsay ex Holyoak & N.Pedersen,NA,PTYPSE
+BRASAL,B,Brachythecium salebrosum,(F. Weber & D. Mohr) Schimp.,brachythecium moss,Brachythecium salebrosum,(F. Weber & D. Mohr) Schimp.,NA,BRASAL
+BRYPSE,B,Bryum pseudotriquetrum,"(Hedw.) G.Gaertn, B.Mey & Scherb",common green bryum moss,Ptychostomum pseudotriquetrum,(Hedw.) J.R.Spence & H.P.Ramsay ex Holyoak & N.Pedersen,NA,PTYPSE
+CAMSTE,B,Campylium stellatum,(Hedw.) C.E.O. Jensen,yellow starry feather-moss,Campylium stellatum,(Hedw.) C.E.O. Jensen,NA,CAMSTE
+CEPLUN,B,Cephalozia lunulifolia,(Dumort.) Dumort.,moon-leafed pincerwort,Fuscocephaloziopsis lunulifolia,(Dumort.) Vá_a & L.Söderstr.,NA,FUSLUN
+CERPUR,B,Ceratodon purpureus,"Bridel, 1826",redshank,Ceratodon purpureus,"Bridel, 1826",NA,CERPUR
+CETCUC,L,Cetraria cucullata,"(Bellardi) Divakar, A.Crespo & Lumbsch",curled snow lichen,Nephromopsis cucullata,"(Bellardi) Divakar, A.Crespo & Lumbsch",only in AOS stands,NEPCUC
+CETERI,L,Cetraria ericetorum,Opiz,heathland Iceland lichen,Cetraria ericetorum,Opiz,NA,CETERI
+CETHAL,L,Cetraria halei,W.L.Culb. & C.F.Culb.,fringed wrinkle-lichen,Tuckermannopsis ciliaris,(Ach.) Gyeln.,only in AOS stands,TUCCIL
+CETNIV,L,Cetraria nivalis,(L.) Ach.,crinkled snow lichen,Nephromopsis nivalis,"(L.) Divakar, A.Crespo & Lumbsch",NA,NEPNIV
+CLASP,L,Cladonia sp.,"P.Browne, 1756",,Cladonia sp.,"P.Browne, 1756",NA,CLASP
+CLASPP,L,Cladonia sp.,"P.Browne, 1756",,Cladonia sp.,"P.Browne, 1756",NA,CLASP
+CLACEN,L,Cladonia cenotea,(Ach.) Shaer.,powdered funnel lichen,Cladonia cenotea,(Ach.) Shaer.,NA,CLACEN
+CLACHL,L,Cladonia chlorophaea,(Flörke ex Sommerf.) Spreng.,mealy pixie cup,Cladonia chlorophaea,(Flörke ex Sommerf.) Spreng.,NA,CLACHL
+CLACOC,L,Cladonia coccifera,(L.) Willd.,scarlet-cup lichen,Cladonia coccifera,(L.) Willd.,NA,CLACOC
+CLACON,L,Cladonia coniocraea,(Flörke) Spreng.,common powderhorn,Cladonia coniocraea,(Flörke) Spreng.,NA,CLACON
+CLACOR,L,Cladonia cornuta,(L.) Hoffm.,bighorn cup lichen,Cladonia cornuta,(L.) Hoffm.,NA,CLACOR
+CLACRP,L,Cladonia crispata,(Ach.) Flot.,greater organ-pipe lichen,Cladonia crispata,(Ach.) Flot.,NA,CLACRP
+CLACRI,L,Cladonia cristatella,Tuck.,British soldiers lichen,Cladonia cristatella,Tuck.,Mis-spelled? Makes the most sense‚Ä¶ the T could have been easily misread as I,CLACRT
+CLACRT,L,Cladonia cristatella,Tuck.,British soldiers lichen,Cladonia cristatella,Tuck.,NA,CLACRT
+CLAFIM,L,Cladonia fimbriata,(L.) Fr.,trumpet lichen,Cladonia fimbriata,(L.) Fr.,NA,CLAFIM
+CLAFUR,L,Cladonia furcata,(Huds.) Schrad.,many-forked cup lichen,Cladonia furcata,(Huds.) Schrad.,NA,CLAFUR
+CLAAMA,L,Cladonia amaurocraea,(Flörke) Schaer.,quill lichen,Cladonia amaurocraea,(Flörke) Schaer.,only in AOS stands,CLAAMA
+CLAGRA,L,Cladonia gracilis,(L.) Willd.,smooth horn lichen,Cladonia gracilis,(L.) Willd.,NA,CLAGRA
+CLAMIT,L,Cladina mitis,(Sandst.) Mong.,green reindeer lichen,Cladonia mitis,Sandst.,NA,CLAMIT
+CLAMUL,L,Cladonia multiformis,G.K.Kerr.,sieve lichen,Cladonia multiformis,G.K.Kerr.,NA,CLAMUL
+CLACAP,L,Cladonia capitata,Spreng.,turban cup lichen,Cladonia peziziformis,(With.) J.R.Laundon,NA,CLAPEZ
+CLACAR,L,Cladonia cariosa,(Ach.) Spreng.,split-peg soldiers cup lichen,Cladonia cariosa,(Ach.) Spreng.,only in AOS stands,CLACAR
+CLAPHY,L,Cladonia phyllophora,Ehrh. ex Hoffm.,felt horn lichen,Cladonia phyllophora,Ehrh. ex Hoffm.,NA,CLAPHY
+CLAPYX,L,Cladonia pyxidata,(L.) Hoffm.,pebbled pixie lichen,Cladonia pyxidata,(L.) Hoffm.,NA,CLAPYX
+CLARAN,L,Cladina rangiferina,(L.) Weber ex F.H.Wigg.,grey reindeer lichen,Cladonia rangiferina,(L.) Weber ex F.H.Wigg.,NA,CLARAN
+CLASEA,L,Cladonia scabriuscula,(Delise) Nyl.,winged pixie lichen,Cladonia scabriuscula,(Delise) Nyl.,Misspelling?,CLASCA
+CLASQU,L,Cladonia squamosa,Rabenh.,dragon horn,Cladonia squamosa,Rabenh.,only in AOS stands,CLASQU
+CLASTE,L,Cladina stellaris,(Opiz) Brodo,northern reindeer lichen,Cladonia stellaris,(Opiz) Brodo,NA,CLASTE
+CLASUB,L,Cladonia subulata,(L.) Weber ex F.H.Wigg.,antlered pixie lichen,Cladonia subulata,(L.) Weber ex F.H.Wigg.,NA,CLASUB
+CLAGON,L,Cladonia gonecha,(Ach.) Asahina,greater sulphur-cup lichen,Cladonia sulphurina,(Michx.) Fr.,NA,CLASUL
+CLAUNC,L,Cladonia uncialis,Elenkin & Savicz,thorn lichen,Cladonia uncialis,Elenkin & Savicz,NA,CLAUNC
+CLAVER,L,Cladonia verticillata,(Hoffm.) Schaer,ladder lichen,Cladonia cervicornis,(Ach.) Flot.,NA,CLACER
+DICSP,B,Dicranum sp.,Hedw.,,Dicranum sp.,Hedw.,NA,DICSP
+ORTH,B,Orthodicranum sp.,,,Dicranum sp.,Hedw.,NA,DICSP
+ORTFLA,B,Orthodicranum flagellare,(Hedw.) Loeske,whip fork-moss,Dicranum flagellare,"Hedwig, 1801",NA,DICFLA
+DICFUS,B,Dicranum fuscescens,"(Bridel) Kindberg, 1883",curly heron's-bill moss,Dicranum fuscescens,"(Bridel) Kindberg, 1883",NA,DICFUS
+DICPOL,B,Dicranum polysetum,"Swartz, 1801",rugose fork-moss,Dicranum polysetum,"Swartz, 1801",NA,DICPOL
+DICSCO,B,Dicranum scoparium,"Hedwig, 1801",broom fork-moss,Dicranum scoparium,"Hedwig, 1801",NA,DICSCO
+DICUND,B,Dicranum undulatum,"Schrader ex Bridel, 1801",waved fork-moss,Dicranum undulatum,"Schrader ex Bridel, 1801",NA,DICUND
+DISCAP,B,Distichium capillaceum,"Bruch & W.P.Schimper, 1846",fine distichium,Distichium capillaceum,"Bruch & W.P.Schimper, 1846",only in AOS stands,DISCAP
+DITFLE,B,Ditrichum flexicaule,"Hampe, 1867",bendy ditrichum,Ditrichum flexicaule,"Hampe, 1867",only in AOS stands,DITFLE
+DREUNC,B,Drepanocladus uncinatus,(Hedw.) Warnst.,sickle-leaved hook-moss,Sanionia uncinata,"Loeske, 1907",NA,SANUNC
+HELBLA,B,Helodium blandowii,"Warnstorf, 1905",Blandow's feather moss,Helodium blandowii,"Warnstorf, 1905",NA,HELBLA
+EURSP,B,Eurhynchium,Brusch & Schimp.,,Eurhynchium,Brusch & Schimp.,NA,EURSP
+EURPUI,B,Eurhynchium pulchellum,"Jennings, 1913",elegant feather-moss,Eurhynchiastrum pulchellum,(Hedw.) Ignatov & Huttunen,Mis-spelled?,EURPUL
+EURPUL,B,Eurhynchium pulchellum,"Jennings, 1913",elegant feather-moss,Eurhynchiastrum pulchellum,(Hedw.) Ignatov & Huttunen,NA,EURPUL
+EVEMES,L,Evernia mesomorpha,Nyl.,boreal oakmoss,Evernia mesomorpha,Nyl.,only in AOS stands,EVEMES
+HYLSPL,B,Hylocomium splendens,"W.P.Schimper, 1852",glittering wood-moss,Hylocomium splendens,"W.P.Schimper, 1852",NA,HYLSPL
+HYPPHY,L,Hypogymnia physodes,(L.) Nyl.,dark crottle,Hypogymnia physodes,(L.) Nyl.,only in AOS stands,HYPPHY
+ICMERI,L,Icmadophila ericetorum,(L.) Zahlbr.,fairy barf,Icmadophila ericetorum,(L.) Zahlbr.,NA,ICMERI
+IMAERI,L,Icmadophila ericetorum,(L.) Zahlbr.,fairy barf,Icmadophila ericetorum,(L.) Zahlbr.,NA,ICMERI
+LECGRA,L,Lecidea granulosa,(Hoffm.) Ach.,common matte,Trapeliopsis granulosa,(Hoffm.) Lumbsch,only in AOS stands,LECGRA
+LEPSAT,L,Leptogium saturninum,(Dicks.) Nyl.,Saturn skin lichen,Leptogium saturninum,(Dicks.) Nyl.,NA,LEPSAT
+HEP002,B,Marchantiophyta,,liverworts,Marchantiophyta,,Originally 'hepatic species',MARSP2
+HEP003,B,Marchantiophyta,,liverworts,Marchantiophyta,,Originally 'hepatic species',MARSP3
+HEPSP,B,Marchantiophyta,,liverworts,Marchantiophyta,,Originally 'hepatic species',MARSP1
+MNISP,B,Mnium sp.,Hedw.,,Mnium sp.,Hedw.,NA,MNISP
+MNICUS,B,Mnium cuspidatum,Neck. ex Lindb.,woodsy thyme-moss,Plagiomnium cuspidatum,"T.Koponen, 1968",NA,PLACUS
+ORTSPE,B,Orthotrichum speciosum,"Nees, 1819",showy brittle-moss,Lewinskya speciosa,"(Nees) F.Lara, Garilleti & Goffinet, 2016",NA,LEWSPE
+PARAMB,L,Parmeliopsis ambigua,(Hoffm.) Nyl.,ambiguous bran lichen,Parmeliopsis ambigua,(Hoffm.) Nyl.,only in AOS stands,PARAMB
+PARHYP,L,Parmeliopsis hyperopta,(Ach.) Vain.,Arnold grey starburst,Parmeliopsis hyperopta,(Ach.) Vain.,only in AOS stands,PARHYP
+PARELE,L,Parmelia elegantula,(Zahlbr.) Szatala,elegant camouflage lichen,Melanohalea elegantula ,"(Zahlbr.) O.Blanco, A.Crespo, Divakar, Essl., D.Hawksw. & Lumbsch",only in AOS stands,MELELE
+PARSUL,L,Parmelia sulcata,Taylor,netted shield lichen,Parmelia sulcata,Taylor,NA,PARSUL
+PELSP,L,Peltigera,"Willd., 1787",dog lichen,Peltigera,"Willd., 1787",NA,PELSP
+PELAPH,L,Peltigera aphthosa,(L.) Willd.,green dog lichen,Peltigera aphthosa,(L.) Willd.,NA,PELAPH
+PELCAN,L,Peltigera canina,"Linnaeus, 1753",dog lichen,Peltigera canina,"Linnaeus, 1753",NA,PELCAN
+PELHOR,L,Peltigera horizontalis,(Huds.) Baumg.,dimpled pelt-lichen,Peltigera horizontalis,(Huds.) Baumg.,NA,PELHOR
+PELMAL,L,Peltigera malacea,(Ach.) Funck,matt felt-lichen,Peltigera malacea,(Ach.) Funck,NA,PELMAL
+PELPOL,L,Peltigera polydactylon,(Neck.) Hoffm.,pioneer pelt,Peltigera polydactylon,(Neck.) Hoffm.,NA,PELPOL
+PELPUL,L,Peltigera pulverulenta,(Taylor) Nyl.,greater toad pelt lichen,Peltigera scabrosa,"Th.Fr., 1861",NA,PELSCA
+PELRUF,L,Peltigera rufescens,(Weiss) Humb.,field dog lichen,Peltigera rufescens,(Weiss) Humb.,NA,PELRUF
+PLACUS,B,Plagiomnium cuspidatum,"T.Koponen, 1968",woodsy thyme-moss,Plagiomnium cuspidatum,"T.Koponen, 1968",NA,PLACUS
+PLAGLA,L,Platismatia glauca,(L.) W.L.Culb. & C.F.Culb.,ragbag lichen,Platismatia glauca,(L.) W.L.Culb. & C.F.Culb.,NA,PLAGLA
+PLESCH,B,Pleurozium schreberi,"Mitten, 1869",red-stemmed feather moss,Pleurozium schreberi,"Mitten, 1869",NA,PLESCH
+POHNUT,B,Pohlia nutans,"Lindberg, 1879",nodding thread-moss,Pohlia nutans,"Lindberg, 1879",NA,POHNUT
+POLCOM,B,Polytrichum commune,"Hedwig, 1801",common haircap,Polytrichum commune,"Hedwig, 1801",only in AOS stands,POLCOM
+POLJUN,B,Polytrichum juniperinum,"Hedwig, 1801",juniper haircap,Polytrichum juniperinum,"Hedwig, 1801",NA,POLJUN
+POLPIL,B,Polytrichum piliferum,"Hedwig, 1801",bristly haircap,Polytrichum piliferum,"Hedwig, 1801",NA,POLPIL
+POLSTR,B,Polytrichum strictum,"Menzies ex Bridel, 1801",strict haircap,Polytrichum strictum,"Menzies ex Bridel, 1801",NA,POLSTR
+PTISP,B,Ptilidium sp.,Nees,,Ptilidium sp.,Nees,NA,PTISP
+PTICIL,B,Ptilidium ciliare,(L.) Hampe,ciliated fringewort,Ptilidium ciliare,(L.) Hampe,NA,PTICIL
+PTICC,B,Ptilidium crista-castrensis,(Hedw.) De Not.,ostrich plume feather-moss,Ptilium crista-castrensis,"De Notaris, 1867",NA,PTICRI
+PITPUL,B,Ptilidium pulcherrimum,(Weber) Vain.,tree fringewort,Ptilidium pulcherrimum,(Weber) Vain.,Mis-spelled?,PTIPUL
+PTIPUL,B,Ptilidium pulcherrimum,(Weber) Vain.,tree fringewort,Ptilidium pulcherrimum,(Weber) Vain.,NA,PTIPUL
+PYLPOL,B,Pylaisiella polyantha,(Hedw.) Grout,many-flowered leskea,Pylaisia polyantha,"W.P.Schimper, 1851",NA,PYLPOL
+RHYTRI,B,Rhytidiadelphus triquetrus,"Warnstorf, 1906",rough goose neck moss,Rhytidiadelphus triquetrus,"Warnstorf, 1906",NA,RHYTRI
+DREREV,B,Drepanocladus revolvens,(Anon.) Warnst.,rusty hook-moss,Scorpidium revolvens,"Rubers, 1989",NA,SCOREV
+SPHANG,B,Sphagnum angustifolium,"C.E.O.Jensen, 1896",fine bog-moss,Sphagnum angustifolium,"C.E.O.Jensen, 1896",NA,SPHANG
+SPHFUS,B,Sphagnum fuscum,"Klinggräff, 1872",rusty bog-moss,Sphagnum fuscum,"Klinggräff, 1872",NA,SPHFUS
+SPHMEM,B,Sphagnum nemoreum,Scop.,red bog-moss,Sphagnum capillifolium,"Hedwig, 1782",Mis-spelled?,SPHCAP
+SPHNEM,B,Sphagnum nemoreum,Scop.,red bog-moss,Sphagnum capillifolium,"Hedwig, 1782",NA,SPHCAP
+SPHRUS,B,Sphagnum russowii,"Warnstorf, 1886",Russow's bog-moss,Sphagnum russowii,"Warnstorf, 1886",NA,SPHRUS
+SPHWAR,B,Sphagnum warnstorfii,Russow,Warnstorf's bog-moss,Sphagnum warnstorfii,Russow,NA,SPHWAR
+SPLSPP,B,Splachnum sp.,Hedw.,,Splachnum sp.,Hedw.,only in AOS stands,SPLSP
+STEALP,L,Stereocaulon alpinum,Laurer,alpine foam lichen,Stereocaulon alpinum,Laurer,NA,STEALP
+THUREC,B,Thuidium recognitum,"Lindberg, 1874",lesser tamarisk-moss,Thuidium recognitum,"Lindberg, 1874",NA,THUREC
+TOMFAL,B,Tomentypnum falcifolium,"Tuomikoski, 1967",sickle-leaved golden moss,Tomentypnum falcifolium,"Tuomikoski, 1967",NA,TOMFAL
+TOMNIT,B,Tomentypnum nitens,"Loeske, 1911",woolly feather-moss,Tomentypnum nitens,"Loeske, 1911",NA,TOMNIT
+CETPIN,L,Cetraria pinastri,(Scop.) Gray,powdered sunshine lichen,Vulpicida pinastri,(Scop.) J.-E.Mattsson & M.J.Lai,NA,VULPIN
+TETANG,B,Tetraplodon angustatus,"Bruch. & W.P.Schimper, 1844",narrow cruet-moss,Tetraplodon angustatus,"Bruch. & W.P.Schimper, 1844",only in AOS stands,TETANG
+USNSPP,L,Usnea sp.,"Dill. Ex Adans., 1763",old man's beard,Usnea sp.,"Dill. Ex Adans., 1763",only in AOS stands,USNSP

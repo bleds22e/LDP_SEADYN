@@ -46,7 +46,7 @@ regen_mens <- regen_mens %>%
 regen_count <- count_data %>% 
   complete(species_code, nesting(stand, quad), fill = list(count = 0)) %>% 
   relocate(species_code, .after = quad)
-
+dim(regen_count)
 # save data frames
 
 write_csv(regen_count, "./Hondo/Regeneration/clean_data/Hondo_RegenerationCounts_2010.csv")

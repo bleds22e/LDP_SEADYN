@@ -54,7 +54,12 @@ colnames(df) <- join$sp.code # and rename the dataframe columns
 cover4 <- cover3 %>% 
   rename(month = Month, year = Year, stand = Stand, quad = Quad) %>% 
   # scrub the .1 indicator of double surveys
-  mutate(quad = as.factor(str_remove_all(quadrat, ".1"))) %>% 
+  mutate(quad = if_else(quad == "4A0" | quad == "4AA", "4A", 
+                        if_else(quad == "4C0" | quad == "4CC", "4C", 
+                                if_else(quad == "4E0" | quad == "4EE", "4E",
+                                        if_else(quad == "4G0" | quad == "4GG", "4G",
+                                                if_else(quad == "4I0" | quad == "4II", "4I", quad)))))) %>% 
+  mutate(quad = as.factor(str_remove_all(quad, ".1"))) %>% 
   # replace all missing values with zeroes since these are true zeroes (plant not detected in quadrat)
   mutate_at(.vars = 5:219, ~replace_na(.,0)) %>% 
   group_by(month, year, stand, quad) %>% # group by time and plot
@@ -64,7 +69,8 @@ cover4 <- cover3 %>%
 dates <- read_csv("./Hondo/VascularCover/metadata/Hondo_VascularCover_Dates.csv")
 
 cover5 <- cover4 %>% left_join(dates) %>% relocate(stand, .before = month) %>% 
-  relocate(date, .after = year) %>% mutate(quad = toupper(quad))
+  relocate(date, .after = year) %>% mutate(quad = toupper(quad)) %>% 
+  arrange(stand, year, month, quad)
 
 # sometimes exact date wasn't included in the metadata file, so these are real NA values
 
@@ -85,14 +91,14 @@ temp <- temp %>% rename(temp_C = temp_c) %>% left_join(dates) %>% relocate(stand
   relocate(year, .after = stand) %>% relocate(month, .after = year) %>% relocate(date, .after = month)
 
 # QC
-
+View(temp2)
 range(temp$temp_C) # some NA temperature values -> get rid of these
 
-temp2 <- temp %>% filter(is.na(temp_C) == F)
+temp2 <- temp %>% filter(is.na(temp_C) == F) 
 
 range(temp2$temp_C) # seems reasonable
 
 # all the other columns have already passed muster within the QC for vascular data, so save it
 
-write_csv(temp, "./Hondo/VascularCover/clean_data/Hondo_ProbeTemp_1980_2010.csv")
+write_csv(temp2, "./Hondo/VascularCover/clean_data/Hondo_ProbeTemp_1981_2010.csv")
 ##############################################################################
