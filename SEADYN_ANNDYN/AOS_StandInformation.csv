@@ -1,4 +1,4 @@
-stand_number,stand_name,stand_code,latitude_degrees,longitude_degrees,vascular_cover,bryoid_cover,tree_dynamics,saplings,dendrochronology,litter,probe_temp,soil_conditions,tree_cover,date_burned,age_class,impingement_zone,soil_type
+stand_number,stand_name,stand_code,latitude_degrees,longitude_degrees,vascular_cover,bryoid_cover,tree_dynamics,saplings,dendrochronology,litter,soil_temp,soil_conditions,tree_cover,date_burned,age_class,impingement_zone,soil_type
 7,Bear Hollow,BH,57.625,-111.9291667,1,1,1,0,0,0,1,0,0,NA,young,L,EDB
 15,Beaver Pond,BP,57.02916667,-111.3805556,1,1,0,0,1,1,1,0,0,NA,young,H,OGL
 11,Firebag Alder,FA,57.625,-111.1916667,1,1,0,0,0,0,1,0,0,1981,very young,L,EDB

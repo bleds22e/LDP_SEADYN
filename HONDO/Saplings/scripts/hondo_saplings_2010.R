@@ -38,8 +38,4 @@ data %>% verify(stand == 7) %>% verify(substr(quad, 1,1) %in% 0:9) %>%
 
 ## confusion: are these saplings (DBH was measured, which seems like not saplings, but data are titled saplings...)
 
-other_saps <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv") %>% 
-  mutate(DBH_mm = as.numeric(BSD_mm), stem_height_cm = as.numeric(stem_height_cm))
-
-range(other_saps$stem_height_cm)
          

@@ -1,4 +1,4 @@
-stand_code,latitude_degrees,longitude_degrees,elevation_m,vascular_cover,bryoid_cover,tree_dynamics,saplings,dendrochronology,litter,probe_temp,soil_conditions,tree_cover,dates_burned,stand_age,thomson_impingement_zone,soil_type
+stand_code,latitude_degrees,longitude_degrees,elevation_m,vascular_cover,bryoid_cover,tree_dynamics,saplings,dendrochronology,litter,soil_temp,soil_conditions,tree_cover,dates_burned,stand_age,thomson_impingement_zone,soil_type
 1,55.22305556,-114.2927778,592.836,1,1,1,1,1,1,1,1,1,NA,young,L,EEB
 2,55.09833333,-114.1186111,599.8464,1,1,1,1,1,1,1,1,1,NA,middle,L,EEB
 3,55.31277778,-114.3011111,596.4936,1,1,1,1,1,1,1,1,1,2001,middle,L,EEB
