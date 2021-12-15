@@ -354,14 +354,16 @@ all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for
 #write_csv(all_bryoid_data, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
 
 cover <- read_csv("./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv") %>% 
-  mutate_at(7:90, as.numeric)
+  mutate_at(7:90, as.numeric) %>% 
+  mutate(quadrat_size = case_when(quadrat_size == 5 ~ 0.5,
+                                  quadrat_size == 25 ~ 25))
 
 cover %>% assert(within_bounds(0,100), 7:90) %>% 
   assert(within_bounds(1, 8), 1) %>%
   assert(within_bounds(1980,2021), 2) %>% 
   assert(within_bounds(1,12), 3) %>% 
   assert(within_bounds(1,12), 3) %>% 
-  verify(quadrat_size %in% c(5,25))
+  verify(quadrat_size %in% c(0.5,25))
 
 #cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
 

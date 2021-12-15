@@ -715,3 +715,10 @@ all_bc2 <- all_bc %>%  relocate(stand,year,month,day,quadrat_size,quad) %>% # is
   mutate(date = ymd(date)) %>% select(-day) %>% relocate(date, .after = day)
 
 write_csv(all_bc2, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")
+
+# change quadrat size
+bryoid_aos <- read_csv("./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv") %>% 
+  mutate(quadrat_size = case_when(quadrat_size == 5 ~ 0.5,
+                                  quadrat_size == 25 ~ 25))
+
+write_csv(bryoid_aos, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")
