@@ -1,5 +1,7 @@
 ### Extracting 2010 sapling data and tidying for depositing
 ### AVH November 2021
+## TLDR; these data didn't end up in the final deposit because they don't actually look like usual
+## sapling data.
 
 library(tidyverse)
 library(assertr)

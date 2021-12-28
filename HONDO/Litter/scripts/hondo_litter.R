@@ -1,12 +1,13 @@
 ### Hondo LITTER DATA: READING AND CLEANING ###
 ### AVH June 2021 ###
 
+# load in packages
 library(tidyverse)
 library(assertr)
 
 # similar to the analogous script for AOS: taking txt files, reading in litter data according 
-# to file format described in the GLR 1987 report on these data
-# Look at that script for annotated code
+# to file format described in the George LaRoi 1987 report on these data
+# Look at that script for properly annotated code
 
 file.list <- list.files("./Hondo/Litter/raw_data/txt_files")
 
@@ -77,7 +78,7 @@ hondo_litter <- read_csv("./Hondo/Litter/clean_data/Hondo_LitterBiomass_1983_198
 levels(as.factor(hondo_litter$component))
 
 hondo_litter <- hondo_litter %>% filter(component != "empty") # we don't need the empty data since this doesn't actually correspond to anything 
-View(hondo_litter)
+
 hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 1,4) %in% c("1983", "1984"))
 hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
 hondo_litter %>% filter(sample_date != "annual_mean") %>%  verify(substr(date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))

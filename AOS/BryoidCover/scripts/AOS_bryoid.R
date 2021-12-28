@@ -2,13 +2,14 @@
 ## Files that cannot be batch-read (earlier years data) ##
 ## AVH June 2021 ##
 
+# load packages
 library(tidyverse)
 library(taxize)
 library(lubridate)
 
 stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv")
 
-# 1: 1981, 5x5 m plots
+# 1: 1981, 5 x 5 m plots
 
 # This one is easy to read in:
 
@@ -31,12 +32,12 @@ start_boundary <- seq(from = 1, to = 76, by = 3)
 end_boundary <- seq(from = 3, to = 78, by = 3)
 
 df <- data.frame()
-quad.info <- as.data.frame(matrix(ncol = 3))
+quad.info <- as.data.frame(matrix(ncol = 4))
 colnames(quad.info) <- c("quad","year","month")
 
-for (line in 1:length(results_list)){
+for (line in 1:length(results_list)){ # for each line of the file
   split_line <- c()
-  for (trim_pos in 2:length(start_boundary)){
+  for (trim_pos in 2:length(start_boundary)){ # separate cells
     cover.value <- as.numeric(substr(results_list[line], start_boundary[trim_pos], end_boundary[trim_pos]))
     split_line <- c(split_line, cover.value)
   }
@@ -44,10 +45,11 @@ for (line in 1:length(results_list)){
   quad <- substr(results_list[[line]], 1, 2)
   year <- 1981
   month <- 8
-  quad.info[line,] <- c(quad,year,month)
+  quad.info[line,] <- c(quad,year,month) # piece together the metadata
 }
 
-join.lines <- seq(from = 1, to = length(df[,1]), by = 3)
+join.lines <- seq(from = 1, to = length(df[,1]), by = 3) 
+# each quadrat survey split over three lines -- define lines to join 
 
 df2 <- data.frame()
 
@@ -65,7 +67,7 @@ for (quads in 1:length(join.lines)){
   for (line in start.quad:end.quad){
     full.line <- c(full.line, unlist(df[line,]))
   }
-  df2 <- rbind(df2, full.line)
+  df2 <- rbind(df2, full.line) # assemble unified lines for each quadrat and join together into df
 }
 
 colnames(df2) <- seq(from = 1, to = 75, by =1)
@@ -86,9 +88,9 @@ while (length(line <- readLines(con, n = 1, warn = FALSE)) > 0){
 close(con)
 
 ##
-sp.lines <- seq(from = 7, to = 17, by = 1)
-sp.names <- seq(from = 36, to = 100, by = 1)
-subfile.lines <- seq(from = 114, to = 117, by = 1)
+sp.lines <- seq(from = 7, to = 17, by = 1) # contains original taxonomic codes
+sp.names <- seq(from = 36, to = 100, by = 1) # contains full spp names
+subfile.lines <- seq(from = 114, to = 117, by = 1) # contains date info
 
 sp.string <- c() # get species codes
 for (line in sp.lines){
@@ -100,9 +102,8 @@ col.names <- toupper(unlist(str_split(str_squish(str_trim(sp.string, side = "bot
 bc_1981 <- df2 %>% select(1:65)
 colnames(bc_1981) <- col.names
 
-
 file_string <- c()
-for (line in subfile.lines){
+for (line in subfile.lines){ # associate dates with file names
   file_string <- paste(file_string, results_list[[line]])
 }
 
@@ -115,9 +116,10 @@ stand <- as.data.frame(rep(file_string3, each = 15)) %>% rename(stand = 1)
 quad.subset <- seq(from = 1, to = 720, by = 3)
 quad.sub <- quad.info[quad.subset,]
 quad.info <- cbind(quad.sub, stand)
-bc_1981x <- cbind(quad.info, bc_1981) %>% mutate(quadrat_size = 25)
+bc_1981x <- cbind(quad.info, bc_1981) %>% mutate(quad_size = 25)
 
-name_string <- c() # get scientific names
+name_string <- c() # get scientific names -- note that this list is eventually integrated into
+# the "BryoidSpList.csv" file
 for (line in sp.names){
   name_string <- paste(name_string, results_list[[line]])
 }
@@ -263,7 +265,7 @@ for (q in 1:length(file_string3)){
 stand <- as.data.frame(rep(file_string3, each = 15)) %>% rename(stand_number = 1) %>% 
   left_join(stand_info) %>% select(stand_code)
 
-quad.info <- cbind(quad, stand) %>%  mutate(quadrat_size = 25, year = 1982)
+quad.info <- cbind(quad, stand) %>%  mutate(quad_size = 25, year = 1982)
 
 bc_1982x <- cbind(quad.info, bc_1982) %>% rename(stand = stand_code) %>% mutate(month = 8) %>% 
   relocate(month, .after = year)
@@ -387,7 +389,7 @@ file_string3 <- file_string3[file_string3 != ""]
 stand <- as.data.frame(rep(file_string3, each = 15))
 
 quad.info <- cbind(quad.sub, stand) %>% rename(stand = 2) %>% 
-  mutate(year = 1983, month = 8, quadrat_size = 25)
+  mutate(year = 1983, month = 8, quad_size = 25)
                                                                      
 bc_1983x <- cbind(quad.info, bc_1983) %>% rename(quad = quad.sub) 
 
@@ -410,7 +412,7 @@ taxonomy.1983 <- as.data.frame(cbind(sp.code.1983, sci.name.1983))
 #write_csv(taxonomy.1983, "./AOS/BryoidCover/metadata/sp_codes_1983.csv")
 write_csv(bc_1983x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1983.csv")
 
-# 4: 0.5 x 0.5 m microplots, 1983 & 1984
+# 4: 0.7 x 0.7 m microplots, 1983 & 1984
 
 # list all the file names
 file.list <- list.files("./AOS/BryoidCover/raw_data/txt_files/later_years/data")
@@ -524,8 +526,8 @@ for (line in 1:length(all_quads3$quad)){
   }
 }
 
-quads_1983 <- all_quads3 %>% filter(year == "1983") %>% mutate(quadrat_size = 5)
-quads_1984 <- all_quads3 %>% filter(year == "1984") %>% mutate(quadrat_size = 5)
+quads_1983 <- all_quads3 %>% filter(year == "1983") %>% mutate(quad_size = 0.5)
+quads_1984 <- all_quads3 %>% filter(year == "1984") %>% mutate(quad_size = 0.5)
 
 ## extract the metadata to give dfs dates and sp codes
 
@@ -709,16 +711,9 @@ for (file in 1:length(file.list)){
   }
 } # join the data
 
-all_bc2 <- all_bc %>%  relocate(stand,year,month,day,quadrat_size,quad) %>% # isolate cover only and rearrange data before saving
+all_bc2 <- all_bc %>%  relocate(stand,year,month,day,quad_size,quad) %>% # isolate cover only and rearrange data before saving
   mutate_at(c(7:50), ~replace_na(., 0)) %>% 
   unite("date", c("year","month","day"), sep = "-", remove = F) %>% 
   mutate(date = ymd(date)) %>% select(-day) %>% relocate(date, .after = day)
 
 write_csv(all_bc2, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")
-
-# change quadrat size
-bryoid_aos <- read_csv("./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv") %>% 
-  mutate(quadrat_size = case_when(quadrat_size == 5 ~ 0.5,
-                                  quadrat_size == 25 ~ 25))
-
-write_csv(bryoid_aos, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")

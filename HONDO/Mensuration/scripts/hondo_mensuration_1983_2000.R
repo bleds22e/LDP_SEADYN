@@ -1,6 +1,7 @@
 ## Living Data Project
 # SEADYN Hondo Tree Dynamics
 # Jenna Loesberg, February 16th, 2021
+# Updated by AVH September 2021
 
 ### What this script does:
 # - Read in the 8 tree dynamics data files
@@ -175,7 +176,7 @@ tree_dynamics5 <- tree_dynamics4 %>% mutate(tree_code_2000 = if_else(tree_code_2
                                                                                    tree_code_2000)))
 tree_dynamics5$tree_code_2000[tree_dynamics5$tree_code_2000 == "---"] <- NA
 
-levels(as.factor(tree_dynamics5$fire_code_2000)) # can't find what these codes mean. remove column?
+levels(as.factor(tree_dynamics5$fire_code_2000))
 
 # check to see if the stem height (from ground to top of tree) greater than/equal to height to canopy
 

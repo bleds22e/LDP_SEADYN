@@ -1,52 +1,59 @@
 ### Hondo BRYOID SURVEYS: reading in and cleaning data ###
 ## AVH June 2021 ##
 
-library(tidyverse)
-library(janitor)
-library(assertr)
+# read in necessary packages
+pkgs <- c("tidyverse","janitor","assertr")
+lapply(pkgs, library, character.only = TRUE)
 
+# 1: read in files line by line
+# some files are 'single entry' text files -- each quad is only named once
+# other files are 'double entry' text files -- each quad is named twice (e.g. 1B1, 1B2)
+# these files require slightly different methods for being read in.
+
+# Single-entry files
+# list the files in the relevant directory
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry")
 
-# first set of data: surveys for quadrats where name of quad was entered only once with data split over multiple lines
-# of each txt file
+# name of quad was entered only once, but data are split over multiple lines within the file
 
-for (file in 1:length(file.list)){
-  filename = file.list[file]
-  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry/", filename, sep = "")
-  file <- read.csv2(rawfileloc, header = FALSE, sep = "")
-  trim.positions <- grep("[AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz]", file$V1) 
-  # one can tell the start of a new line by the presence of a letter, so identify these break points
-  empty_data <- data.frame()
+for (file in 1:length(file.list)){ # for each file
+  filename = file.list[file] # pull the file name
+  rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/txt_files/single_entry/", filename, sep = "") # create name for read_csv command
+  file <- read.csv2(rawfileloc, header = FALSE, sep = "") # read the text file to a csv
+  trim.positions <- grep("[AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz]", file$V1)
+  # one can tell the start of a new line by the presence of a letter, so identify the [position of these break points
+  # within the character string
+  empty_data <- data.frame() # isolate each line (quad) and write the data to a new dataframe
   for (pos in 1:length(trim.positions)){
     if (pos < length(trim.positions)){ # if the line number is less than the total length of the file...
-      start.trim = trim.positions[pos]
+      start.trim = trim.positions[pos] # then the start position of the line is the trim position, and then end is the next trim position -1
       end.trim = trim.positions[pos+1] - 1
     }
     else { # otherwise, will need to set the 'end' trim position as the length of the file (otherwise pos counter runs into issues)
       start.trim = trim.positions[pos]
       end.trim = length(file$V1)
     }
-    quadrat_df <- file[start.trim:end.trim,]
-    for (line in 1:length(quadrat_df$V1)){
+    quad_df <- file[start.trim:end.trim,] # grab the relevant chunk of the character string
+    for (line in 1:length(quad_df$V1)){ # this loop takes lines that are split over >1 line of the text file and joins them together
       if (line == 1){
-        row <- quadrat_df[line, ]
+        row <- quad_df[line, ]
       }
       else {
-        row <- cbind(row, quadrat_df[line, ])
+        row <- cbind(row, quad_df[line, ])
       }
       row <- row[which(row != "")]
     }
-    empty_data <- rbind(empty_data, unlist(row))
+    empty_data <- rbind(empty_data, unlist(row)) # join all the rows together
   }
-  empty_data[,1] <- str_remove_all(empty_data[,1], "[']")
-  csvname <- gsub(".txt", ".csv", filename)
+  empty_data[,1] <- str_remove_all(empty_data[,1], "[']") # remove extra quotation characters
+  csvname <- gsub(".txt", ".csv", filename) # name the file and save it
   cleanfileloc <- paste("./Hondo/BryoidCover/raw_data/1981_1984/csv_files/", csvname, sep = "")
   write_csv(empty_data, cleanfileloc, col_names = F)
 }
 
-# second type of file = 'double entry'. every row has quadrat entered
+# Double-entry files: every row has quad name entered
 # problem with this file = decimal cover entries run together with prior numbers. sep by "." and whitespace
-# same method as for stand2 Vascular Plant Survey (readLines)
+# Here, we use the same method as for Hondo Stand 2 Vascular Plant Survey (readLines)
 
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/txt_files/double_entry")
 
@@ -101,31 +108,31 @@ for (file in 1:length(file.list)){
                             nrow = length(split_list), 
                             byrow = T)) # convert to a matrix
   data_pt1 <- data %>% filter(row_number() %% 2 == 1) # extract all odd rows
-  data_pt2 <- data %>% filter(row_number() %% 2 == 0) %>% select(-1) # extract all even rows, and remove the first col (since entry should be the quadrat name)
+  data_pt2 <- data %>% filter(row_number() %% 2 == 0) %>% select(-1) # extract all even rows, and remove the first col (since entry should be the quad name)
   alldata <- cbind(data_pt1, data_pt2) %>% remove_empty(which = "cols")
   csvname <- gsub(".txt", ".csv", filename)
   cleanfileloc <- paste("./Hondo/BryoidCover/raw_data/1981_1984/csv_files/", csvname, sep = "")
   write_csv(alldata, cleanfileloc, col_names = F)
 }
 
-
-## now on to the metadata
+# 2: Metadata extraction
+## Need to extract the metadata (what are the column names? sampling dates?)
 
 # read in the species taxonomic codes
-code_convert <- read_csv("./Hondo/BryoidCover/metadata/bryoid_codes_final.csv") %>% 
-  select(code, unified_code) 
+code_convert <- read_csv("./Hondo/BryoidCover/metadata/BryoidSpList.csv") %>% 
+  select(original_code, unified_code) 
 
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sp_files", pattern = "*.txt")
-list.headers.sp <- list()
-list.dates.sp <- list()
+list.headers.sp <- list() # will need to fill in the column headers
+list.dates.sp <- list() # and the dates for each survey
 filename_save <- vector()
 
 for (x in 1:length(file.list)){
-  filename = file.list[x]
+  filename = file.list[x] # make a file name to read in to R
   rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sp_files/", filename, sep = "")
-  file <- read.csv2(rawfileloc, header = FALSE)
-  start.trim <- min(grep("VARIABLE", file[,1], fixed = TRUE)) # identify where col names start
-  end.trim <- min(grep("INPUT MEDIUM", file[,1], fixed = TRUE)) - 1 # and where they end
+  file <- read.csv2(rawfileloc, header = FALSE) # read in data
+  start.trim <- min(grep("VARIABLE", file[,1], fixed = TRUE)) # identify where column names start (after the word VARIABLE)
+  end.trim <- min(grep("INPUT MEDIUM", file[,1], fixed = TRUE)) - 1 # and where they end (before the words INPUT MEDIUM)
   column_names <- file[start.trim:end.trim,] # extract these rows of the text file
   extract_col_names <- vector()
   for (i in 1:length(column_names)){
@@ -133,16 +140,17 @@ for (x in 1:length(file.list)){
     extract_col_names <- paste(extract_col_names, chunk) # paste together all the col names into a string
   }
   extract_col_names <- as.matrix(str_split(str_trim(extract_col_names, side = "both"), pattern = " ", 
-                                        simplify = T)) # and then split these up after trimming whitespace
+                                        simplify = T)) # and then split these up into separate columns after trimming whitespace
   full_col_names <- as.vector(extract_col_names[, which(extract_col_names != "")]) #remove empty column names in the vector
-  full_col_names <- full_col_names[-(1:2)]
+  full_col_names <- full_col_names[-(1:2)] # remove the first two columns, which are junk
   
-  column_correction <- data.frame(full_col_names) %>% rename(code = full_col_names) %>% 
-    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), code, unified_code)) 
+  column_correction <- data.frame(full_col_names) %>% rename(original_code = full_col_names) %>% 
+    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), original_code, unified_code)) 
   full_col_names <- column_correction$correct_code # correct old codes with new codes
   
+  # now for the dates
   date.start.trim <- min(grep("SUBFILE LIST", file[,1], fixed = TRUE)) # extract date subfile info
-  date.end.trim <- min(grep("INPUT FORMAT", file[,1], fixed = TRUE)) - 1
+  date.end.trim <- min(grep("INPUT FORMAT", file[,1], fixed = TRUE)) - 1 # define end line of date information
   date.list <- as.vector(unlist(str_split(str_trim(str_remove(file[date.start.trim:date.end.trim,], "SUBFILE LIST"), side = "both"), " ")))
   date.list <- date.list[-grep("[()]", date.list)]
   
@@ -155,8 +163,8 @@ names(list.headers.sp) <- filename_save
 names(list.dates.sp) <- filename_save
 # output is list of vectors containing col names associated with their corresponding file name
 
-# some species code files appear to be missing, but these are present in the calculation (.sx files) metadata...
-# just need to modify a new loop to extract those as well
+# some species code files appear to be missing, but these are present in the .sx metadata files, which have a different format...
+# Need to modify the previous loop to extract metadata from .sx files as well
 
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sx_files", pattern = "*.txt")
 list.headers.sx <- list()
@@ -167,7 +175,7 @@ for (x in 1:length(file.list)){
   filename = file.list[x]
   rawfileloc = paste("./Hondo/BryoidCover/raw_data/1981_1984/species_codes/sx_files/", filename, sep = "")
   file <- read.csv2(rawfileloc, header = FALSE)
-  start.trim <- min(grep("/PLOTNO", file[,1], fixed = TRUE))
+  start.trim <- min(grep("/PLOTNO", file[,1], fixed = TRUE)) # the start and end conditions for extraction differ for these .sx files
   end.trim <- grep("[(]", file[,1])[2] - 1
   column_names <- file[start.trim:end.trim,]
   extract_col_names <- vector()
@@ -179,11 +187,11 @@ for (x in 1:length(file.list)){
                                            simplify = T))
   full_col_names <- str_remove(as.vector(extract_col_names[, which(extract_col_names != "")]), "/")
 
-  column_correction <- data.frame(full_col_names) %>% rename(code = full_col_names) %>% 
-    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), code, unified_code))
+  column_correction <- data.frame(full_col_names) %>% rename(original_code = full_col_names) %>% 
+    left_join(code_convert) %>% mutate(correct_code = if_else(is.na(unified_code), original_code, unified_code))
   full_col_names <- column_correction$correct_code
   
-  date.start.trim <- min(grep("VALUE LABELS DATE", file[,1], fixed = TRUE))
+  date.start.trim <- min(grep("VALUE LABELS DATE", file[,1], fixed = TRUE)) # these are also different
   date.end.trim <- min(grep("SORT CASES BY DATE", file[,1], fixed = TRUE)) - 1
   date.list <- as.vector(unlist(str_split(str_trim(str_remove(file[date.start.trim:date.end.trim,], "VALUE LABELS DATE"), side = "both"), " ")))
   date.list.scrub <- str_remove_all(str_remove(date.list, "...."), "[']")
@@ -202,10 +210,10 @@ list.all.dates <- c(list.dates.sp, list.dates.sx)
 
 # same story with outputs here, so have now joined to two super-lists
 
-# now need to associate the data in csv files with these column names and sampling dates
+# 3: Associate data with metadata
+# now need to associate the data in .csv files with these column names and sampling dates
 
-# back to the bryoid cover data, now in csv files ... let's make a list of these dfs now
-
+# back to the bryoid cover data, now in .csv files ... let's make a list of these dataframes
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1981_1984/csv_files")
 filenames <- vector()
 data.list <- list()
@@ -219,7 +227,7 @@ for (i in 1:length(file.list)){
 names(data.list) <- filenames
 # now have a list of dataframes with the name of each list item as the name of the original file
 
-# here goes the loop to associate all the information
+# This loop will associate the data with metadata based on the file name
 for (x in 1:length(data.list)){
   df <- data.list[[x]]
   filename <- names(data.list)[x]
@@ -231,14 +239,14 @@ for (x in 1:length(data.list)){
   }
   ### add in file name details - year column, quad size, stand number
   df$stand <- substr(filename, 2, 2) #stand number is in position 2 of the file name string
-  df$year <- paste("19", substr(filename, start = 3, stop = 4), sep = "") # and the date (19**) in the 3-4 position
-  if (str_detect(filename, "25")){
-    df$quadrat_size = 25
+  df$year <- paste("19", substr(filename, start = 3, stop = 4), sep = "") #and the year (19**) in the 3-4 position of the file name string
+  if (str_detect(filename, "25")){ # fill in the quad size -- either 25 m^2 or 0.5 m^2
+    df$quad_size = 25
   }
   else {
-    df$quadrat_size = 5
-  } # note which stand size we are dealing with
-  # change quadrats to all have uppercase characters in them and drop trailing characters where present
+    df$quad_size = 0.5
+  } 
+  # change quads to all have uppercase characters in them and drop trailing characters where present
   df$PLOTNO <- substr(toupper(df$PLOTNO), 1, 2)
   # add date now
   for (z in 1:length(list.all.dates)){
@@ -247,9 +255,9 @@ for (x in 1:length(data.list)){
       date.counter = 1
       for (row in 1:length(df$PLOTNO)){ # for each row of the dataframe
         if (row < (length(df$PLOTNO)-1)){ # if it's not the last row
-          quad.number = as.numeric(substr(df$PLOTNO[row+1], 1, 1)) # then the current quadrat is the next row
-          quad.number.prior = as.numeric(substr(df$PLOTNO[row], 1, 1)) # and the 'prior' quadrat is the current row
-          diff = abs(quad.number.prior - quad.number) # we are looking for a change in date by a change in quadrat number over 2 (e.g. 8 -> 0)
+          quad.number = as.numeric(substr(df$PLOTNO[row+1], 1, 1)) # then the current quad is the next row
+          quad.number.prior = as.numeric(substr(df$PLOTNO[row], 1, 1)) # and the 'prior' quad is the current row
+          diff = abs(quad.number.prior - quad.number) # we are looking for a change in date by a change in quad number over 2 (e.g. 8 -> 0)
           df$date_code[row] = date.vector[date.counter]
           if (diff > 2){
             date.counter = date.counter + 1 # so transition to the next sampling date when this disjunction is detected
@@ -262,26 +270,21 @@ for (x in 1:length(data.list)){
   data.list[[x]] <- df
 }
 
-# finally, join and write a clean, enormous file -- check spp codes first and make a dataframe to associate known codes with species.
-
-#big.list <- unique(unlist(list.all.headers))
-#write.csv(big.list, "../../metadata/sp_codes_list.csv")
-#this has been gone over in detail using taxize.R now to generate the earlier referenced
-#bryoid_codes_final.csv
-## check out taxize.R for script to resolve taxonomy questions
-
+# finally, join and write a clean, enormous file 
 # little fixes to individual dataframes
 
 data.list[[12]] <- as.data.frame(data.list[[12]]) %>% select(-41) # first plot (1B) has one extra number recorded that seems wrong (or like it should apply to CLACEN rather than the current 0)
-data.list[[17]] <- as.data.frame(data.list[[17]]) %>% select(-28) # last col is all zeroes
-data.list[[18]] <- as.data.frame(data.list[[18]]) %>% select(-28) # last col is all zeroes
+data.list[[17]] <- as.data.frame(data.list[[17]]) %>% select(-28) # last col is all zeroes with no name
+data.list[[18]] <- as.data.frame(data.list[[18]]) %>% select(-28) # last col is all zeroes with no name
 data.list[[19]] <- as.data.frame(data.list[[19]]) %>% select(-28) # after cross-referencing with existing physical data, the last column does not correspond to any species data
-data.list[[21]] <- as.data.frame(data.list[[21]]) %>% select(-28) # same stand (3) but in 1984 - if we assume the same data sheet was being used, then the last col of empty zeores does not correspond to anything
+data.list[[21]] <- as.data.frame(data.list[[21]]) %>% select(-28) # same stand (3) but in 1984 - if we assume the same data sheet was being used, then the last col of empty zeroes does not correspond to anything
 data.list[[34]] <- as.data.frame(data.list[[34]]) %>% select(-30) # only numbers in last col are for plot D, and are the same as data value reported elsewhere, suggesting maybe one species was double-counted?
 data.list[[35]] <- as.data.frame(data.list[[35]]) %>% select(-30) # last col is all zeroes
 
 # some problem with s782.b.5 and s782.b.st25 - more data than column headers (by 2)
 # I think based on s783.b.25 data, that the two missing species are ICMERI and PELPUL
+
+# fix these issues:
 
 full.bryoid.data <- data.frame()
 
@@ -295,8 +298,8 @@ for (i in 1:length(data.list)){
     df <- df %>% mutate(PLOTNO = as.factor(PLOTNO),
                         stand = as.integer(stand),
                         year = as.numeric(year),
-                        quadrat_size = as.factor(quadrat_size)) %>%
-      rename(quadrat = PLOTNO)
+                        quad_size = as.factor(quad_size)) %>%
+      rename(quad = PLOTNO)
     if (i == 1){
       full.bryoid.data <- df
     }
@@ -309,18 +312,20 @@ for (i in 1:length(data.list)){
 
 month_code <- levels(as.factor(str_remove_all(substr(full.bryoid.data$date_code,1,3), "[1234567890]")))
 month_numeric <- c(8,7,6,7,6,5,5,5,10,9)
-month_convert <- as.data.frame(cbind(month_code, month_numeric)) # this little df will allow month codes to be assigned a numeric value (1-12)
+month_convert <- as.data.frame(rbind(cbind(month_code, month_numeric), c("AUG",8))) # this little df will allow month codes to be assigned a numeric value (1-12)
 
 fixed.bryoid.data <- full.bryoid.data %>% 
   mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")), # isolate month code
          day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>% # isolate day
   full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric) %>% 
-  unite(key, c(stand,year,month,day,quadrat_size,quadrat), sep = "_") %>% 
-  separate(key, into = c("stand","year","month","day","quadrat_size","quadrat"), sep = "_") # unite into key and then split to put columns at the beginning of the df
+  unite(key, c(stand,year,month,day,quad_size,quad), sep = "_") %>% 
+  separate(key, into = c("stand","year","month","day","quad_size","quad"), sep = "_") # unite into key and then split to put columns at the beginning of the df
 
 ## still need to QC, but for now, looking GREAT!
 
-# 1980s files that were manually entered (25 m2 stands 1-3)
+# 4: 1980s files
+# 1980s files that were manually entered (25 m^2 quads, stands 1-3)
+# different format from other files - need to read in differently
 
 file.list <- list.files(path = "./Hondo/BryoidCover/raw_data/1980_files")
 hondo_1980s <- data.frame()
@@ -328,12 +333,12 @@ hondo_1980s <- data.frame()
 for (i in 1:length(file.list)){
   df <- read_csv(paste("./Hondo/BryoidCover/raw_data/1980_files/", file.list[i], sep = ""))
   df_length <- length(df)
-  df2 <- df %>% pivot_longer(cols = 3:df_length, names_to = "quadrat", values_to = "cover") # need to change format to put quadrat as a grouping variable
-  df3 <- df2 %>% pivot_wider(id_cols = c(key,quadrat), names_from = species, values_from = cover) %>% # and then pivot back to wide format where species is the column, quadrat is associated with each observation
-    separate(key, into = c("stand","year","date_code","quadrat_size"), sep = "_") %>% 
+  df2 <- df %>% pivot_longer(cols = 3:df_length, names_to = "quad", values_to = "cover") # need to change format to put quad as a grouping variable
+  df3 <- df2 %>% pivot_wider(id_cols = c(key,quad), names_from = species, values_from = cover) %>%  # and then pivot back to wide format where species is the column, quad is associated with each observation
+    separate(key, into = c("stand","year","date_code","quad_size"), sep = "_") %>% 
     mutate(month_code = as.factor(str_remove_all(substr(date_code,1,3),"[1234567890]")),
-           day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>%
-    full_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric)
+           day = as.numeric(str_remove_all(date_code, "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"))) %>% 
+    left_join(month_convert) %>% select(-month_code, -date_code) %>% rename(month = month_numeric)
   if (i == 1){
     hondo_1980s <- df3
   }
@@ -343,8 +348,8 @@ for (i in 1:length(file.list)){
 }
 
 hondo_1980s <- hondo_1980s %>% mutate(stand = as.factor(stand),
-                                    quadrat_size = as.factor(quadrat_size),
-                                    quadrat = as.factor(quadrat),
+                                    quad_size = as.factor(quad_size),
+                                    quad = as.factor(quad),
                                     day = as.factor(day),
                                     month = as.factor(month))
 
@@ -354,24 +359,19 @@ all_bryoid_data <- full_join(fixed.bryoid.data, hondo_1980s) # join the data for
 #write_csv(all_bryoid_data, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
 
 cover <- read_csv("./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv") %>% 
-  mutate_at(7:90, as.numeric) %>% 
-  mutate(quadrat_size = case_when(quadrat_size == 5 ~ 0.5,
-                                  quadrat_size == 25 ~ 25))
+  mutate_at(7:90, as.numeric)
 
 cover %>% assert(within_bounds(0,100), 7:90) %>% 
   assert(within_bounds(1, 8), 1) %>%
   assert(within_bounds(1980,2021), 2) %>% 
   assert(within_bounds(1,12), 3) %>% 
   assert(within_bounds(1,12), 3) %>% 
-  verify(quadrat_size %in% c(0.5,25))
-
-#cover <- cover %>% mutate(month = if_else(year == "1980", 8, month)) # 1980 all have day and month the same for some reason, but all surveyed in August
+  verify(quad_size %in% c(0.5,25))
 
 cover2 <- cover %>% unite("date", c(year,month,day), sep = "-", remove = F) %>% 
   mutate(date = ymd(date)) %>% select(-day) # day not super important, just month and year
 
 # loop to associate dates didn't work for Stand 5 quad size 5 in 1981 or for Stand 3 in 1983. Need to input dates.
-
 
 cover_st3problem <- cover2 %>% filter(is.na(date) == T & year == 1983) %>% 
   mutate(month = 10, date = as.Date("1983-10-06"))
@@ -388,7 +388,8 @@ cover_st5_problems2 <- cover_st5problems %>%  mutate(month = month.vec, date = d
 cover_fixed <- cover2 %>% filter(is.na(date) == F) %>% 
   full_join(cover_st3problem) %>% 
   full_join(cover_st5_problems2) %>% 
-  mutate_at(.vars = 7:50, ~replace_na(., 0))
+  filter(is.na(quad) == F) %>% # one row has NA values, so should be removed
+  mutate_at(.vars = 7:50, ~replace_na(., 0)) # all cover values with NA were not measured, so are actually zeroes.
 
 write_csv(cover_fixed, "./Hondo/BryoidCover/clean_data/Hondo_BryoidCover_1980_1984.csv")
 

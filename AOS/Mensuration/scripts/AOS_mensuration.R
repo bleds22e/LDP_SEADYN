@@ -1,6 +1,7 @@
 ### STEM DATA FOR AOS TREE DYNAMICS ###
 ## AVH June 2021 ##
 
+# read in file line by line
 con <- file("./AOS/TreeDynamics/raw_data/aos.stemraw.txt")
 open(con)
 results_list <- list()

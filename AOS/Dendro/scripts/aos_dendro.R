@@ -1,14 +1,17 @@
 ### AOS DENDROCHRONOLOGY : reading & cleaning ###
+# Similar protocol to analogous Hondo data
 ## AVH June 2021 ##
 
+# read in files
 file.list <- list.files("./AOS/Dendro/raw_data/")
 
-all_dendro_data <- data.frame(matrix(ncol = 4))
+all_dendro_data <- data.frame(matrix(ncol = 4)) # create blank df for putting data into
 colnames(all_dendro_data) <- c("year","tree_no","ring_width_mm","stand")
 
 start.trim <- seq(from = 1, to = 44, by = 4)
 end.trim <- seq(from = 4, to = 44, by = 4)
 
+# this loop reads in file line by line, and then splits up each line of data into cells for each tree
 for (file in 1:length(file.list)){
   filename = file.list[file]
   location = substr(filename, 11,12)
@@ -43,9 +46,11 @@ for (file in 1:length(file.list)){
 all_dendro_data <- all_dendro_data %>%
   na.omit() %>% mutate(stand = toupper(stand)) %>% mutate(ring_width_mm = ring_width_mm/100)# and unite the tree number and stand into a unique id for each tree followed
 
-# write dataframe in long format for now
+# write dataframe in long format
 
 write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_Dendrochronology_1983.csv")
+
+# QC data
 
 dendro <- read_csv("./AOS/Dendro/clean_data/AOS_Dendrochronology_1983.csv")
 

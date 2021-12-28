@@ -2,7 +2,7 @@ Metadata for Vascular Plant Surveys – SEADYN Hondo Project
 
 The primary purpose of the SEADYN research project at Hondo-Slave Lake was to document the seasonal dynamic behavior of the Boreal Forest ecosystem based on the quantitative performance of their vascular plant species during the snow-free season (May through October). George La Rio, Mike, and David Chesterman estimated percent cover at monthly intervals in (1) 25-5x5m quadrats in 1981-1985, (2) 10-5x5m quadrats in 1986-90 in each of the 8-50x50m stands. After SEADYN work was completed in October 1990, the project switched to monitoring longer-term, successional changes in the 8 reference stands by sampling all 25 quadrats in each stand in August at 5-year intervals (1995, 2000). In 2001, the Chisholm Fire burned stands 3, 4, 6, and 8. These stands were re-staked and sampled in August and September of 2001. All 8 stands were sampled in 2005, 2010, and 2015. 
 
-Data was cleaned and compiled as part of the Living Data Project by Jenna Loesberg and Ellen Blendsoe in 2021.
+Data was cleaned and compiled as part of the Living Data Project by Jenna Loesberg and Ellen Bledsoe in 2021.
 
 ###
 Methods for data collection: From "Ecological Monitoring Research in Pinus banksiana dominated forests of the Athabasca Oil sands and Hondo-Slave lake areas of Alberta during the period 1981-1984" - this report only included 3 Hondo plots, but methods should have been the same across all of them.

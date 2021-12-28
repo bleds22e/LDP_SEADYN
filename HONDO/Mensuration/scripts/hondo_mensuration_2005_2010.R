@@ -1,6 +1,7 @@
 ### Extracting 2005 and 2010 tree data from messy dataframes
 ### AVH September 2021
 
+# read in packages
 pkgs <- c("dplyr","stringr","assertr","skimr","readr")
 
 lapply(pkgs, library, character.only = T)
@@ -12,15 +13,17 @@ file.list <- list.files("./Hondo/TreeDynamics/2005_2010_raw/")
 ## Loop will trim away the unnecessary variables,
 ## rename columns,
 ## add stand information
+
+# Create small df to convert between the shorthand species codes and unified taxonomic codes
 tree_codes <- cbind(c("A","B","F","J","L","P","S","W"),
                     c("POTR","BEPA","ABBA","PIBA","LALA","POTR","PIMA","PIGL"))
 colnames(tree_codes) <- c("species", "species_code")
 tree_codes <- as.data.frame(tree_codes)
 
-
+# for each file
 for (file in 1:length(file.list)){
   file.name <- paste("./Hondo/TreeDynamics/2005_2010_raw/", file.list[file],
-                     sep = "")
+                     sep = "") # read in the file, select only columns with data and remove weird header information
   raw_file <- read_csv(file.name, col_names = F) %>% select(1:4, 38:49) %>% slice(-c(1:4))
   rename_file <- raw_file %>% rename(stand = 1, quad = 2, tree_tag = 3,
                                      species = 4, DBH_2005_cm = 5, height_2005_m = 6,
@@ -29,13 +32,14 @@ for (file in 1:length(file.list)){
                                      DBH_2010_cm = 11, height_2010_m = 12,
                                      code_2010 = 13, lean_amount_2010_degrees = 14,
                                      lean_direction_2010 = 15, comments_2010 = 16) %>% slice(-1)
+  # rename all the columns with consistent terminology
   tidy_file <- rename_file %>% left_join(tree_codes) %>% select(-species) 
-  is.na(tidy_file) <- tidy_file == "."
+  is.na(tidy_file) <- tidy_file == "." # replace periods with NA
   if (file == 1){
     full_file <- tidy_file
   }
   if (file > 1){
-    full_file <- full_file %>% full_join(tidy_file)
+    full_file <- full_file %>% full_join(tidy_file) # join all the read-in files together
   }
 }
 
@@ -66,11 +70,7 @@ treedyn_1980_2010 <- treedyn_1980_2001 %>% full_join(tidy_file3)
 # 6) Lean amount must be 0-90
 # 7) Lean direction must be a compass direction in c(N, S, E, W, NE, NW, SE, SW)
 # 8) Codes must be in list already described in metadata
-# 
-# TO DO: 
-# - rename comments as comments_2000 & take out all the underscores
-# - rename code as tree_code for 2005 and 2010 columns
-# - inspect ranges of numeric data
+
 
 treedyn_1980_2010 %>% assert(in_set(1:8), stand) %>% 
   mutate(quad_number = as.numeric(substr(quad,1,1)), quad_letter = substr(quad,2,2)) %>% 
