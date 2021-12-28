@@ -8,7 +8,7 @@ lapply(pkgs, library, character.only = T)
 
 ## First, read in the relevant files
 
-file.list <- list.files("./Hondo/TreeDynamics/2005_2010_raw/")
+file.list <- list.files("./Hondo/Mensuration/2005_2010_raw/")
 
 ## Loop will trim away the unnecessary variables,
 ## rename columns,
@@ -22,15 +22,15 @@ tree_codes <- as.data.frame(tree_codes)
 
 # for each file
 for (file in 1:length(file.list)){
-  file.name <- paste("./Hondo/TreeDynamics/2005_2010_raw/", file.list[file],
+  file.name <- paste("./Hondo/Mensuration/2005_2010_raw/", file.list[file],
                      sep = "") # read in the file, select only columns with data and remove weird header information
   raw_file <- read_csv(file.name, col_names = F) %>% select(1:4, 38:49) %>% slice(-c(1:4))
   rename_file <- raw_file %>% rename(stand = 1, quad = 2, tree_tag = 3,
                                      species = 4, DBH_2005_cm = 5, height_2005_m = 6,
-                                     code_2005 = 7, lean_amount_2005_degrees = 8,
+                                     code_2005 = 7, lean_amount_2005 = 8,
                                      lean_direction_2005 = 9, comments_2005 = 10,
                                      DBH_2010_cm = 11, height_2010_m = 12,
-                                     code_2010 = 13, lean_amount_2010_degrees = 14,
+                                     code_2010 = 13, lean_amount_2010 = 14,
                                      lean_direction_2010 = 15, comments_2010 = 16) %>% slice(-1)
   # rename all the columns with consistent terminology
   tidy_file <- rename_file %>% left_join(tree_codes) %>% select(-species) 
@@ -53,7 +53,7 @@ tidy_file3 <- as_tibble(tidy_file3)
 
 ## Then, join these objects into one dataframe to join with -2001 data
 
-treedyn_1980_2001 <- read_csv("./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv") %>% 
+treedyn_1980_2001 <- read_csv("./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2001.csv") %>% 
   mutate(stand = as.factor(stand), tree_tag = as.factor(tree_tag))
 
 treedyn_1980_2010 <- treedyn_1980_2001 %>% full_join(tidy_file3)
@@ -81,8 +81,8 @@ treedyn_1980_2010 %>% assert(in_set(1:8), stand) %>%
   verify(DBH_2010_cm > 0 | is.na(DBH_2010_cm)) %>% 
   verify(height_2005_m > 0 | is.na(height_2005_m)) %>% 
   verify(height_2010_m > 0 | is.na(height_2010_m)) %>% 
-  verify(lean_amount_2005_degrees >= 0 & lean_amount_2005_degrees < 90 | is.na(lean_amount_2005_degrees)) %>% 
-  verify(lean_amount_2010_degrees >= 0 & lean_amount_2010_degrees < 90 | is.na(lean_amount_2010_degrees)) %>% 
+  verify(lean_amount_2005 >= 0 & lean_amount_2005 < 90 | is.na(lean_amount_2005)) %>% 
+  verify(lean_amount_2010 >= 0 & lean_amount_2010 < 90 | is.na(lean_amount_2010)) %>% 
   assert(in_set(c("N","NE","E","SE","S","SW","W","NW")), c(lean_direction_2005,lean_direction_2010)) %>% 
   assert(in_set(c("DD","DL","DS","LB","LL","DB1","DB2", "LB_LL")), c(code_2005, code_2010))
   
@@ -96,4 +96,4 @@ qc_treedyn <- treedyn_1980_2010 %>% rename(tree_code_2005 = code_2005,
 
 # save QCed file
 
-write_csv(qc_treedyn, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2010.csv")
+#write_csv(qc_treedyn, "./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2010.csv")

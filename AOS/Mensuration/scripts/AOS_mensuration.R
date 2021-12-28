@@ -2,7 +2,7 @@
 ## AVH June 2021 ##
 
 # read in file line by line
-con <- file("./AOS/TreeDynamics/raw_data/aos.stemraw.txt")
+con <- file("./AOS/Mensuration/raw_data/aos.stemraw.txt")
 open(con)
 results_list <- list()
 current_line <- 1
@@ -107,9 +107,9 @@ stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv") %>%
 stem_data5 <- stem_data4 %>% left_join(stand_info) %>% select(-stand) %>% 
   rename(stand = stand_code, species_code = sp_codes)
 
-#write_csv(stem_data5, "./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv")
+#write_csv(stem_data5, "./AOS/Mensuration/clean_data/AOS_Mensuration_1983.csv")
 
-stems <- read_csv("./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv") %>% 
+stems <- read_csv("./AOS/Mensuration/clean_data/AOS_Mensuration_1983.csv") %>% 
   mutate(DBH_1983_cm = dbh_m,
          tree_code_1983 = toupper(dead)) %>% 
   rename(
@@ -127,7 +127,7 @@ levels(as.factor(stems$tree_code_1983))
 stems <- stems %>% relocate(stand, quad, tree_tag, species_code, 
                             tree_code_1983, DBH_1983_cm, stem_height_1983_m, age_1983)
 
-write_csv(stems, "./AOS/TreeDynamics/clean_data/AOS_TreeDynamics_1983.csv")
+write_csv(stems, "./AOS/Mensuration/clean_data/AOS_Mensuration_1983.csv")
 
 
 

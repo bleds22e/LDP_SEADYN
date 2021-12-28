@@ -11,7 +11,7 @@
 library(tidyverse)
 library(janitor)
 
-setwd("./Hondo/TreeDynamics/2003_clean_data/")
+setwd("./Hondo/Mensuration/2003_clean_data/")
 
 file.list <- list.files("./")
 
@@ -24,8 +24,15 @@ list2env(lapply(setNames(file.list, make.names(gsub("*.csv$", "", file.list))),
 
 setwd("../../../")
 
-column_names <- c("stand", "plot", "tag", "species_code", "DBH_1983_in", "base_coord_N_1983_m", "base_coord_S_1983_m", "base_coord_E_1983_m", "base_coord_W_1983_m", "year_dead", "fallen_stem_length_1983_m", "exit_coord_N_1983_m", "exit_coord_S_1983_m", "exit_coord_E_1983_m", "exit_coord_W_1983_m", "year_fallen_1983", "status", "age_1983", "stem_height_1983_m", "stem_lean_amt_scaled_1983", "stem_lean_dir_1983", "stem_lean_amt_1991", "stem_lean_dir_1991", "stem_lean_amt_2000", "stem_lean_dir_2000",
-"crown_width_NS_1983_m", "crown_width_EW_1983_m", "height_to_crown_1983_m", "fill_perc_1983", "BSD_1983", "radial_10year_inc_1983_mm", "DBH_1991_cm", "DBH_2000_cm", "height_2000_m", "tree_code_2000", "fire_code_2000", "unknown_dummy", "comments")
+column_names <- c("stand", "plot", "tag", "species_code", "DBH_1983_in", "base_coord_N_1983_m", 
+                  "base_coord_S_1983_m", "base_coord_E_1983_m", "base_coord_W_1983_m", "year_dead",
+                  "fallen_stem_length_1983_m", "exit_coord_N_1983_m", "exit_coord_S_1983_m", 
+                  "exit_coord_E_1983_m", "exit_coord_W_1983_m", "year_fallen_1983", "status", 
+                  "age_1983", "height_1983_m", "stem_lean_amt_scaled_1983", "stem_lean_dir_1983", 
+                  "stem_lean_amt_1991", "stem_lean_dir_1991", "stem_lean_amt_2000", "stem_lean_dir_2000",
+                  "crown_width_NS_1983_m", "crown_width_EW_1983_m", "height_to_crown_1983_m", "density_1983_percent", "BSD_1983", 
+                  "radial_10year_inc_1983_mm", "DBH_1991_cm", "DBH_2000_cm", "height_2000_m", 
+                  "tree_code_2000", "fire_code_2000", "unknown_dummy", "comments")
 stand1_clean <- rbind(column_names, stand1)
 stand1_clean <- janitor::row_to_names(stand1_clean, row_number = 1)
 stand1_clean <- stand1_clean[-c(1:6),]
@@ -120,15 +127,15 @@ tree_dyn3 <- tree_dyn2 %>% mutate_at(6:9, as.numeric) %>% mutate(base_coord_S_19
 ###########################################################################################
 summary(tree_dyn3)
 
-#write_csv(tree_dyn3, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv")
+#write_csv(tree_dyn3, "./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2001.csv")
 
 # now to QC
 library(assertr)
 
-tree_dynamics <- read_csv("./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv", guess_max = 5000)
+tree_dynamics <- read_csv("./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2001.csv", guess_max = 5000)
 
 tree_dynamics %>% assert(within_bounds(1,8), stand)
-tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag number?
+tree_dynamics %>% verify(tag > 0) # do we want to keep in trees that have no tag number? Yes for now
 
 levels(as.factor(tree_dynamics$species_code)) # species codes valid and spelled correctly
 
@@ -180,10 +187,10 @@ levels(as.factor(tree_dynamics5$fire_code_2000))
 
 # check to see if the stem height (from ground to top of tree) greater than/equal to height to canopy
 
-tree_dyn6 <- tree_dynamics5 %>% select(tree_tag, stem_height_1983_m, height_to_crown_1983_m) %>% na.omit() 
-tree_dyn6 %>% verify(stem_height_1983_m >= height_to_crown_1983_m) # this is violated in 15 cases
+tree_dyn6 <- tree_dynamics5 %>% select(tree_tag, height_1983_m, height_to_crown_1983_m) %>% na.omit() 
+tree_dyn6 %>% verify(height_1983_m >= height_to_crown_1983_m) # this is violated in 15 cases
 
-problem_tree <- (tree_dyn6[which(tree_dyn6$height_to_crown_1983_m > tree_dyn6$stem_height_1983_m),])
+problem_tree <- (tree_dyn6[which(tree_dyn6$height_to_crown_1983_m > tree_dyn6$height_1983_m),])
 remove <- as.vector(problem_tree$tree_tag)
 tree_dynamics6 <- tree_dynamics5 %>% filter((tree_tag %in% remove) == FALSE) %>% 
   # remove cases where height to canopy absurdly large compared to stem height
@@ -191,4 +198,4 @@ tree_dynamics6 <- tree_dynamics5 %>% filter((tree_tag %in% remove) == FALSE) %>%
 
 # everything has units, is consistent with other dfs and is of a reasonable value
 
-#write_csv(tree_dynamics6, "./Hondo/TreeDynamics/clean_data/Hondo_TreeDynamics_1980_2001.csv")
+#write_csv(tree_dynamics6, "./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2001.csv")
