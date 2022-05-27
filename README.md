@@ -1,4 +1,4 @@
-# LDP_SEADYN
+# Seasonal and annual dynamics of western Canadian boreal forest plant communities: a legacy dataset spanning four decades
 
 This repository contains raw data, cleaning scripts, and resultant clean data associated with the SEADYN/ANNDYN project run by Dr. George La Roi at the University of Alberta (1980–2015). The data associated with this project and relevant metadata can be found at:
 
