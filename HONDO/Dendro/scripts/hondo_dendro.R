@@ -49,14 +49,14 @@ all_dendro_data <- all_dendro_data %>%
 
 # write dataframe in long format for now
 View(all_dendro_data)
-#write_csv(all_dendro_data,"./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1983.csv")
+#write_csv(all_dendro_data,"./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1982.csv")
 
 # inspect data
-dendro <- read_csv("./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1983.csv")
+dendro <- read_csv("./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1982.csv")
 summary(dendro)
 levels(as.factor(dendro$stand))
 hist(dendro$ring_width_mm)
 
 # arrange logically
 dendro <- dendro %>% arrange(stand,year,tree_no,ring_width_mm)
-write_csv(dendro, "./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1983.csv")
+write_csv(dendro, "./Hondo/Dendro/clean_data/Hondo_Dendrochronology_1982.csv")

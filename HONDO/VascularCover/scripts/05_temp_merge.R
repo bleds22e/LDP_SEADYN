@@ -6,8 +6,9 @@ library(snakecase)
 setwd("./Hondo/VascularCover/Hondo_compiled")
 myfiles <- list.files(pattern = "*.csv", full.names = FALSE)
 
-file.list <- list.files("./Hondo/VascularCover/Hondo_compiled",
-                        pattern = "*_Temp.csv") # list only temperature files
+file.list <- list.files(pattern = "*_Temp.csv") # list only temperature files
+
+setwd("../../../")
 
 for (file in 1:length(file.list)){ # read in temperature files
   filename = paste("./Hondo/VascularCover/Hondo_compiled/", file.list[file],
@@ -25,8 +26,8 @@ col.names <- colnames(df)
 col.names2 <- to_any_case(col.names, case = "snake") # make all column names snakecase
 
 colnames(df) <- col.names2
-
-df2 <- df %>% mutate(temp_C = (temp_f - 32)*5/9) %>% select(-temp_f) # convert to C from F
+View(df)
+df2 <- df %>% mutate(temp_C = round((temp_f - 32)*5/9)) %>% select(-temp_f) # convert to C from F
 
 write_csv(df2, "./Hondo/VascularCover/clean_data/Hondo_SoilTemp_1980_2010.csv")
 

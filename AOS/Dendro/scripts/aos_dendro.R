@@ -48,11 +48,11 @@ all_dendro_data <- all_dendro_data %>%
 
 # write dataframe in long format
 
-write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_Dendrochronology_1983.csv")
+write_csv(all_dendro_data,"./AOS/Dendro/clean_data/AOS_Dendrochronology_1982.csv")
 
 # QC data
 
-dendro <- read_csv("./AOS/Dendro/clean_data/AOS_Dendrochronology_1983.csv")
+dendro <- read_csv("./AOS/Dendro/clean_data/AOS_Dendrochronology_1982.csv")
 
 levels(as.factor(dendro$year))
 levels(as.factor(dendro$stand))

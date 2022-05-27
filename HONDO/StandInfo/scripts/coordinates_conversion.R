@@ -13,18 +13,18 @@ to_degrees <- stand_coords %>%
   mutate(latitude_N = str_remove_all(latitude_N, "N"),
          longitude_W = str_remove_all(longitude_W, "W")) %>% 
   # separate into coordinate components
-  separate(latitude_N, into = paste("lat", c("d", "m", "s"), sep = "_"), sep = "[°.]") %>% 
-  separate(longitude_W, into = paste("long", c("d", "m", "s"), sep = "_"), sep = "[°.]") %>% 
+  separate(latitude_N, into = paste("lat", c("d", "m"), sep = "_"), sep = "[°]") %>% 
+  separate(longitude_W, into = paste("long", c("d", "m"), sep = "_"), sep = "[°]") %>% 
   # convert from character to numeric data
   mutate_at(3:8, as.numeric) %>% 
   # calculate the decimal degree coordinates from the incorrect format
-  mutate(latitude_degrees = lat_d + lat_m/60 + lat_s/3600,
-            longitude_degrees = -1*(long_d + long_m/60 + long_s/3600), .keep = "unused") %>% 
+  mutate(latitude_degrees = round(lat_d + lat_m/60, 4),
+            longitude_degrees = round(-1*(long_d + long_m/60),4), .keep = "unused") %>% 
   # this comments column doesn't include any useful information, so remove that
   select(-comments) %>% 
-  mutate(elevation_m = elevation_ft*0.3048) %>% select(-elevation_ft) %>% 
+  mutate(elevation_m = round(elevation_ft*0.3048,1)) %>% select(-elevation_ft) %>% 
   rename(stand_code = stand)
-  
+to_degrees
 #write_csv(to_degrees, "./Hondo/StandInfo/clean_data/Hondo_StandLocation.csv")
 
 means_only <- to_degrees %>% filter(corner == "Means") %>% select(-corner) %>% mutate(vascular_cover = rep(1, times = 8),

@@ -97,3 +97,149 @@ qc_treedyn <- treedyn_1980_2010 %>% rename(tree_code_2005 = code_2005,
 # save QCed file
 
 #write_csv(qc_treedyn, "./Hondo/Mensuration/clean_data/Hondo_Mensuration_1983_2010.csv")
+
+# make example figure of one stand with where different variables were measured??
+# color code by variable... height = all, age = small subset, bsd = all ... multipanel with all trees, then color
+# where certain variables apply.
+
+letter_to_m <- cbind(LETTERS[1:10], c(0:9)) %>% as.data.frame() %>% rename(row = 1, metres_WE = 2) %>% 
+  mutate(metres_WE = as.numeric(metres_WE)*5)
+
+grid_theme <- theme_classic() +
+  theme(
+    panel.grid.major = element_line(color = "grey80", size = 0.3),
+    panel.grid.minor = element_line(color = "grey90", size = 0.2),
+    legend.position = "top",
+    axis.title = element_text(size = 9),
+    axis.text = element_text(size = 7),
+    legend.title = element_text(size = 9),
+    strip.text = element_text(size = 7),
+    legend.text = element_text(size = 7, face = "italic"),
+    panel.spacing = unit(0.7, "lines"))
+
+tree_measurements <- read_csv("./Hondo//Mensuration/clean_data/Hondo_Mensuration_1983_2010.csv") %>% 
+  separate(quad, into = c("col","row"), 1,1) %>% 
+  left_join(letter_to_m) %>% 
+  mutate(metres_SN = as.numeric(col)*5 + base_coord_S_1983_m, metres_WE = metres_WE + base_coord_W_1983_m) %>% 
+  mutate(species = case_when(species_code == "ABBA" ~ "A. balsamea",
+                             species_code == "BEPA" ~ "B. papyrifera",
+                             species_code == "POTR" ~ "P. tremuloides",
+                             species_code == "PIBA" ~ "P. banksiana",
+                             species_code == "PIGL" ~ "P. glauca",
+                             species_code == "PIMA" ~ "P. marina",
+                             species_code == "LALA" ~ "L. laricina"),
+         is_dead = if_else((is.na(year_dead) | year_dead > 1983), 0, 1)) %>% 
+  mutate(
+         dbh_measured = if_else(is.na(DBH_1983_cm), "No", if_else(is_dead == 1, "Dead", "Yes")),
+         age_measured = if_else(is.na(age_1983),"No", if_else(is_dead == 1, "Dead", "Yes")),
+         height_measured = if_else(is.na(height_1983_m), "No", if_else(is_dead == 1, "Dead", "Yes")),
+         lean_estimated = if_else(is.na(stem_lean_amt_scaled_1983), "No", if_else(is_dead == 1, "Dead", "Yes")),
+         crown_measured = if_else(is.na(crown_width_EW_1983_m), "No", if_else(is_dead == 1, "Dead", "Yes")),
+         bsd_measured = if_else(is.na(BSD_1983_cm), "No", if_else(is_dead == 1, "Dead", "Yes")),
+         is_dead = if_else(is_dead == 1, "Dead","Alive"))
+
+all_trees <- ggplot(aes(x = metres_WE, y = metres_SN, col = species, fill = species, alpha = is_dead), data = tree_measurements) +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  geom_point(shape = 21, size = 0.8, stroke = 0.1, col = "black") +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  scale_alpha_manual(values = c(0.8, 0.4), guide = "none") +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+
+dbh_trees <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = tree_measurements %>% filter(dbh_measured == "Yes" & is_dead == "Alive")) +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  geom_point(alpha = 0.7, size = 0.8, pch = 21, stroke = 0.1, col = "black") +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+
+age_trees <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = tree_measurements %>% filter(age_measured == "Yes" & is_dead == "Alive")) +
+  geom_point(alpha = 0.7, pch = 21, size = 0.8, stroke = 0.1, col = "black") +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+
+bsd_trees <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = tree_measurements %>% filter(bsd_measured == "Yes" & is_dead == "Alive")) +
+  geom_point(alpha = 0.7, pch = 21, size = 0.8, stroke = 0.1, col = "black") +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+
+height_trees <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = tree_measurements %>% filter(height_measured == "Yes" & is_dead == "Alive")) +
+  geom_point(alpha = 0.7, size = 0.8, pch = 21, stroke = 0.1, col = "black") +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+
+crown_trees <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = tree_measurements %>% filter(crown_measured == "Yes" & is_dead == "Alive")) +
+  geom_point(alpha = 0.7, size = 0.8, pch = 21, stroke = 0.1, col = "black") +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       fill = "Species") +
+  grid_theme +
+  #theme(strip.text = element_blank(), strip.background = element_blank()) +
+  theme(legend.position = "none") +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F, clip="off") +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  guides(fill = guide_legend(override.aes = list(size=4))) +
+  facet_wrap(~stand, nrow = 2, ncol = 4) 
+crown_trees
+
+library(patchwork)
+
+mensuration_spatial <- (all_trees + dbh_trees + height_trees) / (age_trees + bsd_trees + crown_trees) + 
+  plot_layout(guides = "collect")  + plot_annotation(tag_levels = "A") & theme(legend.position = "bottom",
+                                                                               plot.tag = element_text(face= "bold", size = 9))
+png("./mensuration_hondo_spatial.png", res = 600, width = 11, height = 7, unit = "in")
+mensuration_spatial
+dev.off()

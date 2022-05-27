@@ -109,4 +109,59 @@ sap_info <- sap_info %>% rename(base_coord_S_m = location_south_m,
                                 species_code = species,
                                 quad = quadrat)
 
-#write_csv(sap_info, "./Hondo/Saplings/raw_data/tree_info/Hondo_SaplingID_1983_1985.csv")
+#write_csv(sap_info, "./Hondo/Saplings/clean_data/tree_info/Hondo_SaplingID_1983_1985.csv")
+
+# Figure showing location of saplings in stands
+
+grid_theme <- theme_classic() +
+  theme(
+    panel.grid.major = element_line(color = "grey80", size = 0.3),
+    panel.grid.minor = element_line(color = "grey90", size = 0.2),
+    legend.position = "top",
+    axis.title = element_text(size = 9),
+    axis.text = element_text(size = 7),
+    legend.title = element_text(size = 9),
+    strip.text = element_text(size = 7),
+    legend.text = element_text(size = 7, face = "italic"),
+    panel.spacing = unit(0.7, "lines"))
+
+letter_to_m <- cbind(LETTERS[1:10], c(0:9)) %>% as.data.frame() %>% rename(row = 1, metres_WE = 2) %>% 
+  mutate(metres_WE = as.numeric(metres_WE)*5)
+
+sapling_measurements <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingMensuration_1983_1985.csv") %>% 
+  select(tree_tag, year) %>% unique()
+
+sapling_locations <- read_csv("./Hondo/Saplings/clean_data/Hondo_SaplingID_1983_1985.csv") %>% 
+  select(species_code, stand, quad, tree_tag, base_coord_S_m, base_coord_W_m) %>%
+  left_join(sapling_measurements) %>% 
+  separate(quad, into = c("col","row"), 1,1) %>% 
+  left_join(letter_to_m) %>% 
+  mutate(metres_SN = as.numeric(col)*5 + base_coord_S_m, metres_WE = metres_WE + base_coord_W_m) %>% 
+  filter(is.na(year) == F) %>% 
+  mutate(species = case_when(species_code == "ABBA" ~ "A. balsamea",
+                             species_code == "BEPA" ~ "B. papyrifera",
+                             species_code == "POTR" ~ "P. tremuloides",
+                             species_code == "PIBA" ~ "P. banksiana",
+                             species_code == "PIGL" ~ "P. glauca",
+                             species_code == "PIMA" ~ "P. marina",
+                             species_code == "LALA" ~ "L. laricina"))
+
+
+sapling_time <- ggplot(aes(x = metres_WE, y = metres_SN, fill = species), data = sapling_locations) +
+  geom_point(alpha = 0.8, pch = 21, stroke = 0.1, size = 1, col = "black") +
+  facet_grid(rows = vars(year), cols = vars(stand)) +
+  labs(x = "W-E position within plot (m)",
+       y = "S-N position within plot (m)",
+       col = "Species") +
+  grid_theme +
+  coord_fixed(xlim = c(0,50), ylim = c(0,50), expand = F) +
+  scale_x_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_y_continuous(breaks = seq(0, 50, by =10), minor_breaks = seq(5, 45, by =10)) +
+  scale_fill_manual(values = c("#74B72E", "#795C34", "#E1AD01",
+                               "#028A0F",  "#63C5DA", "#1338BE", "#F05E16")) +
+  guides(fill = guide_legend(override.aes = list(size=4)))
+  
+png("./sapling_positions.png", res = 600, width = 8, height = 5, units = "in")
+sapling_time
+dev.off()
+

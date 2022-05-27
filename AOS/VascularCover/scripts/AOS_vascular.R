@@ -2,12 +2,13 @@
 ## AVH June 2021 ##
 
 library(tidyverse)
+library(lubridate)
 library(taxize)
 
 # 1: 1982 data - problem: zeroes are implicit
 
 # read in file line by line
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/earlier_years/aos82.v.st25.txt")
+con <- file("./AOS/VascularCover/raw_data/txt_files/earlier_years/aos82.v.st25.txt")
 open(con)
 
 results_list <- list()
@@ -81,7 +82,7 @@ vc_1982 <- cbind(quad, vc_df2) %>% select(1:106) # some empty columns present at
 # get the metadata to add the column names!
 
 # read in the metadata
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/earlier_years/aos82.v.sp25.txt")
+con <- file("./AOS/VascularCover/raw_data/txt_files/earlier_years/aos82.v.sp25.txt")
 
 open(con)
 results_list <- list()
@@ -151,11 +152,11 @@ for (q in 1:length(file_string2)){
 }
 
 # repeat each stand code 25 times to make stand column
-stand <- as.data.frame(rep(file_string2, each = 25)) %>% rename(vascular_1982 = 1)
+stand <- as.data.frame(rep(file_string2, each = 25)) %>% rename(stand_number = 1)
 
 # join to coordinates dataframe to get the two-letter code for the stand
-stand_info <- read_csv("./AOS/StandInfo/AOS_coordinates.csv")
-stand2 <- stand %>% left_join(stand_info) %>% select(plot_code) %>% rename(stand = plot_code)
+stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv")
+stand2 <- stand %>% left_join(stand_info) %>% select(stand_code)
 
 # all stands surveyed in August (month 8) of 1982, so make cols to this effect
 vc_1982$month <- 8
@@ -171,7 +172,7 @@ vc_1982x[is.na(vc_1982x)] <- 0 # put in explicit zeroes where NA values present
 # 2: 1981 data
 
 # read in file line by line
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/earlier_years/aos81.v.st25.txt")
+con <- file("./AOS/VascularCover/raw_data/txt_files/earlier_years/aos81.v.st25.txt")
 
 open(con)
 results_list <- list()
@@ -225,7 +226,7 @@ vc_1981 <- cbind(quad, vc_df2_1981) %>% select(1:114)
 
 # join with the metadata
 
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/earlier_years/aos81.v.sx25.txt")
+con <- file("./AOS/VascularCover/raw_data/txt_files/earlier_years/aos81.v.sx25.txt")
 open(con)
 results_list <- list()
 current_line <- 1
@@ -292,7 +293,7 @@ taxonomy.1981 <- as.data.frame(cbind(sp.code.1981, sci.name.1981))
 # 3: 1983 & 1984 data
 
 # list all the file names
-file.list <- list.files("./AOS/VascularSurvey/raw_data/txt_files/later_years/data")
+file.list <- list.files("./AOS/VascularCover/raw_data/txt_files/later_years/data")
 
 vc_1983 <- data.frame() # create data frame for 1983 survey data
 vc_1984 <- data.frame() # and another for 1984 survey data
@@ -308,7 +309,7 @@ for (file in 1:length(file.list)){
   filename = file.list[file] # define the file name
   
   # read in the file line by line
-  con <- file(paste("./AOS/VascularSurvey/raw_data/txt_files/later_years/data/", filename, sep = ""))
+  con <- file(paste("./AOS/VascularCover/raw_data/txt_files/later_years/data/", filename, sep = ""))
   open(con)
   results_list <- list()
   current_line <- 1
@@ -387,7 +388,7 @@ subset_rows <- seq(from = 1, to = 16875, by = 5)
 all_quads3 <- all_quads2[subset_rows,] # get the quadrat names
 
 # read in survey dates to associate with survey data
-survey_dates <- read_csv("./AOS/VascularSurvey/metadata/AOS_VascularSurveyDates.csv") %>% 
+survey_dates <- read_csv("./AOS/VascularCover/metadata/AOS_VascularSurveyDates.csv") %>% 
   separate(month, into = c("month", "day"), sep = "_") %>% 
   mutate(month = as.numeric(month), day = as.numeric(day)) %>% 
   arrange(stand, year, month, day)
@@ -420,7 +421,7 @@ quads_1984 <- all_quads3 %>% filter(year == "1984")
 
 # 1983 metadata
 
-con <- file("./AOS/VascularSurvey/raw_data/txt_files/later_years/metadata/aos83.v.sx25.txt")
+con <- file("./AOS/VascularCover/raw_data/txt_files/later_years/metadata/aos83.v.sx25.txt")
 open(con)
 results_list <- list()
 current_line <- 1
@@ -472,19 +473,19 @@ colnames(vc_1984_2) <- toupper(col.names)
 aos_vc_1983 <- cbind(quads_1983, vc_1983_2) # bind together quadrat information (quadrat + date + stand) and cover data
 aos_vc_1984 <- cbind(quads_1984, vc_1984_2)
 
-#write_csv(aos_vc_1983, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1983.csv")
-#write_csv(aos_vc_1984, "./AOS/VascularSurvey/raw_data/csv_files/AOS_vc_1984.csv")
+#write_csv(aos_vc_1983, "./AOS/VascularCover/raw_data/csv_files/AOS_vc_1983.csv")
+#write_csv(aos_vc_1984, "./AOS/VascularCover/raw_data/csv_files/AOS_vc_1984.csv")
 
-#write_csv(taxonomy.1983, "./AOS/VascularSurvey/metadata/sp_codes_1983.csv")
+#write_csv(taxonomy.1983, "./AOS/VascularCover/metadata/sp_codes_1983.csv")
 
 # now join data across all years
 
-file.list <- list.files("./AOS/VascularSurvey/metadata", pattern = "sp_codes")
+file.list <- list.files("./AOS/VascularCover/metadata", pattern = "sp_codes")
 
 all_taxa <-data.frame() # create an empty dataframe for storing all taxonomic information
 
 for (file in 1:length(file.list)){
-  df <- read_csv(paste("./AOS/VascularSurvey/metadata/", file.list[file], sep = ""), col_names = F)
+  df <- read_csv(paste("./AOS/VascularCover/metadata/", file.list[file], sep = ""), col_names = F)
   colnames(df) <- c("sp.code","sp.name")
   if (file == 1){
     all_metadata <- df
@@ -630,7 +631,7 @@ all_vc2 <- all_vc %>% unite("date",c("year","month","day"), sep = "-", remove = 
   mutate(date = ymd(date))
 
 temperature <- all_vc2 %>% select(stand,year,month,date, quad,TEMP) %>% #isolate soil temperature
-  mutate(temp_C = (TEMP-32)*5/9) %>% filter(year != "1981") %>%  # 1981 temperatures always incorrect
+  mutate(temp_C = round((TEMP-32)*5/9)) %>% filter(year != "1981") %>%  # 1981 temperatures always incorrect
   filter((stand %in% c("RY","RO")) == F) %>% select(-TEMP) # RY and RO not sampled extensively since burned
 
 cover_only <- all_vc2 %>% select(-TEMP) %>% select(-day) %>% relocate(stand,year,month,date,quad) %>%  
@@ -638,15 +639,14 @@ cover_only <- all_vc2 %>% select(-TEMP) %>% select(-day) %>% relocate(stand,year
 # isolate cover only and rearrange data before saving, replace na values with 0
 # take out RY and RO - these two stands burned and were not sampled much in time series
 
-#write_csv(temperature, "./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
+#write_csv(temperature, "./AOS/VascularCover/clean_data/AOS_SoilTemp_1982_1984.csv")
 #write_csv(cover_only, "./AOS/VascularCover/clean_data/AOS_VascularCover_1981_1984.csv")
-
 
 library(assertr)
 
 # QC temp data
 
-qc_temp <- read_csv("./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
+qc_temp <- read_csv("./AOS/VascularCover/clean_data/AOS_SoilTemp_1982_1984.csv")
 hist(qc_temp$temp_C) # some temp values seem WAY too low (in August) - looking back, the temps measured are 0 F, which is ridiculous.
 qc_temp2 <- qc_temp %>% filter(temp_C > -5)
 hist(qc_temp2$temp_C) # much more reasonable
@@ -659,5 +659,5 @@ levels(as.factor(qc_temp2$quad))
 
 qc_temp2 <- qc_temp2 %>% arrange(stand,year,month,quad,temp_C)
 
-write_csv(qc_temp2, "./AOS/VascularCover/clean_data/AOS_ProbeTemp_1982_1984.csv")
+write_csv(qc_temp2, "./AOS/VascularCover/clean_data/AOS_SoilTemp_1982_1984.csv")
 

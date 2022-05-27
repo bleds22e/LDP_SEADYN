@@ -1,5 +1,6 @@
 ### STEM DATA FOR AOS TREE DYNAMICS ###
 ## AVH June 2021 ##
+library(tidyverse)
 
 # read in file line by line
 con <- file("./AOS/Mensuration/raw_data/aos.stemraw.txt")
@@ -89,7 +90,8 @@ stem_data2 <- stem_data[which(stem_data$stand != ""),] # get rid of first row (b
 stem_data3 <- stem_data2 %>% 
   mutate_at(c(5, 7, 8), as.numeric) %>% 
   mutate_at(c(1:4, 6), as.factor) %>% 
-  mutate(dbh_m = (dbh_units*10)*(2.54)/100) %>% # convert from 0.1 inch units to m
+  mutate(dbh_m = round((dbh_units*10)*(2.54)/100,1),
+         height_m = round(height_m,1)) %>% # convert from 0.1 inch units to m
   select(-dbh_units)
 
 # create species code that is consistent with other data
@@ -102,10 +104,13 @@ stem_data4 <- stem_data3 %>% full_join(sp_conversion) %>% select(-tree_sp)
 #convert numeric codes to two-letter conventional code for stand
 
 stand_info <- read_csv("./AOS/StandInfo/AOS_StandInformation.csv") %>% 
-  select(plot_number, stand_code) %>% rename(stand = plot_number)
+  select(stand_number, stand_code) %>% mutate(stand_number = if_else(stand_number == "3N", "23",
+                                                                     if_else(stand_number == "4N", "24",
+                                                                             stand_number)))
 
-stem_data5 <- stem_data4 %>% left_join(stand_info) %>% select(-stand) %>% 
-  rename(stand = stand_code, species_code = sp_codes)
+stem_data5 <- stem_data4 %>% rename(stand_number = stand) %>% left_join(stand_info) %>% select(-stand_number) %>% 
+  rename(stand = stand_code, species_code = sp_codes) %>% 
+  filter(is.na(stand) == F)
 
 #write_csv(stem_data5, "./AOS/Mensuration/clean_data/AOS_Mensuration_1983.csv")
 

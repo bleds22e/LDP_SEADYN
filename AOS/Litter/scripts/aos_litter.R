@@ -38,7 +38,6 @@ for (file in 1:length(file.list)){ # read in each individual litter file
     }
   }
   empty_data <- empty_data[, colSums(empty_data != "") != 0] #remove any empty rows in the dataframe
-  empty_data$trap_number <- seq(from = 1, to = 12, by = 1)
   save_file <- paste("./AOS/Litter/raw_data/csv_files/", paste(str_remove(filename, ".txt"), ".csv", sep = ''),
                      sep = "")
   write.csv(empty_data, save_file, row.names = FALSE)  # and save the df
@@ -54,18 +53,18 @@ dates_cols <- read_csv("./AOS/Litter/metadata/AOS_LitterDates.csv") %>%
 
 all_aos_litter <- as.data.frame(matrix(ncol = 5, nrow = 0)) # start a blank file to join to eventually
 colnames(all_aos_litter) <- c("component","sample_date","biomass","stand", "trap_number")
-all_aos_litter <- all_aos_litter %>% mutate_at(c("component", "sample_date", "stand"), as.factor) %>% 
-  mutate_at(c("trap_number", "biomass"), as.numeric)
+all_aos_litter <- all_aos_litter %>% mutate_at(c("component", "sample_date", "stand", "trap_number"), as.factor) %>% 
+  mutate_at(c("biomass"), as.numeric)
 
 for (file in 1:length(file.list)){
   filename = file.list[file]
   location = substr(filename, 1, 2)
   df <- read_csv(paste("./AOS/Litter/raw_data/csv_files/", filename, sep = ""))
   remove.cols <- which(df[1,] == "&") # remove cols with ampersand
-  df <- df %>% select(-remove.cols) %>% mutate_all(as.numeric)
+  df <- df %>% select(-remove.cols) %>% mutate_all(as.numeric) %>% slice(1:10) %>% select(1:(ncol(.)-4))
   df_names <- dates_cols %>% filter(stand == location) %>% select(comp_date) # get vector of column names for that stand
-  df_names <- rbind(as.vector(df_names), "trap_number")
   colnames(df) <- df_names$comp_date #rename columns correctly
+  df$trap_number <- as.factor(c(1:10))
   df_end <- length(df) - 1
   df_pivot <- df %>% pivot_longer(cols = (1:df_end), names_to = c("component","sample_date"), names_sep = "/",
                                   values_to = "biomass") %>%
@@ -76,10 +75,11 @@ for (file in 1:length(file.list)){
 
 # save files for discrete sampling dates and annual means
 
-all_aos_litter_noann <- all_aos_litter  %>% mutate(stand = toupper(stand)) %>% filter(sample_date != "annual_total") %>% 
+all_aos_litter <- all_aos_litter  %>% mutate(stand = toupper(stand),
+                                             biomass = round(biomass, 2)) %>% 
   rename(biomass_g_per_m2 = biomass)
 
-#write_csv(all_aos_litter_noann, "./AOS/Litter/clean_data/AOS_LitterBiomass_1983_1984.csv")
+#write_csv(all_aos_litter, "./AOS/Litter/clean_data/AOS_LitterBiomass_1983_1984.csv")
 
 ia_litter <- read_csv("./AOS/Litter/clean_data/AOS_LitterBiomass_1983_1984.csv")
 
@@ -92,7 +92,7 @@ hist(ia_litter$biomass_g_per_m2)
 ia_litter %>% verify(substr(sample_date, 1, 4) %in% c("1983", "1984"))
 ia_litter %>% verify(substr(sample_date, 6,7) %in% as.character(as.vector(sprintf("%0.2d", seq(1:12)))))
 ia_litter %>% verify(substr(sample_date, 9,10) %in% as.character(as.vector(sprintf("%0.2d", seq(1:31)))))
-View(ia_litter)
+
 ia_litter2 <- ia_litter %>% mutate(component = as.factor(component)) %>% 
   arrange(stand, sample_date,trap_number, component,biomass_g_per_m2)
 
