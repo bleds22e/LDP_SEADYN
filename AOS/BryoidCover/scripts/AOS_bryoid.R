@@ -32,7 +32,7 @@ start_boundary <- seq(from = 1, to = 76, by = 3)
 end_boundary <- seq(from = 3, to = 78, by = 3)
 
 df <- data.frame()
-quad.info <- as.data.frame(matrix(ncol = 4))
+quad.info <- as.data.frame(matrix(ncol = 3))
 colnames(quad.info) <- c("quad","year","month")
 
 for (line in 1:length(results_list)){ # for each line of the file
@@ -135,8 +135,8 @@ sci.name.1981 <- name_string2[sp.sci.names]
 
 taxonomy.1981 <- as.data.frame(cbind(sp.code.1981, sci.name.1981))
 
-#write_csv(taxonomy.1981, "./AOS/BryoidCover/metadata/sp_codes_1981.csv")
-write_csv(bc_1981x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1981.csv")
+# write_csv(taxonomy.1981, "./AOS/BryoidCover/metadata/sp_codes_1981.csv")
+# write_csv(bc_1981x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1981.csv")
 
 # 2: 1982 25 m2 plot bryoid data: has implicit zeroes
 
@@ -282,8 +282,8 @@ taxonomy.1982 <- as.data.frame(name_string2) %>%
   separate(1, into = c("sp.code.1982", "genus", "species"), sep = " ") %>% 
   unite(sci.name.1980, c(genus, species), sep = " ")
 
-#write_csv(taxonomy.1982, "./AOS/BryoidCover/metadata/sp_codes_1982.csv")
-write_csv(bc_1982x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1982.csv")
+# write_csv(taxonomy.1982, "./AOS/BryoidCover/metadata/sp_codes_1982.csv")
+# write_csv(bc_1982x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1982.csv")
 
 # 3: 1983 25 m2 bryoid data
 
@@ -409,8 +409,8 @@ sci.name.1983 <- name_string2[sp.sci.names]
 
 taxonomy.1983 <- as.data.frame(cbind(sp.code.1983, sci.name.1983))
 
-#write_csv(taxonomy.1983, "./AOS/BryoidCover/metadata/sp_codes_1983.csv")
-write_csv(bc_1983x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1983.csv")
+# write_csv(taxonomy.1983, "./AOS/BryoidCover/metadata/sp_codes_1983.csv")
+# write_csv(bc_1983x, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1983.csv")
 
 # 4: 0.7 x 0.7 m microplots, 1983 & 1984
 
@@ -617,13 +617,13 @@ sci.name.1984 <- name_string2[sp.sci.names]
 taxonomy.1984 <- as.data.frame(cbind(sp.code.1984, sci.name.1984)) %>% 
   mutate(sp.code.1984 = str_trim(sp.code.1984, side = "both")) # save the taxonomic equivalence of code and name
 
-#write_csv(taxonomy.1984, "./AOS/BryoidCover/metadata/sp_codes_1984.csv")
+# write_csv(taxonomy.1984, "./AOS/BryoidCover/metadata/sp_codes_1984.csv")
 
 aos_bc_1983 <- cbind(quads_1983, bc_1983_2) # bind together quadrat information (quadrat + date + stand) and cover data
 aos_bc_1984 <- cbind(quads_1984, bc_1984_2)
 
-write_csv(aos_bc_1983, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1983.csv")
-write_csv(aos_bc_1984, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1984.csv")
+# write_csv(aos_bc_1983, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1983.csv")
+# write_csv(aos_bc_1984, "./AOS/BryoidCover/raw_data/csv_files/AOS_bryoid_1984.csv")
 
 # now need to put together all of these dataframes
 
@@ -692,7 +692,7 @@ sp.list.bryoids.fill <-  sp.list.bryoids.fill %>%
 all.sp.codes.taxonomy <- corrected_taxa %>%  mutate(accepted_name = correct.sp.name) %>% 
   full_join(sp.list.bryoids.fill)
 
-#write_csv(all.sp.codes.taxonomy, "./AOS/BryoidCover/metadata/AOS_BryoidSpList.csv")
+# write_csv(all.sp.codes.taxonomy, "./AOS/BryoidCover/metadata/AOS_BryoidSpList.csv")
 
 # finally, to join together the data
 
@@ -716,4 +716,4 @@ all_bc2 <- all_bc %>%  relocate(stand,year,month,day,quad_size,quad) %>% # isola
   unite("date", c("year","month","day"), sep = "-", remove = F) %>% 
   mutate(date = ymd(date)) %>% select(-day) %>% relocate(date, .after = day)
 
-write_csv(all_bc2, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")
+# write_csv(all_bc2, "./AOS/BryoidCover/clean_data/AOS_BryoidCover_1981_1984.csv")
