@@ -37,6 +37,7 @@ Species codes are explained in the Species_List_Vascular_Surveys.csv file, which
 	comments: any comments made in the 2005 file and comments for unknown species in 2020
 	Accepted...Y.N. - whether or not the scientific name is accepted in 2020 (yes or no)
 OBSN = Observer number
+TEMP = soil temperature; removed during data processing
 
 ###
 Data collection notes
